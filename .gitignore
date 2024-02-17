@@ -10,14 +10,18 @@
 *.userosscache
 *.sln.docstates
 
+# Docker
+docker-compose.override.yml
+*.env
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Mono auto generated files
 mono_crash.*
 
-# Build results
-[Dd]ebug/
+# Build results`
+[Dd]ebug/`
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
