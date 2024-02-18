@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Rally.Models
 {
     public enum ExerciseType
@@ -6,6 +8,7 @@ namespace Rally.Models
     }
     public class Exercise
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public int? SignNumber { get; set; }
         public string? Description { get; set; }

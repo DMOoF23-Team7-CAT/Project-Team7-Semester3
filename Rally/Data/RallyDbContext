@@ -1,0 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Rally.Models;
+
+namespace Rally.Data
+{
+    public class RallyDbContext : DbContext
+    {
+        public RallyDbContext(DbContextOptions<RallyDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Excercise> Excercises { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+    }
+}

@@ -1,0 +1,74 @@
+
+@startuml Relationel Database Schema
+
+class User{
+{field} Id (PK)
+FirstName
+LastName
+Email
+Username
+Password
+}
+
+class Track{
+{field} Id (PK)
+Name
+Comment
+Location
+Date
+UserId (FK - User.Id)
+CategoryId (FK - Category.Id)
+}
+
+class Category{
+{field} Id (PK)
+Rules
+NumberOfExercises
+TypeId (FK - CategoryType.Id)
+}
+
+class Exercise{
+{field} Id (PK)
+SignNumber
+Description
+Image
+Location
+Rotation
+TypeId (FK - ExerciseType.Id)
+EquipmentId (FK - Equipment.Id)
+}
+
+class Equipment{
+{field} Id (PK)
+Image
+Rotation
+Location
+TypeId (FK - EquipmentType.Id)
+}
+
+class CategoryType <<enum>> {
+{field} Id (PK)
+Name
+}
+
+class ExerciseType <<enum>> {
+{field} Id (PK)
+Name
+}
+
+class EquipmentType <<enum>> {
+{field} Id (PK)
+Name
+}
+
+User "1" -- "0..*" Track
+Track "0..*" -- "1" Category
+Track "0..*" -- "0..*" Exercise
+Exercise "0..*" -- "1" Equipment
+Category "1" -- "1" CategoryType
+Exercise "1" -- "1" ExerciseType
+Equipment "1" -- "1" EquipmentType
+
+@enduml
+
+
