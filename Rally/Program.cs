@@ -10,6 +10,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//! Added for Razor pages
+//builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,12 +40,23 @@ using (var scope = app.Services.CreateScope())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+
+
+app.MapControllers();
+
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//! not needed since its implementet in the MapControllers
+//app.UseRouting();
+//! not needed since im using top level statenment to sorten it = app.MapControllers();
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+// });
+//! the default route is not needed
+// app.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
