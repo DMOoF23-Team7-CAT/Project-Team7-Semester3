@@ -1,0 +1,84 @@
+@startuml Design Class Diagram for models
+
+namespace Rally.Models {
+    class User {
+        + Id: int
+        + FirstName: string
+        + LastName: string
+        + Email: string
+        + Username: string
+        + Password: string
+        + Tracks: ICollection<Track>
+    }
+
+    class Track {
+        + Id: int
+        + Name: string
+        + Comment: string
+        + Location: string
+        + Date: DateTime
+        + User: User
+        + Category: Category
+        + Exercises: ICollection<Exercise>
+    }
+
+    class Exercise {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        + Id: int
+        + SignNumber: int
+        + Description: string
+        + Image: string
+        + Location: string
+        + Rotation: string
+        + Category: ICollection<Category>
+        + Track: ICollection<Track>
+        + Type: ExerciseType
+        + Equipment: Equipment
+    }
+
+    enum ExerciseType {
+        // Add ExerciseType values here
+    }
+
+    class Equipment {
+        + Id: int
+        + Image: string
+        + Rotation: string
+        + Location: string
+        + Type: EquipmentType
+        + Exercises: ICollection<Exercise>
+    }
+
+    enum EquipmentType {
+        // Add EquipmentType values here
+    }
+
+    class Category {
+        + Id: int
+        + Type: CategoryType
+        + Rules: string
+        + NumberOfExercises: int
+        + Tracks: ICollection<Track>
+        + Exercises: ICollection<Exercise>
+    }
+
+    enum CategoryType {
+        Beginner,
+        Advanced,
+        Expert,
+        Champion,
+        Open
+    }
+
+    User "1" -- "0..*" Track
+    Track "0..*" -- "1" Category
+    Track "0..*" -- "0..*" Exercise
+    Exercise "0..*" -- "1" Equipment
+    Category "1" -- "1" CategoryType
+    Exercise "1" -- "1" ExerciseType
+    Equipment "1" -- "1" EquipmentType
+}
+
+
+
+@enduml
