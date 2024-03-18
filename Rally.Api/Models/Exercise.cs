@@ -18,7 +18,7 @@ namespace Rally.Api.Models
         public string Rotation { get; set; } = string.Empty;
 
         [ForeignKey("ExerciseType")]
-        public int ExerciseId { get; set; }
+        public int ExerciseTypeId { get; set; }
         public ExerciseType? ExerciseType { get; set; }
         [ForeignKey("Equipment")]
         public int EquipmentId { get; set; }
