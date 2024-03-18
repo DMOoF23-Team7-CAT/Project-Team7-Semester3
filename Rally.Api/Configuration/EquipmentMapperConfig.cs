@@ -12,9 +12,9 @@ namespace Rally.Api.Configuration
     {
         public EquipmentMapperConfig()
         {
-            CreateMap<Equipment, CreateEquipmentDto>(); 
-            CreateMap<Equipment, UpdateEquipmentDto>(); 
-            CreateMap<Equipment, GetEquipmentWithTypeDto>(); 
+            CreateMap<Equipment, CreateEquipmentDto>().ReverseMap(); 
+            CreateMap<Equipment, UpdateEquipmentDto>().ReverseMap(); 
+            CreateMap<Equipment, GetEquipmentWithTypeDto>().ReverseMap(); 
         }
     }
 }

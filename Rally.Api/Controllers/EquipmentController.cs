@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rally.Api.Data;
+using Rally.Api.Dtos.Equipment;
 using Rally.Api.Models;
 
 namespace Rally.Api.Controllers
@@ -15,22 +17,27 @@ namespace Rally.Api.Controllers
     public class EquipmentController : ControllerBase
     {
         private readonly RallyDbContext _context;
+        private readonly IMapper _mapper;
 
-        public EquipmentController(RallyDbContext context)
+        public EquipmentController(RallyDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Equipment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipment>>> GetEquipments()
+        public async Task<ActionResult<IEnumerable<GetEquipmentWithTypeDto>>> GetEquipments()
         {
-            return await _context.Equipments.ToListAsync();
+            var equipments = await _context.Equipments.ToListAsync();
+            var mappedEquipments = _mapper.Map<List<GetEquipmentWithTypeDto>>(equipments);
+
+            return mappedEquipments;
         }
 
         // GET: api/Equipment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Equipment>> GetEquipment(int id)
+        public async Task<ActionResult<GetEquipmentWithTypeDto>> GetEquipment(int id)
         {
             var equipment = await _context.Equipments.FindAsync(id);
 
@@ -39,20 +46,24 @@ namespace Rally.Api.Controllers
                 return NotFound();
             }
 
-            return equipment;
+            var mappedEquipment = _mapper.Map<GetEquipmentWithTypeDto>(equipment);
+            return mappedEquipment;
         }
 
         // PUT: api/Equipment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEquipment(int id, Equipment equipment)
+        public async Task<IActionResult> PutEquipment(int id, UpdateEquipmentDto equipmentDto)
         {
-            if (id != equipment.Id)
+            var equipment = await _context.Equipments.FindAsync(id);
+
+            if (equipment == null)
             {
                 return BadRequest();
             }
 
-            _context.Entry(equipment).State = EntityState.Modified;
+            _mapper.Map(equipmentDto, equipment);
+            _context.Equipments.Update(equipment);
 
             try
             {
@@ -76,11 +87,31 @@ namespace Rally.Api.Controllers
         // POST: api/Equipment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Equipment>> PostEquipment(Equipment equipment)
+        public async Task<ActionResult<CreateEquipmentDto>> PostEquipment(CreateEquipmentDto equipmentDto)
         {
-            _context.Equipments.Add(equipment);
-            await _context.SaveChangesAsync();
+            if (equipmentDto == null)
+            {
+                return BadRequest();
+            }
 
+            var equipment = _mapper.Map<Equipment>(equipmentDto);
+            _context.Equipments.Add(equipment);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (EquipmentExists(equipment.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
             return CreatedAtAction("GetEquipment", new { id = equipment.Id }, equipment);
         }
 

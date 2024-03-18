@@ -63,7 +63,7 @@ namespace Rally.Api.Controllers
             }
 
             _mapper.Map(categoryDto, category);
-            var result = _context.Categories.Update(category);
+            _context.Categories.Update(category);
 
             try
             {
