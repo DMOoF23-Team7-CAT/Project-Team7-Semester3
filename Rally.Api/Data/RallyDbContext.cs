@@ -14,12 +14,12 @@ namespace Rally.Api.Data
             
         }
 
-        DbSet<Category> categories { get; set; }
-        DbSet<CategoryType> CategoryTypes { get; set; }
-        DbSet<Equipment> Equipments { get; set; }
-        DbSet<EquipmentType> EquipmentTypes { get; set; }
-        DbSet<Exercise> Exercises { get; set; }
-        DbSet<ExerciseType> ExerciseTypes { get; set; }
-        DbSet<Track> Tracks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryType> CategoryTypes { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentType> EquipmentTypes { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<ExerciseType> ExerciseTypes { get; set; }
+        public DbSet<Track> Tracks { get; set; }
     }
 }
