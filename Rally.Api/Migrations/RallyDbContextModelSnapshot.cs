@@ -55,13 +55,11 @@ namespace Rally.Api.Migrations
             modelBuilder.Entity("Rally.Api.Models.Category", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfExercises")
                         .HasColumnType("int");
@@ -72,23 +70,7 @@ namespace Rally.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryTypeId");
-
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Rally.Api.Models.CategoryType", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoryTypes");
                 });
 
             modelBuilder.Entity("Rally.Api.Models.Equipment", b =>
@@ -253,17 +235,6 @@ namespace Rally.Api.Migrations
                         .HasForeignKey("TracksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Rally.Api.Models.Category", b =>
-                {
-                    b.HasOne("Rally.Api.Models.CategoryType", "Type")
-                        .WithMany()
-                        .HasForeignKey("CategoryTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("Rally.Api.Models.Equipment", b =>

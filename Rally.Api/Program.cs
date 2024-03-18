@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Rally.Api.Configuration;
 using Rally.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<RallyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAutoMapper(typeof(CategoryMapperConfig),
+                                typeof(EquipmentMapperConfig),
+                                typeof(ExerciseMapperConfig),
+                                typeof(TrackMapperConfig));
 
 var app = builder.Build();
 

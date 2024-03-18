@@ -15,7 +15,6 @@ namespace Rally.Api.Data
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryType> CategoryTypes { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
