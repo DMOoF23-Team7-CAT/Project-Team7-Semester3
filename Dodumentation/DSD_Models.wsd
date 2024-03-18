@@ -74,6 +74,7 @@ namespace Rally.Models {
     Track "0..*" -- "1" Category
     Track "0..*" -- "0..*" Exercise
     Exercise "0..*" -- "1" Equipment
+    Exercise "0..*" -- "0..*" Category
     Category "1" -- "1" CategoryType
     Exercise "1" -- "1" ExerciseType
     Equipment "1" -- "1" EquipmentType
