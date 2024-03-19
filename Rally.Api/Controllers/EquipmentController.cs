@@ -143,5 +143,29 @@ namespace Rally.Api.Controllers
         {
             return _context.Equipments.Any(e => e.Id == id);
         }
+
+        // [HttpPost("api/equipments/{equipmentId}/exercises")]
+        // public async Task<ActionResult<Equipment>> AddExercisesToEquipment(int equipmentId, [FromBody] List<int> exerciseIds)
+        // {
+        //     // Retrieve the Equipment by ID
+        //     var equipment = await _context.Equipments.FindAsync(equipmentId);
+
+        //     if (equipment == null)
+        //     {
+        //         return BadRequest();
+        //     }
+
+        //     // Assuming you have a method to retrieve exercises, e.g., GetExercisesByIds(List<int> exerciseIds)
+        //     var exercises = await _context.Exercises.Where(e => exerciseIds.Contains(e.Id)).ToListAsync();
+
+        //     // Assign the retrieved exercises to the Equipment's Exercises collection
+        //     equipment.Exercises = exercises;
+
+        //     // Save changes to the database
+        //     await _context.SaveChangesAsync();
+
+        //     return CreatedAtAction("GetEquipment", new { id = equipmentId }, equipment);
+        // }
+
     }
 }

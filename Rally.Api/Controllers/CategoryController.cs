@@ -143,5 +143,67 @@ namespace Rally.Api.Controllers
         {
             return _context.Categories.Any(e => e.Id == id);
         }
+
+        [HttpPost("api/categories/{categoryId}/exercises")]
+        public async Task<ActionResult<CategoryDetailsDto>> AddExerciseToCategory(int categoryId, int exerciseId)
+        {
+            // Retrieve the Category and Exercise by their IDs
+            var category = await _context.Categories
+                .Include(c => c.Exercises)
+                .FirstOrDefaultAsync(c => c.Id == categoryId);
+
+            var exercise = await _context.Exercises.FindAsync(exerciseId);
+
+            // Check if either the category or exercise is null
+            if (category == null || exercise == null)
+                return BadRequest("Invalid Category or Exercise");
+
+            // Ensure the category's Exercises collection is not null
+            category.Exercises ??= new List<Exercise>();
+
+            // Check if the exercise already exists in the category's collection
+            if (category.Exercises.Any(e => e.Id == exercise.Id))
+                return Conflict("Exercise already exists in the category");
+
+            // Add the exercise to the category
+            category.Exercises.Add(exercise);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                return Conflict(e.Message);
+            }
+
+            var mappedCategory = _mapper.Map<CategoryDetailsDto>(category);
+            return Ok(mappedCategory);
+        }
+
+
+        // [HttpPost("api/categories/{categoryId}/tracks")]
+        // public async Task<ActionResult<CategoryDetailsDto>> AddTrackToCategory(int categoryId, int trackId)
+        // {
+        //     var category = await _context.Categories.Include(c => c.Tracks)
+        //         .FirstOrDefaultAsync(c => c.Id == categoryId);
+
+        //     if (category == null) return BadRequest("Invalid Category");
+
+        //     var track = await _context.Tracks.FindAsync(trackId);
+
+        //     if (track == null) return BadRequest("Invalid Track");
+
+        //     category.Tracks ??= new List<Track>();
+
+        //     category.Tracks.Add(track);
+
+        //     await _context.SaveChangesAsync();
+
+        //     return CreatedAtAction("GetCategory", new { id = categoryId });
+        // }
+
+
+
     }
 }

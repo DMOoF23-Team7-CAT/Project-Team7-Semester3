@@ -142,5 +142,7 @@ namespace Rally.Api.Controllers
         {
             return _context.Exercises.Any(e => e.Id == id);
         }
+
+
     }
 }
