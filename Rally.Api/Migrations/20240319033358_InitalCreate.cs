@@ -26,27 +26,17 @@ namespace Rally.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EquipmentTypes",
+                name: "Equipments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rotation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipmentTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExerciseTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExerciseTypes", x => x.Id);
+                    table.PrimaryKey("PK_Equipments", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,7 +49,7 @@ namespace Rally.Api.Migrations
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,45 +58,20 @@ namespace Rally.Api.Migrations
                         name: "FK_Tracks_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Equipments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rotation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EquipmentTypeId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Equipments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Equipments_EquipmentTypes_EquipmentTypeId",
-                        column: x => x.EquipmentTypeId,
-                        principalTable: "EquipmentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Exercises",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     SignNumber = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rotation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExerciseTypeId = table.Column<int>(type: "int", nullable: false),
-                    EquipmentId = table.Column<int>(type: "int", nullable: false)
+                    EquipmentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,14 +80,7 @@ namespace Rally.Api.Migrations
                         name: "FK_Exercises_Equipments_EquipmentId",
                         column: x => x.EquipmentId,
                         principalTable: "Equipments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Exercises_ExerciseTypes_ExerciseTypeId",
-                        column: x => x.ExerciseTypeId,
-                        principalTable: "ExerciseTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -150,27 +108,28 @@ namespace Rally.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExerciseTrack",
+                name: "Sign",
                 columns: table => new
                 {
-                    ExercisesId = table.Column<int>(type: "int", nullable: false),
-                    TracksId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SignNumber = table.Column<int>(type: "int", nullable: false),
+                    ExerciseId = table.Column<int>(type: "int", nullable: true),
+                    TrackId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExerciseTrack", x => new { x.ExercisesId, x.TracksId });
+                    table.PrimaryKey("PK_Sign", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExerciseTrack_Exercises_ExercisesId",
-                        column: x => x.ExercisesId,
+                        name: "FK_Sign_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
                         principalTable: "Exercises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ExerciseTrack_Tracks_TracksId",
-                        column: x => x.TracksId,
+                        name: "FK_Sign_Tracks_TrackId",
+                        column: x => x.TrackId,
                         principalTable: "Tracks",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -179,24 +138,19 @@ namespace Rally.Api.Migrations
                 column: "ExercisesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipments_EquipmentTypeId",
-                table: "Equipments",
-                column: "EquipmentTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Exercises_EquipmentId",
                 table: "Exercises",
                 column: "EquipmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_ExerciseTypeId",
-                table: "Exercises",
-                column: "ExerciseTypeId");
+                name: "IX_Sign_ExerciseId",
+                table: "Sign",
+                column: "ExerciseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExerciseTrack_TracksId",
-                table: "ExerciseTrack",
-                column: "TracksId");
+                name: "IX_Sign_TrackId",
+                table: "Sign",
+                column: "TrackId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_CategoryId",
@@ -211,7 +165,7 @@ namespace Rally.Api.Migrations
                 name: "CategoryExercise");
 
             migrationBuilder.DropTable(
-                name: "ExerciseTrack");
+                name: "Sign");
 
             migrationBuilder.DropTable(
                 name: "Exercises");
@@ -223,13 +177,7 @@ namespace Rally.Api.Migrations
                 name: "Equipments");
 
             migrationBuilder.DropTable(
-                name: "ExerciseTypes");
-
-            migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "EquipmentTypes");
         }
     }
 }

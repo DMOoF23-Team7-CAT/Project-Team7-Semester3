@@ -2,12 +2,6 @@
 
 namespace Rally.Models {
     class User {
-        + Id: int
-        + FirstName: string
-        + LastName: string
-        + Email: string
-        + Username: string
-        + Password: string
         + Tracks: ICollection<Track>
     }
 
@@ -19,7 +13,14 @@ namespace Rally.Models {
         + Date: DateTime
         + User: User
         + Category: Category
-        + Exercises: ICollection<Exercise>
+        + Signs: ICollection<Sign>
+    }
+
+    class Sign {
+        + Id: int
+        + SignNumber: int
+        + Exercise: Exercise
+        + Track: Track
     }
 
     class Exercise {
@@ -30,30 +31,21 @@ namespace Rally.Models {
         + Image: string
         + Location: string
         + Rotation: string
-        + Category: ICollection<Category>
-        + Track: ICollection<Track>
-        + Type: ExerciseType
         + Equipment: Equipment
-    }
-
-    enum ExerciseType {
-        // Add ExerciseType values here
+        + Category: ICollection<Category>
     }
 
     class Equipment {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
         + Image: string
         + Rotation: string
         + Location: string
-        + Type: EquipmentType
         + Exercises: ICollection<Exercise>
     }
 
-    enum EquipmentType {
-        // Add EquipmentType values here
-    }
-
     class Category {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
         + Type: CategoryType
         + Rules: string
@@ -62,22 +54,13 @@ namespace Rally.Models {
         + Exercises: ICollection<Exercise>
     }
 
-    enum CategoryType {
-        Beginner,
-        Advanced,
-        Expert,
-        Champion,
-        Open
-    }
-
     User "1" -- "0..*" Track
     Track "0..*" -- "1" Category
-    Track "0..*" -- "0..*" Exercise
+    Track "1" -- "0..*" Sign
+    Sign "0..*" -- "1" Exercise
     Exercise "0..*" -- "1" Equipment
-    Exercise "0..*" -- "0..*" Category
-    Category "1" -- "1" CategoryType
-    Exercise "1" -- "1" ExerciseType
-    Equipment "1" -- "1" EquipmentType
+    Category "0..*" -- "0..*" Exercise
+
 }
 
 

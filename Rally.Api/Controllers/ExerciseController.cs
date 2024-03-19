@@ -79,7 +79,21 @@ namespace Rally.Api.Controllers
         public async Task<ActionResult<Exercise>> PostExercise(Exercise exercise)
         {
             _context.Exercises.Add(exercise);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (ExerciseExists(exercise.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return CreatedAtAction("GetExercise", new { id = exercise.Id }, exercise);
         }

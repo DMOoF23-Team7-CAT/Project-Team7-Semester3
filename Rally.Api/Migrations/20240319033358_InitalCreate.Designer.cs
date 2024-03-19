@@ -12,7 +12,7 @@ using Rally.Api.Data;
 namespace Rally.Api.Migrations
 {
     [DbContext(typeof(RallyDbContext))]
-    [Migration("20240318063631_InitalCreate")]
+    [Migration("20240319033358_InitalCreate")]
     partial class InitalCreate
     {
         /// <inheritdoc />
@@ -40,21 +40,6 @@ namespace Rally.Api.Migrations
                     b.ToTable("CategoryExercise");
                 });
 
-            modelBuilder.Entity("ExerciseTrack", b =>
-                {
-                    b.Property<int>("ExercisesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TracksId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExercisesId", "TracksId");
-
-                    b.HasIndex("TracksId");
-
-                    b.ToTable("ExerciseTrack");
-                });
-
             modelBuilder.Entity("Rally.Api.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -79,12 +64,6 @@ namespace Rally.Api.Migrations
             modelBuilder.Entity("Rally.Api.Models.Equipment", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EquipmentTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -101,41 +80,19 @@ namespace Rally.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EquipmentTypeId");
-
                     b.ToTable("Equipments");
-                });
-
-            modelBuilder.Entity("Rally.Api.Models.EquipmentType", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EquipmentTypes");
                 });
 
             modelBuilder.Entity("Rally.Api.Models.Exercise", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EquipmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ExerciseTypeId")
+                    b.Property<int?>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -157,23 +114,33 @@ namespace Rally.Api.Migrations
 
                     b.HasIndex("EquipmentId");
 
-                    b.HasIndex("ExerciseTypeId");
-
                     b.ToTable("Exercises");
                 });
 
-            modelBuilder.Entity("Rally.Api.Models.ExerciseType", b =>
+            modelBuilder.Entity("Rally.Api.Models.Sign", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SignNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TrackId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExerciseTypes");
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("Sign");
                 });
 
             modelBuilder.Entity("Rally.Api.Models.Track", b =>
@@ -184,7 +151,7 @@ namespace Rally.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
@@ -225,58 +192,35 @@ namespace Rally.Api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ExerciseTrack", b =>
-                {
-                    b.HasOne("Rally.Api.Models.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("ExercisesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rally.Api.Models.Track", null)
-                        .WithMany()
-                        .HasForeignKey("TracksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Rally.Api.Models.Equipment", b =>
-                {
-                    b.HasOne("Rally.Api.Models.EquipmentType", "Type")
-                        .WithMany()
-                        .HasForeignKey("EquipmentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Type");
-                });
-
             modelBuilder.Entity("Rally.Api.Models.Exercise", b =>
                 {
                     b.HasOne("Rally.Api.Models.Equipment", "Equipment")
                         .WithMany("Exercises")
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rally.Api.Models.ExerciseType", "ExerciseType")
-                        .WithMany()
-                        .HasForeignKey("ExerciseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EquipmentId");
 
                     b.Navigation("Equipment");
+                });
 
-                    b.Navigation("ExerciseType");
+            modelBuilder.Entity("Rally.Api.Models.Sign", b =>
+                {
+                    b.HasOne("Rally.Api.Models.Exercise", "Exercise")
+                        .WithMany()
+                        .HasForeignKey("ExerciseId");
+
+                    b.HasOne("Rally.Api.Models.Track", "Track")
+                        .WithMany("Signs")
+                        .HasForeignKey("TrackId");
+
+                    b.Navigation("Exercise");
+
+                    b.Navigation("Track");
                 });
 
             modelBuilder.Entity("Rally.Api.Models.Track", b =>
                 {
                     b.HasOne("Rally.Api.Models.Category", "Category")
                         .WithMany("Tracks")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -289,6 +233,11 @@ namespace Rally.Api.Migrations
             modelBuilder.Entity("Rally.Api.Models.Equipment", b =>
                 {
                     b.Navigation("Exercises");
+                });
+
+            modelBuilder.Entity("Rally.Api.Models.Track", b =>
+                {
+                    b.Navigation("Signs");
                 });
 #pragma warning restore 612, 618
         }

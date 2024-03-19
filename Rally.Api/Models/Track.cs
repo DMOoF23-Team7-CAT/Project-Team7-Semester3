@@ -18,10 +18,9 @@ namespace Rally.Api.Models
         public DateTime Date { get; set; } = DateTime.Now;
 
 
-        [ForeignKey("Category")]
-        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
-        public ICollection<Exercise>? Exercises { get; set; }
+        public ICollection<Sign>? Signs { get; set; }
 
     }
 }

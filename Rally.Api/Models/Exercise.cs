@@ -10,20 +10,13 @@ namespace Rally.Api.Models
     public class Exercise
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-        public int SignNumber { get; set; }
         public string Description { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
-        public string Location { get; set; } = string.Empty;
-        public string Rotation { get; set; } = string.Empty;
 
-        [ForeignKey("ExerciseType")]
-        public int ExerciseTypeId { get; set; }
-        public ExerciseType? ExerciseType { get; set; }
-        [ForeignKey("Equipment")]
-        public int EquipmentId { get; set; }
+        [ForeignKey("EquipmentId")]
         public Equipment? Equipment { get; set; }
         public ICollection<Category>? Categories { get; set; }
-        public ICollection<Track>? Tracks { get; set; }
     }
 }

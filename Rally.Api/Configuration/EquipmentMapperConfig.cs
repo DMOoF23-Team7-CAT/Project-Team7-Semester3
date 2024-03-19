@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Rally.Api.Dtos.Equipment;
 using Rally.Api.Models;
 
 namespace Rally.Api.Configuration
@@ -12,9 +11,9 @@ namespace Rally.Api.Configuration
     {
         public EquipmentMapperConfig()
         {
-            CreateMap<Equipment, CreateEquipmentDto>().ReverseMap(); 
-            CreateMap<Equipment, UpdateEquipmentDto>().ReverseMap(); 
-            CreateMap<Equipment, GetEquipmentWithTypeDto>().ReverseMap(); 
+            // CreateMap<Equipment, CreateEquipmentDto>().ReverseMap();
+            // CreateMap<Equipment, UpdateEquipmentDto>().ReverseMap();
+            // CreateMap<Equipment, GetEquipmentWithTypeDto>().ReverseMap();
         }
     }
 }
