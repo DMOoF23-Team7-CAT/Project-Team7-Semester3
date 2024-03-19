@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rally.Api.Data;
+using Rally.Api.Dtos.Category;
 using Rally.Api.Models;
 
 namespace Rally.Api.Controllers
@@ -15,31 +17,39 @@ namespace Rally.Api.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly RallyDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CategoryController(RallyDbContext context)
+        public CategoryController(RallyDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            var categories = await _context.Categories.ToListAsync();
+            var mappedCategories = _mapper.Map<List<CategoryDto>>(categories);
+
+            return mappedCategories;
         }
 
         // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<CategoryDetailsDto>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories.Include(c => c.Exercises)
+            .FirstOrDefaultAsync(c => c.Id == id);
 
             if (category == null)
             {
                 return NotFound();
             }
 
-            return category;
+            var mappedCategory = _mapper.Map<CategoryDetailsDto>(category);
+
+            return mappedCategory;
         }
 
         // PUT: api/Category/5

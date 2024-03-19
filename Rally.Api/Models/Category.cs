@@ -14,7 +14,6 @@ namespace Rally.Api.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Rules { get; set; } = string.Empty;
-        public int NumberOfExercises { get; set; }
 
         public ICollection<Track>? Tracks { get; set; }
         public ICollection<Exercise>? Exercises { get; set; }

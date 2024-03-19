@@ -39,8 +39,6 @@ namespace Rally.Models {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
         + Image: string
-        + Rotation: string
-        + Location: string
         + Exercises: ICollection<Exercise>
     }
 
@@ -49,7 +47,6 @@ namespace Rally.Models {
         + Id: int
         + Type: CategoryType
         + Rules: string
-        + NumberOfExercises: int
         + Tracks: ICollection<Track>
         + Exercises: ICollection<Exercise>
     }
