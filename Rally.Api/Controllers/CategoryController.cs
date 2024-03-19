@@ -55,14 +55,21 @@ namespace Rally.Api.Controllers
         // PUT: api/Category/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(int id, Category category)
+        public async Task<IActionResult> PutCategory(int id, UpdateCategoryDto updateCategoryDto)
         {
-            if (id != category.Id)
+            if (updateCategoryDto == null || id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid data or ID.");
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            // Apply updates from updateCategoryDto to the retrieved category
+            _mapper.Map(updateCategoryDto, category);
 
             try
             {
@@ -83,19 +90,27 @@ namespace Rally.Api.Controllers
             return NoContent();
         }
 
+
         // POST: api/Category
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<CreateCategoryDto>> PostCategory(CreateCategoryDto createCategoryDto)
         {
-            _context.Categories.Add(category);
+            if (createCategoryDto == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var mappedCategory = _mapper.Map<Category>(createCategoryDto);
+            _context.Add(mappedCategory);
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (CategoryExists(category.Id))
+                if (CategoryExists(mappedCategory.Id))
                 {
                     return Conflict();
                 }
@@ -105,7 +120,7 @@ namespace Rally.Api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            return CreatedAtAction("GetCategory", new { id = mappedCategory.Id }, mappedCategory);
         }
 
         // DELETE: api/Category/5

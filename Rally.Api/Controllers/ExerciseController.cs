@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rally.Api.Data;
+using Rally.Api.Dtos.Exercise;
 using Rally.Api.Models;
 
 namespace Rally.Api.Controllers
@@ -15,44 +17,59 @@ namespace Rally.Api.Controllers
     public class ExerciseController : ControllerBase
     {
         private readonly RallyDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ExerciseController(RallyDbContext context)
+        public ExerciseController(RallyDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Exercise
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Exercise>>> GetExercises()
+        public async Task<ActionResult<IEnumerable<ExerciseDto>>> GetExercises()
         {
-            return await _context.Exercises.ToListAsync();
+            var exercise = await _context.Exercises.ToListAsync();
+            var mappedExercises = _mapper.Map<List<ExerciseDto>>(exercise);
+
+            return mappedExercises;
         }
 
         // GET: api/Exercise/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Exercise>> GetExercise(int id)
+        public async Task<ActionResult<ExerciseDetailsDto>> GetExercise(int id)
         {
-            var exercise = await _context.Exercises.FindAsync(id);
+            var exercise = await _context.Exercises.Include(e => e.Equipment)
+                .Include(e => e.Categories).FirstOrDefaultAsync(e => e.Id == id);
 
             if (exercise == null)
             {
                 return NotFound();
             }
 
-            return exercise;
+            var mappedExercise = _mapper.Map<ExerciseDetailsDto>(exercise);
+
+            return mappedExercise;
         }
 
         // PUT: api/Exercise/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExercise(int id, Exercise exercise)
+        public async Task<IActionResult> PutExercise(int id, UpdateExerciseDto updateExerciseDto)
         {
-            if (id != exercise.Id)
+            if (updateExerciseDto == null || id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid data or ID.");
             }
 
-            _context.Entry(exercise).State = EntityState.Modified;
+            var exercise = await _context.Exercises.FindAsync(id);
+            if (exercise == null)
+            {
+                return NotFound();
+            }
+
+            var mappedExercise = _mapper.Map(updateExerciseDto, exercise);
+            _context.Update(mappedExercise);
 
             try
             {
@@ -76,16 +93,23 @@ namespace Rally.Api.Controllers
         // POST: api/Exercise
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Exercise>> PostExercise(Exercise exercise)
+        public async Task<ActionResult<Exercise>> PostExercise(CreateExerciseDto createExerciseDto)
         {
-            _context.Exercises.Add(exercise);
+            if (createExerciseDto == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var mappedExercise = _mapper.Map<Exercise>(createExerciseDto);
+            _context.Add(mappedExercise);
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (ExerciseExists(exercise.Id))
+                if (ExerciseExists(mappedExercise.Id))
                 {
                     return Conflict();
                 }
@@ -95,7 +119,7 @@ namespace Rally.Api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetExercise", new { id = exercise.Id }, exercise);
+            return CreatedAtAction("GetExercise", new { id = mappedExercise.Id }, mappedExercise);
         }
 
         // DELETE: api/Exercise/5

@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rally.Api.Data;
+using Rally.Api.Dtos.Equipment;
 using Rally.Api.Models;
 
 namespace Rally.Api.Controllers
@@ -15,44 +18,59 @@ namespace Rally.Api.Controllers
     public class EquipmentController : ControllerBase
     {
         private readonly RallyDbContext _context;
+        private readonly IMapper _mapper;
 
-        public EquipmentController(RallyDbContext context)
+        public EquipmentController(RallyDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Equipment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipment>>> GetEquipments()
+        public async Task<ActionResult<IEnumerable<EquipmentDto>>> GetEquipments()
         {
-            return await _context.Equipments.ToListAsync();
+            var equipment = await _context.Equipments.ToListAsync();
+            var mappedEquipment = _mapper.Map<List<EquipmentDto>>(equipment);
+
+            return mappedEquipment;
         }
 
         // GET: api/Equipment/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Equipment>> GetEquipment(int id)
+        public async Task<ActionResult<EquipmentDetailsDto>> GetEquipment(int id)
         {
-            var equipment = await _context.Equipments.FindAsync(id);
+            var equipment = await _context.Equipments.Include(e => e.Exercises)
+                .FirstOrDefaultAsync(e => e.Id == id);
 
             if (equipment == null)
             {
                 return NotFound();
             }
 
-            return equipment;
+            var mappedEquipment = _mapper.Map<EquipmentDetailsDto>(equipment);
+
+            return mappedEquipment;
         }
 
         // PUT: api/Equipment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEquipment(int id, Equipment equipment)
+        public async Task<IActionResult> PutEquipment(int id, UpdateEquipmentDto updateEquipmentDto)
         {
-            if (id != equipment.Id)
+            if (updateEquipmentDto == null || id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid data or ID.");
             }
 
-            _context.Entry(equipment).State = EntityState.Modified;
+            var Equipment = await _context.Equipments.FindAsync(id);
+            if (Equipment == null)
+            {
+                return NotFound();
+            }
+
+            // Apply updates from updateCategoryDto to the retrieved category
+            _mapper.Map(updateEquipmentDto, Equipment);
 
             try
             {
@@ -76,16 +94,23 @@ namespace Rally.Api.Controllers
         // POST: api/Equipment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Equipment>> PostEquipment(Equipment equipment)
+        public async Task<ActionResult<Equipment>> PostEquipment(CreateEquipmentDto createEquipmentDto)
         {
-            _context.Equipments.Add(equipment);
+            if (createEquipmentDto == null)
+            {
+                return BadRequest("Invalid data");
+            }
+
+            var mappedEquipment = _mapper.Map<Equipment>(createEquipmentDto);
+            _context.Equipments.Add(mappedEquipment);
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (EquipmentExists(equipment.Id))
+                if (EquipmentExists(mappedEquipment.Id))
                 {
                     return Conflict();
                 }
@@ -95,7 +120,7 @@ namespace Rally.Api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetEquipment", new { id = equipment.Id }, equipment);
+            return CreatedAtAction("GetEquipment", new { id = mappedEquipment.Id }, mappedEquipment);
         }
 
         // DELETE: api/Equipment/5

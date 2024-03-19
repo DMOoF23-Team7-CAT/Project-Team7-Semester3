@@ -16,8 +16,8 @@ namespace Rally.Api.Data
             CreateMap<Category, CategoryDetailsDto>()
                 .ForMember(dest => dest.Exercises, opt => opt
                 .MapFrom(src => src.Exercises ?? new List<Exercise>())).ReverseMap();
-            // CreateMap<Category, UpdateCategoryDto>().ReverseMap();
-            // CreateMap<Category, GetCategoryDetailsDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
             // CreateMap<Category, GetAllTracksInCategoryDto>().ReverseMap();
         }
     }
