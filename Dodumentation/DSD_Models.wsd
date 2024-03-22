@@ -19,6 +19,8 @@ namespace Rally.Models {
     class Sign {
         + Id: int
         + SignNumber: int
+        + Location: string
+        + Rotation: string
         + Exercise: Exercise
         + Track: Track
     }
@@ -29,8 +31,6 @@ namespace Rally.Models {
         + SignNumber: int
         + Description: string
         + Image: string
-        + Location: string
-        + Rotation: string
         + Equipment: Equipment
         + Category: ICollection<Category>
     }
