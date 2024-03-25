@@ -9,8 +9,7 @@
         <div class="row" id="main_row">
 
             <div class="col">
-                <canvas id="canvas">
-                </canvas>
+                <canvas id="canvas"></canvas>
             </div>
 
             <div class="col">
@@ -211,8 +210,39 @@
         let startX;
         let startY;
 
-        shapes.push({ x: 100, y: 100, width: 100, height: 100, color: 'red' })
-        shapes.push({ x: 50, y: 50, width: 50, height: 30, backgroundImage: src = "/Images/RallyStart.png" })
+
+        shapes.push({ x: 700, y: 500, width: 50, height: 35, backgroundSize: 'cover', backgroundImage: "/Images/RallyFinish.png" });
+        shapes.push({ x: 50, y: 50, width: 50, height: 35, backgroundImage: "/Images/RallyStart.png", backgroundSize: 'cover' });
+
+        // Load the images before drawing the shapes
+        let loadImages = function () {
+            let imagePromises = [];
+            for (let shape of shapes) {
+                let image = new Image();
+                image.src = shape.backgroundImage;
+                let imagePromise = new Promise((resolve, reject) => {
+                    image.onload = () => resolve();
+                    image.onerror = () => reject();
+                });
+                imagePromises.push(imagePromise);
+                shape.image = image;
+            }
+            return Promise.all(imagePromises);
+        };
+
+        let draw_shapes_with_images = function () {
+            loadImages().then(() => {
+                context.clearRect(0, 0, canvas_width, canvas_height);
+                for (let shape of shapes) {
+                    context.drawImage(shape.image, shape.x, shape.y, shape.width, shape.height);
+                }
+            });
+        }
+
+        draw_shapes_with_images();
+
+
+
 
         let is_mouse_inside_shape = function (X, Y, shape) {
             let shape_left = shape.x;
@@ -286,7 +316,7 @@
                 current_shape.x = newX;
                 current_shape.y = newY;
 
-                draw_shapes();
+                draw_shapes_with_images();
 
                 startX = mouseX;
                 startY = mouseY;
@@ -298,25 +328,14 @@
         canvas.onmouseout = mouse_out;
         canvas.onmousemove = mouse_move;
 
-        let draw_shapes = function () {
-            context.clearRect(0, 0, canvas_width, canvas_height);
-            for (let shape of shapes) {
-                context.fillStyle = shape.color;
-                context.fillRect(shape.x, shape.y, shape.width, shape.height);
-            }
-        }
-
-        draw_shapes();
-
-
         // button click for create shape
         let btn_start = document.getElementById("btn_start");
         let shapeId = 0; // Initialize the counter outside the event handlers
 
         btn_start.addEventListener('click', function () {
-            shapes.push({ id: shapeId, x: 500 + shapeId * 2, y: 300 + shapeId * 2, width: 50, height: 30, color: 'green' });
+            shapes.push({ id: shapeId, x: 500 + shapeId * 2, y: 300 + shapeId * 2, width: 50, height: 30, backgroundImage: "/Images/RallyStart.png", backgroundSize: 'cover' });
             shapeId++;
-            draw_shapes();
+            draw_shapes_with_images();
         });
 
         canvas.addEventListener('dblclick', function (event) {
@@ -333,7 +352,7 @@
                 }
             }
             // Redraw the shapes
-            draw_shapes();
+            draw_shapes_with_images();
         });
 
     </script>
@@ -342,3 +361,13 @@
 </body>
 
 </html>
+
+@*
+let draw_shapes = function () {
+context.clearRect(0, 0, canvas_width, canvas_height);
+for (let shape of shapes) {
+context.fillStyle = shape.color;
+context.fillRect(shape.x, shape.y, shape.width, shape.height);
+}
+} *@
+```
