@@ -28,11 +28,10 @@ namespace Rally.Models {
     class Exercise {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
-        + SignNumber: int
         + Description: string
         + Image: string
         + Equipment: Equipment
-        + Category: ICollection<Category>
+        + Category: Category
     }
 
     class Equipment {
