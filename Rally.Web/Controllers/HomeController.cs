@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Rally.Mvc.Models;
+using Rally.Web.Models;
 
-namespace Rally.Mvc.Controllers;
+namespace Rally.Web.Controllers;
 
 public class HomeController : Controller
 {

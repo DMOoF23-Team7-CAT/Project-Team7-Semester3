@@ -1,0 +1,60 @@
+html {
+	font-size: 14px;
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+	box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+}
+
+.sign_button {
+	width: 50px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	border: black 0.2px solid;
+}
+
+#btn_start {
+	background-image: url("/Images/RallyStart.png");
+}
+
+#sign3 {
+	background-image: url("/Images/sign-003.png");
+}
+
+#sign4 {
+	background-image: url("/Images/RallyExerciseImages/sign-004.png");
+}
+
+#sign5 {
+	background-image: url("/Images/RallyExerciseImages/sign-005.png");
+}
+
+#sign6 {
+	background-image: url("/Images/RallyExerciseImages/sign-006.png");
+}
+
+#sign7 {
+	background-image: url("/Images/RallyExerciseImages/sign-007.png");
+}

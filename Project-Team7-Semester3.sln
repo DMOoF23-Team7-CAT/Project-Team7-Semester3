@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Mvc", "Rally.Mvc\Rally.Mvc.csproj", "{337CFDDB-F56D-4527-91D3-D8A70AE985F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Web", "Rally.Web\Rally.Web.csproj", "{337CFDDB-F56D-4527-91D3-D8A70AE985F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "Rally.Api\Rally.Api.csproj", "{F1C37457-D073-4D72-BBA8-36C1756FEE69}"
 EndProject

@@ -1,4 +1,4 @@
-namespace Rally.Mvc.Models;
+namespace Rally.Web.Models;
 
 public class ErrorViewModel
 {
