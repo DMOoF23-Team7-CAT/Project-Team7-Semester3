@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
@@ -6,6 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Web", "Rally.Web\Rally.Web.csproj", "{337CFDDB-F56D-4527-91D3-D8A70AE985F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "Rally.Api\Rally.Api.csproj", "{F1C37457-D073-4D72-BBA8-36C1756FEE69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Domain", "Rally.Domain\Rally.Domain.csproj", "{D515D1CE-BD46-4876-8831-6F230CC565A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Data", "Rally.Data\Rally.Data.csproj", "{FD4601B5-1B51-4BC5-A7AB-5F52045EBD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Services", "Rally.Services\Rally.Services.csproj", "{25F6FBF9-2334-457F-980E-D0C56DC77BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Web", "Rally.Web\Rally.Web.csproj", "{2AB93676-2729-49DE-89B3-1EF8B1C16B92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,11 +29,30 @@ Global
 		{F1C37457-D073-4D72-BBA8-36C1756FEE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C37457-D073-4D72-BBA8-36C1756FEE69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C37457-D073-4D72-BBA8-36C1756FEE69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D515D1CE-BD46-4876-8831-6F230CC565A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D515D1CE-BD46-4876-8831-6F230CC565A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D515D1CE-BD46-4876-8831-6F230CC565A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D515D1CE-BD46-4876-8831-6F230CC565A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4601B5-1B51-4BC5-A7AB-5F52045EBD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4601B5-1B51-4BC5-A7AB-5F52045EBD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4601B5-1B51-4BC5-A7AB-5F52045EBD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4601B5-1B51-4BC5-A7AB-5F52045EBD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25F6FBF9-2334-457F-980E-D0C56DC77BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F6FBF9-2334-457F-980E-D0C56DC77BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F6FBF9-2334-457F-980E-D0C56DC77BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F6FBF9-2334-457F-980E-D0C56DC77BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB93676-2729-49DE-89B3-1EF8B1C16B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB93676-2729-49DE-89B3-1EF8B1C16B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB93676-2729-49DE-89B3-1EF8B1C16B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB93676-2729-49DE-89B3-1EF8B1C16B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79207064-7456-47BC-B694-B1B2A603E482}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{337CFDDB-F56D-4527-91D3-D8A70AE985F1} = {337CFDDB-F56D-4527-91D3-D8A70AE985F1}
 	EndGlobalSection
 EndGlobal
