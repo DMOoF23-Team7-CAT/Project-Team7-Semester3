@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Rally.Core.Entities
 {
-    public class Category : BaseEntity
+    public class Category
     {
         
     }

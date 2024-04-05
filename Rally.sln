@@ -1,16 +1,22 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Web", "Rally.Web\Rally.Web.csproj", "{C0582999-7134-44D2-BB75-5B08565351AB}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0136DF10-C10E-4EBA-B770-F3420ABAE5BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Core", "Rally.Core\Rally.Core.csproj", "{57489841-17E7-4A7F-A53C-6E214F77EAEA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Application", "Rally.Application\Rally.Application.csproj", "{6F961127-253C-4AB7-BCED-F6F22650650B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Web", "src\Rally.Web\Rally.Web.csproj", "{C0582999-7134-44D2-BB75-5B08565351AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Infrastructure", "Rally.Infrastructure\Rally.Infrastructure.csproj", "{8F4EECFD-886D-4271-8A39-5BE93FD1CA23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Core", "src\Rally.Core\Rally.Core.csproj", "{57489841-17E7-4A7F-A53C-6E214F77EAEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Application", "src\Rally.Application\Rally.Application.csproj", "{6F961127-253C-4AB7-BCED-F6F22650650B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Infrastructure", "src\Rally.Infrastructure\Rally.Infrastructure.csproj", "{8F4EECFD-886D-4271-8A39-5BE93FD1CA23}"
+EndProject
+
 
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,5 +43,11 @@ Global
 		{C0582999-7134-44D2-BB75-5B08565351AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0582999-7134-44D2-BB75-5B08565351AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0582999-7134-44D2-BB75-5B08565351AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0582999-7134-44D2-BB75-5B08565351AB} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
+		{8F4EECFD-886D-4271-8A39-5BE93FD1CA23} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
+		{57489841-17E7-4A7F-A53C-6E214F77EAEA} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
+		{6F961127-253C-4AB7-BCED-F6F22650650B} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 	EndGlobalSection
 EndGlobal
