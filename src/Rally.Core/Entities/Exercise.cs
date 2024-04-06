@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Rally.Core.Entities.Base;
 
 namespace Rally.Core.Entities
 {
-    public class Exercise
+    public class Exercise : Entity
     {
-        public int Id { get; set; }
         public string Description { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
 
