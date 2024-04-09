@@ -9,7 +9,5 @@ namespace Rally.Application.Dto
     public class EquipmentDto : BaseDto
     {
         public string Image { get; set; } = string.Empty;
-
-        public ICollection<ExerciseDto> Exercises { get; set; }
     }
 }

@@ -13,6 +13,5 @@ namespace Rally.Application.Dto
 
         public EquipmentDto? Equipment { get; set; }
         public CategoryDto? Category { get; set; }
-        public ICollection<SignDto> Signs { get; set; }
     }
 }

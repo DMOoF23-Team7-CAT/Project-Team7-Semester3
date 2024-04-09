@@ -10,9 +10,6 @@ namespace Rally.Application.Dto
     {
         public string Name { get; set; } = string.Empty;
         public string Rules { get; set; } = string.Empty;
-
-        public ICollection<TrackDto> Tracks { get; set; }
-        public ICollection<ExerciseDto> Exercises { get; set; }
     }
 
 }

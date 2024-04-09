@@ -10,7 +10,7 @@ namespace Rally.Core.Entities
     {
         public string Image { get; set; } = string.Empty;
 
-        public ICollection<Exercise> Exercises { get; set; }
+        public ICollection<Exercise> Exercises { get; private set; }
 
         public Equipment()
         {

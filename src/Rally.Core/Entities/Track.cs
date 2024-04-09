@@ -15,7 +15,7 @@ namespace Rally.Core.Entities
 
 
         public Category? Category { get; set; }
-        public ICollection<Sign> Signs { get; set; }
+        public ICollection<Sign> Signs { get; private set; }
 
         public Track()
         {
