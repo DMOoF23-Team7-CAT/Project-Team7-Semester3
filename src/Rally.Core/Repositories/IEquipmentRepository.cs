@@ -7,8 +7,8 @@ using Rally.Core.Entities;
 
 namespace Rally.Core.Repositories
 {
-    public interface IEquipmentRepository : IRepository<Equipment>
+    public interface IEquipmentBaseRepository : IRepository<EquipmentBase>
     {
-        
+
     }
 }

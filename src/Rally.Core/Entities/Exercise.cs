@@ -11,7 +11,7 @@ namespace Rally.Core.Entities
         public string Description { get; set; } = string.Empty;
         public byte[] Image { get; set; } = new byte[0];
 
-        public Equipment? Equipment { get; set; }
+        public EquipmentBase? EquipmentBase { get; set; }
         public Category? Category { get; set; }
         public ICollection<Sign> Signs { get; private set; }
 

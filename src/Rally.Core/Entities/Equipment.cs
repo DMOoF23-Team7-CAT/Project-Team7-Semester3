@@ -8,14 +8,9 @@ namespace Rally.Core.Entities
 {
     public class Equipment : Entity
     {
-        public byte[] Image { get; set; } = new byte[0];
-        public ICollection<Exercise> Exercises { get; private set; }
-        public ICollection<PositionedEquipment> PositionedEquipments { get; private set; }
-
-        public Equipment()
-        {
-            Exercises = new List<Exercise>();
-            PositionedEquipments = new List<PositionedEquipment>();
-        }
+        public string XCoordinate { get; set; } = string.Empty;
+        public string YCoordinate { get; set; } = string.Empty;
+        public string Rotation { get; set; } = string.Empty;
+        public EquipmentBase? EquipmentBase { get; set; }
     }
 }

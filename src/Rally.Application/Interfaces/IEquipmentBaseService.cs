@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Rally.Application.Interfaces
 {
-    public interface IEquipmentService
+    public interface IEquipmentBase
     {
-
+        
     }
 }

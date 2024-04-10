@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Rally.Application.Category.Dto;
 using Rally.Application.Dto.Base;
 using Rally.Application.Dto.Category;
-using Rally.Application.Dto.Equipment;
+using Rally.Application.Dto.EquipmentBase;
 
 namespace Rally.Application.Dto.Exercise
 {
@@ -14,15 +14,15 @@ namespace Rally.Application.Dto.Exercise
         public string Description { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
 
-        public EquipmentDto? Equipment { get; set; }
-        public CategoryDto? Category { get; set; }
+        public EquipmentBaseDto? EquipmentBase { get; private set; }
+        public CategoryDto? Category { get; private set; }
 
         public ExerciseDto(string description, string image,
-         EquipmentDto? equipment, CategoryDto? category)
+         EquipmentBaseDto? equipmentBase, CategoryDto? category)
         {
             Description = description;
             Image = image;
-            Equipment = equipment;
+            EquipmentBase = equipmentBase;
             Category = category;
         }
     }

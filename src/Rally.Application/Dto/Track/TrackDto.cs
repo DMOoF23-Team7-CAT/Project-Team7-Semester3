@@ -16,7 +16,13 @@ namespace Rally.Application.Dto.Track
         public DateTime Date { get; set; } = DateTime.Now;
 
 
-        public CategoryDto? Category { get; set; }
-        public ICollection<SignDto> Signs { get; set; } = new List<SignDto>();
+        public CategoryDto? Category { get; private set; }
+        public ICollection<SignDto> Signs { get; private set; }
+
+        public TrackDto(string name, CategoryDto? category)
+        {
+            Name = name;
+            Category = category;
+        }
     }
 }

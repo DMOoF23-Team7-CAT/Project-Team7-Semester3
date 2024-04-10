@@ -15,7 +15,16 @@ namespace Rally.Application.Dto.Sign
         public string YCoordinate { get; set; } = string.Empty;
         public string Rotation { get; set; } = string.Empty;
 
-        public ExerciseDto? Exercise { get; set; }
-        public TrackDto? Track { get; set; }
+        public ExerciseDto? Exercise { get; private set; }
+        public TrackDto? Track { get; private set; }
+
+        public SignDto(string xCoordinate, string yCoordinate,
+        ExerciseDto exercise, TrackDto track)
+        {
+            XCoordinate = xCoordinate;
+            YCoordinate = yCoordinate;
+            Exercise = exercise;
+            Track = track;
+        }
     }
 }

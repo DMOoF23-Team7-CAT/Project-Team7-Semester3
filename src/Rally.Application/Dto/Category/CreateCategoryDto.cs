@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Dto.Base;
-using Rally.Application.Exercise.Dto;
+using Rally.Application.Dto.Exercise;
 
-namespace Rally.Application.Category.Dto
+namespace Rally.Application.Dto.Category
 {
     public class CreateCategoryDto
     {

@@ -12,7 +12,7 @@ namespace Rally.Application.Dto.Category
     {
         public string Name { get; set; } = string.Empty;
         public string Rules { get; set; } = string.Empty;
-        public ICollection<ExerciseDto> Exercises { get; set; }
+        public ICollection<ExerciseDto> Exercises { get; private set; }
 
         public CategoryDto(string name, string rules, ICollection<ExerciseDto> exercises)
         {
