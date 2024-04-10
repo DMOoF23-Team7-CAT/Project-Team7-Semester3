@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Rally.Application.Category.Dto;
 using Rally.Application.Dto.Base;
-using Rally.Application.Sign.Dto;
+using Rally.Application.Dto.Category;
+using Rally.Application.Dto.Sign;
 
-namespace Rally.Application.Track.Dto
+namespace Rally.Application.Dto.Track
 {
     public class TrackDto : BaseDto
     {

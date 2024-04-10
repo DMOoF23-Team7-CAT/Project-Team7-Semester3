@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Category.Dto;
 using Rally.Application.Dto.Base;
-using Rally.Application.Equipment.Dto;
+using Rally.Application.Dto.Category;
+using Rally.Application.Dto.Equipment;
 
-namespace Rally.Application.Exercise.Dto
+namespace Rally.Application.Dto.Exercise
 {
     public class ExerciseDto : BaseDto
     {

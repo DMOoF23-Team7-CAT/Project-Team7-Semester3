@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Dto.Base;
-using Rally.Application.Exercise.Dto;
-using Rally.Application.Track.Dto;
+using Rally.Application.Dto.Exercise;
+using Rally.Application.Dto.Track;
 
-namespace Rally.Application.Sign.Dto
+namespace Rally.Application.Dto.Sign
 {
     public class SignDto : BaseDto
     {

@@ -1,10 +1,10 @@
-﻿using Rally.Application.Models;
+﻿using Rally.Application.Dto;
 using Rally.Core.Entities;
 using AutoMapper;
 using System;
 using Rally.Application.Mapper;
 
-namespace AspnetRun.Application.Mapper
+namespace Rally.Application.Mapper
 {
     // The best implementation of AutoMapper for class libraries -> https://www.abhith.net/blog/using-automapper-in-a-net-core-class-library/
     public static class ObjectMapper
@@ -20,8 +20,7 @@ namespace AspnetRun.Application.Mapper
             var mapper = config.CreateMapper();
             return mapper;
         });
+
         public static IMapper Mapper => Lazy.Value;
     }
-
-
 }

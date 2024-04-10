@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Dto.Base;
 
-namespace Rally.Application.Equipment.Dto
+namespace Rally.Application.Dto.Equipment
 {
     public class EquipmentDto : BaseDto
     {

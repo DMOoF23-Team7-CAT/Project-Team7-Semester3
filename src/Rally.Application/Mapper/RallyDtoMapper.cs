@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Rally.Application.Dto;
-using Rally.Core.Entities;
+using Rally.Core;
 
 namespace Rally.Application.Mapper
 {
@@ -12,11 +12,13 @@ namespace Rally.Application.Mapper
     {
         public RallyDtoMapper()
         {
-            CreateMap<Sign, SignDto>().ReverseMap();
-            CreateMap<Category, CategoryDto>().ReverseMap();
-            CreateMap<Equipment, EquipmentDto>().ReverseMap();
-            CreateMap<Exercise, ExerciseDto>().ReverseMap();
-            CreateMap<Track, TrackDto>().ReverseMap();
+            // TODO: Add the mapper for the Entities to DTOs and vice versa
+
+            CreateMap<Core.Entities.Sign, Dto.Sign.SignDto>().ReverseMap();
+            CreateMap<Core.Entities.Category, Dto.Category.CategoryDto>().ReverseMap();
+            CreateMap<Core.Entities.Equipment, Dto.Equipment.EquipmentDto>().ReverseMap();
+            CreateMap<Core.Entities.Exercise, Dto.Exercise.ExerciseDto>().ReverseMap();
+            CreateMap<Core.Entities.Track, Dto.Track.TrackDto>().ReverseMap();
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Rally.Core.Entities
         public string XCoordinate { get; set; } = string.Empty;
         public string YCoordinate { get; set;} = string.Empty;
         public string Rotation { get; set; } = string.Empty;
-        public Equipment? equipment{ get; set; }
+        public Equipment? Equipment{ get; set; }
     }
 }
