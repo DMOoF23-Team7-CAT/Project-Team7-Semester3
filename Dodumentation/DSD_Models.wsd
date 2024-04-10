@@ -3,6 +3,7 @@
 namespace Rally.Models {
     class User {
         + Tracks: ICollection<Track>
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Track {
@@ -14,6 +15,7 @@ namespace Rally.Models {
         + User: User
         + Category: Category
         + Signs: ICollection<Sign>
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Sign {
@@ -24,15 +26,17 @@ namespace Rally.Models {
         + Rotation: string
         + Exercise: Exercise
         + Track: Track
+        + PositionedEquipment: PositionedEquipment
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
-    class Exercise {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    class PositionedEquipment {
         + Id: int
-        + Description: string
-        + Image: string
+        + XCoordinate: string
+        + YCoordinate: string
+        + Rotation: string
         + Equipment: Equipment
-        + Category: Category
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Equipment {
@@ -40,6 +44,16 @@ namespace Rally.Models {
         + Id: int
         + Image: string
         + Exercises: ICollection<Exercise>
+        + PositionedEquipment: ICollection<PositionedEquipment>
+    }
+
+    class Exercise {
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    + Id: int
+    + Description: string
+    + Image: string
+    + Equipment: Equipment
+    + Category: Category
     }
 
     class Category {
@@ -55,6 +69,8 @@ namespace Rally.Models {
     Track "0..*" -- "1" Category
     Track "1" -- "0..*" Sign
     Sign "0..*" -- "1" Exercise
+    Sign "1" -- "1" PositionedEquipment
+    PositionedEquipment "1" -- "0..*" Equipment
     Exercise "0..*" -- "1" Equipment
     Category "1" -- "0..*" Exercise
 

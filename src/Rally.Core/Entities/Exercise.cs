@@ -9,7 +9,7 @@ namespace Rally.Core.Entities
     public class Exercise : Entity
     {
         public string Description { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
+        public byte[] Image { get; set; } = new byte[0];
 
         public Equipment? Equipment { get; set; }
         public Category? Category { get; set; }
