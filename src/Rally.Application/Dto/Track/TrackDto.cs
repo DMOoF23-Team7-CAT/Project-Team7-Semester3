@@ -23,6 +23,7 @@ namespace Rally.Application.Dto.Track
         {
             Name = name;
             Category = category;
+            Signs = new List<SignDto>();
         }
     }
 }
