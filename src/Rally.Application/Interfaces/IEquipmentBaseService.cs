@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Rally.Application.Interfaces
 {
-    public interface IEquipmentBase
+    public interface IEquipmentBaseService
     {
-        
+        // TODO: Add the methods for the EquipmentBase
     }
 }
+

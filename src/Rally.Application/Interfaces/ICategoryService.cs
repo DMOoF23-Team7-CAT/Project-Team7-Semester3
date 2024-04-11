@@ -7,6 +7,7 @@ namespace Rally.Application.Interfaces
 {
     public interface ICategoryService
     {
-        
+        // TODO: Add the methods for the Category
     }
 }
+

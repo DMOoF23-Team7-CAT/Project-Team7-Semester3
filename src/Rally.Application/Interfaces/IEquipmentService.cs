@@ -7,6 +7,7 @@ namespace Rally.Application.Interfaces
 {
     public interface IEquipmentService
     {
-
+        // TODO: Add the methods for the Equipment
     }
 }
+

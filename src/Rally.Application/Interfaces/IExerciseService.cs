@@ -7,6 +7,7 @@ namespace Rally.Application.Interfaces
 {
     public interface IExerciseService
     {
-        
+        // TODO: Add the methods for the Exercise
     }
 }
+
