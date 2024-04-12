@@ -12,13 +12,6 @@ namespace Rally.Application.Dto.Category
     {
         public string Name { get; set; } = string.Empty;
         public string Rules { get; set; } = string.Empty;
-        public ICollection<ExerciseDto> Exercises { get; private set; }
-
-        public CategoryDto(string name, string rules, ICollection<ExerciseDto> exercises)
-        {
-            Name = name;
-            Rules = rules;
-            Exercises = exercises ?? new List<ExerciseDto>();
-        }
+        public ICollection<ExerciseDto> Exercises { get; set; } = new List<ExerciseDto>();
     }
 }

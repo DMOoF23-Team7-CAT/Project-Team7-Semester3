@@ -9,10 +9,5 @@ namespace Rally.Application.Dto.EquipmentBase
     public class EquipmentBaseDto : BaseDto
     {
         public byte[] Image { get; set; } = new byte[0];
-
-        public EquipmentBaseDto(byte[] image)
-        {
-            Image = image;
-        }
     }
 }
