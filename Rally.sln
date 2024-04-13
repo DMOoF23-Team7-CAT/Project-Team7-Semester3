@@ -1,9 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0136DF10-C10E-4EBA-B770-F3420ABAE5BA}"
+	ProjectSection(SolutionItems) = preProject
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}"
 EndProject
@@ -16,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Infrastructure", "src\Rally.Infrastructure\Rally.Infrastructure.csproj", "{8F4EECFD-886D-4271-8A39-5BE93FD1CA23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Utility", "src\Rally.Utility\Rally.Utility.csproj", "{C1C1432D-91F2-40C3-959A-1374964EAD3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Api", "src\Rally.Api\Rally.Api.csproj", "{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,8 +50,13 @@ Global
 		{C1C1432D-91F2-40C3-959A-1374964EAD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1C1432D-91F2-40C3-959A-1374964EAD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1C1432D-91F2-40C3-959A-1374964EAD3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{C0582999-7134-44D2-BB75-5B08565351AB} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{8F4EECFD-886D-4271-8A39-5BE93FD1CA23} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{57489841-17E7-4A7F-A53C-6E214F77EAEA} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
