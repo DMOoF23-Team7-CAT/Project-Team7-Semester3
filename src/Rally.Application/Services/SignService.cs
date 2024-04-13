@@ -10,6 +10,8 @@ namespace Rally.Application.Services
 {
     public class SignService : ISignService
     {
+        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+
         private readonly ISignRepository _signRepository;
         private readonly IAppLogger<SignService> _logger;
 

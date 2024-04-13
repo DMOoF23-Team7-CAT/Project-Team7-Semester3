@@ -10,6 +10,8 @@ namespace Rally.Application.Services
 {
     public class EquipmentBaseService : IEquipmentBaseService
     {
+        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+
         private readonly IEquipmentBaseRepository _equipmentBaseRepository;
         private readonly IAppLogger<EquipmentBaseService> _logger;
 

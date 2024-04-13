@@ -10,6 +10,8 @@ namespace Rally.Application.Services
 {
     public class TrackService : ITrackService
     {
+        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+
         private readonly ITrackRepository _trackRepository;
         private readonly IAppLogger<TrackService> _logger;
 

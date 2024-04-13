@@ -10,6 +10,8 @@ namespace Rally.Application.Services
 {
     public class CategoryService : ICategoryService
     {
+        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAppLogger<CategoryService> _logger;
 

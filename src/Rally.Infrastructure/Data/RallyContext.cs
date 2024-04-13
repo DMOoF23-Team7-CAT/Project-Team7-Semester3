@@ -26,7 +26,7 @@ namespace Rally.Infrastructure.Data
             builder.Entity<Category>(ConfigureCategory);
             builder.Entity<Equipment>(ConfigureEquipment);
 
-            // TODO implement methods
+            // TODO implement Data Context methods
             // builder.Entity<EquipmentBase>(ConfigureEquipmentBase);
             // builder.Entity<Exercise>(ConfigureExercise);
             // builder.Entity<Sign>(ConfigureSign);

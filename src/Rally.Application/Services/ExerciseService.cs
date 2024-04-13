@@ -10,6 +10,8 @@ namespace Rally.Application.Services
 {
     public class ExerciseService : IExerciseService
     {
+        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
+
         private readonly IExerciseRepository _exerciseRepository;
         private readonly IAppLogger<ExerciseService> _logger;
 
