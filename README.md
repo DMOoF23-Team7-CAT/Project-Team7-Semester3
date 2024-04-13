@@ -2,7 +2,42 @@
 
 ##Team repository for team 7 3 semester for project Rally
 
-Lucid https://lucid.app/lucidchart/92161cfa-a84b-4d83-add6-b74ef6cd1cf7/edit?viewport_loc=-234%2C-11%2C1715%2C900%2CG_W-mY.hXxHR&invitationId=inv_e6600ef7-5205-459b-81eb-6533d3209754
+# Rally Project Overview
+
+The Rally project is a multi-layered application designed for managing exercises, equipment, and training sessions. It employs a clean architecture approach, separating concerns into distinct layers, each responsible for a specific aspect of the application. This structure enhances scalability, maintainability, and allows for the application to evolve over time with minimal impact on existing code.
+
+## Architecture and Layer Interaction
+
+### Rally.Api
+Serves as the entry point for HTTP requests, delegating operations to the Application layer. It's configured in [src/Rally.Api/Program.cs](src/Rally.Api/Program.cs), where services like Swagger for API documentation are set up.
+
+### Rally.Application
+Contains business logic and application services. It acts as a mediator between the API and Infrastructure layers, orchestrating the flow of data and operations. Services in this layer, such as [ExerciseService](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/README.md#15%2C196-15%2C196) and [EquipmentService](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/README.md#15%2C347-15%2C347), utilize interfaces defined in the Core layer to interact with data.
+
+### Rally.Core
+Defines domain models, interfaces for repositories, and specifications for queries. This layer encapsulates the business rules and serves as a contract for data operations, ensuring the application's business logic is abstracted from its data source.
+
+### Rally.Infrastructure
+Implements interfaces from the Core layer, providing concrete data access logic using Entity Framework Core. It interacts with the database and executes operations defined by the Application layer.
+
+### Rally.Web
+A frontend web application that interacts with the API layer to display data and submit requests. It uses Bootstrap for styling and Razor views for dynamic content rendering.
+
+## Design Patterns and Methodologies
+
+- **Specification Pattern**: Used in the Core layer for building dynamic queries based on business rules. Implemented in `BaseSpecification<T>`.
+
+- **Repository Pattern**: Abstracts data access logic, allowing the Application layer to interact with data sources through interfaces.
+
+- **Dependency Injection (DI)**: Achieves loose coupling between classes and their dependencies, configured in the [Program.cs](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/src/Rally.Web/Program.cs#1%2C1-1%2C1) files of the API and Web projects.
+
+- **AutoMapper**: Facilitates object mapping between domain entities and DTOs, reducing boilerplate code for transforming data between layers.
+
+- **Entity Framework Core**: Provides ORM support, simplifying data access and manipulation through LINQ queries and strongly typed models.
+
+## Conclusion
+
+The Rally project's architecture promotes separation of concerns, modularity, and flexibility. By employing design patterns and methodologies like Specification, Repository, and Dependency Injection, it ensures that the application remains scalable, maintainable, and easy to extend or modify. This structure not only facilitates development and testing but also aligns with modern software design principles.
 
 ## Rally.Core Project Setup and Class Usage
 
