@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Rally.Application\Rally.Application.csproj" />
-    <ProjectReference Include="..\src\Rally.Infrastructure\Rally.Infrastructure.csproj" />
+    <ProjectReference Include="..\Rally.Application\Rally.Application.csproj" />
+    <ProjectReference Include="..\Rally.Infrastructure\Rally.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
