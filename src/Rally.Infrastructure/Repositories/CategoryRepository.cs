@@ -20,6 +20,11 @@ namespace Rally.Infrastructure.Repositories
         {
             var spec = new CategoryWithExerciseSpecification(categoryId);
             var category = (await GetAsync(spec)).FirstOrDefault();
+
+            if (category is null)
+            {
+                throw new KeyNotFoundException("Category not found");
+            }
             return category;
         }
     }

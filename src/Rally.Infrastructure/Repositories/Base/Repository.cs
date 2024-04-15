@@ -40,7 +40,7 @@ namespace Rally.Infrastructure.Repositories.Base
             return await _dbContext.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includes = null, bool disableTracking = true)
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
         {
             IQueryable<T> query = _dbContext.Set<T>();
             if (disableTracking) query = query.AsNoTracking();
@@ -57,7 +57,13 @@ namespace Rally.Infrastructure.Repositories.Base
         //NOTE - this method returns null if the entity is not found
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            return await _dbContext.Set<T>().FindAsync(id);
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+            
+            if (entity is null)
+            {
+                throw new KeyNotFoundException($"Entity with ID {id} was not found.");
+            }
+            return entity;
         }
 
         public async Task<T> AddAsync(T entity)
