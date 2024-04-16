@@ -33,9 +33,13 @@ builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 
-// Register DbContext
+//! Register DbContext with local DB
 builder.Services.AddDbContext<RallyContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
+
+//!SECTION Register DbContext with remote DB
+// builder.Services.AddDbContext<RallyContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
