@@ -63,6 +63,7 @@ namespace Rally.Infrastructure.Data
         {
             builder.ToTable("Equipment");
             builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Equipments);
         }
 
@@ -70,7 +71,7 @@ namespace Rally.Infrastructure.Data
         {
             builder.ToTable("Signs");
             builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id).ValueGeneratedNever();
+            builder.Property(s => s.Id).ValueGeneratedOnAdd();
             builder.HasOne(s => s.Track).WithMany(t => t.Signs);
         }
 
@@ -78,7 +79,8 @@ namespace Rally.Infrastructure.Data
         {
             builder.ToTable("Tracks");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).ValueGeneratedNever();
+            builder.Property(t => t.Id).ValueGeneratedOnAdd();
+            builder.Property(t => t.Date).ValueGeneratedOnAdd(); // NOTE Date only gets set when its first added to database
             builder.HasOne(t => t.Category).WithMany(c => c.Tracks);
             builder.HasMany(t => t.Signs).WithOne(s => s.Track);
         }
