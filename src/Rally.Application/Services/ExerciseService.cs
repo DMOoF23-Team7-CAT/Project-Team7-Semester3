@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Interfaces;
-using Rally.Core.Interfaces;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
@@ -13,12 +12,10 @@ namespace Rally.Application.Services
         // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
 
         private readonly IExerciseRepository _exerciseRepository;
-        private readonly IAppLogger<ExerciseService> _logger;
 
-        public ExerciseService(IExerciseRepository exerciseRepository, IAppLogger<ExerciseService> logger)
+        public ExerciseService(IExerciseRepository exerciseRepository)
         {
             _exerciseRepository = exerciseRepository ?? throw new ArgumentNullException(nameof(exerciseRepository));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         // TODO: Implement the methods for the Exercise
     }

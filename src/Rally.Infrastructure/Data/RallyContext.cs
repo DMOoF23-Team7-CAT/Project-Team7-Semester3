@@ -25,31 +25,62 @@ namespace Rally.Infrastructure.Data
         {
             builder.Entity<Category>(ConfigureCategory);
             builder.Entity<Equipment>(ConfigureEquipment);
-
-            // TODO implement Data Context methods
-            // builder.Entity<EquipmentBase>(ConfigureEquipmentBase);
-            // builder.Entity<Exercise>(ConfigureExercise);
-            // builder.Entity<Sign>(ConfigureSign);
-            // builder.Entity<Track>(ConfigureTrack);
+            builder.Entity<EquipmentBase>(ConfigureEquipmentBase);
+            builder.Entity<Exercise>(ConfigureExercise);
+            builder.Entity<Sign>(ConfigureSign);
+            builder.Entity<Track>(ConfigureTrack);
         }
-        
+
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
             builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedNever(); // This line configures the ID to not be database-generated.
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
             builder.HasMany(c => c.Exercises).WithOne(e => e.Category);
             builder.HasMany(c => c.Tracks).WithOne(t => t.Category);
         }
 
+        private void ConfigureEquipmentBase(EntityTypeBuilder<EquipmentBase> builder)
+        {
+            builder.ToTable("EquipmentBases");
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedNever();
+            builder.HasMany(e => e.Equipments).WithOne(e => e.EquipmentBase);
+            builder.HasMany(e => e.Exercises).WithOne(e => e.EquipmentBase);
+        }
+
+        private void ConfigureExercise(EntityTypeBuilder<Exercise> builder)
+        {
+            builder.ToTable("Exercises");
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedNever();
+            builder.HasOne(e => e.Category).WithMany(c => c.Exercises);
+            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Exercises);
+        }  
+
         private void ConfigureEquipment(EntityTypeBuilder<Equipment> builder)
         {
             builder.ToTable("Equipment");
             builder.HasKey(e => e.Id);
-            builder.HasOne(e => e.EquipmentBase).WithMany()
-            .HasForeignKey(e => e.EquipmentBase!.Id); 
-            //NOTE the null forgiving operator (!) means that the property is not 
-            // nullable since Equipment should always be related to a EquipmentBase
+            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Equipments);
+        }
+
+        private void ConfigureSign(EntityTypeBuilder<Sign> builder)
+        {
+            builder.ToTable("Signs");
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Id).ValueGeneratedNever();
+            builder.HasOne(s => s.Track).WithMany(t => t.Signs);
+        }
+
+        private void ConfigureTrack(EntityTypeBuilder<Track> builder)
+        {
+            builder.ToTable("Tracks");
+            builder.HasKey(t => t.Id);
+            builder.Property(t => t.Id).ValueGeneratedNever();
+            builder.HasOne(t => t.Category).WithMany(c => c.Tracks);
+            builder.HasMany(t => t.Signs).WithOne(s => s.Track);
         }
     }
 
