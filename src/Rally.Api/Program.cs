@@ -37,7 +37,7 @@ builder.Services.AddScoped<ISignService, SignService>();
 builder.Services.AddDbContext<RallyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
 
-//!SECTION Register DbContext with remote DB
+//FIXME -  //! Register DbContext with remote DB
 // builder.Services.AddDbContext<RallyContext>(options =>
 //     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
