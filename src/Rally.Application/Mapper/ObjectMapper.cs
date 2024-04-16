@@ -14,7 +14,7 @@ namespace Rally.Application.Mapper
             var config = new MapperConfiguration(cfg =>
             {
                 // This line ensures that internal properties are also mapped over.
-                cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
+                cfg.ShouldMapProperty = p => p.GetMethod != null && (p.GetMethod.IsPublic || p.GetMethod.IsAssembly);
                 cfg.AddProfile<RallyDtoMapper>();
             });
             var mapper = config.CreateMapper();
