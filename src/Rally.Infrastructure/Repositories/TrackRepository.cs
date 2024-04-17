@@ -17,7 +17,7 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Track> GetTrackWithSigns(int id)
+        public async Task<Track> GetTrackWithSignsAsync(int id)
         {
             var spec = new TrackWithSignsSpecification(id);
             var track = (await GetAsync(spec)).FirstOrDefault();
@@ -29,7 +29,7 @@ namespace Rally.Infrastructure.Repositories
             return track;
         }
 
-        public async Task<Track> GetTrackWithCategory(int id)
+        public async Task<Track> GetTrackWithCategoryAsync(int id)
         {
             var spec = new TrackWithCategorySpecification(id);
             var track = (await GetAsync(spec)).FirstOrDefault();

@@ -16,7 +16,7 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Exercise> GetExerciseWithCategory(int id)
+        public async Task<Exercise> GetExerciseWithCategoryAsync(int id)
         {
             var spec = new ExerciseWithCategorySpecification(id);
             var exercise = (await GetAsync(spec)).FirstOrDefault();
@@ -28,7 +28,7 @@ namespace Rally.Infrastructure.Repositories
             return exercise;
         }   
 
-        public async Task<Exercise> GetExerciseWithEquipmentBase(int id)
+        public async Task<Exercise> GetExerciseWithEquipmentBaseAsync(int id)
         {
             var spec = new ExerciseWithEquipmentBaseSpecification(id);
             var exercise = (await GetAsync(spec)).FirstOrDefault();

@@ -16,7 +16,7 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Sign> GetSignWithExercises(int id)
+        public async Task<Sign> GetSignWithExercisesAsync(int id)
         {
             var spec = new SignWithExerciseSpecification(id);
             var sign = (await GetAsync(spec)).FirstOrDefault();
@@ -28,7 +28,7 @@ namespace Rally.Infrastructure.Repositories
             return sign;
         }
 
-        public async Task<Sign> GetSignWithTrack(int id)
+        public async Task<Sign> GetSignWithTrackAsync(int id)
         {
             var spec = new SignWithExerciseSpecification(id);
             var sign = (await GetAsync(spec)).FirstOrDefault();

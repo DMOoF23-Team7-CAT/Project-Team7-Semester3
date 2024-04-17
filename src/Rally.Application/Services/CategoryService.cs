@@ -2,23 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Rally.Application.Dto;
 using Rally.Application.Interfaces;
+using Rally.Application.Services.Base;
+using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : Service<CategoryDto, Category>, ICategoryService
     {
-        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
-
-        private readonly ICategoryRepository _categoryRepository;
-
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository) : base(categoryRepository)
         {
-            _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
         
-        // TODO: Implement the methods for the Category
+        // NOTE: Methods are implemented in the base class with validation and potential logging.
     }
 }
 

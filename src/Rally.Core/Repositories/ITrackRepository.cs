@@ -9,6 +9,8 @@ namespace Rally.Core.Repositories
 {
     public interface ITrackRepository : IRepository<Track>
     {
-        
+        Task<Track> GetTrackWithSignsAsync(int id);
+        Task<Track> GetTrackWithCategoryAsync(int id);
     }
 }
+

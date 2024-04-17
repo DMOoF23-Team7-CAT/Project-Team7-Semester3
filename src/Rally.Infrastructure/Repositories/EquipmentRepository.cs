@@ -16,7 +16,7 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Equipment> GetEquipmentWithEquipmentBase(int id)
+        public async Task<Equipment> GetEquipmentWithEquipmentBaseAsync(int id)
         {
             var spec = new EquipmentWithEquipmentBaseSpecification(id);
             var equipment = (await GetAsync(spec)).FirstOrDefault();

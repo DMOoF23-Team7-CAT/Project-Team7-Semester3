@@ -9,6 +9,8 @@ namespace Rally.Core.Repositories
 {
     public interface ISignRepository : IRepository<Sign>
     {
-        
+        Task<Sign> GetSignWithExercisesAsync(int id);
+        Task<Sign> GetSignWithTrackAsync(int id);
     }
 }
+

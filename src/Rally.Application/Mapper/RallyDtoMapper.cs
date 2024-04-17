@@ -12,8 +12,6 @@ namespace Rally.Application.Mapper
     {
         public RallyDtoMapper()
         {
-            // TODO: Add the mapper for extra DTOes
-
             // Category
             CreateMap<Core.Entities.Category, CategoryDto>().ReverseMap();
 
