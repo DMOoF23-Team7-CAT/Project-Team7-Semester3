@@ -81,14 +81,6 @@ Specifications are used to encapsulate query logic. The `BaseSpecification<T>` c
 8|    public abstract class BaseSpecification<T> : ISpecification<T>
 ```
 
-#### Value Objects
-
-Value objects are implemented to represent objects that are described by their attributes rather than a unique identity. The `ValueObject` base class provides methods for equality comparison based on the values of the object's properties.
-
-```csharp:src/Rally.Core/ValueObjects/Base/ValueObject.cs
-7|    public abstract class ValueObject
-```
-
 #### Interfaces and Helper Classes
 
 -   **IAppLogger<T>**: Interface for application-wide logging.

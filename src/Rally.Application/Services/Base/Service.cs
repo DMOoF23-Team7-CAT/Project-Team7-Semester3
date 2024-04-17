@@ -45,6 +45,19 @@ namespace Rally.Application.Services.Base
             await _repository.DeleteAsync(deletedEntity);
             // TODO: Add logging
         }
+        public async Task Update(TDto dto)
+        {
+            await ValidateIfNotExist(dto);
+
+            var editEntity = await _repository.GetByIdAsync(dto.Id);
+            if (editEntity is null)
+                throw new ApplicationException("Entity could not be found.");
+
+            ObjectMapper.Mapper.Map(dto, editEntity);
+
+            await _repository.UpdateAsync(editEntity);
+            // TODO: Add logging
+        }
 
         public async Task<TDto> GetById(int id)
         {
@@ -59,28 +72,12 @@ namespace Rally.Application.Services.Base
             return mappedEntity;
         }
 
-        public async Task<IEnumerable<TDto>> GetByName(string name)
-        {
-            var entities = await _repository.GetByNameAsync(name);
-            if (entities is null)
-                throw new ApplicationException("Entities could not be found.");
-
-            var mappedEntities = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(entities);
-            if (mappedEntities is null)
-                throw new ApplicationException("Entities could not be mapped.");
-
-            return mappedEntities;
-        }
 
         public Task<IEnumerable<TDto>> GetList()
         {
             throw new NotImplementedException();
         }
 
-        public Task Update(TDto dto)
-        {
-            throw new NotImplementedException();
-        }
 
 
         // NOTE: this is only for entities without database generated ID
