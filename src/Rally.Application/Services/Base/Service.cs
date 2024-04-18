@@ -16,7 +16,7 @@ namespace Rally.Application.Services.Base
 
         public Service(IRepository<TEntity> repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<TDto> Create(TDto dto)
@@ -85,9 +85,6 @@ namespace Rally.Application.Services.Base
 
             return mappedEntities;
         }
-
-
-
 
 
         // NOTE: this is only for entities without database generated ID

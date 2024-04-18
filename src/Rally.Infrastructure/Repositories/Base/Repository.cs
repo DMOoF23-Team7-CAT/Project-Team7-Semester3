@@ -58,10 +58,10 @@ namespace Rally.Infrastructure.Repositories.Base
         public virtual async Task<T> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
-            
+
             if (entity is null)
             {
-                throw new KeyNotFoundException($"Entity with ID {id} was not found.");
+                throw new InfraStructureException($"Entity with ID {id} was not found.");
             }
             return entity;
         }

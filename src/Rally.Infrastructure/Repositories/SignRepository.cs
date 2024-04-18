@@ -6,6 +6,7 @@ using Rally.Core.Entities;
 using Rally.Core.Repositories;
 using Rally.Core.Specifications;
 using Rally.Infrastructure.Data;
+using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
 
 namespace Rally.Infrastructure.Repositories
@@ -16,27 +17,25 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Sign> GetSignWithExercisesAsync(int id)
+        public async Task<Sign> GetSignWithExercisesAsync(int signId)
         {
-            var spec = new SignWithExerciseSpecification(id);
+            var spec = new SignWithExerciseSpecification(signId);
             var sign = (await GetAsync(spec)).FirstOrDefault();
 
             if (sign is null)
-            {
-                throw new KeyNotFoundException("Sign not found");
-            }
+                throw new InfrastructureException("Sign not found");
+
             return sign;
         }
 
-        public async Task<Sign> GetSignWithTrackAsync(int id)
+        public async Task<Sign> GetSignWithTrackAsync(int signId)
         {
-            var spec = new SignWithExerciseSpecification(id);
+            var spec = new SignWithExerciseSpecification(signId);
             var sign = (await GetAsync(spec)).FirstOrDefault();
 
             if (sign is null)
-            {
-                throw new KeyNotFoundException("Sign not found");
-            }
+                throw new InfrastructureException("Sign not found");
+
             return sign;
         }
     }

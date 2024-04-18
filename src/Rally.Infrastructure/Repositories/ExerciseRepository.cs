@@ -6,6 +6,7 @@ using Rally.Core.Entities;
 using Rally.Core.Repositories;
 using Rally.Core.Specifications;
 using Rally.Infrastructure.Data;
+using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
 
 namespace Rally.Infrastructure.Repositories
@@ -16,27 +17,25 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Exercise> GetExerciseWithCategoryAsync(int id)
+        public async Task<Exercise> GetExerciseWithCategoryAsync(int exerciseId)
         {
-            var spec = new ExerciseWithCategorySpecification(id);
+            var spec = new ExerciseWithCategorySpecification(exerciseId);
             var exercise = (await GetAsync(spec)).FirstOrDefault();
 
             if (exercise is null)
-            {
-                throw new KeyNotFoundException("Exercise not found");
-            }
+                throw new InfrastructureException("Exercise not found");
+
             return exercise;
-        }   
+        }
 
-        public async Task<Exercise> GetExerciseWithEquipmentBaseAsync(int id)
+        public async Task<Exercise> GetExerciseWithEquipmentBaseAsync(int exerciseId)
         {
-            var spec = new ExerciseWithEquipmentBaseSpecification(id);
+            var spec = new ExerciseWithEquipmentBaseSpecification(exerciseId);
             var exercise = (await GetAsync(spec)).FirstOrDefault();
 
             if (exercise is null)
-            {
-                throw new KeyNotFoundException("Exercise not found");
-            }
+                throw new InfrastructureException("Exercise not found");
+
             return exercise;
         }
     }
