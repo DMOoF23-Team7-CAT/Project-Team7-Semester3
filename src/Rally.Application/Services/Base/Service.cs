@@ -73,10 +73,20 @@ namespace Rally.Application.Services.Base
         }
 
 
-        public Task<IEnumerable<TDto>> GetList()
+        public async Task<IEnumerable<TDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAllAsync();
+            if (entities is null)
+                throw new ApplicationException("Entities could not be found.");
+
+            var mappedEntities = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(entities);
+            if (mappedEntities is null)
+                throw new ApplicationException("Entities could not be mapped.");
+
+            return mappedEntities;
         }
+
+
 
 
 

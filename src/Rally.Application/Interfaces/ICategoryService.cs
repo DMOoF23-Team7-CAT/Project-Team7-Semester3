@@ -10,6 +10,7 @@ namespace Rally.Application.Interfaces
     public interface ICategoryService : IService<CategoryDto>
     {
         // TODO: Add extra methods for the Category
+        Task<IEnumerable<CategoryDto>> GetCategoryWithExercises(int categoryId);
     }
 }
 
