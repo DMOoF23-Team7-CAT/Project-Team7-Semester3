@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities.Base;
 using Rally.Core.Specifications.Base;
 using Rally.Infrastructure.Data;
+using Rally.Infrastructure.Exceptions;
 
 namespace Rally.Infrastructure.Repositories.Base
 {
@@ -60,9 +61,8 @@ namespace Rally.Infrastructure.Repositories.Base
             var entity = await _dbContext.Set<T>().FindAsync(id);
 
             if (entity is null)
-            {
-                throw new InfraStructureException($"Entity with ID {id} was not found.");
-            }
+                throw new InfrastructureException($"Entity with ID {id} was not found.");
+
             return entity;
         }
 

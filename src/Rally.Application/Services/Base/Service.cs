@@ -10,7 +10,7 @@ using Rally.Application.Mapper;
 
 namespace Rally.Application.Services.Base
 {
-    public class Service<TDto, TEntity> : IService<TDto> where TDto : BaseDto where TEntity : Entity
+    public class Service<TDto, TEntity> : IService<TDto, TEntity> where TDto : BaseDto where TEntity : Entity
     {
         private readonly IRepository<TEntity> _repository;
 

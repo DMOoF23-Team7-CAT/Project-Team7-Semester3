@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Dto.Base;
+using Rally.Core.Entities.Base;
 
 namespace Rally.Application.Interfaces.Base
 {
-    public interface IService<TDto> where TDto : BaseDto
+    public interface IService<TDto, TEntity> where TDto : BaseDto where TEntity : Entity
     {
         Task<IEnumerable<TDto>> GetAll();
         Task<TDto> GetById(int id);

@@ -7,6 +7,8 @@ using Rally.Infrastructure.Repositories.Base;
 using Rally.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Rally.Application.Interfaces.Base;
+using Rally.Application.Services.Base;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ISignRepository, SignRepository>();
 
 // Register services
+builder.Services.AddScoped(typeof(IService<,>), typeof(Service<,>));
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IEquipmentBaseService, EquipmentBaseService>();
 builder.Services.AddScoped<ITrackService, TrackService>();

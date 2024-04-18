@@ -23,8 +23,6 @@ namespace Rally.Application.Services
         public async Task<EquipmentDto> GetEquipmentWithEquipmentBase(int equipmentId)
         {
             var equipment = await _equipmentRepository.GetEquipmentWithEquipmentBaseAsync(equipmentId);
-            if (equipment is null)
-                throw new ApplicationException("Equipment with EquipmentBase could not be found.");
 
             var mappedEquipment = ObjectMapper.Mapper.Map<EquipmentDto>(equipment);
             if (mappedEquipment is null)

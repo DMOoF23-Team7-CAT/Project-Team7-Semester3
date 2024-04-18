@@ -25,17 +25,16 @@ namespace Rally.Application.Services
         }
 
         // Method to get a category with its exercises
-        public async Task<IEnumerable<CategoryDto>> GetCategoryWithExercises(int categoriesId)
+        public async Task<CategoryDto> GetCategoryWithExercises(int categoriesId)
         {
-            var entities = await _categoryRepository.GetCategoryWithExercisesAsync(categoriesId);
-            if (entities is null)
-                throw new ApplicationException("Category with exercises could not be found.");
+            var entity = await _categoryRepository.GetCategoryWithExercisesAsync(categoriesId);
+            //NOTE - No need to check if entity is null here, because there is null checks in the Infrastructure layer.
 
-            var mappedEntities = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(entities);
-            if (mappedEntities is null)
+            var mappedEntity = ObjectMapper.Mapper.Map<CategoryDto>(entity);
+            if (mappedEntity is null)
                 throw new ApplicationException("Category with exercises could not be mapped.");
 
-            return mappedEntities;
+            return mappedEntity;
         }
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Rally.Application.Dto;
 using Rally.Application.Interfaces.Base;
+using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ICategoryService : IService<CategoryDto>
+    public interface ICategoryService : IService<CategoryDto, Category>
     {
-        // TODO: Add extra methods for the Category
-        Task<IEnumerable<CategoryDto>> GetCategoryWithExercises(int categoryId);
+        Task<CategoryDto> GetCategoryWithExercises(int categoryId);
     }
 }
 

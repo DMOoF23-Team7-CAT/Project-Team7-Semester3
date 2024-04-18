@@ -2,22 +2,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspnetRun.Core.Repositories.Base;
+using Rally.Application.Dto;
 using Rally.Application.Interfaces;
+using Rally.Application.Mapper;
+using Rally.Application.Services.Base;
+using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class TrackService : ITrackService
+    public class TrackService : Service<TrackDto, Track>, ITrackService
     {
-        // TODO : add validation , authorization, logging, exception handling etc. -- cross cutting activities in here.
-
         private readonly ITrackRepository _trackRepository;
-
-        public TrackService(ITrackRepository trackRepository)
+        public TrackService(IRepository<Track> repository, ITrackRepository trackRepository) : base(repository)
         {
             _trackRepository = trackRepository ?? throw new ArgumentNullException(nameof(trackRepository));
         }
-        // TODO: Implement the methods for the Track
+
+        public async Task<TrackDto> GetTrackWithSigns(int trackId)
+        {
+            var track = await _trackRepository.GetTrackWithSignsAsync(trackId);
+
+            var mappedTrack = ObjectMapper.Mapper.Map<TrackDto>(track);
+            if (mappedTrack is null)
+                throw new ApplicationException("Track with signs could not be mapped");
+
+            return mappedTrack;
+        }
+
+        public async Task<TrackDto> GetTrackWithCategory(int trackId)
+        {
+            var track = await _trackRepository.GetTrackWithCategoryAsync(trackId);
+
+            var mappedTrack = ObjectMapper.Mapper.Map<TrackDto>(track);
+            if (mappedTrack is null)
+                throw new ApplicationException("Track with category could not be mapped");
+
+            return mappedTrack;
+        }
     }
 }
 
