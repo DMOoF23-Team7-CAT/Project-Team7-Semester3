@@ -1,4 +1,8 @@
+https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
 @startuml Sequence Diagram GetCategories
+
+
 
 actor Client
 participant "CategoryController : API Layer" as Controller
@@ -7,6 +11,7 @@ participant "CategoryService (Service<TDto, TEntity>) : Application Layer" as Se
 participant "IRepository<Category> : Infrastructure Layer" as RepoInterface
 participant "CategoryRepository (Repository<Category>) : Infrastructure Layer" as RepoImpl
 database "Database : Infrastructure Layer" as Database
+
 
 Client -> Controller : HTTP GET /GetCategories
 Controller -> Service : GetAll()
@@ -21,13 +26,17 @@ ServiceImpl --> Service : Category Data
 Service --> Controller : Category Data
 Controller --> Client : HTTP Response
 
-
+note left
+API layer is not finished.
+there might come more methods
+for mapping to ViewModels and so on
+end note
 
 legend
-Given the detailed context and specific files provided, let's accurately trace the flow for the [GetCategories](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/src/Rally.Api/Controllers/CategoryController.cs#23%2C42-23%2C42) operation in the `Rally.Api` project, ensuring we reference the correct methods, interfaces, and classes as they are defined in the snippets.
 
 ### 1. **API Layer (`Rally.Api`)**:
-- **Controller**: The operation starts in the [CategoryController](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/src/Rally.Api/Controllers/CategoryController.cs#12%2C18-12%2C18) within the API layer, where the [GetCategories](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/src/Rally.Api/Controllers/CategoryController.cs#23%2C42-23%2C42) method is defined.
+- **Controller**: The operation starts in the [CategoryController] method is defined.
+
   ```csharp:src/Rally.Api/Controllers/CategoryController.cs
   public async Task<IActionResult> GetCategories()
   {
@@ -72,15 +81,13 @@ Given the detailed context and specific files provided, let's accurately trace t
 ### 5. **Database**:
 - The database interaction is managed by Entity Framework Core in `Repository<T>`, executing a query to retrieve all category records.
 
-### Flow Summary:
+### **Flow Summary:**
 1. A request is made to the `GetCategories` endpoint in `CategoryController`.
 2. `CategoryController` calls `GetAll` on `ICategoryService` (`CategoryService`).
 3. `CategoryService` calls `GetAllAsync` on `IRepository<Category>` (`CategoryRepository`).
 4. `CategoryRepository` uses EF Core to query the database and fetch all categories.
 5. The result is mapped from `Category` entities to `CategoryDto` objects using AutoMapper (`ObjectMapper` and `RallyDtoMapper`).
 6. The mapped `CategoryDto` objects are returned back up the call stack to the controller, which returns them to the client.
-
-This detailed flow, based on the provided snippets, accurately describes the process for the `GetCategories` operation, suitable for creating a sequence diagram or further analysis.
 
 end legend
 

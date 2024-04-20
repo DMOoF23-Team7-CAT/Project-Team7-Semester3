@@ -1,3 +1,5 @@
+https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
 @startuml Design Class Diagram for models
 
 namespace Rally.Models {
@@ -70,7 +72,7 @@ namespace Rally.Models {
     Track "1" -- "0..*" Sign
     Sign "0..*" -- "1" Exercise
     Sign "1" -- "1" Equipment
-    Equipment "1" -- "0..*" EquipmentBase
+    Equipment "0..*" -- "1" EquipmentBase
     Exercise "0..*" -- "1" EquipmentBase
     Category "1" -- "0..*" Exercise
 
@@ -79,5 +81,3 @@ namespace Rally.Models {
 
 
 @enduml
-
-// comment added
