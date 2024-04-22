@@ -13,11 +13,6 @@ namespace Rally.Core.Entities
 
         public EquipmentBase? EquipmentBase { get; set; }
         public Category? Category { get; set; }
-        public ICollection<Sign> Signs { get; private set; }
-
-        public SignBase()
-        {
-            Signs = new List<Sign>();
-        }
+        public ICollection<Sign> Signs { get; set; } = new List<Sign>();
     }
 }

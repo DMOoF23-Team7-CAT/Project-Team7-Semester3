@@ -22,17 +22,13 @@ Defines domain models, interfaces for repositories, and specifications for queri
 
 Implements interfaces from the Core layer, providing concrete data access logic using Entity Framework Core. It interacts with the database and executes operations defined by the Application layer.
 
-### Rally.Web
-
-A frontend web application that interacts with the API layer to display data and submit requests. It uses Bootstrap for styling and Razor views for dynamic content rendering.
-
 ## Design Patterns and Methodologies
 
 -   **Specification Pattern**: Used in the Core layer for building dynamic queries based on business rules. Implemented in `BaseSpecification<T>`.
 
 -   **Repository Pattern**: Abstracts data access logic, allowing the Application layer to interact with data sources through interfaces.
 
--   **Dependency Injection (DI)**: Achieves loose coupling between classes and their dependencies, configured in the [Program.cs](file:///Users/trygvebechsgaard/Repoes/Project-Team7-Semester3/src/Rally.Web/Program.cs#1%2C1-1%2C1) files of the API and Web projects.
+-   **Dependency Injection (DI)**: Achieves loose coupling between classes and their dependencies, configured in the [Program.cs] files of the API and Web projects.
 
 -   **AutoMapper**: Facilitates object mapping between domain entities and DTOs, reducing boilerplate code for transforming data between layers.
 

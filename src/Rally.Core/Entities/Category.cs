@@ -11,13 +11,7 @@ namespace Rally.Core.Entities
         public string Name { get; set; } = string.Empty;
         public string Rules { get; set; } = string.Empty;
 
-        public ICollection<Track> Tracks { get; private set; }
-        public ICollection<SignBase> SignBases { get; private set; }
-
-        public Category()
-        {
-            Tracks = new List<Track>();
-            SignBases = new List<SignBase>();
-        }
+        public ICollection<Track> Tracks { get; set; } = new List<Track>();
+        public ICollection<SignBase> SignBases { get; set; } = new List<SignBase>();
     }
 }

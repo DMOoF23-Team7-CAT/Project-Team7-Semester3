@@ -9,13 +9,7 @@ namespace Rally.Core.Entities
     public class EquipmentBase : Entity
     {
         public byte[] Image { get; set; } = new byte[0];
-        public ICollection<SignBase> SignBases { get; private set; }
-        public ICollection<Equipment> Equipments { get; private set; }
-
-        public EquipmentBase()
-        {
-            SignBases = new List<SignBase>();
-            Equipments = new List<Equipment>();
-        }
+        public ICollection<SignBase> SignBases { get; set; } = new List<SignBase>();
+        public ICollection<Equipment> Equipments { get; set; } = new List<Equipment>();
     }
 }

@@ -13,13 +13,7 @@ namespace Rally.Core.Entities
         public string Location { get; set; } = string.Empty;
         public DateTime Date { get; set; } = DateTime.Now;
 
-
         public Category? Category { get; set; }
-        public ICollection<Sign> Signs { get; private set; }
-
-        public Track()
-        {
-            Signs = new List<Sign>();
-        }
+        public ICollection<Sign> Signs { get; set; } = new List<Sign>();
     }
 }

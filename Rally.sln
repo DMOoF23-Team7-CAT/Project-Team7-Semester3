@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0136DF10-C10
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Web", "src\Rally.Web\Rally.Web.csproj", "{C0582999-7134-44D2-BB75-5B08565351AB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Core", "src\Rally.Core\Rally.Core.csproj", "{57489841-17E7-4A7F-A53C-6E214F77EAEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Application", "src\Rally.Application\Rally.Application.csproj", "{6F961127-253C-4AB7-BCED-F6F22650650B}"
