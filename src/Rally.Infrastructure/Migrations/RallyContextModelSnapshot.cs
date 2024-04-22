@@ -85,7 +85,7 @@ namespace Rally.Infrastructure.Migrations
                     b.ToTable("EquipmentBases", (string)null);
                 });
 
-            modelBuilder.Entity("Rally.Core.Entities.Exercise", b =>
+            modelBuilder.Entity("Rally.Core.Entities.SignBase", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
@@ -110,7 +110,7 @@ namespace Rally.Infrastructure.Migrations
 
                     b.HasIndex("EquipmentBaseId");
 
-                    b.ToTable("Exercises", (string)null);
+                    b.ToTable("SignBases", (string)null);
                 });
 
             modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
@@ -121,7 +121,7 @@ namespace Rally.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ExerciseId")
+                    b.Property<int?>("SignBaseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Rotation")
@@ -144,7 +144,7 @@ namespace Rally.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExerciseId");
+                    b.HasIndex("SignBaseId");
 
                     b.HasIndex("TrackId");
 
@@ -194,14 +194,14 @@ namespace Rally.Infrastructure.Migrations
                     b.Navigation("EquipmentBase");
                 });
 
-            modelBuilder.Entity("Rally.Core.Entities.Exercise", b =>
+            modelBuilder.Entity("Rally.Core.Entities.SignBase", b =>
                 {
                     b.HasOne("Rally.Core.Entities.Category", "Category")
-                        .WithMany("Exercises")
+                        .WithMany("SignBases")
                         .HasForeignKey("CategoryId");
 
                     b.HasOne("Rally.Core.Entities.EquipmentBase", "EquipmentBase")
-                        .WithMany("Exercises")
+                        .WithMany("SignBases")
                         .HasForeignKey("EquipmentBaseId");
 
                     b.Navigation("Category");
@@ -211,15 +211,15 @@ namespace Rally.Infrastructure.Migrations
 
             modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
                 {
-                    b.HasOne("Rally.Core.Entities.Exercise", "Exercise")
+                    b.HasOne("Rally.Core.Entities.SignBase", "SignBase")
                         .WithMany("Signs")
-                        .HasForeignKey("ExerciseId");
+                        .HasForeignKey("SignBaseId");
 
                     b.HasOne("Rally.Core.Entities.Track", "Track")
                         .WithMany("Signs")
                         .HasForeignKey("TrackId");
 
-                    b.Navigation("Exercise");
+                    b.Navigation("SignBase");
 
                     b.Navigation("Track");
                 });
@@ -235,7 +235,7 @@ namespace Rally.Infrastructure.Migrations
 
             modelBuilder.Entity("Rally.Core.Entities.Category", b =>
                 {
-                    b.Navigation("Exercises");
+                    b.Navigation("SignBases");
 
                     b.Navigation("Tracks");
                 });
@@ -244,10 +244,10 @@ namespace Rally.Infrastructure.Migrations
                 {
                     b.Navigation("Equipments");
 
-                    b.Navigation("Exercises");
+                    b.Navigation("SignBases");
                 });
 
-            modelBuilder.Entity("Rally.Core.Entities.Exercise", b =>
+            modelBuilder.Entity("Rally.Core.Entities.SignBase", b =>
                 {
                     b.Navigation("Signs");
                 });

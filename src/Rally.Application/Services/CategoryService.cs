@@ -20,19 +20,19 @@ namespace Rally.Application.Services
 
         // Constructor that passes the repository with Category to the base constructor and Instantiate the ICategoryRepository
         public CategoryService(IRepository<Category> repository, ICategoryRepository categoryRepository) : base(repository)
-        {   
+        {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
 
-        // Method to get a category with its exercises
-        public async Task<CategoryDto> GetCategoryWithExercises(int categoriesId)
+        // Method to get a category with its SignBases
+        public async Task<CategoryDto> GetCategoryWithSignBases(int categoriesId)
         {
-            var entity = await _categoryRepository.GetCategoryWithExercisesAsync(categoriesId);
+            var entity = await _categoryRepository.GetCategoryWithSignBasesAsync(categoriesId);
             //NOTE - No need to check if entity is null here, because there is null checks in the Infrastructure layer.
 
             var mappedEntity = ObjectMapper.Mapper.Map<CategoryDto>(entity);
             if (mappedEntity is null)
-                throw new ApplicationException("Category with exercises could not be mapped.");
+                throw new ApplicationException("Category with SignBases could not be mapped.");
 
             return mappedEntity;
         }

@@ -28,9 +28,9 @@ namespace Rally.Api.Controllers
 
         //FIXME - This is only an example. the proper way needs mapping and validation
         [HttpGet]
-        public async Task<IActionResult> GetCategoriesWithExercises(int categoryId)
+        public async Task<IActionResult> GetCategoriesWithSignBases(int categoryId)
         {
-            var categories = await _categoryService.GetCategoryWithExercises(categoryId);
+            var categories = await _categoryService.GetCategoryWithSignBases(categoryId);
             return Ok(categories);
         }
     }

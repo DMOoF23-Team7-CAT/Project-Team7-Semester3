@@ -7,9 +7,9 @@ using Rally.Core.Entities;
 
 namespace Rally.Core.Repositories
 {
-    public interface IExerciseRepository : IRepository<Exercise>
+    public interface ISignBaseRepository : IRepository<SignBase>
     {
-        Task<Exercise> GetExerciseWithCategoryAsync(int exerciseId);
-        Task<Exercise> GetExerciseWithEquipmentBaseAsync(int exerciseId);
+        Task<SignBase> GetSignBaseWithCategoryAsync(int SignBaseId);
+        Task<SignBase> GetSignBaseWithEquipmentBaseAsync(int SignBaseId);
     }
 }

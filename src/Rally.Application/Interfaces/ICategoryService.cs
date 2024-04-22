@@ -10,7 +10,7 @@ namespace Rally.Application.Interfaces
 {
     public interface ICategoryService : IService<CategoryDto, Category>
     {
-        Task<CategoryDto> GetCategoryWithExercises(int categoryId);
+        Task<CategoryDto> GetCategoryWithSignBases(int categoryId);
     }
 }
 

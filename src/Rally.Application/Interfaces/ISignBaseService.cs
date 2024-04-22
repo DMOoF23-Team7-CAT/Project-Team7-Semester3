@@ -8,10 +8,10 @@ using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface IExerciseService : IService<ExerciseDto, Exercise>
+    public interface ISignBaseService : IService<SignBaseDto, SignBase>
     {
-        Task<ExerciseDto> GetExerciseWithEquipmentBase(int exerciseId);
-        Task<ExerciseDto> GetExerciseWithCategory(int exerciseId);
+        Task<SignBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId);
+        Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId);
     }
 }
 

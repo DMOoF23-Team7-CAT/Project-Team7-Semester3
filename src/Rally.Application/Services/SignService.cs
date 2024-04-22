@@ -20,13 +20,13 @@ namespace Rally.Application.Services
             _signRepository = signRepository ?? throw new ArgumentNullException(nameof(signRepository));
         }
 
-        public async Task<SignDto> GetSignWithExercises(int signId)
+        public async Task<SignDto> GetSignWithSignBases(int signId)
         {
-            var sign = await _signRepository.GetSignWithExercisesAsync(signId);
+            var sign = await _signRepository.GetSignWithSignBasesAsync(signId);
 
             var mappedSign = ObjectMapper.Mapper.Map<SignDto>(sign);
             if (mappedSign is null)
-                throw new ApplicationException("Sign with exercises could not be mapped");
+                throw new ApplicationException("Sign with SignBases could not be mapped");
 
             return mappedSign;
         }

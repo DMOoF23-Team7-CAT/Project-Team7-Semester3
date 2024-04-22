@@ -7,11 +7,11 @@ using Rally.Core.Specifications.Base;
 
 namespace Rally.Core.Specifications
 {
-    public class SignWithExerciseSpecification : BaseSpecification<Sign>
+    public class SignWithSignBaseSpecification : BaseSpecification<Sign>
     {
-        public SignWithExerciseSpecification(int signId) : base(s => s.Id == signId)
+        public SignWithSignBaseSpecification(int signId) : base(s => s.Id == signId)
         {
-            AddInclude(s => s.Exercise!);
+            AddInclude(s => s.SignBase!);
         }
     }
 }

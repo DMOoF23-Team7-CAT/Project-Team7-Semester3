@@ -17,14 +17,14 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Category> GetCategoryWithExercisesAsync(int categoryId)
+        public async Task<Category> GetCategoryWithSignBasesAsync(int categoryId)
         {
-            var spec = new CategoryWithExerciseSpecification(categoryId);
-            
+            var spec = new CategoryWithSignBaseSpecification(categoryId);
+
             var category = (await GetAsync(spec)).FirstOrDefault();
             if (category is null)
                 throw new InfrastructureException("Category not found");
-            
+
             return category;
         }
     }

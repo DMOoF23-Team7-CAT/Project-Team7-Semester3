@@ -6,7 +6,7 @@ using Rally.Core.Entities.Base;
 
 namespace Rally.Core.Entities
 {
-    public class Exercise : Entity
+    public class SignBase : Entity
     {
         public string Description { get; set; } = string.Empty;
         public byte[] Image { get; set; } = new byte[0];
@@ -15,7 +15,7 @@ namespace Rally.Core.Entities
         public Category? Category { get; set; }
         public ICollection<Sign> Signs { get; private set; }
 
-        public Exercise()
+        public SignBase()
         {
             Signs = new List<Sign>();
         }

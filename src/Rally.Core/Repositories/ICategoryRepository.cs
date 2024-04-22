@@ -9,7 +9,7 @@ namespace Rally.Core.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<Category> GetCategoryWithExercisesAsync(int categoryId);
+        Task<Category> GetCategoryWithSignBasesAsync(int categoryId);
     }
 }
 

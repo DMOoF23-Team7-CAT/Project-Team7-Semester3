@@ -12,12 +12,12 @@ namespace Rally.Core.Entities
         public string Rules { get; set; } = string.Empty;
 
         public ICollection<Track> Tracks { get; private set; }
-        public ICollection<Exercise> Exercises { get; private set; }
+        public ICollection<SignBase> SignBases { get; private set; }
 
         public Category()
         {
             Tracks = new List<Track>();
-            Exercises = new List<Exercise>();
+            SignBases = new List<SignBase>();
         }
     }
 }

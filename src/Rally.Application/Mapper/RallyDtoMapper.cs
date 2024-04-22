@@ -21,8 +21,8 @@ namespace Rally.Application.Mapper
             // EquipmentBase
             CreateMap<Core.Entities.EquipmentBase, EquipmentBaseDto>().ReverseMap();
 
-            // Exercise
-            CreateMap<Core.Entities.Exercise, ExerciseDto>().ReverseMap();
+            // SignBase
+            CreateMap<Core.Entities.SignBase, SignBaseDto>().ReverseMap();
 
             // Sign
             CreateMap<Core.Entities.Sign, SignDto>().ReverseMap();

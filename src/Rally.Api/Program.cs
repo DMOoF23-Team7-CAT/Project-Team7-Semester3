@@ -23,7 +23,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
 builder.Services.AddScoped<IEquipmentBaseRepository, EquipmentBaseRepository>();
 builder.Services.AddScoped<ITrackRepository, TrackRepository>();
-builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
+builder.Services.AddScoped<ISignBaseRepository, SignBaseRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ISignRepository, SignRepository>();
 
@@ -32,7 +32,7 @@ builder.Services.AddScoped(typeof(IService<,>), typeof(Service<,>));
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IEquipmentBaseService, EquipmentBaseService>();
 builder.Services.AddScoped<ITrackService, TrackService>();
-builder.Services.AddScoped<IExerciseService, ExerciseService>();
+builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 

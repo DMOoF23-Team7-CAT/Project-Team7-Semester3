@@ -51,7 +51,7 @@ legend
   ```csharp:src/Rally.Application/Interfaces/ICategoryService.cs
   public interface ICategoryService : IService<CategoryDto, Category>
   {
-      Task<CategoryDto> GetCategoryWithExercises(int categoryId);
+      Task<CategoryDto> GetCategoryWithSignBases(int categoryId);
   }
   ```
   ```csharp:src/Rally.Application/Services/CategoryService.cs
@@ -65,7 +65,7 @@ legend
   ```csharp:src/Rally.Core/Repositories/ICategoryRepository.cs
   public interface ICategoryRepository : IRepository<Category>
   {
-      Task<Category> GetCategoryWithExercisesAsync(int categoryId);
+      Task<Category> GetCategoryWithSignBasesAsync(int categoryId);
   }
   ```
   - `CategoryRepository` implements `ICategoryRepository` and inherits from `Repository<Category>`, which implements `IRepository<Category>`.

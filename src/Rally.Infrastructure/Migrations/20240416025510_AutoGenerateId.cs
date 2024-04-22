@@ -80,7 +80,7 @@ namespace Rally.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exercises",
+                name: "SignBases",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -91,14 +91,14 @@ namespace Rally.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exercises", x => x.Id);
+                    table.PrimaryKey("PK_SignBases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Exercises_Categories_CategoryId",
+                        name: "FK_SignBases_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Exercises_EquipmentBases_EquipmentBaseId",
+                        name: "FK_SignBases_EquipmentBases_EquipmentBaseId",
                         column: x => x.EquipmentBaseId,
                         principalTable: "EquipmentBases",
                         principalColumn: "Id");
@@ -114,16 +114,16 @@ namespace Rally.Infrastructure.Migrations
                     XCoordinate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     YCoordinate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rotation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: true),
+                    SignBaseId = table.Column<int>(type: "int", nullable: true),
                     TrackId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Signs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Signs_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
+                        name: "FK_Signs_SignBases_SignBaseId",
+                        column: x => x.SignBaseId,
+                        principalTable: "SignBases",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Signs_Tracks_TrackId",
@@ -138,19 +138,19 @@ namespace Rally.Infrastructure.Migrations
                 column: "EquipmentBaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_CategoryId",
-                table: "Exercises",
+                name: "IX_SignBases_CategoryId",
+                table: "SignBases",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_EquipmentBaseId",
-                table: "Exercises",
+                name: "IX_SignBases_EquipmentBaseId",
+                table: "SignBases",
                 column: "EquipmentBaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Signs_ExerciseId",
+                name: "IX_Signs_SignBaseId",
                 table: "Signs",
-                column: "ExerciseId");
+                column: "SignBaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Signs_TrackId",
@@ -173,7 +173,7 @@ namespace Rally.Infrastructure.Migrations
                 name: "Signs");
 
             migrationBuilder.DropTable(
-                name: "Exercises");
+                name: "SignBases");
 
             migrationBuilder.DropTable(
                 name: "Tracks");

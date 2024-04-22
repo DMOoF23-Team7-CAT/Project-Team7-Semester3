@@ -11,7 +11,7 @@ namespace Rally.Application.Interfaces
     public interface ISignService : IService<SignDto, Sign>
     {
         Task<SignDto> GetSignWithTrack(int signId);
-        Task<SignDto> GetSignWithExercises(int signId);
+        Task<SignDto> GetSignWithSignBases(int signId);
     }
 }
 

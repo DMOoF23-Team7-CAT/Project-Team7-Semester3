@@ -6,7 +6,7 @@ using Rally.Application.Dto.Base;
 
 namespace Rally.Application.Dto
 {
-    public class ExerciseDto : BaseDto
+    public class SignBaseDto : BaseDto
     {
         public string Description { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;

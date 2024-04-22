@@ -8,11 +8,11 @@ using Rally.Core.Specifications.Base;
 
 namespace Rally.Core.Specifications
 {
-    public class ExerciseWithEquipmentBaseSpecification : BaseSpecification<Exercise>
+    public class SignBaseWithCategorySpecification : BaseSpecification<SignBase>
     {
-        public ExerciseWithEquipmentBaseSpecification(int exerciseId) : base(e => e.Id == exerciseId)
+        public SignBaseWithCategorySpecification(int SignBaseId) : base(e => e.Id == SignBaseId)
         {
-            AddInclude(e => e.EquipmentBase!);
+            AddInclude(e => e.Category!);
         }
     }
 }

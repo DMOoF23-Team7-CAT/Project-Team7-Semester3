@@ -13,7 +13,7 @@ namespace Rally.Core.Entities
         public string YCoordinate { get; set; } = string.Empty;
         public string Rotation { get; set; } = string.Empty;
 
-        public Exercise? Exercise { get; set; }
+        public SignBase? SignBase { get; set; }
         public Track? Track { get; set; }
     }
 }
