@@ -34,11 +34,9 @@ namespace Rally.Application.Services.Base
             return newMappedEntity;
         }
 
-        public async Task Delete(TDto dto)
+        public async Task Delete(int id)
         {
-            await ValidateIfNotExist(dto);
-
-            var deletedEntity = await _repository.GetByIdAsync(dto.Id);
+            var deletedEntity = await _repository.GetByIdAsync(id);
             if (deletedEntity is null)
                 throw new ApplicationException("Entity could not be deleted.");
 

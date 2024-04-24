@@ -13,7 +13,7 @@ namespace Rally.Application.Interfaces.Base
         Task<TDto> GetById(int id);
         Task<TDto> Create(TDto dto);
         Task Update(TDto dto);
-        Task Delete(TDto dto);
+        Task Delete(int id);
 
         //NOTE Implement this method if we have Use cases that require it
         //? Task<IEnumerable<TDto>> GetByName(string name);

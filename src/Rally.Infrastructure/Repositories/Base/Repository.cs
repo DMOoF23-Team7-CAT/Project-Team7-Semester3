@@ -55,15 +55,15 @@ namespace Rally.Infrastructure.Repositories.Base
             return await query.ToListAsync();
         }
 
-        //NOTE - this method returns null if the entity is not found
+        //NOTE - this method returns null if the entity is not found and should be handled in Application layer
         public virtual async Task<T> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
 
-            if (entity is null)
-                throw new InfrastructureException($"Entity with ID {id} was not found.");
+            // if (entity is null)
+            //     throw new InfrastructureException($"Entity with ID {id} was not found.");
 
-            return entity;
+            return entity!;
         }
 
         public async Task<T> AddAsync(T entity)

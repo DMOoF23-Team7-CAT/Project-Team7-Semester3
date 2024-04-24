@@ -25,9 +25,9 @@ namespace Rally.Application.Services
         }
 
         // Method to get a category with its SignBases
-        public async Task<CategoryDto> GetCategoryWithSignBases(int categoriesId)
+        public async Task<CategoryDto> GetCategoryWithSignBases(int categoryId)
         {
-            var entity = await _categoryRepository.GetCategoryWithSignBasesAsync(categoriesId);
+            var entity = await _categoryRepository.GetCategoryWithSignBasesAsync(categoryId);
             //NOTE - No need to check if entity is null here, because there is null checks in the Infrastructure layer.
 
             var mappedEntity = ObjectMapper.Mapper.Map<CategoryDto>(entity);
