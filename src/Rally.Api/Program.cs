@@ -61,6 +61,7 @@ builder.Services.AddScoped<ITrackService, TrackService>();
 builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
+builder.Services.AddAuthentication();
 
 //! Register DbContext with local DB
 //builder.Services.AddDbContext<RallyContext>(options =>
@@ -83,12 +84,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers();
 
 app.UseHttpsRedirection();
 
 //Adds the Identity API endpoints to the application.
-app.MapIdentityApi<User>();                         
+app.MapIdentityApi<User>();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
