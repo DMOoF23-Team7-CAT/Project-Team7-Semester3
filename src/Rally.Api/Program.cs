@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Rally.Application.Interfaces.Base;
 using Rally.Application.Services.Base;
+using Rally.Core.Entities;
+using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +18,29 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen( c =>
+{
+    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "bearerAuth"
+                }
+            },
+            []
+        }
+    });
+});
 
 builder.Services.AddControllers();
 
@@ -39,12 +63,14 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 
 //! Register DbContext with local DB
-builder.Services.AddDbContext<RallyContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
+//builder.Services.AddDbContext<RallyContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
 
 //FIXME -  //! Register DbContext with remote DB
-// builder.Services.AddDbContext<RallyContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<RallyContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddEntityFrameworkStores<RallyContext>();
 
 var app = builder.Build();
 
@@ -60,6 +86,9 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 
 app.UseHttpsRedirection();
+
+//Adds the Identity API endpoints to the application.
+app.MapIdentityApi<User>();                         
 
 app.Run();
 
