@@ -1,10 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Rally.Application.Dto;
-using Rally.Core;
+using Rally.Application.Dto.Category;
+using Rally.Application.Dto.Equipment;
+using Rally.Application.Dto.EquipmentBase;
+using Rally.Application.Dto.Sign;
+using Rally.Application.Dto.SignBase;
+using Rally.Application.Dto.Track;
+using Rally.Core.Entities;
 
 namespace Rally.Application.Mapper
 {
@@ -13,22 +14,23 @@ namespace Rally.Application.Mapper
         public RallyDtoMapper()
         {
             // Category
-            CreateMap<Core.Entities.Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryWithSignBasesDto>().ReverseMap();
 
             // Equipment
-            CreateMap<Core.Entities.Equipment, EquipmentDto>().ReverseMap();
+            CreateMap<Equipment, EquipmentDto>().ReverseMap();
 
             // EquipmentBase
-            CreateMap<Core.Entities.EquipmentBase, EquipmentBaseDto>().ReverseMap();
+            CreateMap<EquipmentBase, EquipmentBaseDto>().ReverseMap();
 
             // SignBase
-            CreateMap<Core.Entities.SignBase, SignBaseDto>().ReverseMap();
+            CreateMap<SignBase, SignBaseDto>().ReverseMap();
 
             // Sign
-            CreateMap<Core.Entities.Sign, SignDto>().ReverseMap();
+            CreateMap<Sign, SignDto>().ReverseMap();
 
             // Track
-            CreateMap<Core.Entities.Track, TrackDto>().ReverseMap();
+            CreateMap<Track, TrackDto>().ReverseMap();
         }
     }
 }

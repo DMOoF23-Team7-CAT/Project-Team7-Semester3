@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AspnetRun.Core.Repositories.Base;
-using Rally.Application.Dto;
+using Rally.Application.Dto.EquipmentBase;
 using Rally.Application.Interfaces;
 using Rally.Application.Services.Base;
 using Rally.Core.Entities;

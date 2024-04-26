@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AspnetRun.Core.Repositories.Base;
-using Rally.Application.Dto;
+using Rally.Application.Dto.Track;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
 using Rally.Application.Services.Base;
@@ -20,22 +16,22 @@ namespace Rally.Application.Services
             _trackRepository = trackRepository ?? throw new ArgumentNullException(nameof(trackRepository));
         }
 
-        public async Task<TrackDto> GetTrackWithSigns(int trackId)
+        public async Task<TrackWithSignsDto> GetTrackWithSigns(int trackId)
         {
             var track = await _trackRepository.GetTrackWithSignsAsync(trackId);
 
-            var mappedTrack = ObjectMapper.Mapper.Map<TrackDto>(track);
+            var mappedTrack = ObjectMapper.Mapper.Map<TrackWithSignsDto>(track);
             if (mappedTrack is null)
                 throw new ApplicationException("Track with signs could not be mapped");
 
             return mappedTrack;
         }
 
-        public async Task<TrackDto> GetTrackWithCategory(int trackId)
+        public async Task<TrackWithCategoryDto> GetTrackWithCategory(int trackId)
         {
             var track = await _trackRepository.GetTrackWithCategoryAsync(trackId);
 
-            var mappedTrack = ObjectMapper.Mapper.Map<TrackDto>(track);
+            var mappedTrack = ObjectMapper.Mapper.Map<TrackWithCategoryDto>(track);
             if (mappedTrack is null)
                 throw new ApplicationException("Track with category could not be mapped");
 

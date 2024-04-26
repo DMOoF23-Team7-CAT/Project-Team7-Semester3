@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Rally.Application.Dto;
+using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
