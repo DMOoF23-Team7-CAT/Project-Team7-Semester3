@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AspnetRun.Core.Repositories.Base;
-using Rally.Application.Dto;
+using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
 using Rally.Application.Services.Base;
@@ -25,12 +21,12 @@ namespace Rally.Application.Services
         }
 
         // Method to get a category with its SignBases
-        public async Task<CategoryDto> GetCategoryWithSignBases(int categoryId)
+        public async Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId)
         {
             var entity = await _categoryRepository.GetCategoryWithSignBasesAsync(categoryId);
             //NOTE - No need to check if entity is null here, because there is null checks in the Infrastructure layer.
 
-            var mappedEntity = ObjectMapper.Mapper.Map<CategoryDto>(entity);
+            var mappedEntity = ObjectMapper.Mapper.Map<CategoryWithSignBasesDto>(entity);
             if (mappedEntity is null)
                 throw new ApplicationException("Category with SignBases could not be mapped.");
 
