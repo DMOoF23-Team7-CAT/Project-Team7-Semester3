@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rally.Core.Entities;
 
 namespace Rally.Infrastructure.Data
 {
-    public class RallyContext : DbContext
+    public class RallyContext : IdentityDbContext<User>
     {
         public RallyContext(DbContextOptions<RallyContext> options) : base(options)
         {
@@ -23,6 +24,8 @@ namespace Rally.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Category>(ConfigureCategory);
             builder.Entity<Equipment>(ConfigureEquipment);
             builder.Entity<EquipmentBase>(ConfigureEquipmentBase);
