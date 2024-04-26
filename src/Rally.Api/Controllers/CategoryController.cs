@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Rally.Application.Dto;
+using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
@@ -17,17 +17,9 @@ namespace Rally.Api.Controllers
         }
 
         [HttpGet("GetAllCategories")]
-        [Authorize]
         public async Task<IActionResult> GetCategories()
         {
             var categories = await _categoryService.GetAll();
-            return Ok(categories);
-        }
-
-        [HttpGet("GetCategoryWithSignBases")]
-        public async Task<IActionResult> GetCategoriesWithSignBases(int categoryId)
-        {
-            var categories = await _categoryService.GetCategoryWithSignBases(categoryId);
             return Ok(categories);
         }
 
@@ -38,14 +30,25 @@ namespace Rally.Api.Controllers
             return Ok(categories);
         }
 
-        [HttpPost("CreateCategory")]
-        public async Task<IActionResult> CreateCategory(CategoryDto category)
+        [HttpGet("GetCategoryWithSignBases")]
+        public async Task<IActionResult> GetCategoriesWithSignBases(int categoryId)
         {
-            var categories = await _categoryService.Create(category);
+            var categories = await _categoryService.GetCategoryWithSignBases(categoryId);
             return Ok(categories);
         }
 
+        [HttpPost("CreateCategory")]
+        [Authorize]
+
+        public async Task<IActionResult> CreateCategory(CategoryDto categoryDto)
+        {
+            var category = await _categoryService.Create(categoryDto);
+            return Ok(category);
+        }
+
         [HttpPut("UpdateCategory")]
+        [Authorize]
+
         public async Task<IActionResult> UpdateCategory(CategoryDto category)
         {
             await _categoryService.Update(category);
@@ -53,6 +56,8 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("DeleteCategory")]
+        [Authorize]
+
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {
             await _categoryService.Delete(categoryId);

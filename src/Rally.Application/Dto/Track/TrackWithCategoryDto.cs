@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Rally.Application.Dto.Base;
+using Rally.Application.Dto.Category;
 
-namespace Rally.Application.Dto
+namespace Rally.Application.Dto.Track
 {
-    public class TrackDto : BaseDto
+    public class TrackWithCategoryDto
     {
         public string Name { get; set; } = string.Empty;
         public string Comment { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public DateTime Date { get; set; } = DateTime.Now;
 
+        public CategoryDto? Category { get; set; }
     }
 }
+

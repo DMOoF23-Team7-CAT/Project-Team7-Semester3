@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AspnetRun.Core.Repositories.Base;
 using AutoMapper.Internal.Mappers;
 using Rally.Application.Dto;
+using Rally.Application.Dto.Sign;
+using Rally.Application.Dto.SignBase;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
 using Rally.Application.Services.Base;
@@ -32,11 +34,11 @@ namespace Rally.Application.Services
             return mappedSignBase;
         }
 
-        public async Task<SignBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId)
+        public async Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId)
         {
             var SignBase = await _SignBaseRepository.GetSignBaseWithEquipmentBaseAsync(SignBaseId);
 
-            var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseDto>(SignBase);
+            var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseWithEquipmentBaseDto>(SignBase);
             if (mappedSignBase is null)
                 throw new ApplicationException("SignBase with EquipmentBase could not be mapped");
 

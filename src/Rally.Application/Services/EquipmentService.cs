@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AspnetRun.Core.Repositories.Base;
-using Rally.Application.Dto;
+using Rally.Application.Dto.Equipment;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
 using Rally.Application.Services.Base;
@@ -20,11 +16,11 @@ namespace Rally.Application.Services
             _equipmentRepository = equipmentRepository ?? throw new ArgumentNullException(nameof(equipmentRepository));
         }
 
-        public async Task<EquipmentDto> GetEquipmentWithEquipmentBase(int equipmentId)
+        public async Task<EquipmentWithEquipmentBaseDto> GetEquipmentWithEquipmentBase(int equipmentId)
         {
             var equipment = await _equipmentRepository.GetEquipmentWithEquipmentBaseAsync(equipmentId);
 
-            var mappedEquipment = ObjectMapper.Mapper.Map<EquipmentDto>(equipment);
+            var mappedEquipment = ObjectMapper.Mapper.Map<EquipmentWithEquipmentBaseDto>(equipment);
             if (mappedEquipment is null)
                 throw new ApplicationException("Equipment with EquipmentBase could not be mapped.");
 
