@@ -19,18 +19,24 @@ namespace Rally.Application.Mapper
 
             // Equipment
             CreateMap<Equipment, EquipmentDto>().ReverseMap();
+            CreateMap<Equipment, EquipmentWithEquipmentBaseDto>().ReverseMap();
 
             // EquipmentBase
             CreateMap<EquipmentBase, EquipmentBaseDto>().ReverseMap();
 
-            // SignBase
-            CreateMap<SignBase, SignBaseDto>().ReverseMap();
-
             // Sign
             CreateMap<Sign, SignDto>().ReverseMap();
+            CreateMap<Sign, SignWithSignBaseDto>().ReverseMap();
+
+            // SignBase
+            CreateMap<SignBase, SignBaseDto>().ReverseMap();
+            CreateMap<SignBase, SignBaseWithEquipmentBaseDto>().ReverseMap();
 
             // Track
             CreateMap<Track, TrackDto>().ReverseMap();
+            CreateMap<Track, TrackWithSignsDto>().ReverseMap();
+            CreateMap<Track, TrackWithCategoryDto>().ReverseMap();
+            CreateMap<Track, CreateTrackDto>().ReverseMap();
         }
     }
 }
