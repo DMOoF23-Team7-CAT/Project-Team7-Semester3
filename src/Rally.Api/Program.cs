@@ -13,6 +13,8 @@ using Microsoft.OpenApi.Models;
 using Rally.Core.Entities.Account;
 using Rally.Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
+using Rally.Application.Services.MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -64,6 +66,8 @@ builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 builder.Services.AddScoped<IRallySeeder, RallySeeder>();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(AssignUserRoleCommandHandler).Assembly));
 builder.Services.AddAuthentication();
 
 //! Register DbContext with local DB
@@ -97,7 +101,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //Adds the Identity API endpoints to the application.
-app.MapIdentityApi<User>();
+app.MapGroup("api/Account")
+    .WithTags("Account")
+    .MapIdentityApi<User>();
 
 app.UseAuthorization();
 

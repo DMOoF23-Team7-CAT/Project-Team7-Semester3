@@ -28,9 +28,18 @@ namespace Rally.Infrastructure.Seeders
         {
             List<IdentityRole> roles =
                 [
-                    new (UserRoles.User),
-                    new (UserRoles.Judge),
-                    new (UserRoles.Admin)
+                    new (UserRoles.User)
+                    {
+                        NormalizedName = UserRoles.User.ToUpper()
+                    },
+                    new (UserRoles.Judge)
+                    {
+                        NormalizedName = UserRoles.Judge.ToUpper()
+                    },
+                    new (UserRoles.Admin) 
+                    {
+                        NormalizedName = UserRoles.Admin.ToUpper()
+                    }
                 ];
             return roles;
         }
