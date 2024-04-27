@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
+using Rally.Core.Entities.Account;
 
 namespace Rally.Api.Controllers
 {
@@ -38,7 +39,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPost("CreateCategory")]
-        [Authorize]
+        [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> CreateCategory(CategoryDto categoryDto)
         {
@@ -47,7 +48,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("UpdateCategory")]
-        [Authorize]
+        [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> UpdateCategory(CategoryDto category)
         {
@@ -56,7 +57,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("DeleteCategory")]
-        [Authorize]
+        [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {

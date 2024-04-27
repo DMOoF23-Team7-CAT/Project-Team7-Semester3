@@ -12,6 +12,7 @@ using Rally.Application.Services.Base;
 using Microsoft.OpenApi.Models;
 using Rally.Core.Entities.Account;
 using Rally.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -72,7 +73,9 @@ builder.Services.AddAuthentication();
 //FIXME -  //! Register DbContext with remote DB
 builder.Services.AddDbContext<RallyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddIdentityApiEndpoints<User>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<RallyContext>();
 
 var app = builder.Build();
