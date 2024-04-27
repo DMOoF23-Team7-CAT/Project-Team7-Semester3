@@ -9,8 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Rally.Application.Interfaces.Base;
 using Rally.Application.Services.Base;
-using Rally.Core.Entities;
 using Microsoft.OpenApi.Models;
+using Rally.Core.Entities.Account;
+using Rally.Infrastructure.Seeders;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +62,7 @@ builder.Services.AddScoped<ITrackService, TrackService>();
 builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
+builder.Services.AddScoped<IRallySeeder, RallySeeder>();
 builder.Services.AddAuthentication();
 
 //! Register DbContext with local DB
@@ -74,6 +76,10 @@ builder.Services.AddIdentityApiEndpoints<User>()
     .AddEntityFrameworkStores<RallyContext>();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<IRallySeeder>();
+await seeder.SeedAsync();
 
 app.UseRouting();
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rally.Core.Entities;
+using Rally.Core.Entities.Account;
 
 namespace Rally.Infrastructure.Data
 {
