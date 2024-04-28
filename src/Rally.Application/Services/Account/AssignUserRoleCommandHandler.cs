@@ -10,12 +10,12 @@ namespace Rally.Application.Services.MediatR
         public async Task Handle(AssignUserRoleCommand request, CancellationToken cancellationToken)
         {
             //Checks if the user exists in the database by his email
-            var user = await userManager.FindByEmailAsync(request.UserEmail);
+            var user = await userManager.FindByEmailAsync(request.UserEmail)
+                ?? throw new ApplicationException("User not found");
 
             //Checks if a given role exists in the database
-            var role = await roleManager.FindByNameAsync(request.RoleName);
-
-            //FIXME: Add exception handling for the case when the user or role does not exist
+            var role = await roleManager.FindByNameAsync(request.RoleName)
+                ?? throw new ApplicationException("Role not found");            
 
             //Assigning a user to a given role
             await userManager.AddToRoleAsync(user, role.Name);
