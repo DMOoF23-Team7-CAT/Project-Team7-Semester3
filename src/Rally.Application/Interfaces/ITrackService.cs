@@ -4,7 +4,7 @@ using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ITrackService : IService<TrackDto, Track>
+    public interface ITrackService : IService<TrackDto, Track, TrackWithoutIdDto>
     {
         Task<TrackWithCategoryDto> GetTrackWithCategory(int trackId);
         Task<TrackWithSignsDto> GetTrackWithSigns(int trackId);

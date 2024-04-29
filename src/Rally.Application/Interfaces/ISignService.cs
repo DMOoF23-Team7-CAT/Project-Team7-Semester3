@@ -4,7 +4,7 @@ using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ISignService : IService<SignDto, Sign>
+    public interface ISignService : IService<SignDto, Sign, SignWithoutIdDto>
     {
         //Task<SignWithTrackDto> GetSignWithTrack(int signId);
         Task<SignWithSignBaseDto> GetSignWithSignBases(int signId);

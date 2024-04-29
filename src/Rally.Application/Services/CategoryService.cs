@@ -8,7 +8,7 @@ using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class CategoryService : Service<CategoryDto, Category>, ICategoryService
+    public class CategoryService : Service<CategoryDto, Category, CategoryWithoutIdDto>, ICategoryService
     {
         //NOTE - Added comments for clarity
         // Instance of the repository for the Category entity. used to access methods not implemented in base.Service

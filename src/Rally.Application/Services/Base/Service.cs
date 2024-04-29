@@ -10,7 +10,8 @@ using Rally.Application.Mapper;
 
 namespace Rally.Application.Services.Base
 {
-    public class Service<TDto, TEntity> : IService<TDto, TEntity> where TDto : BaseDto where TEntity : Entity
+    public class Service<TDto, TEntity, TDtoWithoutId> : IService<TDto, TEntity, TDtoWithoutId> 
+        where TDto : BaseDto where TEntity : Entity where TDtoWithoutId : class
     {
         private readonly IRepository<TEntity> _repository;
 
@@ -19,7 +20,7 @@ namespace Rally.Application.Services.Base
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<TDto> Create(TDto dto)
+        public async Task<TDtoWithoutId> Create(TDto dto)
         {
             await ValidateIfExist(dto);
 
@@ -30,7 +31,7 @@ namespace Rally.Application.Services.Base
             await _repository.AddAsync(mappedEntity);
             // TODO: Add logging
 
-            var newMappedEntity = ObjectMapper.Mapper.Map<TDto>(mappedEntity);
+            var newMappedEntity = ObjectMapper.Mapper.Map<TDtoWithoutId>(mappedEntity);
             return newMappedEntity;
         }
 
@@ -57,13 +58,13 @@ namespace Rally.Application.Services.Base
             // TODO: Add logging
         }
 
-        public async Task<TDto> GetById(int id)
+        public virtual async Task<TDtoWithoutId> GetById(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
             if (entity is null)
                 throw new ApplicationException("Entity could not be found.");
 
-            var mappedEntity = ObjectMapper.Mapper.Map<TDto>(entity);
+            var mappedEntity = ObjectMapper.Mapper.Map<TDtoWithoutId>(entity);
             if (mappedEntity is null)
                 throw new ApplicationException("Entity could not be mapped.");
 
@@ -71,13 +72,13 @@ namespace Rally.Application.Services.Base
         }
 
 
-        public async Task<IEnumerable<TDto>> GetAll()
+        public virtual async Task<IEnumerable<TDtoWithoutId>> GetAll()
         {
             var entities = await _repository.GetAllAsync();
             if (entities is null)
                 throw new ApplicationException("Entities could not be found.");
 
-            var mappedEntities = ObjectMapper.Mapper.Map<IEnumerable<TDto>>(entities);
+            var mappedEntities = ObjectMapper.Mapper.Map<IEnumerable<TDtoWithoutId>>(entities);
             if (mappedEntities is null)
                 throw new ApplicationException("Entities could not be mapped.");
 
