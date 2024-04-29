@@ -9,8 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Rally.Application.Interfaces.Base;
 using Rally.Application.Services.Base;
-using Rally.Core.Entities;
 using Microsoft.OpenApi.Models;
+using Rally.Core.Entities.Account;
+using Rally.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Identity;
+using Rally.Application.Services.MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +65,9 @@ builder.Services.AddScoped<ITrackService, TrackService>();
 builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
+builder.Services.AddScoped<IRallySeeder, RallySeeder>();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(AssignUserRoleCommandHandler).Assembly));
 builder.Services.AddAuthentication();
 
 //! Register DbContext with local DB
@@ -70,10 +77,16 @@ builder.Services.AddAuthentication();
 //FIXME -  //! Register DbContext with remote DB
 builder.Services.AddDbContext<RallyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddIdentityApiEndpoints<User>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<RallyContext>();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<IRallySeeder>();
+await seeder.SeedAsync();
 
 app.UseRouting();
 
@@ -88,7 +101,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //Adds the Identity API endpoints to the application.
-app.MapIdentityApi<User>();
+app.MapGroup("api/Account")
+    .WithTags("Account")
+    .MapIdentityApi<User>();
 
 app.UseAuthorization();
 
