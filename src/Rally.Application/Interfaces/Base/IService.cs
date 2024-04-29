@@ -12,7 +12,9 @@ namespace Rally.Application.Interfaces.Base
         Task<IEnumerable<TDtoWithoutId>> GetAll();
         Task<TDtoWithoutId> GetById(int id);
         Task<TDtoWithoutId> Create(TDto dto);
+        Task<TDtoWithoutId> Create(TDtoWithoutId dto);
         Task Update(TDto dto);
+        Task Update(TDtoWithoutId dto);
         Task Delete(int id);
 
         //NOTE Implement this method if we have Use cases that require it

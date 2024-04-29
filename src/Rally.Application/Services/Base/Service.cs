@@ -35,6 +35,19 @@ namespace Rally.Application.Services.Base
             return newMappedEntity;
         }
 
+        public async Task<TDtoWithoutId> Create(TDtoWithoutId dto)
+        {
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(dto);
+            if (mappedEntity is null)
+                throw new ApplicationException("Entity could not be mapped.");
+
+            await _repository.AddAsync(mappedEntity);
+            // TODO: Add logging
+
+            var newMappedEntity = ObjectMapper.Mapper.Map<TDtoWithoutId>(mappedEntity);
+            return newMappedEntity;
+        }
+
         public async Task Delete(int id)
         {
             var deletedEntity = await _repository.GetByIdAsync(id);
@@ -49,6 +62,21 @@ namespace Rally.Application.Services.Base
             await ValidateIfNotExist(dto);
 
             var editEntity = await _repository.GetByIdAsync(dto.Id);
+            if (editEntity is null)
+                throw new ApplicationException("Entity could not be found.");
+
+            ObjectMapper.Mapper.Map(dto, editEntity);
+
+            await _repository.UpdateAsync(editEntity);
+            // TODO: Add logging
+        }
+        public async Task Update(TDtoWithoutId dto)
+        {
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(dto);
+            if (mappedEntity is null)
+                throw new ApplicationException("Entity could not be mapped.");
+
+            var editEntity = await _repository.GetByIdAsync(mappedEntity.Id);
             if (editEntity is null)
                 throw new ApplicationException("Entity could not be found.");
 

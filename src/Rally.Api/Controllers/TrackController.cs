@@ -40,12 +40,26 @@ namespace Rally.Api.Controllers
             return Ok(track);
         }
 
-        // [HttpPost("CreateTrack")]
-        // public async Task<IActionResult> CreateTrack(CreateTrackDto trackDto)
-        // {
-        //     var track = await _trackService.Create(trackDto);
-        //     return Ok(track);
-        // }
+        [HttpPost("CreateTrack")]
+        public async Task<IActionResult> CreateTrack(TrackWithoutIdDto trackDto)
+        {
+            var track = await _trackService.Create(trackDto);
+            return Ok(track);
+        }
+
+        [HttpPut("UpdateTrack")]
+        public async Task<IActionResult> UpdateTrack(TrackWithoutIdDto trackDto)
+        {
+            await _trackService.Update(trackDto);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteTrack")]
+        public async Task<IActionResult> DeleteTrack(int id)
+        {
+            await _trackService.Delete(id);
+            return Ok();
+        }
     }
 }
 
