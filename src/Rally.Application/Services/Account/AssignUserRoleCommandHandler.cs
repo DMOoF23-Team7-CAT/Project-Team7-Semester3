@@ -19,7 +19,16 @@ namespace Rally.Application.Services.MediatR
 
             //Assigning a user to a given role
             if (role != null)
-                await userManager.AddToRoleAsync(user, role.Name!);
+            {
+                try
+                {
+                    await userManager.AddToRoleAsync(user, role.Name!);
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Error assigning user to role");
+                }
+            }
 
         }   
 

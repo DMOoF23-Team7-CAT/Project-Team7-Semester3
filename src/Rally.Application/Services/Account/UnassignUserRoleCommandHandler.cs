@@ -23,11 +23,18 @@ namespace Rally.Application.Services.Account
             var role = await roleManager.FindByNameAsync(request.RoleName)
                 ?? throw new ApplicationException("Role not found");
 
-            //FIXME: Add exception handling for the case when the user or role does not exist
-
-            //Un assigning a user to a given role
+            //Unassigning a user to a given role
             if (role != null)
-                await userManager.RemoveFromRoleAsync(user, role.Name!);
+            {
+                try
+                {
+                    await userManager.RemoveFromRoleAsync(user, role.Name!);
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("Error unassigning user to role");
+                }
+            }
         }
 
     }
