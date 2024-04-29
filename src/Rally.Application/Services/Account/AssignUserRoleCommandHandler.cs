@@ -15,10 +15,11 @@ namespace Rally.Application.Services.MediatR
 
             //Checks if a given role exists in the database
             var role = await roleManager.FindByNameAsync(request.RoleName)
-                ?? throw new ApplicationException("Role not found");            
+                ?? throw new ApplicationException("Role not found");
 
             //Assigning a user to a given role
-            await userManager.AddToRoleAsync(user, role.Name);
+            if (role != null)
+                await userManager.AddToRoleAsync(user, role.Name!);
 
         }   
 

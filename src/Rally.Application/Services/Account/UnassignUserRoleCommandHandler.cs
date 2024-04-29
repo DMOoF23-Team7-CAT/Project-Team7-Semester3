@@ -25,9 +25,9 @@ namespace Rally.Application.Services.Account
 
             //FIXME: Add exception handling for the case when the user or role does not exist
 
-            //Unassigning a user to a given role
-            await userManager.RemoveFromRoleAsync(user, role.Name);
-
+            //Un assigning a user to a given role
+            if (role != null)
+                await userManager.RemoveFromRoleAsync(user, role.Name!);
         }
 
     }
