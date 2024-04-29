@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Rally.Core.Entities;
+using Rally.Core.Entities.Account;
 
 namespace Rally.Infrastructure.Data
 {
@@ -32,6 +33,11 @@ namespace Rally.Infrastructure.Data
             builder.Entity<SignBase>(ConfigureSignBase);
             builder.Entity<Sign>(ConfigureSign);
             builder.Entity<Track>(ConfigureTrack);
+
+            builder.Entity<User>()
+                .HasMany(u => u.Tracks)
+                .WithOne(t => t.User)
+                .HasForeignKey(t => t.UserId);
         }
 
         private void ConfigureCategory(EntityTypeBuilder<Category> builder)
