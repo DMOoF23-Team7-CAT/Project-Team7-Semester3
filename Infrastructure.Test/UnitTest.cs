@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Repositories;
-using Rally.Infrastructure.Repositories.Base;
 
 namespace Infrastructure.Test
 {
-    public class RallyInfrastructureTest
+    public class UnitTest
     {
         [Fact]
         public async Task CategoryRepository_GetAllAsync_ShouldReturnAllCategories()
