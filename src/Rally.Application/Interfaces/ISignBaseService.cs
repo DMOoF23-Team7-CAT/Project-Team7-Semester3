@@ -13,6 +13,7 @@ namespace Rally.Application.Interfaces
     {
         Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId);
         Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId);
+
     }
 }
 

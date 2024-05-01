@@ -8,6 +8,7 @@ namespace Rally.Application.Interfaces
     {
         //Task<SignWithTrackDto> GetSignWithTrack(int signId);
         Task<SignWithSignBaseDto> GetSignWithSignBases(int signId);
+        Task<SignWithSignBaseDto> CreateSignWithSignBase(SignWithSignBaseDto signDto, int signBaseId);
     }
 }
 

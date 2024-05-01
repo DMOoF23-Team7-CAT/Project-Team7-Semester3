@@ -48,7 +48,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("UpdateTrack")]
-        public async Task<IActionResult> UpdateTrack(TrackWithoutIdDto trackDto)
+        public async Task<IActionResult> UpdateTrack(TrackDto trackDto)
         {
             await _trackService.Update(trackDto);
             return Ok();

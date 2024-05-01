@@ -23,6 +23,7 @@ namespace Rally.Api.Controllers
             return Ok(signBases);
         }
 
+//FIXME - Delete this method trough the stack. there is already get Category with sign bases method in category
         [HttpGet("GetSignBaseWithCategory")]
         public async Task<IActionResult> GetSignBaseWithCategory(int signBaseId)
         {
@@ -31,7 +32,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpGet("GetSignBaseById")]
-        public async Task<ActionResult<SignBaseDto>> GetSignBaseById(int id)
+        public async Task<ActionResult> GetSignBaseById(int id)
         {
             var signBase = await _signBaseService.GetById(id);
             return Ok(signBase);

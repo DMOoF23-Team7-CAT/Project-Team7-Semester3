@@ -30,8 +30,8 @@ namespace Rally.Api.Controllers
             return Ok(sign);
         }
 
-        [HttpPost("GetSignById")]
-        public async Task<ActionResult<SignDto>> GetSignById(int id)
+        [HttpGet("GetSignById")]
+        public async Task<ActionResult> GetSignById(int id)
         {
             var sign = await _signService.GetById(id);
             return Ok(sign);
