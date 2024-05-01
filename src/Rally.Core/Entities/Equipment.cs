@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Core.Entities.Base;
@@ -12,6 +13,7 @@ namespace Rally.Core.Entities
         public string YCoordinate { get; set; } = string.Empty;
         public string Rotation { get; set; } = string.Empty;
         public EquipmentBase? EquipmentBase { get; set; }
+        [ForeignKey("EquipmentBase")]
         public int EquipmentBaseId { get; set; }
     }
 }

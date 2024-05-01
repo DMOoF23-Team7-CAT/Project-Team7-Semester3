@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Rally.Core.Entities.Account;
@@ -15,10 +16,12 @@ namespace Rally.Core.Entities
         public DateTime Date { get; set; } = DateTime.Now;
 
         public Category? Category { get; set; }
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public ICollection<Sign> Signs { get; set; } = new List<Sign>();
 
         public User User { get; set; } = default!;
+        [ForeignKey("User")]
         public string UserId { get; set; } = default!;
     }
 }

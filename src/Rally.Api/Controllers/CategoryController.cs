@@ -39,7 +39,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPost("CreateCategory")]
-        [Authorize(Roles = UserRoles.Admin)]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> CreateCategory(CategoryDto categoryDto)
         {
@@ -48,7 +48,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("UpdateCategory")]
-        [Authorize(Roles = UserRoles.Admin)]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> UpdateCategory(CategoryDto category)
         {
@@ -57,7 +57,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("DeleteCategory")]
-        [Authorize(Roles = UserRoles.Admin)]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
 
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {
