@@ -14,6 +14,9 @@ namespace Rally.Core.Entities
         public string Rotation { get; set; } = string.Empty;
 
         public SignBase? SignBase { get; set; }
+        public int SignBaseId { get; set; }
         public Track? Track { get; set; }
+        public int TrackId { get; set; }
     }
 }
+
