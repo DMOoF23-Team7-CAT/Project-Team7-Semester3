@@ -15,6 +15,7 @@ namespace Rally.Core.Entities
         public DateTime Date { get; set; } = DateTime.Now;
 
         public Category? Category { get; set; }
+        public int CategoryId { get; set; }
         public ICollection<Sign> Signs { get; set; } = new List<Sign>();
 
         public User User { get; set; } = default!;

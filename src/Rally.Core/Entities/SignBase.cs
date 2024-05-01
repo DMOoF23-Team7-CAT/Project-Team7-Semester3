@@ -12,7 +12,9 @@ namespace Rally.Core.Entities
         public byte[] Image { get; set; } = new byte[0];
 
         public EquipmentBase? EquipmentBase { get; set; }
+        public int EquipmentBaseId { get; set; }
         public Category? Category { get; set; }
+        public int CategoryId { get; set; }
         public ICollection<Sign> Signs { get; set; } = new List<Sign>();
     }
 }
