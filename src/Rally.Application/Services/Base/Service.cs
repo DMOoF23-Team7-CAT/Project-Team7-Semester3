@@ -10,7 +10,8 @@ using Rally.Application.Mapper;
 
 namespace Rally.Application.Services.Base
 {
-    public class Service<TDto, TEntity> : IService<TDto, TEntity> where TDto : BaseDto where TEntity : Entity
+    public class Service<TDto, TEntity, TDtoWithoutId> : IService<TDto, TEntity, TDtoWithoutId> 
+        where TDto : BaseDto where TEntity : Entity where TDtoWithoutId : class
     {
         private readonly IRepository<TEntity> _repository;
 
@@ -23,6 +24,19 @@ namespace Rally.Application.Services.Base
         {
             await ValidateIfExist(dto);
 
+            var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(dto);
+            if (mappedEntity is null)
+                throw new ApplicationException("Entity could not be mapped.");
+
+            await _repository.AddAsync(mappedEntity);
+            // TODO: Add logging
+
+            var newMappedEntity = ObjectMapper.Mapper.Map<TDto>(mappedEntity);
+            return newMappedEntity;
+        }
+
+        public async Task<TDto> Create(TDtoWithoutId dto)
+        {
             var mappedEntity = ObjectMapper.Mapper.Map<TEntity>(dto);
             if (mappedEntity is null)
                 throw new ApplicationException("Entity could not be mapped.");
@@ -57,7 +71,7 @@ namespace Rally.Application.Services.Base
             // TODO: Add logging
         }
 
-        public async Task<TDto> GetById(int id)
+        public virtual async Task<TDto> GetById(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
             if (entity is null)
@@ -71,7 +85,7 @@ namespace Rally.Application.Services.Base
         }
 
 
-        public async Task<IEnumerable<TDto>> GetAll()
+        public virtual async Task<IEnumerable<TDto>> GetAll()
         {
             var entities = await _repository.GetAllAsync();
             if (entities is null)

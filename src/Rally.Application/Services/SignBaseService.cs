@@ -15,7 +15,7 @@ using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class SignBaseService : Service<SignBaseDto, SignBase>, ISignBaseService
+    public class SignBaseService : Service<SignBaseDto, SignBase, SignBaseWithoutIdDto>, ISignBaseService
     {
         private readonly ISignBaseRepository _SignBaseRepository;
         public SignBaseService(IRepository<SignBase> repository, ISignBaseRepository SignBaseRepository) : base(repository)

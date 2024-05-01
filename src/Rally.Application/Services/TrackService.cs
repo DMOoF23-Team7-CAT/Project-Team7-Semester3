@@ -8,7 +8,7 @@ using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class TrackService : Service<TrackDto, Track>, ITrackService
+    public class TrackService : Service<TrackDto, Track, TrackWithoutIdDto>, ITrackService
     {
         private readonly ITrackRepository _trackRepository;
         public TrackService(IRepository<Track> repository, ITrackRepository trackRepository) : base(repository)

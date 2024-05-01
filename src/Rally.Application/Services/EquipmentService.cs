@@ -8,7 +8,7 @@ using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class EquipmentService : Service<EquipmentDto, Equipment>, IEquipmentService
+    public class EquipmentService : Service<EquipmentDto, Equipment, EquipmentWithoutIdDto>, IEquipmentService
     {
         private readonly IEquipmentRepository _equipmentRepository;
         public EquipmentService(IRepository<Equipment> repository, IEquipmentRepository equipmentRepository) : base(repository)

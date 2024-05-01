@@ -58,7 +58,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ISignRepository, SignRepository>();
 
 // Register services
-builder.Services.AddScoped(typeof(IService<,>), typeof(Service<,>));
+builder.Services.AddScoped(typeof(IService<, ,>), typeof(Service<, ,>));
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IEquipmentBaseService, EquipmentBaseService>();
 builder.Services.AddScoped<ITrackService, TrackService>();
