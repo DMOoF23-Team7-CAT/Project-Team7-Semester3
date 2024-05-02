@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Repositories;
+using Rally.Infrastructure.Repositories.Base;
 
 namespace Infrastructure.Test
 {
@@ -23,14 +24,13 @@ namespace Infrastructure.Test
             context.Categories.Add(new Category { Id = 3, Name = "Category3" });
             await context.SaveChangesAsync();
 
-            var repository = new CategoryRepository(context);
+            var repository = new Repository<Category>(context);
 
             // Act
             var categories = await repository.GetAllAsync();
 
-            // Assert
-            categories.Should().BeOfType<List<Category>>();
-            categories.Should().NotBeNull();
+            // Assert            
+            categories.Should().NotBeNullOrEmpty();
             categories.Should().HaveCount(3);
             categories.First().Name.Should().Be("Category1");
         }
