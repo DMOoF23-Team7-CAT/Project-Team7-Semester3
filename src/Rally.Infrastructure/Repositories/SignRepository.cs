@@ -24,15 +24,5 @@ namespace Rally.Infrastructure.Repositories
             return sign;
         }
 
-        public async Task<Sign> GetSignWithTrackAsync(int signId)
-        {
-            var spec = new SignWithSignBaseSpecification(signId);
-            var sign = (await GetAsync(spec)).FirstOrDefault();
-
-            if (sign is null)
-                throw new InfrastructureException("Sign not found");
-
-            return sign;
-        }
     }
 }

@@ -56,16 +56,6 @@ namespace Rally.Application.Services
         // }
         //REVIEW - 
 
-        // public async Task<SignDto> GetSignWithTrack(int signId)
-        // {
-        //     var sign = await _signRepository.GetSignWithTrackAsync(signId);
-
-        //     var mappedSign = ObjectMapper.Mapper.Map<SignDto>(sign);
-        //     if (mappedSign is null)
-        //         throw new ApplicationException("Sign with track could not be mapped");
-
-        //     return mappedSign;
-        // }
     }
 }
 
