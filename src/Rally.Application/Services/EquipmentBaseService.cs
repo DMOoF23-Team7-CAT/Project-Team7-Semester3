@@ -3,7 +3,6 @@ using Rally.Application.Dto.EquipmentBase;
 using Rally.Application.Interfaces;
 using Rally.Application.Services.Base;
 using Rally.Core.Entities;
-using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {

@@ -6,7 +6,6 @@ namespace Rally.Application.Interfaces
 {
     public interface IEquipmentBaseService : IService<EquipmentBaseDto, EquipmentBase, EquipmentBaseWithoutIdDto>
     {
-        // TODO: Add the methods for the EquipmentBase
     }
 }
 

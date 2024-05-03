@@ -1,12 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Rally.Application.Services.MediatR;
 using Rally.Core.Entities.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rally.Application.Services.Account
 {

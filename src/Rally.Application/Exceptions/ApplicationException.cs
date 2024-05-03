@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Rally.Application.Exceptions
 {
     public class ApplicationException : Exception

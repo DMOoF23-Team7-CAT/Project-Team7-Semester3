@@ -1,8 +1,4 @@
-﻿using Rally.Application.Dto;
-using Rally.Core.Entities;
-using AutoMapper;
-using System;
-using Rally.Application.Mapper;
+﻿using AutoMapper;
 
 namespace Rally.Application.Mapper
 {
