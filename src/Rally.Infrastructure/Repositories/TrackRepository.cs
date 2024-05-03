@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 using Rally.Core.Specifications;

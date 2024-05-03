@@ -38,6 +38,7 @@ namespace Rally.Api.Controllers
             return Ok(categories);
         }
 
+        //NOTE - Removed authorization for testing purposes
         [HttpPost("CreateCategory")]
         //FIXME - [Authorize(Roles = UserRoles.Admin)]
 

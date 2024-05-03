@@ -1,4 +1,4 @@
-using AspnetRun.Core.Repositories.Base;
+using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.Equipment;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;

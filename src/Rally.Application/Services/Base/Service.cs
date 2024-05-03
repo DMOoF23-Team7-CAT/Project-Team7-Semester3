@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspnetRun.Core.Repositories.Base;
+using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.Base;
 using Rally.Application.Interfaces.Base;
 using Rally.Core.Entities.Base;
@@ -10,7 +6,7 @@ using Rally.Application.Mapper;
 
 namespace Rally.Application.Services.Base
 {
-    public class Service<TDto, TEntity, TDtoWithoutId> : IService<TDto, TEntity, TDtoWithoutId> 
+    public class Service<TDto, TEntity, TDtoWithoutId> : IService<TDto, TEntity, TDtoWithoutId>
         where TDto : BaseDto where TEntity : Entity where TDtoWithoutId : class
     {
         private readonly IRepository<TEntity> _repository;

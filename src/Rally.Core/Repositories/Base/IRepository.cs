@@ -1,7 +1,7 @@
 ﻿using Rally.Core.Specifications.Base;
 using Rally.Core.Entities.Base;
 
-namespace AspnetRun.Core.Repositories.Base
+namespace Rally.Core.Repositories.Base
 {
     public interface IRepository<T> where T : Entity
     {

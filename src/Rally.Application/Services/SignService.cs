@@ -1,4 +1,4 @@
-using AspnetRun.Core.Repositories.Base;
+using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.Sign;
 using Rally.Application.Dto.SignBase;
 using Rally.Application.Interfaces;

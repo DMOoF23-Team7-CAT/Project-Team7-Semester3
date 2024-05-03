@@ -1,4 +1,4 @@
-using AspnetRun.Core.Repositories.Base;
+using Rally.Core.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities.Base;
 using Rally.Core.Specifications.Base;
@@ -24,7 +24,7 @@ namespace Rally.Infrastructure.Repositories.Base
         public async Task<T> GetByIdAsync(int id)
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
-            
+
             return entity!;
         }
 

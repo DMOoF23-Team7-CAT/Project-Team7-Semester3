@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspnetRun.Core.Repositories.Base;
+using Rally.Core.Repositories.Base;
 using AutoMapper.Internal.Mappers;
 using Rally.Application.Dto;
 using Rally.Application.Dto.Sign;
