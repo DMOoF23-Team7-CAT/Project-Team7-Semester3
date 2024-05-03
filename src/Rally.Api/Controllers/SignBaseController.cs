@@ -38,7 +38,9 @@ namespace Rally.Api.Controllers
             return Ok(signBase);
         }
 
+        //NOTE - Removed authorization for testing purposes
         [HttpPost("CreateSignBase")]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> CreateSignBase(SignBaseDto signBaseDto)
         {
             var signBase = await _signBaseService.Create(signBaseDto);
@@ -46,6 +48,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("UpdateSignBase")]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> UpdateSignBase(SignBaseDto signBaseDto)
         {
             await _signBaseService.Update(signBaseDto);
@@ -53,6 +56,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("DeleteSignBase")]
+        //FIXME - [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> DeleteSignBase(int id)
         {
             await _signBaseService.Delete(id);
