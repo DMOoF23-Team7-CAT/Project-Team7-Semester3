@@ -19,7 +19,7 @@ namespace Infrastructure.Test
                 .Options;
 
             using var context = new RallyContext(options);
-            var repository = new Repository<SignBase>(context);
+            var repository = new SignRepository(context);
 
             // Act  
             var signBases = await repository.GetAllAsync();

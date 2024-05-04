@@ -1,6 +1,8 @@
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
+using Rally.Core.Repositories;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Repositories;
 using Rally.Infrastructure.Repositories.Base;
@@ -24,15 +26,18 @@ namespace Infrastructure.Test
             context.Categories.Add(new Category { Id = 3, Name = "Category3" });
             await context.SaveChangesAsync();
 
-            var repository = new Repository<Category>(context);
+            var repository = new CategoryRepository(context);
 
             // Act
             var categories = await repository.GetAllAsync();
 
-            // Assert            
-            categories.Should().NotBeNullOrEmpty();
-            categories.Should().HaveCount(3);
-            categories.First().Name.Should().Be("Category1");
+            // Assert
+            using (new AssertionScope())
+            {
+                categories.Should().NotBeNullOrEmpty();
+                categories.Should().HaveCount(3);
+                categories.First().Name.Should().Be("Category1");
+            }
         }
     }
 }
