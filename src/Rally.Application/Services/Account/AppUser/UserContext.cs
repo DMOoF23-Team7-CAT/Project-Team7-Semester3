@@ -2,7 +2,7 @@
 using Rally.Core.Entities.Account;
 using System.Security.Claims;
 
-namespace Rally.Application.Services.Account.User
+namespace Rally.Application.Services.Account.AppUser
 {
     public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {
