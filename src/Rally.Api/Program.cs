@@ -15,6 +15,7 @@ using Rally.Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Rally.Application.Services.MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Rally.Application.Services.Account.User;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,6 +66,7 @@ builder.Services.AddScoped<ISignBaseService, SignBaseService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 builder.Services.AddScoped<IRallySeeder, RallySeeder>();
+builder.Services.AddScoped<IUserContext, UserContext>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(AssignUserRoleCommandHandler).Assembly));
 builder.Services.AddAuthentication();

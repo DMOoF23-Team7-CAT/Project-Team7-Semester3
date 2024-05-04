@@ -40,7 +40,8 @@ namespace Rally.Api.Controllers
 
         //NOTE - Removed authorization for testing purposes
         [HttpPost("CreateCategory")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
+        //FIXME - [Authorize(Roles =
+        //Roles.Admin)]
 
         public async Task<IActionResult> CreateCategory(CategoryDto categoryDto)
         {
