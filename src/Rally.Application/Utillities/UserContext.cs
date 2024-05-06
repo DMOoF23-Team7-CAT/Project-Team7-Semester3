@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Rally.Application.Interfaces;
 using Rally.Core.Entities.Account;
 using System.Security.Claims;
 
-namespace Rally.Application.Services.Account.AppUser
+namespace Rally.Application.Utilities
 {
     public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {

@@ -5,7 +5,7 @@ using Rally.Application.Mapper;
 using Rally.Application.Services.Base;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
-using Rally.Application.Services.Account.AppUser;
+using Rally.Application.Utilities;
 
 namespace Rally.Application.Services
 {

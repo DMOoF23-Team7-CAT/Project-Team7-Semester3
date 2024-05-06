@@ -1,6 +1,6 @@
 ﻿using Rally.Core.Entities.Account;
 
-namespace Rally.Application.Services.Account.AppUser
+namespace Rally.Application.Interfaces
 {
     public interface IUserContext
     {
