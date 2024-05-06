@@ -42,15 +42,23 @@ namespace Rally.Application.Services
             return mappedTrack;
         }
 
-        public async Task<Track> CreateTrackWithUser(TrackDto trackDto)
+        public async Task<TrackDto> CreateTrackWithUser(TrackDto trackDto)
         {
             var currentUser = _userContext.GetCurrentUser();
-            
+            if (currentUser is null)
+                throw new ApplicationException("Current user is null");
+
             var track = ObjectMapper.Mapper.Map<Track>(trackDto);
+            if (track is null)
+                throw new ApplicationException("Track could not be mapped");
 
             track.UserId = currentUser.Id;
 
-            var newTrack = await _trackRepository.AddAsync(track);
+            await _trackRepository.AddAsync(track);
+
+            var newTrack = ObjectMapper.Mapper.Map<TrackDto>(track);
+            if (newTrack is null)
+                throw new ApplicationException("Track could not be mapped");
 
             return newTrack;
         }
