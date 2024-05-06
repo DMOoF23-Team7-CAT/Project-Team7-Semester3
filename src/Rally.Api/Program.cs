@@ -13,6 +13,8 @@ using Microsoft.OpenApi.Models;
 using Rally.Core.Entities.Account;
 using Rally.Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using Rally.Application.Utilities;
 
 
 var builder = WebApplication.CreateBuilder(args);
