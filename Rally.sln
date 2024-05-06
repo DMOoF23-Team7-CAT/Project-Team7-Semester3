@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Application", "src\Ra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Infrastructure", "src\Rally.Infrastructure\Rally.Infrastructure.csproj", "{8F4EECFD-886D-4271-8A39-5BE93FD1CA23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Utility", "src\Rally.Utility\Rally.Utility.csproj", "{C1C1432D-91F2-40C3-959A-1374964EAD3C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "src\Rally.Api\Rally.Api.csproj", "{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}"
 EndProject
 Global
