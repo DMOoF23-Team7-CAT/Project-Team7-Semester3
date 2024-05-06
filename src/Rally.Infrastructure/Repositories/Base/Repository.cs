@@ -1,7 +1,6 @@
 using Rally.Core.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities.Base;
-using Rally.Core.Specifications.Base;
 using Rally.Infrastructure.Data;
 
 namespace Rally.Infrastructure.Repositories.Base
@@ -45,17 +44,6 @@ namespace Rally.Infrastructure.Repositories.Base
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-        }
-
-        //NOTE - This method is used to get entities using a specification
-        public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
-        {
-            return await ApplySpecification(spec).ToListAsync();
-        }
-
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
-        {
-            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
         }
 
     }

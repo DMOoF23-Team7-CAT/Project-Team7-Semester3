@@ -1,6 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
-using Rally.Core.Specifications;
+
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
@@ -15,9 +16,10 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Category> GetCategoryWithSignBasesAsync(int categoryId)
         {
-            var spec = new CategoryWithSignBaseSpecification(categoryId);
 
-            var category = (await GetAsync(spec)).FirstOrDefault();
+            var category = await _dbContext.Set<Category>()
+                .Include(c => c.SignBases)
+                .FirstOrDefaultAsync(c => c.Id == categoryId);
             if (category is null)
                 throw new InfrastructureException("Category not found");
 

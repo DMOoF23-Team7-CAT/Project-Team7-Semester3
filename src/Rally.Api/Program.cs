@@ -66,6 +66,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISignService, SignService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
+builder.Services.AddScoped<IUserContext, UserContext>();
 builder.Services.AddScoped<IRallySeeder, RallySeeder>();
 
 
