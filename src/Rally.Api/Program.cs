@@ -15,7 +15,7 @@ using Rally.Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Rally.Application.Services.MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Rally.Application.Services.Account.AppUser;
+using Rally.Application.Utilities;
 
 
 var builder = WebApplication.CreateBuilder(args);
