@@ -63,7 +63,7 @@ namespace Rally.Application.Services
             return newTrack;
         }
 
-        public async Task<TrackWithCategorySigns> LoadTrack(int trackId)
+        public async Task<LoadTrackDto> LoadTrack(int trackId)
         {
             var currentUser = _userContext.GetCurrentUser();
             if (currentUser is null)
@@ -74,7 +74,7 @@ namespace Rally.Application.Services
             if (track.UserId != currentUser.Id)
                 throw new ApplicationException("Track does not belong to current user");
 
-            var mappedTrack = ObjectMapper.Mapper.Map<TrackWithCategorySigns>(track);
+            var mappedTrack = ObjectMapper.Mapper.Map<LoadTrackDto>(track);
             if (mappedTrack is null)
                 throw new ApplicationException("Track could not be mapped");
 

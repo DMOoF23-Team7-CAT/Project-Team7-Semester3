@@ -9,7 +9,7 @@ namespace Rally.Application.Interfaces
         Task<TrackWithCategoryDto> GetTrackWithCategory(int trackId);
         Task<TrackWithSignsDto> GetTrackWithSigns(int trackId);
         Task<TrackDto> CreateTrackWithUser(TrackDto trackDto);
-        Task<TrackWithCategorySigns> LoadTrack(int trackId);
+        Task<LoadTrackDto> LoadTrack(int trackId);
     }
 }
 

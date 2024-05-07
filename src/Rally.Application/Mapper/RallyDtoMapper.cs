@@ -43,7 +43,7 @@ namespace Rally.Application.Mapper
             CreateMap<Track, TrackWithSignsDto>().ReverseMap();
             CreateMap<Track, TrackWithCategoryDto>().ReverseMap();
             CreateMap<Track, TrackWithoutIdDto>().ReverseMap();
-            CreateMap<Track, TrackWithCategorySigns>().ReverseMap();
+            CreateMap<Track, LoadTrackDto>().ReverseMap();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpGet("LoadTrack")]
-        public async Task<ActionResult<TrackDto>> LoadTrack(int id)
+        public async Task<ActionResult<LoadTrackDto>> LoadTrack(int id)
         {
             var track = await _trackService.LoadTrack(id);
             return Ok(track);
