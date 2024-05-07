@@ -11,6 +11,9 @@ namespace Rally.Core.Entities
         public EquipmentBase? EquipmentBase { get; set; }
         [ForeignKey("EquipmentBase")]
         public int EquipmentBaseId { get; set; }
+        public Sign? Sign { get; set; }
+        [ForeignKey("Sign")]
+        public int SignId { get; set; }
     }
 }
 

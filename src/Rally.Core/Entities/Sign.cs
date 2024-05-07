@@ -16,6 +16,8 @@ namespace Rally.Core.Entities
         public Track? Track { get; set; }
         [ForeignKey("Track")]
         public int TrackId { get; set; }
+        public Equipment? Equipment { get; set; }
+
     }
 }
 

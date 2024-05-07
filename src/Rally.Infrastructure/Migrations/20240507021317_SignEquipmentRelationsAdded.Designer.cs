@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rally.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Rally.Infrastructure.Data;
 namespace Rally.Infrastructure.Migrations
 {
     [DbContext(typeof(RallyContext))]
-    partial class RallyContextModelSnapshot : ModelSnapshot
+    [Migration("20240507021317_SignEquipmentRelationsAdded")]
+    partial class SignEquipmentRelationsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,9 +257,6 @@ namespace Rally.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SignId")
-                        .HasColumnType("int");
-
                     b.Property<string>("XCoordinate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -268,9 +268,6 @@ namespace Rally.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EquipmentBaseId");
-
-                    b.HasIndex("SignId")
-                        .IsUnique();
 
                     b.ToTable("Equipment", (string)null);
                 });
@@ -297,6 +294,9 @@ namespace Rally.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("EquipmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Rotation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -319,6 +319,9 @@ namespace Rally.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EquipmentId")
+                        .IsUnique();
 
                     b.HasIndex("SignBaseId");
 
@@ -454,19 +457,17 @@ namespace Rally.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Rally.Core.Entities.Sign", "Sign")
-                        .WithOne("Equipment")
-                        .HasForeignKey("Rally.Core.Entities.Equipment", "SignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("EquipmentBase");
-
-                    b.Navigation("Sign");
                 });
 
             modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
                 {
+                    b.HasOne("Rally.Core.Entities.Equipment", "Equipment")
+                        .WithOne("Sign")
+                        .HasForeignKey("Rally.Core.Entities.Sign", "EquipmentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Rally.Core.Entities.SignBase", "SignBase")
                         .WithMany("Signs")
                         .HasForeignKey("SignBaseId")
@@ -478,6 +479,8 @@ namespace Rally.Infrastructure.Migrations
                         .HasForeignKey("TrackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Equipment");
 
                     b.Navigation("SignBase");
 
@@ -534,16 +537,16 @@ namespace Rally.Infrastructure.Migrations
                     b.Navigation("Tracks");
                 });
 
+            modelBuilder.Entity("Rally.Core.Entities.Equipment", b =>
+                {
+                    b.Navigation("Sign");
+                });
+
             modelBuilder.Entity("Rally.Core.Entities.EquipmentBase", b =>
                 {
                     b.Navigation("Equipments");
 
                     b.Navigation("SignBases");
-                });
-
-            modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
-                {
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("Rally.Core.Entities.SignBase", b =>

@@ -70,6 +70,7 @@ namespace Rally.Infrastructure.Data
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Equipments).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(e => e.Sign).WithOne(e => e.Equipment).OnDelete(DeleteBehavior.Cascade);
         }
 
         private void ConfigureSign(EntityTypeBuilder<Sign> builder)
