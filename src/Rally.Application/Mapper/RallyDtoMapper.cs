@@ -31,6 +31,7 @@ namespace Rally.Application.Mapper
             CreateMap<Sign, SignDto>().ReverseMap();
             CreateMap<Sign, SignWithSignBaseDto>().ReverseMap();
             CreateMap<Sign, SignWithoutIdDto>().ReverseMap();
+            CreateMap<Sign, SignWithEquipmentSignBase>().ReverseMap();
 
             // SignBase
             CreateMap<SignBase, SignBaseDto>().ReverseMap();
@@ -42,6 +43,7 @@ namespace Rally.Application.Mapper
             CreateMap<Track, TrackWithSignsDto>().ReverseMap();
             CreateMap<Track, TrackWithCategoryDto>().ReverseMap();
             CreateMap<Track, TrackWithoutIdDto>().ReverseMap();
+            CreateMap<Track, TrackWithCategorySigns>().ReverseMap();
         }
     }
 }

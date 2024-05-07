@@ -7,6 +7,7 @@ namespace Rally.Core.Repositories
     {
         Task<Track> GetTrackWithSignsAsync(int trackId);
         Task<Track> GetTrackWithCategoryAsync(int trackId);
+        Task<Track> LoadTrackAsync(int trackId);
     }
 }
 

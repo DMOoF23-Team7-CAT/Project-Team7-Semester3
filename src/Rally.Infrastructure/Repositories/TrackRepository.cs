@@ -36,6 +36,31 @@ namespace Rally.Infrastructure.Repositories
 
             return track;
         }
+
+        public async Task<Track> LoadTrackAsync(int trackId)
+        {
+            try
+            {
+                var track = await _dbContext.Set<Track>()
+                    .Include(t => t.Signs)
+                        .ThenInclude(sign => sign.SignBase)
+                    .Include(t => t.Signs)
+                        .ThenInclude(sign => sign.Equipment)
+                            .ThenInclude(equipment => equipment!.EquipmentBase)
+                    .Include(t => t.Category)
+                    .Include(t => t.User)
+                    .FirstOrDefaultAsync(t => t.Id == trackId);
+
+                if (track is null)
+                    throw new InfrastructureException("Track not found");
+
+                return track;
+            }
+            catch (Exception e)
+            {
+                throw new InfrastructureException("Error loading track", e);
+            }
+        }
     }
 }
 

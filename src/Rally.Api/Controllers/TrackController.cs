@@ -36,6 +36,13 @@ namespace Rally.Api.Controllers
             return Ok(track);
         }
 
+        [HttpGet("LoadTrack")]
+        public async Task<ActionResult<TrackDto>> LoadTrack(int id)
+        {
+            var track = await _trackService.LoadTrack(id);
+            return Ok(track);
+        }
+
         [HttpPost("CreateTrackWithUser")]
         public async Task<IActionResult> CreateTrackWithUser(TrackDto trackDto)
         {

@@ -62,6 +62,24 @@ namespace Rally.Application.Services
 
             return newTrack;
         }
+
+        public async Task<TrackWithCategorySigns> LoadTrack(int trackId)
+        {
+            var currentUser = _userContext.GetCurrentUser();
+            if (currentUser is null)
+                throw new ApplicationException("Current user is null");
+
+            var track = await _trackRepository.LoadTrackAsync(trackId);
+
+            if (track.UserId != currentUser.Id)
+                throw new ApplicationException("Track does not belong to current user");
+
+            var mappedTrack = ObjectMapper.Mapper.Map<TrackWithCategorySigns>(track);
+            if (mappedTrack is null)
+                throw new ApplicationException("Track could not be mapped");
+
+            return mappedTrack;
+        }
     }
 }
 
