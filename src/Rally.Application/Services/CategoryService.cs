@@ -1,30 +1,71 @@
-using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
-using Rally.Application.Services.Base;
-using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class CategoryService : Service<CategoryDto, Category, CategoryWithoutIdDto>, ICategoryService
+    public class CategoryService : ICategoryService
     {
-        //NOTE - Added comments for clarity
-        // Instance of the repository for the Category entity. used to access methods not implemented in base.Service
         private readonly ICategoryRepository _categoryRepository;
 
-        // Constructor that passes the repository with Category to the base constructor and Instantiate the ICategoryRepository
-        public CategoryService(IRepository<Category> repository, ICategoryRepository categoryRepository) : base(repository)
+        public CategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
 
-        // Method to get a category with its SignBases
+        public async Task<IEnumerable<CategoryDto>> GetAllCategories()
+        {
+            var categories = await _categoryRepository.GetAllAsync();
+            if (categories is null)
+                throw new ApplicationException("Categories could not be found.");
+
+            var mappedCategories = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(categories);
+            if (mappedCategories is null)
+                throw new ApplicationException("Categories could not be mapped.");
+            
+            return mappedCategories;
+        }
+
+        public async Task<CategoryDto> GetById(int id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+            if (category is null)
+                throw new ApplicationException("Category could not be found.");
+            
+            var mappedCategory = ObjectMapper.Mapper.Map<CategoryDto>(category);
+            if (mappedCategory is null)
+                throw new ApplicationException("Category could not be mapped.");
+            
+            return mappedCategory;
+        }
+
+        public Task<CategoryDto> Create(CategoryDto dto)
+        {
+            //FIXME - Validate if id exists
+            if (dto.Id <= 1)
+            {
+                throw new ApplicationException("Category Id must be greater than 0.");
+            }
+            else
+            {
+                return Task.FromResult(dto);
+            }
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(CategoryDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId)
         {
             var entity = await _categoryRepository.GetCategoryWithSignBasesAsync(categoryId);
-            //NOTE - No need to check if entity is null here, because there is null checks in the Infrastructure layer.
 
             var mappedEntity = ObjectMapper.Mapper.Map<CategoryWithSignBasesDto>(entity);
             if (mappedEntity is null)
@@ -32,6 +73,8 @@ namespace Rally.Application.Services
 
             return mappedEntity;
         }
+
+
     }
 }
 
