@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Rally.Application.Exceptions;
 using Rally.Application.Interfaces;
 using Rally.Core.Entities.Account;
 using System.Security.Claims;
@@ -12,7 +13,7 @@ namespace Rally.Application.Utilities
             var user = httpContextAccessor?.HttpContext?.User;
             if (user == null)
             {
-                throw new InvalidOperationException("User context is not present");
+                throw new NotFoundException("User context is not present");
             }
 
             if (user.Identity == null || !user.Identity.IsAuthenticated)
