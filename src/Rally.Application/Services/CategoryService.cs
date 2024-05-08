@@ -17,7 +17,7 @@ namespace Rally.Application.Services
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllCategories()
+        public async Task<IEnumerable<CategoryDto>> GetAll()
         {
             var categories = await _categoryRepository.GetAllAsync();
             if (categories is null)

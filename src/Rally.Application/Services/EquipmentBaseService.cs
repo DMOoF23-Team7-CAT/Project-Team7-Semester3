@@ -1,15 +1,41 @@
-using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.EquipmentBase;
 using Rally.Application.Interfaces;
-using Rally.Application.Services.Base;
 using Rally.Core.Entities;
+using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class EquipmentBaseService : Service<EquipmentBaseDto, EquipmentBase, EquipmentBaseWithoutIdDto>, IEquipmentBaseService
+    public class EquipmentBaseService : IEquipmentBaseService
     {
-        public EquipmentBaseService(IRepository<EquipmentBase> repository) : base(repository)
+        private readonly IEquipmentBaseRepository _equipmentBaseRepository;
+        public EquipmentBaseService(IEquipmentBaseRepository equipmentBaseRepository)
         {
+            _equipmentBaseRepository = equipmentBaseRepository ?? throw new ArgumentNullException(nameof(equipmentBaseRepository));
+        }
+
+        public Task<IEnumerable<EquipmentBaseDto>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EquipmentBaseDto> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EquipmentBaseDto> Create(EquipmentBaseDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(EquipmentBaseDto dto)
+        {
+            throw new NotImplementedException();
         }
     }
 

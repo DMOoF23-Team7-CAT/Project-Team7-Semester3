@@ -6,14 +6,10 @@ using Rally.Infrastructure.Repositories;
 using Rally.Infrastructure.Repositories.Base;
 using Rally.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Rally.Application.Interfaces.Base;
-using Rally.Application.Services.Base;
 using Microsoft.OpenApi.Models;
 using Rally.Core.Entities.Account;
 using Rally.Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using Rally.Application.Utilities;
 
 
@@ -57,7 +53,6 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ISignRepository, SignRepository>();
 
 // Register services
-builder.Services.AddScoped(typeof(IService<,,>), typeof(Service<,,>));
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 builder.Services.AddScoped<IEquipmentBaseService, EquipmentBaseService>();
 builder.Services.AddScoped<ITrackService, TrackService>();

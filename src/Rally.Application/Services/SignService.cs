@@ -1,23 +1,43 @@
-using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.Sign;
-using Rally.Application.Dto.SignBase;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
-using Rally.Application.Services.Base;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class SignService : Service<SignDto, Sign, SignWithoutIdDto>, ISignService
+    public class SignService : ISignService
     {
         private readonly ISignRepository _signRepository;
-        public SignService(IRepository<Sign> repository, ISignRepository signRepository) : base(repository)
+        public SignService(ISignRepository signRepository)
         {
             _signRepository = signRepository ?? throw new ArgumentNullException(nameof(signRepository));
         }
 
+        public Task<IEnumerable<SignDto>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<SignDto> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SignDto> Create(SignWithoutIdDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(SignDto dto)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<SignWithSignBaseDto> GetSignWithSignBases(int signId)
         {
@@ -29,32 +49,6 @@ namespace Rally.Application.Services
 
             return mappedSign;
         }
-
-        //REVIEW - This method is for testing purposes only. It should be deleted in the future.
-        public Task<SignWithSignBaseDto> CreateSignWithSignBase(SignWithSignBaseDto signDto, int signBaseId)
-        {
-            throw new NotImplementedException();
-        }
-        // public async Task<SignWithSignBaseDto> CreateSignWithSignBase(SignWithSignBaseDto signDto, int signBaseId)
-        // {
-        //     if (signDto.SignBase == null)
-        //         signDto.SignBase = new SignBaseDto();
-
-        //     signDto.SignBase.Id = signBaseId;
-
-        //     var signEntity = ObjectMapper.Mapper.Map<Sign>(signDto);
-        //     if (signEntity is null)
-        //         throw new ApplicationException("Sign with sign base could not be mapped");
-
-        //     await _signRepository.Create(signEntity);
-
-        //     var mappedSign = ObjectMapper.Mapper.Map<SignWithSignBaseDto>(signEntity);
-        //     if (mappedSign is null)
-        //         throw new ApplicationException("Sign with sign base could not be mapped");
-
-        //     return mappedSign;
-        // }
-        //REVIEW - 
 
     }
 }

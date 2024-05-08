@@ -1,19 +1,42 @@
-using Rally.Core.Repositories.Base;
 using Rally.Application.Dto.SignBase;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
-using Rally.Application.Services.Base;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class SignBaseService : Service<SignBaseDto, SignBase, SignBaseWithoutIdDto>, ISignBaseService
+    public class SignBaseService :  ISignBaseService
     {
         private readonly ISignBaseRepository _SignBaseRepository;
-        public SignBaseService(IRepository<SignBase> repository, ISignBaseRepository SignBaseRepository) : base(repository)
+        public SignBaseService(ISignBaseRepository SignBaseRepository)
         {
             _SignBaseRepository = SignBaseRepository ?? throw new ArgumentNullException(nameof(SignBaseRepository));
+        }
+
+        public Task<IEnumerable<SignBaseDto>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SignBaseDto> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SignBaseDto> Create(SignBaseDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(SignBaseDto dto)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId)
@@ -37,6 +60,8 @@ namespace Rally.Application.Services
 
             return mappedSignBase;
         }
+
+
     }
 }
 

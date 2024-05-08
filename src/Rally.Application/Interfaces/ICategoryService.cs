@@ -4,7 +4,7 @@ namespace Rally.Application.Interfaces
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<CategoryDto>> GetAllCategories();
+        Task<IEnumerable<CategoryDto>> GetAll();
         Task<CategoryDto> GetById(int id);
         Task<CategoryDto> Create(CategoryDto dto);
         Task Update(CategoryDto dto);

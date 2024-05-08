@@ -29,13 +29,6 @@ namespace Rally.Api.Controllers
             return Ok(track);
         }
 
-        [HttpGet("GetTrackWithSigns")]
-        public async Task<ActionResult<TrackWithSignsDto>> GetTrackWithSigns(int id)
-        {
-            var track = await _trackService.GetTrackWithSigns(id);
-            return Ok(track);
-        }
-
         [HttpGet("LoadTrack")]
         public async Task<ActionResult<LoadTrackDto>> LoadTrack(int id)
         {
@@ -43,15 +36,8 @@ namespace Rally.Api.Controllers
             return Ok(track);
         }
 
-        [HttpPost("CreateTrackWithUser")]
-        public async Task<IActionResult> CreateTrackWithUser(TrackDto trackDto)
-        {
-            var track = await _trackService.CreateTrackWithUser(trackDto);
-            return Ok(track);
-        }
-
         [HttpPost("CreateTrack")]
-        public async Task<IActionResult> CreateTrack(TrackWithoutIdDto trackDto)
+        public async Task<IActionResult> CreateTrack(CreateTrackDto trackDto)
         {
             var track = await _trackService.Create(trackDto);
             return Ok(track);
