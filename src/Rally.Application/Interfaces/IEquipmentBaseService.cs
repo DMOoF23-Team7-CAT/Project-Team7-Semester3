@@ -1,3 +1,4 @@
+using Rally.Application.Dto.Category;
 using Rally.Application.Dto.EquipmentBase;
 using Rally.Application.Interfaces.Base;
 using Rally.Core.Entities;
