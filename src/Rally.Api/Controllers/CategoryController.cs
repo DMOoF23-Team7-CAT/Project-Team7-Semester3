@@ -20,7 +20,7 @@ namespace Rally.Api.Controllers
         [HttpGet("GetAllCategories")]
         public async Task<IActionResult> GetCategories()
         {
-            var categories = await _categoryService.GetAll();
+            var categories = await _categoryService.GetAllCategories();
             return Ok(categories);
         }
 

@@ -1,6 +1,9 @@
+using FluentValidation;
 using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
+using Rally.Application.Validators;
+using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
@@ -40,27 +43,50 @@ namespace Rally.Application.Services
             return mappedCategory;
         }
 
-        public Task<CategoryDto> Create(CategoryDto dto)
+        public async Task<CategoryDto> Create(CategoryDto dto)
         {
-            //FIXME - Validate if id exists
-            if (dto.Id <= 1)
-            {
-                throw new ApplicationException("Category Id must be greater than 0.");
-            }
-            else
-            {
-                return Task.FromResult(dto);
-            }
+            await ValidateIfExist(dto);
+
+            var category = ObjectMapper.Mapper.Map<Category>(dto);
+            if (category is null)
+                throw new ApplicationException("Category could not be mapped.");
+            
+            var validator = new CategoryValidator();
+            var validationResult = await validator.ValidateAsync(category);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            await _categoryRepository.AddAsync(category);
+
+            return ObjectMapper.Mapper.Map<CategoryDto>(category);
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var category = await _categoryRepository.GetByIdAsync(id);
+            if (category is null)
+                throw new ApplicationException($"Category with ID {id} could not be found.");
+
+            await _categoryRepository.DeleteAsync(category);
         }
 
-        public Task Update(CategoryDto dto)
+        public async Task Update(CategoryDto dto)
         {
-            throw new NotImplementedException();
+            var oldCategory = await _categoryRepository.GetByIdAsync(dto.Id);
+            if (oldCategory is null)
+                throw new ApplicationException($"Category with ID {dto.Id} could not be found.");
+
+            var newCategory = ObjectMapper.Mapper.Map<Category>(dto);
+
+            var validator = new CategoryValidator();
+            var validationResult = await validator.ValidateAsync(newCategory);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            ObjectMapper.Mapper.Map(dto, oldCategory);
+            await _categoryRepository.UpdateAsync(oldCategory);
         }
 
         public async Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId)
@@ -74,7 +100,15 @@ namespace Rally.Application.Services
             return mappedEntity;
         }
 
-
+        private async Task ValidateIfExist(CategoryDto dto)
+        {
+            if (dto.Id != 0)
+            {
+                var existingEntity = await _categoryRepository.GetByIdAsync(dto.Id);
+                if (existingEntity != null)
+                    throw new ApplicationException($"Category with ID {dto.Id} already exists");
+            }
+        }
     }
 }
 

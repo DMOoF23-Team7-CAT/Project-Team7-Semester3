@@ -16,7 +16,6 @@ namespace Rally.Application.Mapper
             // Category
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Category, CategoryWithSignBasesDto>().ReverseMap();
-            CreateMap<Category, CategoryWithoutIdDto>().ReverseMap();
 
             // Equipment
             CreateMap<Equipment, EquipmentDto>().ReverseMap();
