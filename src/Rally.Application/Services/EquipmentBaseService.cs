@@ -1,5 +1,10 @@
+using FluentValidation;
+using Rally.Application.Dto.Category;
 using Rally.Application.Dto.EquipmentBase;
+using Rally.Application.Exceptions;
 using Rally.Application.Interfaces;
+using Rally.Application.Validators;
+using Rally.Application.Mapper;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
@@ -13,29 +18,86 @@ namespace Rally.Application.Services
             _equipmentBaseRepository = equipmentBaseRepository ?? throw new ArgumentNullException(nameof(equipmentBaseRepository));
         }
 
-        public Task<IEnumerable<EquipmentBaseDto>> GetAll()
+        public async Task<IEnumerable<EquipmentBaseDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var equipmentBases = await _equipmentBaseRepository.GetAllAsync();
+            if (equipmentBases == null)
+                throw new NotFoundException("EquipmentBases could not be found");
+
+            var mappedEquipmentBases = ObjectMapper.Mapper.Map <IEnumerable<EquipmentBaseDto>>(equipmentBases);
+            if (mappedEquipmentBases == null)
+                throw new MappingException("EquipmentBases could not be mapped");
+
+            return mappedEquipmentBases;
         }
 
-        public Task<EquipmentBaseDto> GetById(int id)
+        public async Task<EquipmentBaseDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            var equipmentBase = await _equipmentBaseRepository.GetByIdAsync(id);
+            if (equipmentBase == null)
+                throw new NotFoundException("EquipmentBase could not be found");
+
+            var mappedEquipmentBase = ObjectMapper.Mapper.Map<EquipmentBaseDto>(equipmentBase);
+            if (mappedEquipmentBase == null)
+                throw new MappingException("EquipmentBase could not be mapped");
+
+            return mappedEquipmentBase;
         }
 
-        public Task<EquipmentBaseDto> Create(EquipmentBaseDto dto)
+        public async Task<EquipmentBaseDto> Create(EquipmentBaseDto dto)
         {
-            throw new NotImplementedException();
+            await ValidateIfExist(dto);
+
+            var equipmentBase = ObjectMapper.Mapper.Map<EquipmentBase>(dto);
+            if (equipmentBase == null)
+                throw new MappingException("EquipmentBase could not be mapped");
+
+            var validator = new EquipmentBaseValidator();
+            var validationResult = await validator.ValidateAsync(equipmentBase);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            await _equipmentBaseRepository.AddAsync(equipmentBase);
+
+            return ObjectMapper.Mapper.Map<EquipmentBaseDto>(equipmentBase);
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var equipmentBase = await _equipmentBaseRepository.GetByIdAsync(id);
+            if (equipmentBase is null)
+                throw new NotFoundException($"EquipmentBase with ID {id} could not be found.");
+
+            await _equipmentBaseRepository.DeleteAsync(equipmentBase);
         }
 
-        public Task Update(EquipmentBaseDto dto)
+        public async Task Update(EquipmentBaseDto dto)
         {
-            throw new NotImplementedException();
+            var oldEquipmentBase = await _equipmentBaseRepository.GetByIdAsync(dto.Id);
+            if (oldEquipmentBase is null)
+                throw new NotFoundException($"EquipmentBase with ID {dto.Id} could not be found.");
+
+            var newEquipmentBase = ObjectMapper.Mapper.Map<EquipmentBase>(dto);
+
+            var validator = new EquipmentBaseValidator();
+            var validationResult = await validator.ValidateAsync(newEquipmentBase);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            ObjectMapper.Mapper.Map(dto, oldEquipmentBase);
+            await _equipmentBaseRepository.UpdateAsync(oldEquipmentBase);
+        }
+
+        private async Task ValidateIfExist(EquipmentBaseDto dto)
+        {
+            if (dto.Id != 0)
+            {
+                var existingEntity = await _equipmentBaseRepository.GetByIdAsync(dto.Id);
+                if (existingEntity != null)
+                    throw new NotFoundException($"Category with ID {dto.Id} already exists");
+            }
         }
     }
 
