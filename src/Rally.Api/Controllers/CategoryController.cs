@@ -7,7 +7,7 @@ using Rally.Core.Entities.Account;
 namespace Rally.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/categories")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -17,53 +17,101 @@ namespace Rally.Api.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet("GetAllCategories")]        
-        public async Task<IActionResult> GetCategories()
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategories()
         {
-            var categories = await _categoryService.GetAll();
-            return Ok(categories);
+            try
+            {
+                var categories = await _categoryService.GetAll();
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetCategoryById")]
-        public async Task<IActionResult> GetCategoryById(int categoryId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoryById(int id)
         {
-            var categories = await _categoryService.GetById(categoryId);
-            return Ok(categories);
+            try
+            {
+                var category = await _categoryService.GetById(id);
+                if (category == null)
+                    return NotFound();
+
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetCategoryWithSignBases")]
-        public async Task<IActionResult> GetCategoriesWithSignBases(int categoryId)
+        [HttpGet("{id}/details")]
+        public async Task<IActionResult> GetCategoryWithSignBases(int id)
         {
-            var categories = await _categoryService.GetCategoryWithSignBases(categoryId);
-            return Ok(categories);
+            try
+            {
+                var category = await _categoryService.GetCategoryWithSignBases(id);
+                if (category == null)
+                    return NotFound();
+
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryDto categoryDto)
+        {
+            try
+            {
+                var category = await _categoryService.Create(categoryDto);
+                return CreatedAtAction(nameof(GetCategoryById), new { id = category.Id }, category);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        //NOTE - Removed authorization for testing purposes
-        [HttpPost("CreateCategory")]
-        //FIXME - [Authorize(Roles = Roles.Admin)]
-
-        public async Task<IActionResult> CreateCategory(CategoryDto categoryDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDto categoryDto)
         {
-            var category = await _categoryService.Create(categoryDto);
-            return Ok(category);
+            try
+            {
+                await _categoryService.Update(categoryDto, id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpPut("UpdateCategory")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-
-        public async Task<IActionResult> UpdateCategory(CategoryDto category)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            await _categoryService.Update(category);
-            return Ok();
-        }
-
-        [HttpDelete("DeleteCategory")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-
-        public async Task<IActionResult> DeleteCategory(int categoryId)
-        {
-            await _categoryService.Delete(categoryId);
-            return Ok();
+            try
+            {
+                await _categoryService.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }

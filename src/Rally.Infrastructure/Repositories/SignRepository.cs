@@ -16,14 +16,21 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Sign> GetSignWithSignBasesAsync(int signId)
         {
-            var sign = await _dbContext.Set<Sign>()
-                .Include(s => s.SignBase)
-                .FirstOrDefaultAsync(s => s.Id == signId);
+            try
+            {
+                var sign = await _dbContext.Set<Sign>()
+                    .Include(s => s.SignBase)
+                    .FirstOrDefaultAsync(s => s.Id == signId);
 
-            if (sign is null)
-                throw new InfrastructureException("Sign not found");
+                if (sign is null)
+                    throw new InfrastructureException("Sign not found");
 
-            return sign;
+                return sign;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading sign with sign base");
+            }
         }
 
     }

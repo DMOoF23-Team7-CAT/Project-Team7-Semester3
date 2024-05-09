@@ -15,6 +15,8 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Track> GetTrackWithCategoryAsync(int trackId)
         {
+            try
+            {
             var track = await _dbContext.Set<Track>()
                 .Include(t => t.Category)
                 .FirstOrDefaultAsync(t => t.Id == trackId);
@@ -22,7 +24,12 @@ namespace Rally.Infrastructure.Repositories
             if (track is null)
                 throw new InfrastructureException("Track not found");
 
-            return track;
+                return track;
+            }
+            catch (InfrastructureException e)
+            {
+                throw new InfrastructureException("Error loading track", e);
+            }
         }
 
         public async Task<Track> LoadTrackAsync(int trackId)
@@ -44,7 +51,7 @@ namespace Rally.Infrastructure.Repositories
 
                 return track;
             }
-            catch (Exception e)
+            catch (InfrastructureException e)
             {
                 throw new InfrastructureException("Error loading track", e);
             }

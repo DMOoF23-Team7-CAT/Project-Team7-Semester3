@@ -16,14 +16,21 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Equipment> GetEquipmentWithEquipmentBaseAsync(int equipmentId)
         {
-            var equipment = await _dbContext.Set<Equipment>()
-                .Include(e => e.EquipmentBase)
-                .FirstOrDefaultAsync(e => e.Id == equipmentId);
+            try
+            {
+                var equipment = await _dbContext.Set<Equipment>()
+                    .Include(e => e.EquipmentBase)
+                    .FirstOrDefaultAsync(e => e.Id == equipmentId);
 
-            if (equipment is null)
-                throw new InfrastructureException("Equipment not found");
+                if (equipment is null)
+                    throw new InfrastructureException("Equipment not found");
 
-            return equipment;
+                return equipment;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading equipment with equipment base");
+            }
         }
     }
 }

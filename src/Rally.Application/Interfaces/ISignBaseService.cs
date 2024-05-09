@@ -7,12 +7,10 @@ namespace Rally.Application.Interfaces
         Task<IEnumerable<SignBaseDto>> GetAll();
         Task<SignBaseDto> GetById(int id);
         Task<SignBaseDto> Create(SignBaseDto dto);
-        Task Update(SignBaseDto dto);
+        Task Update(SignBaseDto dto, int id);
         Task Delete(int id);
 
         Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId);
-        Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId);
-
     }
 }
 

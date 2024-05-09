@@ -2,10 +2,7 @@
 {
     public class DatabaseException : ApplicationException
     {
-        public DatabaseException(string businessMessage, Exception innerException) 
-            : base(businessMessage, innerException)
-        {
-                        
-        }
+        internal DatabaseException(string businessMessage)  {}
+        internal DatabaseException(string businessMessage, Exception innerException)  {}
     }
 }

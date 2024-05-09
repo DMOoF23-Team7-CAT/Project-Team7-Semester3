@@ -5,7 +5,7 @@ using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/signbase")]
     [ApiController]
     public class SignBaseController : ControllerBase
     {
@@ -16,52 +16,85 @@ namespace Rally.Api.Controllers
             _signBaseService = signBaseService;                
         }
 
-        [HttpGet("GetAllSignBases")]
-        public async Task<IActionResult> GetSignBases()
+        [HttpGet]
+        public async Task<IActionResult> GetAllSignBases()
         {
-            var signBases = await _signBaseService.GetAll();
-            return Ok(signBases);
+            try
+            {
+                var signBases = await _signBaseService.GetAll();
+                return Ok(signBases);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-//FIXME - Delete this method trough the stack. there is already get Category with sign bases method in category
-        [HttpGet("GetSignBaseWithCategory")]
-        public async Task<IActionResult> GetSignBaseWithCategory(int signBaseId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSignBaseById(int id)
         {
-            var signBases = await _signBaseService.GetSignBaseWithCategory(signBaseId);
-            return Ok(signBases);
+            try
+            {
+                var signBase = await _signBaseService.GetById(id);
+                if (signBase == null)
+                    return NotFound();
+
+                return Ok(signBase);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetSignBaseById")]
-        public async Task<ActionResult> GetSignBaseById(int id)
+        [HttpPost]
+        public async Task<IActionResult> CreateSignBase([FromBody] SignBaseDto signBaseDto)
         {
-            var signBase = await _signBaseService.GetById(id);
-            return Ok(signBase);
+            try
+            {
+                var signBase = await _signBaseService.Create(signBaseDto);
+                return CreatedAtAction(nameof(GetSignBaseById), new { id = signBase.Id }, signBase);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        //NOTE - Removed authorization for testing purposes
-        [HttpPost("CreateSignBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> CreateSignBase(SignBaseDto signBaseDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSignBase(int id, [FromBody] SignBaseDto signBaseDto)
         {
-            var signBase = await _signBaseService.Create(signBaseDto);
-            return Ok(signBase);
+            try
+            {
+                await _signBaseService.Update(signBaseDto, id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpPut("UpdateSignBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> UpdateSignBase(SignBaseDto signBaseDto)
-        {
-            await _signBaseService.Update(signBaseDto);
-            return Ok();
-        }
-
-        [HttpDelete("DeleteSignBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSignBase(int id)
         {
-            await _signBaseService.Delete(id);
-            return Ok();
+            try
+            {
+                await _signBaseService.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
-
     }
 }

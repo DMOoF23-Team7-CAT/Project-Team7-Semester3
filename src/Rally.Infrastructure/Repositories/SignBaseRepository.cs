@@ -14,28 +14,22 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<SignBase> GetSignBaseWithCategoryAsync(int SignBaseId)
-        {
-            var SignBase = await _dbContext.Set<SignBase>()
-                .Include(s => s.Category)
-                .FirstOrDefaultAsync(s => s.Id == SignBaseId);
-
-            if (SignBase is null)
-                throw new InfrastructureException("SignBase not found");
-
-            return SignBase;
-        }
-
         public async Task<SignBase> GetSignBaseWithEquipmentBaseAsync(int SignBaseId)
         {
-            var SignBase = await _dbContext.Set<SignBase>()
-                .Include(s => s.EquipmentBase)
-                .FirstOrDefaultAsync(s => s.Id == SignBaseId);
+            try {
+                var SignBase = await _dbContext.Set<SignBase>()
+                    .Include(s => s.EquipmentBase)
+                    .FirstOrDefaultAsync(s => s.Id == SignBaseId);
 
-            if (SignBase is null)
-                throw new InfrastructureException("SignBase not found");
+                if (SignBase is null)
+                    throw new InfrastructureException("SignBase not found");
 
-            return SignBase;
+                return SignBase;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading sign base with equipment base");
+            }
         }
     }
 }

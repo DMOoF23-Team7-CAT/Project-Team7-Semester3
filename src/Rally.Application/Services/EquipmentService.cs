@@ -1,6 +1,9 @@
+using FluentValidation;
 using Rally.Application.Dto.Equipment;
+using Rally.Application.Exceptions;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
+using Rally.Application.Validators;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
@@ -14,29 +17,75 @@ namespace Rally.Application.Services
             _equipmentRepository = equipmentRepository ?? throw new ArgumentNullException(nameof(equipmentRepository));
         }
 
-        public Task<IEnumerable<EquipmentDto>> GetAll()
+        public async Task<IEnumerable<EquipmentDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var equipments = await _equipmentRepository.GetAllAsync();
+            if (equipments is null)
+                throw new NotFoundException("Equipment could not be found.");
+
+            var mappedEquipments = ObjectMapper.Mapper.Map<IEnumerable<EquipmentDto>>(equipments);
+            if (mappedEquipments is null)
+                throw new MappingException("Equipment could not be mapped.");
+
+            return mappedEquipments;
         }
 
-        public Task<EquipmentDto> GetById(int id)
+        public async Task<EquipmentDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            var equipment = await _equipmentRepository.GetByIdAsync(id);
+            if (equipment is null)
+                throw new NotFoundException("Equipment could not be found.");
+
+            var mappedEquipment = ObjectMapper.Mapper.Map<EquipmentDto>(equipment);
+            if (mappedEquipment is null)
+                throw new MappingException("Equipment could not be mapped.");
+
+            return mappedEquipment;
         }
 
-        public Task<EquipmentDto> Create(EquipmentWithoutIdDto dto)
+        public async Task<EquipmentDto> Create(EquipmentWithoutIdDto dto)
         {
-            throw new NotImplementedException();
+            var equipment = ObjectMapper.Mapper.Map<Equipment>(dto);
+            if (equipment is null)
+                throw new MappingException("Equipment could not be mapped.");
+
+            var validator = new EquipmentValidator();
+            var validationResult = await validator.ValidateAsync(equipment);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            await _equipmentRepository.AddAsync(equipment);
+
+            return ObjectMapper.Mapper.Map<EquipmentDto>(equipment);
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var equipment = await _equipmentRepository.GetByIdAsync(id);
+            if (equipment is null)
+                throw new NotFoundException("Equipment could not be found.");
+
+            await _equipmentRepository.DeleteAsync(equipment);
         }
 
-        public Task Update(EquipmentDto dto)
+        public async Task Update(EquipmentWithoutIdDto dto, int id)
         {
-            throw new NotImplementedException();
+            var oldEquipment = await _equipmentRepository.GetByIdAsync(id);
+            if (oldEquipment is null)
+                throw new NotFoundException("Equipment could not be found.");
+
+            var equipment = ObjectMapper.Mapper.Map<Equipment>(dto);
+            if (equipment is null)
+                throw new MappingException("Equipment could not be mapped.");
+
+            var validator = new EquipmentValidator();
+            var validationResult = await validator.ValidateAsync(equipment);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
+
+            await _equipmentRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldEquipment));
         }
 
         public async Task<EquipmentWithEquipmentBaseDto> GetEquipmentWithEquipmentBase(int equipmentId)
@@ -45,7 +94,7 @@ namespace Rally.Application.Services
 
             var mappedEquipment = ObjectMapper.Mapper.Map<EquipmentWithEquipmentBaseDto>(equipment);
             if (mappedEquipment is null)
-                throw new ApplicationException("Equipment with EquipmentBase could not be mapped.");
+                throw new NotFoundException("Equipment with EquipmentBase could not be mapped.");
 
             return mappedEquipment;
         }

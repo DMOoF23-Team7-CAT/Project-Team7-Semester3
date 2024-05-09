@@ -73,11 +73,13 @@ namespace Rally.Application.Services
             await _signBaseRepository.DeleteAsync(signBase);
         }
 
-        public async Task Update(SignBaseDto dto)
+        public async Task Update(SignBaseDto dto, int id)
         {
-            var oldSignBase = await _signBaseRepository.GetByIdAsync(dto.Id);
+            var oldSignBase = await _signBaseRepository.GetByIdAsync(id);
             if (oldSignBase is null)
                 throw new NotFoundException("SignBase could not be found.");
+
+            await ValidateIfExist(dto);
 
             var signBase = ObjectMapper.Mapper.Map<SignBase>(dto);
             if (signBase is null)
@@ -89,25 +91,7 @@ namespace Rally.Application.Services
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            try
-            {
-                await _signBaseRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldSignBase));
-            }
-            catch (Exception e)
-            {
-                throw new DatabaseException("An error ocurred while updating", e);
-            }
-        }
-
-        public async Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId)
-        {
-            var SignBase = await _signBaseRepository.GetSignBaseWithCategoryAsync(SignBaseId);
-
-            var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseDto>(SignBase);
-            if (mappedSignBase is null)
-                throw new MappingException("SignBase with Category could not be mapped");
-
-            return mappedSignBase;
+            await _signBaseRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldSignBase));
         }
 
         public async Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId)
