@@ -17,7 +17,7 @@ namespace Rally.Api.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet("GetAllCategories")]
+        [HttpGet("GetAllCategories")]        
         public async Task<IActionResult> GetCategories()
         {
             var categories = await _categoryService.GetAll();
