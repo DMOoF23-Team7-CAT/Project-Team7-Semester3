@@ -1,5 +1,6 @@
 using FluentValidation;
 using Rally.Application.Dto.Category;
+using Rally.Application.Exceptions;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
 using Rally.Application.Validators;
@@ -21,11 +22,11 @@ namespace Rally.Application.Services
         {
             var categories = await _categoryRepository.GetAllAsync();
             if (categories is null)
-                throw new ApplicationException("Categories could not be found.");
+                throw new NotFoundException("Categories could not be found.");
 
             var mappedCategories = ObjectMapper.Mapper.Map<IEnumerable<CategoryDto>>(categories);
             if (mappedCategories is null)
-                throw new ApplicationException("Categories could not be mapped.");
+                throw new MappingException("Categories could not be mapped.");
             
             return mappedCategories;
         }
@@ -34,11 +35,11 @@ namespace Rally.Application.Services
         {
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category is null)
-                throw new ApplicationException("Category could not be found.");
+                throw new NotFoundException("Category could not be found.");
             
             var mappedCategory = ObjectMapper.Mapper.Map<CategoryDto>(category);
             if (mappedCategory is null)
-                throw new ApplicationException("Category could not be mapped.");
+                throw new MappingException("Category could not be mapped.");
             
             return mappedCategory;
         }
@@ -49,7 +50,7 @@ namespace Rally.Application.Services
 
             var category = ObjectMapper.Mapper.Map<Category>(dto);
             if (category is null)
-                throw new ApplicationException("Category could not be mapped.");
+                throw new MappingException("Category could not be mapped.");
             
             var validator = new CategoryValidator();
             var validationResult = await validator.ValidateAsync(category);
@@ -66,7 +67,7 @@ namespace Rally.Application.Services
         {
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category is null)
-                throw new ApplicationException($"Category with ID {id} could not be found.");
+                throw new NotFoundException($"Category with ID {id} could not be found.");
 
             await _categoryRepository.DeleteAsync(category);
         }
@@ -75,7 +76,7 @@ namespace Rally.Application.Services
         {
             var oldCategory = await _categoryRepository.GetByIdAsync(dto.Id);
             if (oldCategory is null)
-                throw new ApplicationException($"Category with ID {dto.Id} could not be found.");
+                throw new NotFoundException($"Category with ID {dto.Id} could not be found.");
 
             var newCategory = ObjectMapper.Mapper.Map<Category>(dto);
 
@@ -85,8 +86,7 @@ namespace Rally.Application.Services
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            ObjectMapper.Mapper.Map(dto, oldCategory);
-            await _categoryRepository.UpdateAsync(oldCategory);
+            await _categoryRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldCategory));
         }
 
         public async Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId)
@@ -95,7 +95,7 @@ namespace Rally.Application.Services
 
             var mappedEntity = ObjectMapper.Mapper.Map<CategoryWithSignBasesDto>(entity);
             if (mappedEntity is null)
-                throw new ApplicationException("Category with SignBases could not be mapped.");
+                throw new MappingException("Category with SignBases could not be mapped.");
 
             return mappedEntity;
         }
@@ -106,7 +106,7 @@ namespace Rally.Application.Services
             {
                 var existingEntity = await _categoryRepository.GetByIdAsync(dto.Id);
                 if (existingEntity != null)
-                    throw new ApplicationException($"Category with ID {dto.Id} already exists");
+                    throw new NotFoundException($"Category with ID {dto.Id} already exists");
             }
         }
     }

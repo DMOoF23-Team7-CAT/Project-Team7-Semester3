@@ -2,6 +2,7 @@ using Rally.Core.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities.Base;
 using Rally.Infrastructure.Data;
+using Rally.Infrastructure.Exceptions;
 
 namespace Rally.Infrastructure.Repositories.Base
 {
@@ -16,34 +17,68 @@ namespace Rally.Infrastructure.Repositories.Base
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            try
+            {
+                return await _dbContext.Set<T>().ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading entities");
+            }
         }
 
         //NOTE - this method uses null forgiving operator (!) in the returned entity and should be handled in Application layer
         public async Task<T> GetByIdAsync(int id)
         {
-            var entity = await _dbContext.Set<T>().FindAsync(id);
-
-            return entity!;
+            try
+            {
+                var entity = await _dbContext.Set<T>().FindAsync(id);
+                return entity!;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading entity");
+            }
         }
 
         public async Task<T> AddAsync(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
-            await _dbContext.SaveChangesAsync();
-            return entity;
+            try
+            {
+                _dbContext.Set<T>().Add(entity);
+                await _dbContext.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error adding entity");
+            }
         }
 
         public async Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error updating entity");
+            }
         }
 
         public async Task DeleteAsync(T entity)
         {
-            _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                _dbContext.Set<T>().Remove(entity);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error deleting entity");
+            }
         }
 
     }

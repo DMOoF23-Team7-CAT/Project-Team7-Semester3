@@ -16,14 +16,20 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Category> GetCategoryWithSignBasesAsync(int categoryId)
         {
+            try
+            {
+                var category = await _dbContext.Set<Category>()
+                    .Include(c => c.SignBases)
+                    .FirstOrDefaultAsync(c => c.Id == categoryId);
+                if (category is null)
+                    throw new InfrastructureException("Category not found");
 
-            var category = await _dbContext.Set<Category>()
-                .Include(c => c.SignBases)
-                .FirstOrDefaultAsync(c => c.Id == categoryId);
-            if (category is null)
-                throw new InfrastructureException("Category not found");
-
-            return category;
+                return category;
+            }
+            catch (Exception)
+            {
+                throw new InfrastructureException("Error loading category with sign bases");
+            }
         }
     }
 }

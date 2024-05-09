@@ -123,8 +123,7 @@ namespace Rally.Application.Services
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            ObjectMapper.Mapper.Map(dto, oldTrack);
-            await _trackRepository.UpdateAsync(oldTrack);
+            await _trackRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldTrack));
         }
 
         public async Task Delete(int id)

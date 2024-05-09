@@ -89,14 +89,7 @@ namespace Rally.Application.Services
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            try
-            {
-                await _signBaseRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldSignBase));
-            }
-            catch (Exception e)
-            {
-                throw new DatabaseException("An error ocurred while updating", e);
-            }
+            await _signBaseRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldSignBase));
         }
 
         public async Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId)
