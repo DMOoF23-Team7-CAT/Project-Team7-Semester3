@@ -7,7 +7,7 @@ namespace Rally.Application.Interfaces
         Task<IEnumerable<EquipmentBaseDto>> GetAll();
         Task<EquipmentBaseDto> GetById(int id);
         Task<EquipmentBaseDto> Create(EquipmentBaseDto dto);
-        Task Update(EquipmentBaseDto dto);
+        Task Update(EquipmentBaseDto dto, int id);
         Task Delete(int id);
 
     }

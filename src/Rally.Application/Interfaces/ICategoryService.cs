@@ -7,7 +7,7 @@ namespace Rally.Application.Interfaces
         Task<IEnumerable<CategoryDto>> GetAll();
         Task<CategoryDto> GetById(int id);
         Task<CategoryDto> Create(CategoryDto dto);
-        Task Update(CategoryDto dto);
+        Task Update(CategoryDto dto, int id);
         Task Delete(int id);
         Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId);
     }

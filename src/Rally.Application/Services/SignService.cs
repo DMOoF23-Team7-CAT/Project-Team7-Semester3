@@ -73,9 +73,9 @@ namespace Rally.Application.Services
             await _signRepository.DeleteAsync(sign);
         }
 
-        public async Task Update(SignDto dto)
+        public async Task Update(SignWithoutIdDto dto, int id)
         {
-            var oldSign = await _signRepository.GetByIdAsync(dto.Id);
+            var oldSign = await _signRepository.GetByIdAsync(id);
             if (oldSign is null)
                 throw new NotFoundException("Sign could not be found.");
 

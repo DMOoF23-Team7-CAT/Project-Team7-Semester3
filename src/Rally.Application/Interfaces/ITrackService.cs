@@ -6,8 +6,8 @@ namespace Rally.Application.Interfaces
     {
         Task<IEnumerable<TrackDto>> GetAll();
         Task<TrackDto> GetById(int id);
-        Task<TrackDto> Create(CreateTrackDto dto);
-        Task Update(TrackDto dto);
+        Task<TrackDto> Create(TrackWithOutIdDto dto);
+        Task Update(TrackWithOutIdDto dto, int trackId);
         Task Delete(int id);
         Task<TrackWithCategoryDto> GetTrackWithCategory(int trackId);
         Task<LoadTrackDto> LoadTrack(int trackId);

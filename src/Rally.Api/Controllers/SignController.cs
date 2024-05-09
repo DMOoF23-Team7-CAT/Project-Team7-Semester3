@@ -5,7 +5,7 @@ using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Sign")]
     [ApiController]
     public class SignController : ControllerBase
     {
@@ -16,47 +16,102 @@ namespace Rally.Api.Controllers
             _signService = signService;     
         }
 
-        [HttpGet("GetAllSigns")]
+        [HttpGet()]
         public async Task<IActionResult> GetSigns()
         {
-            var signs = await _signService.GetAll();
-            return Ok(signs);
+            try
+            {
+                var signs = await _signService.GetAll();
+                return Ok(signs);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetSignWithSignBase")]
+        [HttpGet("{id}/details")]
         public async Task<ActionResult<SignWithSignBaseDto>> GetSignWithSignBase(int id)
         {
-            var sign = await _signService.GetSignWithSignBases(id);
-            return Ok(sign);
+            try
+            {
+                var sign = await _signService.GetSignWithSignBases(id);
+                if (sign == null)
+                    return NotFound();
+
+                return Ok(sign);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetSignById")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetSignById(int id)
         {
-            var sign = await _signService.GetById(id);
-            return Ok(sign);
+            try
+            {
+                var sign = await _signService.GetById(id);
+                if (sign == null)
+                    return NotFound();
+
+                return Ok(sign);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpPost("CreateSign")]
-        public async Task<IActionResult> CreateSign(SignWithoutIdDto signDto)
+        [HttpPost()]
+        public async Task<IActionResult> CreateSign([FromBody] SignWithoutIdDto signDto)
         {
-            var sign = await _signService.Create(signDto);
-            return Ok(sign);
+            try
+            {
+                var sign = await _signService.Create(signDto);
+                return CreatedAtAction(nameof(GetSignById), new { id = sign.Id }, sign);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("UpdateSign")]
-        public async Task<IActionResult> UpdateSign(SignDto signDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSign(int id, [FromBody] SignWithoutIdDto signDto)
         {
-            await _signService.Update(signDto);
-            return Ok();
+            try
+            {
+                await _signService.Update(signDto, id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpDelete("DeleteSign")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSign(int id)
         {
-            await _signService.Delete(id);
-            return Ok();
+            try
+            {
+                await _signService.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
-
     }
 }

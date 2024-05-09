@@ -69,9 +69,9 @@ namespace Rally.Application.Services
             await _equipmentRepository.DeleteAsync(equipment);
         }
 
-        public async Task Update(EquipmentDto dto)
+        public async Task Update(EquipmentWithoutIdDto dto, int id)
         {
-            var oldEquipment = await _equipmentRepository.GetByIdAsync(dto.Id);
+            var oldEquipment = await _equipmentRepository.GetByIdAsync(id);
             if (oldEquipment is null)
                 throw new NotFoundException("Equipment could not be found.");
 

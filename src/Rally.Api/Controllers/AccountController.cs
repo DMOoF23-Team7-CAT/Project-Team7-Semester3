@@ -14,19 +14,33 @@ public class AccountController : ControllerBase
         _accountService = accountService;
     }
 
-    [HttpPost("AssignUserRole")]
+    [HttpPost("assign-user-role")]
     [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> AssignUserRole(string userEmail, string roleName)
     {
-        await _accountService.AssignRoleAsync(userEmail, roleName);
-        return NoContent();
+        try
+        {
+            await _accountService.AssignRoleAsync(userEmail, roleName);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 
-    [HttpDelete("UnassignUserRole")]
+    [HttpDelete("unassign-user-role")]
     [Authorize(Roles = UserRoles.Admin)]
     public async Task<IActionResult> UnassignUserRole(string userEmail, string roleName)
     {
-        await _accountService.UnassignRoleAsync(userEmail, roleName);
-        return NoContent();
+        try
+        {
+            await _accountService.UnassignRoleAsync(userEmail, roleName);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }

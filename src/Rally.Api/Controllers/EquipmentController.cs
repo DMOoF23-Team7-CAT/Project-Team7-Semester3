@@ -5,7 +5,7 @@ using Rally.Application.Interfaces;
 namespace Rally.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/equipment")]
     public class EquipmentController : ControllerBase
     {
         private readonly IEquipmentService _equipmentService;
@@ -15,47 +15,104 @@ namespace Rally.Api.Controllers
             _equipmentService = equipmentService;
         }
 
-        [HttpGet("GetAllEquipment")]
+        [HttpGet]
         public async Task<IActionResult> GetAllEquipment()
         {
-            var equipment = await _equipmentService.GetAll();
-            return Ok(equipment);
+            try
+            {
+                var equipment = await _equipmentService.GetAll();
+                return Ok(equipment);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetEquipmentWithEquipmentBase")]
-        public async Task<ActionResult> GetEquipmentWithEquipmentBase(int equipmentId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEquipmentById(int id)
         {
-            var equipment = await _equipmentService.GetEquipmentWithEquipmentBase(equipmentId);
-            return Ok(equipment);
+            try
+            {
+                var equipment = await _equipmentService.GetById(id);
+                if (equipment == null)
+                    return NotFound();
+
+                return Ok(equipment);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetEquipmentById")]
-        public async Task<IActionResult> GetEquipmentById(int equipmentId)
+        [HttpGet("{id}/details")]
+        public async Task<IActionResult> GetEquipmentWithEquipmentBase(int id)
         {
-            var equipment = await _equipmentService.GetById(equipmentId);
-            return Ok(equipment);
+            try
+            {
+                var equipment = await _equipmentService.GetEquipmentWithEquipmentBase(id);
+                if (equipment == null)
+                    return NotFound();
+
+                return Ok(equipment);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpPost("CreateEquipment")]
-        public async Task<IActionResult> CreateEquipment(EquipmentWithoutIdDto equipmentDto)
+        [HttpPost]
+        public async Task<IActionResult> CreateEquipment([FromBody] EquipmentWithoutIdDto equipmentDto)
         {
-            var equipment = await _equipmentService.Create(equipmentDto);
-            return Ok(equipment);
+            try
+            {
+                var equipment = await _equipmentService.Create(equipmentDto);
+                return CreatedAtAction(nameof(GetEquipmentById), new { equipmentId = equipment.Id }, equipment);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("UpdateEquipment")]
-        public async Task<IActionResult> UpdateEquipment(EquipmentDto equipmentDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEquipment(int id, [FromBody] EquipmentWithoutIdDto equipmentDto)
         {
-            await _equipmentService.Update(equipmentDto);
-            return Ok();
+            try
+            {
+                await _equipmentService.Update(equipmentDto, id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpDelete("DeleteEquipment")]
-        public async Task<IActionResult> DeleteEquipment(int equipmentId)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEquipment(int id)
         {
-            await _equipmentService.Delete(equipmentId);
-            return Ok();
+            try
+            {
+                await _equipmentService.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
+
 

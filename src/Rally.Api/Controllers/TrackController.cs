@@ -5,7 +5,7 @@ using Rally.Application.Interfaces;
 namespace Rally.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/tracks")]
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;
@@ -15,46 +15,85 @@ namespace Rally.Api.Controllers
             _trackService = trackService;
         }
 
-        [HttpGet("GetAllTracks")]
-        public async Task<IActionResult> GetTracks()
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            var tracks = await _trackService.GetAll();
-            return Ok(tracks);
+            try
+            {
+                var tracks = await _trackService.GetAll();
+                return Ok(tracks);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetTrackWithCategory")]
-        public async Task<ActionResult<TrackWithCategoryDto>> GetTrackWithCategory(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var track = await _trackService.LoadTrack(id);
+            if (track == null)
+                return NotFound();
+
+            return Ok(track);
+        }
+
+        [HttpGet("{id}/details")]
+        public async Task<ActionResult<TrackWithCategoryDto>> GetWithCategory(int id)
         {
             var track = await _trackService.GetTrackWithCategory(id);
             return Ok(track);
         }
 
-        [HttpGet("LoadTrack")]
-        public async Task<ActionResult<LoadTrackDto>> LoadTrack(int id)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] TrackWithOutIdDto trackDto)
         {
-            var track = await _trackService.LoadTrack(id);
-            return Ok(track);
+            try
+            {
+                var track = await _trackService.Create(trackDto);
+                return CreatedAtAction(nameof(GetById), new { id = track.Id }, track);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPost("CreateTrack")]
-        public async Task<IActionResult> CreateTrack(CreateTrackDto trackDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] TrackWithOutIdDto trackDto)
         {
-            var track = await _trackService.Create(trackDto);
-            return Ok(track);
+            try
+            {
+                await _trackService.Update(trackDto, id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpPut("UpdateTrack")]
-        public async Task<IActionResult> UpdateTrack(TrackDto trackDto)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            await _trackService.Update(trackDto);
-            return Ok();
-        }
-
-        [HttpDelete("DeleteTrack")]
-        public async Task<IActionResult> DeleteTrack(int id)
-        {
-            await _trackService.Delete(id);
-            return Ok();
+            try
+            {
+                await _trackService.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }

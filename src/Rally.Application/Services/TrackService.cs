@@ -75,7 +75,7 @@ namespace Rally.Application.Services
             return mappedTrack;
         }
 
-        public async Task<TrackDto> Create(CreateTrackDto dto)
+        public async Task<TrackDto> Create(TrackWithOutIdDto dto)
         {
             var currentUser = _userContext.GetCurrentUser();
             if (currentUser is null)
@@ -88,7 +88,7 @@ namespace Rally.Application.Services
             var validator = new TrackValidator();
             var validationResult = await validator.ValidateAsync(track);
             if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+                throw new ValidationException(validationResult.Errors.First().ErrorMessage);
 
             track.UserId = currentUser.Id;
 
@@ -101,27 +101,27 @@ namespace Rally.Application.Services
             return newTrack;
         }
 
-        public async Task Update(TrackDto dto)
+        public async Task Update(TrackWithOutIdDto dto, int trackId)
         {
             var currentUser = _userContext.GetCurrentUser();
             if (currentUser is null)
-                throw new InvalidOperationException("Current user is not available.");
+                throw new NotFoundException("Current user is not available.");
 
-            var oldTrack = await _trackRepository.GetByIdAsync(dto.Id);
+            var oldTrack = await _trackRepository.GetByIdAsync(trackId);
             if (oldTrack is null)
-                throw new KeyNotFoundException($"Track with ID {dto.Id} could not be found.");
+                throw new NotFoundException($"Track with ID {trackId} could not be found.");
 
             if (oldTrack.UserId != currentUser.Id)
                 throw new UnauthorizedAccessException($"User is not authorized to alter track with ID {oldTrack.Id}.");
 
             var track = ObjectMapper.Mapper.Map<Track>(dto);
             if (track is null)
-                throw new InvalidOperationException("Track could not be mapped from the provided data.");
+                throw new MappingException("Track could not be mapped from the provided data.");
 
             var validator = new TrackValidator();
             var validationResult = await validator.ValidateAsync(track);
             if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+                throw new ValidationException(validationResult.Errors.First().ErrorMessage);
 
             await _trackRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldTrack));
         }

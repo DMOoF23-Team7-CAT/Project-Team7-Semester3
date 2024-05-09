@@ -15,43 +15,86 @@ namespace Rally.Api.Controllers
             _equipmentBaseService = equipmentBaseService;
         }
 
-        [HttpGet("GetAllEquipmentBases")]
+        [HttpGet()]
         public async Task<IActionResult> GetEquipmentBases()
         {
-            var equipmentBases = await _equipmentBaseService.GetAll();
-            return Ok(equipmentBases);
+            try
+            {
+                var equipmentBases = await _equipmentBaseService.GetAll();
+                return Ok(equipmentBases);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetEquipmentBaseById")]
-        public async Task<IActionResult> GetEquipmentBaseById(int equipmentBaseId)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetEquipmentBaseById(int Id)
         {
-            var equipmentBase = await _equipmentBaseService.GetById(equipmentBaseId);
-            return Ok(equipmentBase);
+            try
+            {
+                var equipmentBase = await _equipmentBaseService.GetById(Id);
+                if (equipmentBase == null)
+                    return NotFound();
+
+                return Ok(equipmentBase);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
         }
 
-        //NOTE - Removed authorization for testing purposes
-        [HttpPost("CreateEquipmentBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> CreateEquipmentBase(EquipmentBaseDto equipmentBaseDto)
+        [HttpPost()]
+        public async Task<IActionResult> CreateEquipmentBase([FromBody] EquipmentBaseDto equipmentBaseDto)
         {
-            var equipmentBase = await _equipmentBaseService.Create(equipmentBaseDto);
-            return Ok(equipmentBase);
+            try
+            {
+                var equipmentBase = await _equipmentBaseService.Create(equipmentBaseDto);
+                return CreatedAtAction(nameof(GetEquipmentBaseById), new { equipmentBaseId = equipmentBase.Id }, equipmentBase);
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("UpdateEquipmentBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> UpdateEquipmentBase(EquipmentBaseDto equipmentBaseDto)
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateEquipmentBase(int Id, [FromBody] EquipmentBaseDto equipmentBaseDto)
         {
-            await _equipmentBaseService.Update(equipmentBaseDto);
-            return Ok();
+            try
+            {
+                await _equipmentBaseService.Update(equipmentBaseDto, Id);
+                return NoContent();
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
-        [HttpDelete("DeleteEquipmentBase")]
-        //FIXME - [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> DeleteEquipmentBase(int equipmentBaseId)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteEquipmentBase(int Id)
         {
-            await _equipmentBaseService.Delete(equipmentBaseId);
-            return Ok();
+            try
+            {
+                await _equipmentBaseService.Delete(Id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }

@@ -71,11 +71,13 @@ namespace Rally.Application.Services
             await _equipmentBaseRepository.DeleteAsync(equipmentBase);
         }
 
-        public async Task Update(EquipmentBaseDto dto)
+        public async Task Update(EquipmentBaseDto dto, int id)
         {
-            var oldEquipmentBase = await _equipmentBaseRepository.GetByIdAsync(dto.Id);
+            var oldEquipmentBase = await _equipmentBaseRepository.GetByIdAsync(id);
             if (oldEquipmentBase is null)
                 throw new NotFoundException("EquipmentBase could not be found.");
+
+            await ValidateIfExist(dto);
 
             var equipmentBase = ObjectMapper.Mapper.Map<EquipmentBase>(dto);
             if (equipmentBase is null)
