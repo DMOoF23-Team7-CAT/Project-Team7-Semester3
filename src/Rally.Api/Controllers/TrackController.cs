@@ -32,18 +32,40 @@ namespace Rally.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            try
+            {
             var track = await _trackService.LoadTrack(id);
             if (track == null)
                 return NotFound();
 
-            return Ok(track);
+                return Ok(track);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return Unauthorized(e.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{id}/details")]
         public async Task<ActionResult<TrackWithCategoryDto>> GetWithCategory(int id)
         {
-            var track = await _trackService.GetTrackWithCategory(id);
-            return Ok(track);
+            try
+            {
+                var track = await _trackService.GetTrackWithCategory(id);
+                return Ok(track);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
