@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0136DF10-C10E-4EBA-B770-F3420ABAE5BA}"
+	ProjectSection(SolutionItems) = preProject
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}"
 EndProject
@@ -13,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Infrastructure", "src\Rally.Infrastructure\Rally.Infrastructure.csproj", "{8F4EECFD-886D-4271-8A39-5BE93FD1CA23}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "src\Rally.Api\Rally.Api.csproj", "{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Blazor", "src\Rally.Blazor\Rally.Blazor.csproj", "{F2D435E7-765E-4CCE-990F-9C8F3DB13962}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,10 @@ Global
 		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,7 @@ Global
 		{6F961127-253C-4AB7-BCED-F6F22650650B} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{8F4EECFD-886D-4271-8A39-5BE93FD1CA23} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
+		{F2D435E7-765E-4CCE-990F-9C8F3DB13962} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DA25906-1F78-462E-A8A3-4BBAC92DC036}
