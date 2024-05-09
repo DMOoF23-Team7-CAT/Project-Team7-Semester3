@@ -49,8 +49,7 @@ namespace Rally.Application.Services
         }
 
         public async Task LogoutAsync()
-        {
-            // Sign out the current user
+        {            
             var user = _httpContextAccessor.HttpContext.User;
 
             if (!user.Identity.IsAuthenticated)

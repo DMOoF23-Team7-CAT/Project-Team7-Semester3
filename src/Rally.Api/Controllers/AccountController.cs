@@ -44,4 +44,11 @@ public class AccountController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
+
+    [HttpPost("Logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await _accountService.LogoutAsync();
+        return Ok(new { message = "Logged out successfully" });
+    }
 }
