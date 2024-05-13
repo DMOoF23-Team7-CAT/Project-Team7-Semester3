@@ -1,12 +1,14 @@
 using Rally.Application.Dto.Sign;
-using Rally.Application.Interfaces.Base;
-using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ISignService : IService<SignDto, Sign>
+    public interface ISignService
     {
-        //Task<SignWithTrackDto> GetSignWithTrack(int signId);
+        Task<IEnumerable<SignDto>> GetAll();
+        Task<SignDto> GetById(int id);
+        Task<SignDto> Create(SignWithoutIdDto dto);
+        Task Update(SignWithoutIdDto dto, int id);
+        Task Delete(int id);
         Task<SignWithSignBaseDto> GetSignWithSignBases(int signId);
     }
 }

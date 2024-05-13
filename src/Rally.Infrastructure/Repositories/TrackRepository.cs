@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
-using Rally.Core.Specifications;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
@@ -18,26 +13,48 @@ namespace Rally.Infrastructure.Repositories
         {
         }
 
-        public async Task<Track> GetTrackWithSignsAsync(int trackId)
-        {
-            var spec = new TrackWithSignsSpecification(trackId);
-            var track = (await GetAsync(spec)).FirstOrDefault();
-
-            if (track is null)
-                throw new InfrastructureException("Track not found");
-
-            return track;
-        }
-
         public async Task<Track> GetTrackWithCategoryAsync(int trackId)
         {
-            var spec = new TrackWithCategorySpecification(trackId);
-            var track = (await GetAsync(spec)).FirstOrDefault();
+            try
+            {
+            var track = await _dbContext.Set<Track>()
+                .Include(t => t.Category)
+                .FirstOrDefaultAsync(t => t.Id == trackId);
 
             if (track is null)
                 throw new InfrastructureException("Track not found");
 
-            return track;
+                return track;
+            }
+            catch (InfrastructureException e)
+            {
+                throw new InfrastructureException("Error loading track", e);
+            }
+        }
+
+        public async Task<Track> LoadTrackAsync(int trackId)
+        {
+            try
+            {
+                var track = await _dbContext.Set<Track>()
+                    .Include(t => t.Signs)
+                        .ThenInclude(sign => sign.SignBase)
+                    .Include(t => t.Signs)
+                        .ThenInclude(sign => sign.Equipment)
+                            .ThenInclude(equipment => equipment!.EquipmentBase)
+                    .Include(t => t.Category)
+                    .Include(t => t.User)
+                    .FirstOrDefaultAsync(t => t.Id == trackId);
+
+                if (track is null)
+                    throw new InfrastructureException("Track not found");
+
+                return track;
+            }
+            catch (InfrastructureException e)
+            {
+                throw new InfrastructureException("Error loading track", e);
+            }
         }
     }
 }

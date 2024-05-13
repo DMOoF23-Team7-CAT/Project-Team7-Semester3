@@ -1,21 +1,9 @@
-﻿using Rally.Core.Specifications.Base;
-using Rally.Core.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using Rally.Core.Entities.Base;
 
-namespace AspnetRun.Core.Repositories.Base
+namespace Rally.Core.Repositories.Base
 {
     public interface IRepository<T> where T : Entity
     {
-        Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate);
-        Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate = null,
-                                        Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-                                        List<Expression<Func<T, object>>>? includes = null,
-                                        bool disableTracking = true);
-        Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec);
         Task<IReadOnlyList<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
