@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Interfaces;
 using Rally.Core.Entities.Account;
@@ -42,5 +43,12 @@ public class AccountController : ControllerBase
         {
             return StatusCode(500, ex.Message);
         }
+    }
+
+    [HttpPost("Logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await _accountService.LogoutAsync();
+        return Ok(new { message = "Logged out successfully" });
     }
 }
