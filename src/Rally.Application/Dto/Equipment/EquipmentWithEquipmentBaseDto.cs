@@ -9,6 +9,8 @@ namespace Rally.Application.Dto.Equipment
         public string YCoordinate { get; set; } = string.Empty;
         public string Rotation { get; set; } = string.Empty;
         public EquipmentBaseDto? EquipmentBase { get; set; }
+        public int SignId { get; set; }
+
     }
 }
 
