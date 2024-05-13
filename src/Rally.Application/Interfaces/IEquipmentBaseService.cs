@@ -1,15 +1,12 @@
 using Rally.Application.Dto.EquipmentBase;
+using Rally.Application.Interfaces.Base;
+using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface IEquipmentBaseService
+    public interface IEquipmentBaseService : IService<EquipmentBaseDto, EquipmentBase>
     {
-        Task<IEnumerable<EquipmentBaseDto>> GetAll();
-        Task<EquipmentBaseDto> GetById(int id);
-        Task<EquipmentBaseDto> Create(EquipmentBaseDto dto);
-        Task Update(EquipmentBaseDto dto, int id);
-        Task Delete(int id);
-
+        // TODO: Add the methods for the EquipmentBase
     }
 }
 

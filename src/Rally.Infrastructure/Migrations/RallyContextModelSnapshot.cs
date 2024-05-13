@@ -247,15 +247,12 @@ namespace Rally.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EquipmentBaseId")
+                    b.Property<int?>("EquipmentBaseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Rotation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SignId")
-                        .HasColumnType("int");
 
                     b.Property<string>("XCoordinate")
                         .IsRequired()
@@ -268,9 +265,6 @@ namespace Rally.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EquipmentBaseId");
-
-                    b.HasIndex("SignId")
-                        .IsUnique();
 
                     b.ToTable("Equipment", (string)null);
                 });
@@ -301,13 +295,13 @@ namespace Rally.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SignBaseId")
+                    b.Property<int?>("SignBaseId")
                         .HasColumnType("int");
 
                     b.Property<int>("SignNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("TrackId")
+                    b.Property<int?>("TrackId")
                         .HasColumnType("int");
 
                     b.Property<string>("XCoordinate")
@@ -332,14 +326,14 @@ namespace Rally.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EquipmentBaseId")
+                    b.Property<int?>("EquipmentBaseId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
@@ -363,7 +357,7 @@ namespace Rally.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
@@ -450,34 +444,20 @@ namespace Rally.Infrastructure.Migrations
                 {
                     b.HasOne("Rally.Core.Entities.EquipmentBase", "EquipmentBase")
                         .WithMany("Equipments")
-                        .HasForeignKey("EquipmentBaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rally.Core.Entities.Sign", "Sign")
-                        .WithOne("Equipment")
-                        .HasForeignKey("Rally.Core.Entities.Equipment", "SignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EquipmentBaseId");
 
                     b.Navigation("EquipmentBase");
-
-                    b.Navigation("Sign");
                 });
 
             modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
                 {
                     b.HasOne("Rally.Core.Entities.SignBase", "SignBase")
                         .WithMany("Signs")
-                        .HasForeignKey("SignBaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SignBaseId");
 
                     b.HasOne("Rally.Core.Entities.Track", "Track")
                         .WithMany("Signs")
-                        .HasForeignKey("TrackId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TrackId");
 
                     b.Navigation("SignBase");
 
@@ -488,15 +468,11 @@ namespace Rally.Infrastructure.Migrations
                 {
                     b.HasOne("Rally.Core.Entities.Category", "Category")
                         .WithMany("SignBases")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Rally.Core.Entities.EquipmentBase", "EquipmentBase")
                         .WithMany("SignBases")
-                        .HasForeignKey("EquipmentBaseId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("EquipmentBaseId");
 
                     b.Navigation("Category");
 
@@ -507,9 +483,7 @@ namespace Rally.Infrastructure.Migrations
                 {
                     b.HasOne("Rally.Core.Entities.Category", "Category")
                         .WithMany("Tracks")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Rally.Core.Entities.Account.User", "User")
                         .WithMany("Tracks")
@@ -539,11 +513,6 @@ namespace Rally.Infrastructure.Migrations
                     b.Navigation("Equipments");
 
                     b.Navigation("SignBases");
-                });
-
-            modelBuilder.Entity("Rally.Core.Entities.Sign", b =>
-                {
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("Rally.Core.Entities.SignBase", b =>

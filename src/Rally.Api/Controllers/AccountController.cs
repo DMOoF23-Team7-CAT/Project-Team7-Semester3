@@ -1,54 +1,32 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Rally.Application.Interfaces;
+using Rally.Application.Services.Account;
+using Rally.Application.Services.MediatR;
 using Rally.Core.Entities.Account;
 
-[Route("api/[controller]")]
-[ApiController]
-public class AccountController : ControllerBase
+namespace Rally.Api.Controllers
 {
-    private readonly IAccountService _accountService;
-
-    public AccountController(IAccountService accountService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccountController(IMediator mediator) : ControllerBase
     {
-        _accountService = accountService;
-    }
-
-    [HttpPost("assign-user-role")]
-    [Authorize(Roles = UserRoles.Admin)]
-    public async Task<IActionResult> AssignUserRole(string userEmail, string roleName)
-    {
-        try
+        [HttpPost("AssignUserRole")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
         {
-            await _accountService.AssignRoleAsync(userEmail, roleName);
+            await mediator.Send(command);
             return NoContent();
         }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
 
-    [HttpDelete("unassign-user-role")]
-    [Authorize(Roles = UserRoles.Admin)]
-    public async Task<IActionResult> UnassignUserRole(string userEmail, string roleName)
-    {
-        try
+        [HttpDelete("UnassignUserRole")]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<IActionResult> UnassignUserRole(UnassignUserRoleCommand command)
         {
-            await _accountService.UnassignRoleAsync(userEmail, roleName);
+            await mediator.Send(command);
             return NoContent();
         }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-    }
 
-    [HttpPost("Logout")]
-    public async Task<IActionResult> Logout()
-    {
-        await _accountService.LogoutAsync();
-        return Ok(new { message = "Logged out successfully" });
     }
 }

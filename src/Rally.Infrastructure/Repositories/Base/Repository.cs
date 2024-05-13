@@ -1,6 +1,12 @@
-using Rally.Core.Repositories.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using AspnetRun.Core.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using Rally.Core.Entities.Base;
+using Rally.Core.Specifications.Base;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Exceptions;
 
@@ -15,70 +21,68 @@ namespace Rally.Infrastructure.Repositories.Base
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
-            try
-            {
-                return await _dbContext.Set<T>().ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error loading entities");
-            }
+            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
         }
 
-        //NOTE - this method uses null forgiving operator (!) in the returned entity and should be handled in Application layer
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            try
-            {
-                var entity = await _dbContext.Set<T>().FindAsync(id);
-                return entity!;
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error loading entity");
-            }
+            return await _dbContext.Set<T>().ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
+        {
+            IQueryable<T> query = _dbContext.Set<T>();
+            if (disableTracking) query = query.AsNoTracking();
+
+            if (includes != null) query = includes.Aggregate(query, (current, include) => current.Include(include));
+
+            if (predicate != null) query = query.Where(predicate);
+
+            if (orderBy != null)
+                return await orderBy(query).ToListAsync();
+            return await query.ToListAsync();
+        }
+
+        //NOTE - this method returns null if the entity is not found and should be handled in Application layer
+        public virtual async Task<T> GetByIdAsync(int id)
+        {
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+
+            // if (entity is null)
+            //     throw new InfrastructureException($"Entity with ID {id} was not found.");
+
+            return entity!;
         }
 
         public async Task<T> AddAsync(T entity)
         {
-            try
-            {
-                _dbContext.Set<T>().Add(entity);
-                await _dbContext.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error adding entity");
-            }
+            _dbContext.Set<T>().Add(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
         public async Task UpdateAsync(T entity)
         {
-            try
-            {
-                _dbContext.Entry(entity).State = EntityState.Modified;
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error updating entity");
-            }
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(T entity)
         {
-            try
-            {
-                _dbContext.Set<T>().Remove(entity);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error deleting entity");
-            }
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
     }

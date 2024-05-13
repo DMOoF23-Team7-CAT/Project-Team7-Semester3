@@ -1,121 +1,49 @@
-using FluentValidation;
-using Rally.Application.Dto.Category;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AspnetRun.Core.Repositories.Base;
+using AutoMapper.Internal.Mappers;
+using Rally.Application.Dto;
+using Rally.Application.Dto.Sign;
 using Rally.Application.Dto.SignBase;
-using Rally.Application.Exceptions;
 using Rally.Application.Interfaces;
 using Rally.Application.Mapper;
-using Rally.Application.Validators;
+using Rally.Application.Services.Base;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
 
 namespace Rally.Application.Services
 {
-    public class SignBaseService :  ISignBaseService
+    public class SignBaseService : Service<SignBaseDto, SignBase>, ISignBaseService
     {
-        private readonly ISignBaseRepository _signBaseRepository;
-        public SignBaseService(ISignBaseRepository SignBaseRepository)
+        private readonly ISignBaseRepository _SignBaseRepository;
+        public SignBaseService(IRepository<SignBase> repository, ISignBaseRepository SignBaseRepository) : base(repository)
         {
-            _signBaseRepository = SignBaseRepository ?? throw new ArgumentNullException(nameof(SignBaseRepository));
+            _SignBaseRepository = SignBaseRepository ?? throw new ArgumentNullException(nameof(SignBaseRepository));
         }
 
-        public async Task<IEnumerable<SignBaseDto>> GetAll()
+        public async Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId)
         {
-            var signBases = await _signBaseRepository.GetAllAsync();
-            if (signBases is null)
-                throw new NotFoundException("SignBases could not be found.");
+            var SignBase = await _SignBaseRepository.GetSignBaseWithCategoryAsync(SignBaseId);
 
-            var mappedSignBases = ObjectMapper.Mapper.Map<IEnumerable<SignBaseDto>>(signBases);
-            if (mappedSignBases is null)
-                throw new MappingException("SignBases could not be mapped.");
-
-            return mappedSignBases;
-        }
-
-        public async Task<SignBaseDto> GetById(int id)
-        {
-            var signBase = await _signBaseRepository.GetByIdAsync(id);
-            if (signBase is null)
-                throw new NotFoundException("SignBase could not be found.");
-
-            var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseDto>(signBase);
+            var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseDto>(SignBase);
             if (mappedSignBase is null)
-                throw new MappingException("SignBase could not be mapped.");
+                throw new ApplicationException("SignBase with Category could not be mapped");
 
             return mappedSignBase;
-        }
-
-        public async Task<SignBaseDto> Create(SignBaseDto dto)
-        {
-            await ValidateIfExist(dto);
-
-            var signBase = ObjectMapper.Mapper.Map<SignBase>(dto);
-            if (signBase is null)
-                throw new MappingException("SignBase could not be mapped.");
-
-            var validator = new SignBaseValidator();
-            var validationResult = await validator.ValidateAsync(signBase);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
-
-            await _signBaseRepository.AddAsync(signBase);
-            
-            return ObjectMapper.Mapper.Map<SignBaseDto>(signBase);
-        }
-
-        public async Task Delete(int id)
-        {
-            var signBase = await _signBaseRepository.GetByIdAsync(id);
-
-            if (signBase is null)
-                throw new NotFoundException("SignBase could not be found.");
-
-            await _signBaseRepository.DeleteAsync(signBase);
-        }
-
-        public async Task Update(SignBaseDto dto, int id)
-        {
-            var oldSignBase = await _signBaseRepository.GetByIdAsync(id);
-            if (oldSignBase is null)
-                throw new NotFoundException("SignBase could not be found.");
-
-            await ValidateIfExist(dto);
-
-            var signBase = ObjectMapper.Mapper.Map<SignBase>(dto);
-            if (signBase is null)
-                throw new MappingException("SignBase could not be mapped.");
-
-            var validator = new SignBaseValidator();
-            var validationResult = await validator.ValidateAsync(signBase);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
-
-            await _signBaseRepository.UpdateAsync(ObjectMapper.Mapper.Map(dto, oldSignBase));
         }
 
         public async Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId)
         {
-            var SignBase = await _signBaseRepository.GetSignBaseWithEquipmentBaseAsync(SignBaseId);
+            var SignBase = await _SignBaseRepository.GetSignBaseWithEquipmentBaseAsync(SignBaseId);
 
             var mappedSignBase = ObjectMapper.Mapper.Map<SignBaseWithEquipmentBaseDto>(SignBase);
             if (mappedSignBase is null)
-                throw new MappingException("SignBase with EquipmentBase could not be mapped");
+                throw new ApplicationException("SignBase with EquipmentBase could not be mapped");
 
             return mappedSignBase;
         }
-
-        private async Task ValidateIfExist(SignBaseDto dto)
-        {
-            if (dto.Id != 0)
-            {
-                var existingEntity = await _signBaseRepository.GetByIdAsync(dto.Id);
-                if (existingEntity != null)
-                    throw new NotFoundException($"SignBase with ID {dto.Id} already exists");
-            }
-        }
-
-
     }
 }
 
