@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "src\Rally.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Application.Tests", "Rally.Application.Tests\Rally.Application.Tests.csproj", "{CAD3A487-6F84-4719-9C9D-5376104EA47E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "Infrastructure.Test\Infrastructure.Test.csproj", "{908511E5-BA5C-43A2-B2EE-BFB325176536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,11 @@ Global
 		{CAD3A487-6F84-4719-9C9D-5376104EA47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAD3A487-6F84-4719-9C9D-5376104EA47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAD3A487-6F84-4719-9C9D-5376104EA47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +59,7 @@ Global
 		{8F4EECFD-886D-4271-8A39-5BE93FD1CA23} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
 		{CAD3A487-6F84-4719-9C9D-5376104EA47E} = {CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}
+		{908511E5-BA5C-43A2-B2EE-BFB325176536} = {CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DA25906-1F78-462E-A8A3-4BBAC92DC036}
