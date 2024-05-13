@@ -1,32 +1,46 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Rally.Application.Services.Account;
-using Rally.Application.Services.MediatR;
+using Rally.Application.Interfaces;
 using Rally.Core.Entities.Account;
 
-namespace Rally.Api.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class AccountController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController(IMediator mediator) : ControllerBase
+    private readonly IAccountService _accountService;
+
+    public AccountController(IAccountService accountService)
     {
-        [HttpPost("AssignUserRole")]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> AssignUserRole(AssignUserRoleCommand command)
+        _accountService = accountService;
+    }
+
+    [HttpPost("assign-user-role")]
+    [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> AssignUserRole(string userEmail, string roleName)
+    {
+        try
         {
-            await mediator.Send(command);
+            await _accountService.AssignRoleAsync(userEmail, roleName);
             return NoContent();
         }
-
-        [HttpDelete("UnassignUserRole")]
-        [Authorize(Roles = UserRoles.Admin)]
-        public async Task<IActionResult> UnassignUserRole(UnassignUserRoleCommand command)
+        catch (Exception ex)
         {
-            await mediator.Send(command);
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+    [HttpDelete("unassign-user-role")]
+    [Authorize(Roles = UserRoles.Admin)]
+    public async Task<IActionResult> UnassignUserRole(string userEmail, string roleName)
+    {
+        try
+        {
+            await _accountService.UnassignRoleAsync(userEmail, roleName);
             return NoContent();
         }
-
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }

@@ -1,13 +1,16 @@
 using Rally.Application.Dto.Track;
-using Rally.Application.Interfaces.Base;
-using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ITrackService : IService<TrackDto, Track>
+    public interface ITrackService
     {
+        Task<IEnumerable<TrackDto>> GetAll();
+        Task<TrackDto> GetById(int id);
+        Task<TrackDto> Create(TrackWithOutIdDto dto);
+        Task Update(TrackWithOutIdDto dto, int trackId);
+        Task Delete(int id);
         Task<TrackWithCategoryDto> GetTrackWithCategory(int trackId);
-        Task<TrackWithSignsDto> GetTrackWithSigns(int trackId);
+        Task<LoadTrackDto> LoadTrack(int trackId);
     }
 }
 
