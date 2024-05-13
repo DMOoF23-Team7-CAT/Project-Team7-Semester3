@@ -1,14 +1,11 @@
 using Rally.Application.Dto.Category;
+using Rally.Application.Interfaces.Base;
+using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ICategoryService
+    public interface ICategoryService : IService<CategoryDto, Category>
     {
-        Task<IEnumerable<CategoryDto>> GetAll();
-        Task<CategoryDto> GetById(int id);
-        Task<CategoryDto> Create(CategoryDto dto);
-        Task Update(CategoryDto dto, int id);
-        Task Delete(int id);
         Task<CategoryWithSignBasesDto> GetCategoryWithSignBases(int categoryId);
     }
 }

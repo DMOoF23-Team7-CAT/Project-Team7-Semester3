@@ -1,7 +1,10 @@
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
-
+using Rally.Core.Specifications;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
@@ -16,22 +19,24 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Sign> GetSignWithSignBasesAsync(int signId)
         {
-            try
-            {
-                var sign = await _dbContext.Set<Sign>()
-                    .Include(s => s.SignBase)
-                    .FirstOrDefaultAsync(s => s.Id == signId);
+            var spec = new SignWithSignBaseSpecification(signId);
+            var sign = (await GetAsync(spec)).FirstOrDefault();
 
-                if (sign is null)
-                    throw new InfrastructureException("Sign not found");
+            if (sign is null)
+                throw new InfrastructureException("Sign not found");
 
-                return sign;
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error loading sign with sign base");
-            }
+            return sign;
         }
 
+        public async Task<Sign> GetSignWithTrackAsync(int signId)
+        {
+            var spec = new SignWithSignBaseSpecification(signId);
+            var sign = (await GetAsync(spec)).FirstOrDefault();
+
+            if (sign is null)
+                throw new InfrastructureException("Sign not found");
+
+            return sign;
+        }
     }
 }

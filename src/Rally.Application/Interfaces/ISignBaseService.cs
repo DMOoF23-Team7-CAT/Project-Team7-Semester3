@@ -1,16 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Rally.Application.Dto;
 using Rally.Application.Dto.SignBase;
+using Rally.Application.Interfaces.Base;
+using Rally.Core.Entities;
 
 namespace Rally.Application.Interfaces
 {
-    public interface ISignBaseService
+    public interface ISignBaseService : IService<SignBaseDto, SignBase>
     {
-        Task<IEnumerable<SignBaseDto>> GetAll();
-        Task<SignBaseDto> GetById(int id);
-        Task<SignBaseDto> Create(SignBaseDto dto);
-        Task Update(SignBaseDto dto, int id);
-        Task Delete(int id);
-
         Task<SignBaseWithEquipmentBaseDto> GetSignBaseWithEquipmentBase(int SignBaseId);
+        Task<SignBaseDto> GetSignBaseWithCategory(int SignBaseId);
     }
 }
 

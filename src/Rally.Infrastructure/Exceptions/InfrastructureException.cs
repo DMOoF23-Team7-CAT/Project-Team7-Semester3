@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Rally.Infrastructure.Exceptions
 {
     public class InfrastructureException : Exception

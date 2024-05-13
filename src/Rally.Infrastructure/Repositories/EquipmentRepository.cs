@@ -1,7 +1,10 @@
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Rally.Core.Entities;
 using Rally.Core.Repositories;
-
+using Rally.Core.Specifications;
 using Rally.Infrastructure.Data;
 using Rally.Infrastructure.Exceptions;
 using Rally.Infrastructure.Repositories.Base;
@@ -16,21 +19,13 @@ namespace Rally.Infrastructure.Repositories
 
         public async Task<Equipment> GetEquipmentWithEquipmentBaseAsync(int equipmentId)
         {
-            try
-            {
-                var equipment = await _dbContext.Set<Equipment>()
-                    .Include(e => e.EquipmentBase)
-                    .FirstOrDefaultAsync(e => e.Id == equipmentId);
+            var spec = new EquipmentWithEquipmentBaseSpecification(equipmentId);
+            var equipment = (await GetAsync(spec)).FirstOrDefault();
 
-                if (equipment is null)
-                    throw new InfrastructureException("Equipment not found");
+            if (equipment is null)
+                throw new InfrastructureException("Equipment not found");
 
-                return equipment;
-            }
-            catch (Exception)
-            {
-                throw new InfrastructureException("Error loading equipment with equipment base");
-            }
+            return equipment;
         }
     }
 }

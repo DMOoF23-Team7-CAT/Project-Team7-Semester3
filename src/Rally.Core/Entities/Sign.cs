@@ -1,4 +1,7 @@
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Rally.Core.Entities.Base;
 
 namespace Rally.Core.Entities
@@ -11,13 +14,6 @@ namespace Rally.Core.Entities
         public string Rotation { get; set; } = string.Empty;
 
         public SignBase? SignBase { get; set; }
-        [ForeignKey("SignBase")]
-        public int SignBaseId { get; set; }
         public Track? Track { get; set; }
-        [ForeignKey("Track")]
-        public int TrackId { get; set; }
-        public Equipment? Equipment { get; set; }
-
     }
 }
-

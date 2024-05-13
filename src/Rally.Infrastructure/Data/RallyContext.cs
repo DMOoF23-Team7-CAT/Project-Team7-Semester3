@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -42,8 +46,8 @@ namespace Rally.Infrastructure.Data
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedNever(); // This line configures the ID to not be database-generated.
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
-            builder.HasMany(c => c.SignBases).WithOne(e => e.Category).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(c => c.Tracks).WithOne(t => t.Category).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(c => c.SignBases).WithOne(e => e.Category);
+            builder.HasMany(c => c.Tracks).WithOne(t => t.Category);
         }
 
         private void ConfigureEquipmentBase(EntityTypeBuilder<EquipmentBase> builder)
@@ -51,8 +55,8 @@ namespace Rally.Infrastructure.Data
             builder.ToTable("EquipmentBases");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedNever();
-            builder.HasMany(e => e.Equipments).WithOne(e => e.EquipmentBase).OnDelete(DeleteBehavior.Cascade);
-            builder.HasMany(e => e.SignBases).WithOne(e => e.EquipmentBase).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(e => e.Equipments).WithOne(e => e.EquipmentBase);
+            builder.HasMany(e => e.SignBases).WithOne(e => e.EquipmentBase);
         }
 
         private void ConfigureSignBase(EntityTypeBuilder<SignBase> builder)
@@ -60,8 +64,8 @@ namespace Rally.Infrastructure.Data
             builder.ToTable("SignBases");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedNever();
-            builder.HasOne(e => e.Category).WithMany(c => c.SignBases).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.SignBases).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(e => e.Category).WithMany(c => c.SignBases);
+            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.SignBases);
         }
 
         private void ConfigureEquipment(EntityTypeBuilder<Equipment> builder)
@@ -69,8 +73,7 @@ namespace Rally.Infrastructure.Data
             builder.ToTable("Equipment");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
-            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Equipments).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(e => e.Sign).WithOne(e => e.Equipment).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(e => e.EquipmentBase).WithMany(e => e.Equipments);
         }
 
         private void ConfigureSign(EntityTypeBuilder<Sign> builder)
@@ -78,7 +81,7 @@ namespace Rally.Infrastructure.Data
             builder.ToTable("Signs");
             builder.HasKey(s => s.Id);
             builder.Property(s => s.Id).ValueGeneratedOnAdd();
-            builder.HasOne(s => s.Track).WithMany(t => t.Signs).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(s => s.Track).WithMany(t => t.Signs);
         }
 
         private void ConfigureTrack(EntityTypeBuilder<Track> builder)
@@ -87,8 +90,8 @@ namespace Rally.Infrastructure.Data
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
             builder.Property(t => t.Date).ValueGeneratedOnAdd(); // NOTE Date only gets set when its first added to database
-            builder.HasOne(t => t.Category).WithMany(c => c.Tracks).OnDelete(DeleteBehavior.NoAction);
-            builder.HasMany(t => t.Signs).WithOne(s => s.Track).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(t => t.Category).WithMany(c => c.Tracks);
+            builder.HasMany(t => t.Signs).WithOne(s => s.Track);
         }
     }
 
