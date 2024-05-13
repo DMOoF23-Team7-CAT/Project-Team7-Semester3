@@ -8,7 +8,6 @@ namespace Rally.Application.Dto.Track
         public string Comment { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public DateTime Date { get; set; } = DateTime.Now;
-
         public CategoryDto? Category { get; set; }
     }
 }
