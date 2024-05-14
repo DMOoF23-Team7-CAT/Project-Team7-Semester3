@@ -1,0 +1,17 @@
+@page "/categories"
+@inherits CategoryListBase
+
+<div>
+    @if (Categories != null)
+    {
+        foreach (var category in Categories)
+        {
+            <h1>@category.Name</h1>
+        }
+    }
+    else
+    {
+        <p>No categories found.</p>
+    }
+</div>
+
