@@ -14,9 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Infrastructure", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Api", "src\Rally.Api\Rally.Api.csproj", "{DE35B047-D95D-456A-B8E0-A7C8FBAB9DE2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Application.Tests", "src\Rally.Application.Tests\Rally.Application.Tests.csproj", "{CAD3A487-6F84-4719-9C9D-5376104EA47E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rally.Application.Tests", "test\Rally.Application.Tests\Rally.Application.Tests.csproj", "{CAD3A487-6F84-4719-9C9D-5376104EA47E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "src\Infrastructure.Test\Infrastructure.Test.csproj", "{908511E5-BA5C-43A2-B2EE-BFB325176536}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "test\Infrastructure.Test\Infrastructure.Test.csproj", "{908511E5-BA5C-43A2-B2EE-BFB325176536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
