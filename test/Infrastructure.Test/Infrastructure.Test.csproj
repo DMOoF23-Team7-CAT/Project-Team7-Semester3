@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Rally.Infrastructure\Rally.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Rally.Infrastructure\Rally.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

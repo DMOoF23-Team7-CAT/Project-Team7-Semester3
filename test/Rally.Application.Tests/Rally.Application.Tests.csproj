@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Rally.Application\Rally.Application.csproj" />
+    <ProjectReference Include="..\..\src\Rally.Application\Rally.Application.csproj" />
   </ItemGroup>
 
 </Project>

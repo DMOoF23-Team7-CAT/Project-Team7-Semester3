@@ -37,7 +37,7 @@ public class CategoryWithSignBasesDtoShould
     }
 
 
-    // TDD - Denne test fejler nu, men bør ikke fejle hvis/når intup validering bliver lavet.
+    // TODO - Denne test fejler nu, men bør ikke fejle hvis/når intup validering bliver lavet.
     [Fact]
     public void NotContainSpecialCharacters()
     {
