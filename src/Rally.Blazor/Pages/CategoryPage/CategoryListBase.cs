@@ -8,17 +8,21 @@ namespace Rally.Blazor.Pages.CategoryPage;
 public class CategoryListBase : ComponentBase
 {
     [Inject]
-    public ICategoryService CategoryService { get; set; }
+    public ICategoryService? CategoryService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 
     public IEnumerable<Category> Categories { get; set; } = new List<Category>();
 
     protected override async Task OnInitializedAsync()
     {
-        var categories = await CategoryService.GetAll();
+        var categories = await CategoryService!.GetAll();
         if (categories != null)
         {
             Categories = categories;
         }
     }
 }
+
 

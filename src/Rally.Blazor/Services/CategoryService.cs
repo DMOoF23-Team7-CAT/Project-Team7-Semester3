@@ -15,40 +15,114 @@ public class CategoryService : ICategoryService
         _httpClient = httpClient;
     }
 
-    public Task<Category> Create(Category dto)
+    public async Task<Category> Create(Category dto)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/categories", dto);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Failed to create category: {response.StatusCode}");
+            }
+            return await response.Content.ReadFromJsonAsync<Category>() 
+                ?? throw new Exception("Failed to create category");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error creating category: {ex.Message}", ex);
+        }
     }
 
-    public Task Delete(int id)
+    public async Task Delete(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _httpClient.DeleteAsync($"api/categories/{id}");
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Failed to delete category: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error deleting category: {ex.Message}", ex);
+        }
     }
 
     public async Task<IEnumerable<Category>> GetAll()
     {
-        var response = await _httpClient.GetAsync("api/categories");
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            return new List<Category>(); // Return an empty list instead of null
+            var response = await _httpClient.GetAsync("api/categories");
+            if (!response.IsSuccessStatusCode)
+            {
+                return new List<Category>(); // Return an empty list instead of null
+            }
+            return await response.Content.ReadFromJsonAsync<IEnumerable<Category>>() 
+                ?? throw new Exception("Failed to retrieve categories");
         }
-
-        return await response.Content.ReadFromJsonAsync<IEnumerable<Category>>() ?? new List<Category>();
+        catch (Exception ex)
+        {
+            throw new Exception($"Error retrieving all categories: {ex.Message}", ex);
+        }
     }
 
-    public Task<Category> GetById(int id)
+    public async Task<Category> GetById(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/categories/{id}");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    return null!;
+
+                throw new HttpRequestException($"Failed to get category by ID: {response.StatusCode}");
+            }
+            return await response.Content.ReadFromJsonAsync<Category>() 
+                ?? throw new Exception("Failed to retrieve category by ID");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error retrieving category by ID: {ex.Message}", ex);
+        }
     }
 
-    public Task<CategoryWithSignBases> GetCategoryWithSignBases(int Id)
+    public async Task<CategoryWithSignBases> GetCategoryWithSignBases(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/categories/{id}/details");
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    return null!;
+
+                throw new HttpRequestException($"Failed to get category with sign bases: {response.StatusCode}");
+            }
+            return await response.Content.ReadFromJsonAsync<CategoryWithSignBases>()
+                ?? throw new Exception("Failed to retrieve category with sign bases");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error retrieving category with sign bases: {ex.Message}", ex);
+        }
     }
 
-    public Task Update(Category dto, int id)
+    public async Task Update(Category dto, int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/categories/{id}", dto);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Failed to update category: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error updating category: {ex.Message}", ex);
+        }
     }
 }
 
