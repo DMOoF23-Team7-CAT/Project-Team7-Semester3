@@ -1,11 +1,9 @@
-https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
-
 @startuml Design Class Diagram for models
 
 namespace Rally.Models {
     class User {
+        + Id: string
         + Tracks: ICollection<Track>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Track {
@@ -14,10 +12,11 @@ namespace Rally.Models {
         + Comment: string
         + Location: string
         + Date: DateTime
+        + UserId: string
         + User: User
+        + CategoryId: int
         + Category: Category
         + Signs: ICollection<Sign>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Sign {
@@ -26,10 +25,12 @@ namespace Rally.Models {
         + XCoordinate: string
         + YCoordinate: string
         + Rotation: string
+        + SignBaseId: int
         + SignBase: SignBase
+        + TrackId: int
         + Track: Track
+        + EquipmentId: int
         + Equipment: Equipment
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class Equipment {
@@ -37,29 +38,28 @@ namespace Rally.Models {
         + XCoordinate: string
         + YCoordinate: string
         + Rotation: string
+        + EquipmentBaseId: int
         + EquipmentBase: EquipmentBase
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 
     class EquipmentBase {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
-        + Image: string
+        + Image: byte[]
         + SignBases: ICollection<SignBase>
-        + Equipment: ICollection<Equipment>
+        + Equipments: ICollection<Equipment>
     }
 
     class SignBase {
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    + Id: int
-    + Description: string
-    + Image: string
-    + EquipmentBase: EquipmentBase
-    + Category: Category
+        + Id: int
+        + Description: string
+        + Image: byte[]
+        + EquipmentBaseId: int
+        + EquipmentBase: EquipmentBase
+        + CategoryId: int
+        + Category: Category
     }
 
     class Category {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         + Id: int
         + Name: string
         + Rules: string
@@ -77,7 +77,5 @@ namespace Rally.Models {
     Category "1" -- "0..*" SignBase
 
 }
-
-
 
 @enduml
