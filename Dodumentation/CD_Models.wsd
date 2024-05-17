@@ -1,7 +1,8 @@
 @startuml Højt Niveau Klassediagram for Rally Modeller
 
 class Bruger {
-
+    + email
+    + kode
 }
 
 class Bane {

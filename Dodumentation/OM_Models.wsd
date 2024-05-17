@@ -1,7 +1,8 @@
 @startuml Objektmodel for Rally Modeller
 
 object Bruger1 {
-    
+    + email
+    + kode
 }
 
 object Bane1 {
