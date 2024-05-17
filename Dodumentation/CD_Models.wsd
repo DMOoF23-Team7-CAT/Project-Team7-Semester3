@@ -1,0 +1,50 @@
+@startuml Højt Niveau Klassediagram for Rally Modeller
+
+class Bruger {
+
+}
+
+class Bane {
+    + navn
+    + kommentar
+    + dato
+    + sted
+}
+
+class Skilt {
+    + skilteNummer
+    + xKoordinat
+    + yKoordinat
+    + rotation
+}
+
+class Klasse {
+    + navn
+    + regler
+}
+
+class Udstyr {
+    + xKoordinat
+    + yKoordinat
+    + rotation
+}
+
+class SkiltBase {
+    + beskrivelse
+    + billede
+}
+
+class UdstyrBase {
+    + billede
+}
+
+Bruger "1" -- "0..*" Bane
+Bane "1" -- "0..*" Skilt
+Skilt "0..*" -- "1" SkiltBase
+Skilt "1" -- "1" Udstyr
+Udstyr "0..*" -- "1" UdstyrBase
+SkiltBase "0..*" -- "1" UdstyrBase
+Bane "0..*" -- "1" Klasse
+Klasse "1" -- "0..*" SkiltBase
+
+@enduml

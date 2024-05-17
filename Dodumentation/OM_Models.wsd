@@ -1,0 +1,64 @@
+@startuml Objektmodel for Rally Modeller
+
+object Bruger1 {
+    
+}
+
+object Bane1 {
+    navn = "Rally København"
+    kommentar = "Årlig begivenhed"
+    dato = "2023-09-15"
+    sted = "København"
+}
+
+object Skilt1 {
+    skilteNummer = 1
+    xKoordinat = "34.5"
+    yKoordinat = "22.1"
+    rotation = "0"
+}
+
+object Skilt2 {
+    skilteNummer = 2
+    xKoordinat = "36.5"
+    yKoordinat = "24.1"
+    rotation = "90"
+}
+
+object Klasse1 {
+    navn = "Åben"
+    regler = "Ingen regler"
+}
+
+object Udstyr1 {
+    xKoordinat = "34.5"
+    yKoordinat = "22.1"
+    rotation = "180"
+}
+
+object SkiltBase1 {
+    beskrivelse = "Start"
+    billede = "image_data"
+}
+
+object SkiltBase2 {
+    beskrivelse = "Slut"
+    billede = "image_data"
+}
+object UdstyrBase1 {
+    billede = "udstyr_image_data"
+}
+
+Bruger1 -- Bane1
+Bane1 -- Skilt1
+Bane1 -- Skilt2
+Skilt1 -- SkiltBase1
+Skilt2 -- SkiltBase2
+Skilt1 -- Udstyr1
+Udstyr1 -- UdstyrBase1
+SkiltBase1 -- UdstyrBase1
+Bane1 -- Klasse1
+Klasse1 -- SkiltBase1
+Klasse1 -- SkiltBase2
+
+@enduml
