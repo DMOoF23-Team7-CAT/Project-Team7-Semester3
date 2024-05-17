@@ -33,7 +33,7 @@ public class CategoryWithSignBasesDtoShould
     {
         CategoryWithSignBasesDto sut = new CategoryWithSignBasesDto();
 
-        Assert.NotNull(sut.Id);
+        Assert.NotEqual(0, sut.Id);
     }
 
 

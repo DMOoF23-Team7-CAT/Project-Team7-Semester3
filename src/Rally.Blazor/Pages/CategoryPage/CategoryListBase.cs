@@ -11,7 +11,7 @@ public class CategoryListBase : ComponentBase
     public ICategoryService? CategoryService { get; set; }
 
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public NavigationManager? NavigationManager { get; set; }
 
     public IEnumerable<Category> Categories { get; set; } = new List<Category>();
 

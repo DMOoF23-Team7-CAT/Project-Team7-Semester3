@@ -5,13 +5,10 @@ namespace Rally.Blazor.Models;
 public class Category
 {
     private int _id;
-
-    [Required]
-    [Range(1, int.MaxValue, ErrorMessage = "ID must be greater than 0.")]
     public int Id
     {
         get => _id;
-        set => _id = value;
+        private set => _id = value;
     }
 
     [Required]
@@ -21,7 +18,6 @@ public class Category
     [MaxLength(1000)]
     public string Rules { get; set; } = string.Empty;
 
-    // Non-mapped property for handling string input
     [Required(ErrorMessage = "ID is required.")]
     [RegularExpression("^[0-9]+$", ErrorMessage = "ID must be a positive number.")]
     public string IdAsString
@@ -35,7 +31,7 @@ public class Category
             }
             else
             {
-                throw new ValidationException("Invalid ID value.");
+                _id = -1; // Set to an invalid default that can be checked in validation
             }
         }
     }

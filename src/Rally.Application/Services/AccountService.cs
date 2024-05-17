@@ -52,7 +52,7 @@ namespace Rally.Application.Services
         {            
             var user = _httpContextAccessor.HttpContext.User;
 
-            if (!user.Identity.IsAuthenticated)
+            if (!user.Identity!.IsAuthenticated)
             {
                 throw new ApplicationException("User is not authenticated.");
             }
