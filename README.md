@@ -1,3 +1,76 @@
+### Introduktion til Rally Projektet
+
+Rally projektet er en flerlagsapplikation designet til at håndtere SignBases, udstyr og træningssessioner. Projektet anvender en ren arkitektur (Clean Architecture), som opdeler ansvarsområder i adskilte lag, hver med specifikke funktioner. Denne struktur forbedrer skalerbarhed, vedligeholdelse og muliggør evolution af applikationen over tid med minimal indvirkning på eksisterende kode.
+
+#### Arkitektur og Laginteraktion
+
+- **Rally.Api**: Fungere som indgangspunkt for HTTP-anmodninger og delegerer operationer til applikationslaget. Det er konfigureret i [src/Rally.Api/Program.cs](../../src/Rally.Api/Program.cs#1%2C1-1%2C1), hvor tjenester som Swagger til API-dokumentation er opsat.
+
+- **Rally.Application**: Indeholder forretningslogik og applikationstjenester. Dette lag fungerer som formidler mellem API og infrastrukturlagene, og orkestrerer dataflow og operationer. Tjenester i dette lag, såsom [SignBaseService](../../README.md#15%2C196-15%2C196) og [EquipmentService](../../README.md#15%2C309-15%2C309), bruger grænseflader defineret i Core-laget til at interagere med data.
+
+- **Rally.Core**: Definerer domænemodeller, grænseflader for repositories og specifikationer for forespørgsler. Dette lag indkapsler forretningsreglerne og fungerer som en kontrakt for dataoperationer.
+
+- **Rally.Infrastructure**: Implementerer grænseflader fra Core-laget og leverer konkret dataadgangslogik ved hjælp af Entity Framework Core. Det interagerer med databasen og udfører operationer defineret af applikationslaget.
+
+#### Designmønstre og Metodologier
+
+- **Repository Pattern**: Abstraherer dataadgangslogik, hvilket gør applikationslagets kode mere vedligeholdelig og uafhængig af dataadgangslogikken.
+
+- **Dependency Injection (DI)**: Opnår løs kobling mellem klasser og deres afhængigheder, konfigureret i [Program.cs](../../src/Rally.Api/Program.cs#1%2C1-1%2C1) filerne for API og Web-projekter.
+
+- **AutoMapper**: Faciliterer objektmapping mellem domæneenheder og DTO'er (Data Transfer Objects), hvilket reducerer mængden af boilerplate kode nødvendig for at transformere data mellem lagene.
+
+### Blazor Projektet
+
+Blazor projektet i Rally fungerer som brugergrænsefladen og anvender Blazor WebAssembly til at levere interaktive webbrugergrænseflader. Dette projekt er konfigureret til at forbruge API'et eksponeret af `Rally.Api`, hvilket betyder, at der ikke er en direkte kobling til `Rally.Application` laget, men snarere en kommunikation via HTTP-anmodninger.
+
+#### Konfiguration og Opsætning
+
+Blazor projektet er sat op til at køre som en klient-side applikation i brugernes browser. Det er konfigureret til at anvende moderne webteknologier og værktøjer for at sikre en responsiv og dynamisk brugeroplevelse.
+
+- **Routing og Layout**: Bruger [Router](../../src/Rally.Blazor/App.razor#1%2C2-1%2C2) komponenten til at håndtere routing i applikationen, og definerer layouts og sider som anvender disse routes.
+  
+  ```html:src/Rally.Blazor/wwwroot/index.html
+  29|    <script src="_framework/blazor.webassembly.js"></script>
+  ```
+
+- **HTTP Kommunikation**: Anvender `HttpClient` til at sende og modtage HTTP-anmodninger fra `Rally.Api`, hvilket gør det muligt for Blazor-applikationen at hente og sende data asynkront.
+
+  ```razor:src/Rally.Blazor/_Imports.razor
+  1|@using System.Net.Http
+  ```
+
+- **Komponentbaseret Arkitektur**: Bruger Razor komponenter til at bygge brugergrænsefladen, hvor hver komponent kan have sin egen logik og tilstand, hvilket fremmer genbrug og vedligeholdelse af kode.
+
+  ```razor:src/Rally.Blazor/Pages/Home.razor
+  3|<PageTitle>Home</PageTitle>
+  ```
+
+#### Integration med Rally.Api
+
+Blazor projektet integrerer med `Rally.Api` ved at forbruge de endpoints, der er defineret i API'et. Dette sikrer, at brugergrænsefladen kan opdatere og vise data dynamisk baseret på brugerinteraktioner og systemændringer.
+
+- **Datahåndtering og Opdateringer**: Bruger asynkrone metoder til at håndtere data, hvilket sikrer en glat og responsiv brugeroplevelse selv under datahentning og -opdatering.
+
+#### Teknologier og Værktøjer
+
+- **Blazor WebAssembly**: Gør det muligt for .NET kode at køre i browseren ved hjælp af WebAssembly.
+- **Bootstrap og CSS**: Anvendes til at style applikationen og sikre en moderne og tilgængelig brugergrænseflade.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Project-Team7-Semester3
 
 # Rally Project Overview

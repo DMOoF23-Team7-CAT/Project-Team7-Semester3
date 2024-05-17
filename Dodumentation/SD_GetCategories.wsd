@@ -1,19 +1,14 @@
-https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
-
-@startuml Sequence Diagram GetCategories
-
-
+@startuml Sequence Diagram GetAllCategories
 
 actor Client
 participant "CategoryController : API Layer" as Controller
 participant "ICategoryService : Application Layer" as Service
-participant "CategoryService (Service<TDto, TEntity>) : Application Layer" as ServiceImpl
-participant "IRepository<Category> : Infrastructure Layer" as RepoInterface
-participant "CategoryRepository (Repository<Category>) : Infrastructure Layer" as RepoImpl
-database "Database : Infrastructure Layer" as Database
+participant "CategoryService : Application Layer" as ServiceImpl
+participant "ICategoryRepository : Infrastructure Layer" as RepoInterface
+participant "CategoryRepository : Infrastructure Layer" as RepoImpl
+database "Database" as Database
 
-
-Client -> Controller : HTTP GET /GetCategories
+Client -> Controller : HTTP GET /categories
 Controller -> Service : GetAll()
 Service -> ServiceImpl : GetAll()
 ServiceImpl -> RepoInterface : GetAllAsync()
@@ -22,73 +17,8 @@ RepoImpl -> Database : Execute Query
 Database --> RepoImpl : Category Data
 RepoImpl --> RepoInterface : Category Data
 RepoInterface --> ServiceImpl : Category Data
-ServiceImpl --> Service : Category Data
-Service --> Controller : Category Data
+ServiceImpl --> Service : CategoryDto[] (Mapped using ObjectMapper)
+Service --> Controller : CategoryDto[] (Error Handling Included)
 Controller --> Client : HTTP Response
-
-note left
-API layer is not finished.
-there might come more methods
-for mapping to ViewModels and so on
-end note
-
-legend
-
-### 1. **API Layer (`Rally.Api`)**:
-- **Controller**: The operation starts in the [CategoryController] method is defined.
-
-  ```csharp:src/Rally.Api/Controllers/CategoryController.cs
-  public async Task<IActionResult> GetCategories()
-  {
-      var categories = await _categoryService.GetAll();
-      return Ok(categories);
-  }
-  ```
-  This method invokes `GetAll` on `_categoryService`, which is an instance of `ICategoryService`. The service is injected into the controller through constructor injection.
-
-### 2. **Application Layer (`Rally.Application`)**:
-- **Service Interface & Implementation**: The `ICategoryService` interface extends `IService<CategoryDto, Category>` and is implemented by `CategoryService`.
-  ```csharp:src/Rally.Application/Interfaces/ICategoryService.cs
-  public interface ICategoryService : IService<CategoryDto, Category>
-  {
-      Task<CategoryDto> GetCategoryWithSignBases(int categoryId);
-  }
-  ```
-  ```csharp:src/Rally.Application/Services/CategoryService.cs
-  public class CategoryService : Service<CategoryDto, Category>, ICategoryService
-  ```
-  - `CategoryService` inherits from `Service<TDto, TEntity>`, which implements the `GetAll` method. This method uses `_repository`, an instance of `IRepository<Category>`, to fetch all categories.
-  - The `GetAll` method in `Service.cs` maps entities to DTOs using AutoMapper, facilitated by `ObjectMapper`.
-
-### 3. **Infrastructure Layer (`Rally.Infrastructure`)**:
-- **Repository Interface & Implementation**: `ICategoryRepository` extends `IRepository<Category>`, providing an interface for category-specific data access operations.
-  ```csharp:src/Rally.Core/Repositories/ICategoryRepository.cs
-  public interface ICategoryRepository : IRepository<Category>
-  {
-      Task<Category> GetCategoryWithSignBasesAsync(int categoryId);
-  }
-  ```
-  - `CategoryRepository` implements `ICategoryRepository` and inherits from `Repository<Category>`, which implements `IRepository<Category>`.
-  - The `GetAllAsync` method in `Repository.cs` is used to fetch all categories from the database using Entity Framework Core.
-
-### 4. **Core Layer (`Rally.Core`)**:
-- **Entities**: `Category` is a domain entity representing a category in the system.
-  ```csharp:src/Rally.Core/Entities/Category.cs
-  public class Category : Entity
-  ```
-- **Base Classes and Specifications**: `Repository<T>` uses `BaseSpecification<T>` for query specifications. Although not directly used in `GetAllAsync`, specifications are a key part of the architecture for querying the database.
-
-### 5. **Database**:
-- The database interaction is managed by Entity Framework Core in `Repository<T>`, executing a query to retrieve all category records.
-
-### **Flow Summary:**
-1. A request is made to the `GetCategories` endpoint in `CategoryController`.
-2. `CategoryController` calls `GetAll` on `ICategoryService` (`CategoryService`).
-3. `CategoryService` calls `GetAllAsync` on `IRepository<Category>` (`CategoryRepository`).
-4. `CategoryRepository` uses EF Core to query the database and fetch all categories.
-5. The result is mapped from `Category` entities to `CategoryDto` objects using AutoMapper (`ObjectMapper` and `RallyDtoMapper`).
-6. The mapped `CategoryDto` objects are returned back up the call stack to the controller, which returns them to the client.
-
-end legend
 
 @enduml
