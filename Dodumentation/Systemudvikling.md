@@ -47,35 +47,37 @@ Validering i vores projekt fokuserede på at sikre, at det udviklede system mød
 
 # Spørgsmål 3a: Projektstyringsaktiviteter
 
-Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til prioritering, oprettelse af et Kanban board for visuel styring af arbejdsflowet, daglige standup-møder for at sikre teamets alignment og fremskridt, samt udvikling af prototyper for tidlig feedback og iteration. Disse aktiviteter var specifikke for vores valg af en agil procesmodel og understøttede en fleksibel, responsiv tilgang til projektstyring.
-
-**Positive påvirkninger:**
-
--   Forbedret kommunikation og samarbejde inden for teamet.
--   Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse.
-
-**Negative påvirkninger:**
-
--   Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
--   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
-
-#### Note:
-
-For yderligere forbedringer eller specifikke detaljer om projektet, anbefales det at gennemgå projektets dokumentation og mødereferater for at sikre, at alle oplysninger er korrekte og dækkende. Dette vil styrke opslagsværkets nøjagtighed og relevans.
-
 # Spørgsmål 3a: Projektstyringsaktiviteter
 
-Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til prioritering, oprettelse af et Kanban board for visuel styring af arbejdsflowet, daglige standup-møder for at sikre teamets alignment og fremskridt, samt udvikling af prototyper for tidlig feedback og iteration. Disse aktiviteter var specifikke for vores valg af en agil procesmodel og understøttede en fleksibel, responsiv tilgang til projektstyring.
+I starten af projektet var vi gode til at bruge mange af de værktøjer, der ligger i DSDM, som fx:
+- Kontinuerlig feedback
+- Fokus på forretningsbehov
+- Involvering af brugere og kunder
+- MoSCoW-reglerne
+
+MoSCoW-reglerne er specifikke til DSDM, og dette værktøj har vi fortsat med at bruge gennem hele projektet. Men ret hurtigt i projektets forløb gik vi mere over til XP (eXtreme Programming) procesmodellen, hvor vi benyttede os af følgende værktøjer:
+- Værdibaseret udvikling
+- Kontinuerlig integration
+- Refactoring
+- Collegialt samarbejde
+- Daily Stand-up
+- Pair Programming
+- Show and Tell
+
+Nogle af de specifikke værktøjer til denne procesmodel er "Refactoring" og "Show & Tell".
 
 **Positive påvirkninger:**
-
--   Forbedret kommunikation og samarbejde inden for teamet.
--   Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse.
+- Forbedret kommunikation og samarbejde inden for teamet.
+- Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse.
+- Højere kvalitet i produktudviklingen gennem tæt samarbejde og kontinuerlig diskussion af kode.
 
 **Negative påvirkninger:**
+- Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
+- Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
+- Møder tidligt på dagen kan forbruge tid, der ellers kunne være brugt produktivt, hvilket kan være en ulempe.
 
--   Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
--   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
+**Ulemper ved anvendte metoder:**
+- Anvendelsen af MoSCoW-reglerne kan resultere i et mindre funktionsdygtigt program, der leveres til tiden, frem for et fuldt funktionsdygtigt program, der måske leveres for sent.
 
 # Spørgsmål 3b: Effekten af projektstyringsværktøjer
 
@@ -223,11 +225,24 @@ For en dybere forståelse af, hvordan XP specifikt blev anvendt i vores projekt,
 
 I vores projekt benyttede vi forskellige designmønstre for at optimere både arkitektur og kodekvalitet. Blandt de anvendte mønstre var Singleton, Factory, og Observer. Singleton-mønstret blev anvendt til at sikre, at visse klasser kun havde én instans gennem hele applikationens livscyklus, hvilket var essentielt for at håndtere globale konfigurationer. Factory-mønstret hjalp os med at skabe objekter uden at specificere den præcise klasse af objekt, der skulle skabes, hvilket gav større fleksibilitet i kodebasen. Observer-mønstret blev brugt til at opbygge en effektiv kommunikation mellem objekter, hvor objekter kunne abonnere på og reagere på begivenheder i systemet.
 
-**Positive påvirkninger:**
+## Konceptuelle mønstre:
 
--   **Produktkvalitet:** Forbedret modularitet og genbrugelighed af kode, hvilket førte til et mere robust og vedligeholdelsesvenligt system.
--   **Proceseffektivitet:** Reduceret kobling og øget kohæsion mellem komponenter, hvilket gjorde det lettere at vedligeholde og udvide systemet.
+Vi har implementeret "Event-Driven Architecture" kombineret med "Asynchronous Communication". Dette mønster er særligt synligt i vores håndtering af realtidsopdateringer via SignalR, hvilket gør det muligt for systemet at køre på mange enheder samtidigt og opdatere alle enheder i realtid.
 
+## Designmønstre:
+
+- **Singleton Pattern:** Anvendt til at sikre, at visse klasser kun har én instans gennem hele applikationens livscyklus.
+- **Factory Pattern:** Brugt til at skabe objekter uden at specificere den præcise klasse af objekt, der vil blive skabt.
+- **Observer Pattern:** Implementeret for at tillade en subjekt at sende opdateringer til en række observere uden at gøre dem afhængige af hinanden.
+
+## Programmeringsmønstre:
+
+- **MVC (Model-View-Controller):** Dette mønster er anvendt til at adskille data og forretningslogik fra brugergrænsefladen, hvilket forbedrer modulariteten og vedligeholdelsen af kodebasen.
+- **Dependency Injection:** Anvendt for at reducere klassernes afhængigheder af hinanden, hvilket gør systemet lettere at teste og vedligeholde.
+- **Repository Pattern:** Anvendt i `Rally.Infrastructure` for at abstrahere dataadgangen, hvilket gør det lettere at udskifte datalagringsmekanismer uden at påvirke resten af applikationen.
+- **Interface Segregation:** Flittig brug af interfaces i `Rally.Application` for at sikre, at komponenter kun afhænger af de metoder, de faktisk bruger, hvilket fremmer løs kobling og lettere vedligeholdelse.
+
+Disse mønstre har været afgørende for at opretholde en ren, vedligeholdelsesvenlig og effektiv kodebase og har direkte påvirket systemets performance og brugervenlighed.
 **Negative påvirkninger:**
 
 -   **Kompleksitet:** Indførelsen af avancerede designmønstre kan øge systemets indlæringskurve for nye udviklere.
@@ -280,7 +295,11 @@ For yderligere detaljer om implementeringen af 'By Design' tilgangen i vores pro
 
 # Spørgsmål 11a: Arbejde med verificering i projektet
 
+# Spørgsmål 11a: Arbejde med verificering i projektet
+
 I vores projekt arbejdede vi intensivt med verificering for at sikre, at alle dele af systemet opfyldte de specificerede krav. Verificeringsprocessen omfattede flere teknikker såsom kodegennemgang, automatiserede tests og manuelle tests, der blev udført i forskellige faser af udviklingsprocessen. Vi lagde særlig vægt på automatiserede unit tests og integrationstests for at identificere og rette fejl tidligt i udviklingscyklussen.
+
+Vi har også verificeret flere artefakter ved at gå tilbage og kigge på tidligere projekter, slået op i Larman og haft vidensdeling med et andet team. Der hvor vi har brugt ny viden har vi researchet og hovedsageligt brugt det udleverede materiale til validering. Det har til tider helt sikkert hjulpet os at vi har haft tidligere projekter at kigge på, hvor ulempen her kan være, at man kommer til at læne sig for meget op af tidligere materiale og derfor måske ikke kommer op med den bedste nye løsning, hvis vi havde brainstormet mere på den givne problemstilling.
 
 **Positive påvirkninger:**
 
