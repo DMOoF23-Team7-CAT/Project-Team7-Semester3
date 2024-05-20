@@ -47,8 +47,6 @@ Validering i vores projekt fokuserede på at sikre, at det udviklede system mød
 
 # Spørgsmål 3a: Projektstyringsaktiviteter
 
-# Spørgsmål 3a: Projektstyringsaktiviteter
-
 I starten af projektet var vi gode til at bruge mange af de værktøjer, der ligger i DSDM, som fx:
 - Kontinuerlig feedback
 - Fokus på forretningsbehov
@@ -92,10 +90,6 @@ For at optimere vores projektstyring og interne kommunikation implementerede vi 
 
 -   Læringskurve og tilpasning til nye værktøjer kan være tidskrævende.
 -   Risiko for informations-overload eller distraktioner, især med værktøjer som Slack, der kan generere konstante notifikationer.
-
-#### Note:
-
-Det anbefales at fortsætte med at evaluere og tilpasse brugen af disse værktøjer for at maksimere deres effektivitet og minimere potentielle ulemper. Yderligere feedback fra teammedlemmer kan være nyttig for at forstå og forbedre den praktiske anvendelse af disse værktøjer i projektet.
 
 # Spørgsmål 4a: Kravafdækning og dokumentation
 
@@ -156,10 +150,6 @@ De tre primære cykliske procesmodeller, vi anvendte, var agile, iterative og in
 -   **Iterativ:** Muliggør dybere indsigt og raffinement af systemet, hvilket kan forbedre den overordnede designkvalitet og brugeroplevelse.
 -   **Inkrementel:** Fremmer risikostyring ved at tillade tidlig fejlfinding og løsning i individuelle moduler, hvilket kan forbedre den samlede systemstabilitet og funktionalitet.
 
-#### Note:
-
-For yderligere detaljer om anvendelsen af disse modeller i specifikke dele af projektet, kan det være nyttigt at gennemgå de specifikke projektplaner og udviklingslogs. Dette vil give en dybere forståelse af, hvordan disse modeller blev tilpasset til projektets unikke krav og udfordringer.
-
 # Spørgsmål 7a: Samspillet mellem procesmodel og systemudviklingsmetode
 
 Samspillet mellem vores valgte procesmodel, DSDM, og systemudviklingsmetoden har haft en afgørende indflydelse på den endelige udformning af vores system. DSDM, som er en agil metode, understøtter frekvente iterationer og aktiv brugerinvolvering, hvilket har sikret, at systemudviklingen var responsiv over for ændrede brugskrav og forretningsmål. Dette samspil har fremmet en kultur af samarbejde og tilpasning, som har været vital for projektets succes.
@@ -184,10 +174,6 @@ Testniveauerne i systemudvikling, herunder unit testing, integration testing, sy
 -   **Acceptance Testing:** Udføres ofte af slutbrugeren for at bekræfte, at systemet opfylder deres forventninger og behov.
 
 Disse testniveauer relaterer sig til projektstyring, kravspecifikation og design ved at sikre, at hvert trin i udviklingsprocessen er kvalitetssikret, hvilket minimerer risikoen for fejl og forbedrer det endelige produkts kvalitet.
-
-#### Note:
-
-For at forbedre forståelsen af, hvordan disse testniveauer specifikt blev anvendt i vores projekt, vil det være nyttigt at gennemgå testdokumentationen og mødereferater, hvor beslutninger om teststrategier blev diskuteret. Dette vil give en dybere indsigt i valget af testniveauer og deres implementering i projektet.
 
 # Spørgsmål 8a: Teststrategier og deres implementering
 
@@ -217,35 +203,30 @@ eXtreme Programming (XP) er en agil udviklingsmetode, der lægger vægt på tekn
 
 **Kvalitetssikring:** Ved konstant at evaluere og forbedre kodekvaliteten og produktets funktionalitet, sikrer XP, at produktet forbliver relevant og af høj kvalitet.
 
-#### Note:
-
-For en dybere forståelse af, hvordan XP specifikt blev anvendt i vores projekt, anbefales det at gennemgå udviklingslogs og kode-reviews, hvor beslutninger om anvendelsen af XP-praksisser blev dokumenteret. Dette vil give indsigt i, hvordan teknikkerne blev tilpasset til projektets unikke krav og udfordringer.
-
 # Spørgsmål 9a: Anvendelse af designmønstre i systemudvikling
 
-I vores projekt benyttede vi forskellige designmønstre for at optimere både arkitektur og kodekvalitet. Blandt de anvendte mønstre var Singleton, Factory, og Observer. Singleton-mønstret blev anvendt til at sikre, at visse klasser kun havde én instans gennem hele applikationens livscyklus, hvilket var essentielt for at håndtere globale konfigurationer. Factory-mønstret hjalp os med at skabe objekter uden at specificere den præcise klasse af objekt, der skulle skabes, hvilket gav større fleksibilitet i kodebasen. Observer-mønstret blev brugt til at opbygge en effektiv kommunikation mellem objekter, hvor objekter kunne abonnere på og reagere på begivenheder i systemet.
+I vores projekt benyttede vi forskellige designmønstre for at optimere både arkitektur og kodekvalitet. Blandt de anvendte mønstre var Singleton, Factory, og Observer. Vi implementerede også Clean Architecture, som spillede en central rolle i at strukturere vores projekt for at opnå vedligeholdelsesvenlighed og udvidbarhed.
 
 ## Konceptuelle mønstre:
 
-Vi har implementeret "Event-Driven Architecture" kombineret med "Asynchronous Communication". Dette mønster er særligt synligt i vores håndtering af realtidsopdateringer via SignalR, hvilket gør det muligt for systemet at køre på mange enheder samtidigt og opdatere alle enheder i realtid.
+**Clean Architecture:** Dette mønster blev anvendt for at sikre, at vores applikations forretningslogik var veldefineret og adskilt fra brugergrænseflader, databaser og andre eksterne rammer. Ved at følge Clean Architecture sikrede vi, at vores system var organiseret i lag, hvor afhængigheder kun pegede indad mod kernen. Dette gjorde det muligt for os at udskifte både databaser og brugergrænseflader uden at påvirke forretningslogikken, hvilket resulterede i en mere fleksibel og testbar kodebase.
 
 ## Designmønstre:
 
-- **Singleton Pattern:** Anvendt til at sikre, at visse klasser kun har én instans gennem hele applikationens livscyklus.
-- **Factory Pattern:** Brugt til at skabe objekter uden at specificere den præcise klasse af objekt, der vil blive skabt.
-- **Observer Pattern:** Implementeret for at tillade en subjekt at sende opdateringer til en række observere uden at gøre dem afhængige af hinanden.
+- **Repository Pattern:** Anvendt i `Rally.Infrastructure` for at abstrahere dataadgangen, hvilket gør det lettere at udskifte datalagringsmekanismer uden at påvirke resten af applikationen. Vi har implementeret Template Method mønsteret i vores repository base klasser for at standardisere og centralisere gentagne dataadgangsoperationer. Dette sikrer, at alle repositories følger en ensartet proces for CRUD-operationer, mens de specifikke detaljer for hver entitet håndteres i de afledte klasser.
+
 
 ## Programmeringsmønstre:
 
-- **MVC (Model-View-Controller):** Dette mønster er anvendt til at adskille data og forretningslogik fra brugergrænsefladen, hvilket forbedrer modulariteten og vedligeholdelsen af kodebasen.
 - **Dependency Injection:** Anvendt for at reducere klassernes afhængigheder af hinanden, hvilket gør systemet lettere at teste og vedligeholde.
 - **Repository Pattern:** Anvendt i `Rally.Infrastructure` for at abstrahere dataadgangen, hvilket gør det lettere at udskifte datalagringsmekanismer uden at påvirke resten af applikationen.
 - **Interface Segregation:** Flittig brug af interfaces i `Rally.Application` for at sikre, at komponenter kun afhænger af de metoder, de faktisk bruger, hvilket fremmer løs kobling og lettere vedligeholdelse.
 
 Disse mønstre har været afgørende for at opretholde en ren, vedligeholdelsesvenlig og effektiv kodebase og har direkte påvirket systemets performance og brugervenlighed.
+
 **Negative påvirkninger:**
 
--   **Kompleksitet:** Indførelsen af avancerede designmønstre kan øge systemets indlæringskurve for nye udviklere.
+-   **Kompleksitet:** Indførelsen af avancerede designmønstre, herunder Clean Architecture, kan øge systemets indlæringskurve for nye udviklere.
 -   **Overdesign:** Risiko for overanvendelse af mønstre, hvilket kan føre til unødvendig kompleksitet i systemet.
 
 # Spørgsmål 9b: Forskellige typer af vedligehold
@@ -256,10 +237,6 @@ Vedligehold af software er afgørende for at sikre langvarig funktionalitet og e
 
 -   **Systemstabilitet:** Regelmæssigt vedligehold sikrer, at systemet forbliver stabilt og funktionelt over tid.
 -   **Anvendelighed:** Tilpasninger og forbedringer baseret på brugerfeedback forbedrer brugeroplevelsen og systemets relevans.
-
-#### Note:
-
-For at få en mere detaljeret forståelse af, hvordan disse vedligeholdelsestyper blev implementeret i specifikke dele af projektet, kan det være nyttigt at gennemgå vedligeholdelseslogs og tekniske dokumenter. Dette vil give indsigt i de specifikke udfordringer og løsninger, der blev anvendt i forbindelse med vedligeholdelsen af systemet.
 
 # Spørgsmål 10a: Arbejde med validering i projektet
 
@@ -288,12 +265,6 @@ Konceptet 'By Design' i systemudvikling refererer til en tilgang, hvor kvalitet 
 
 -   **Initial omkostning:** Højere opstartsomkostninger og ressourceforbrug, da der kræves mere omfattende planlægning og analyse i de tidlige faser.
 -   **Fleksibilitetsbegrænsninger:** Stramme kvalitetskrav og tidlige designbeslutninger kan begrænse muligheden for at tilpasse produktet senere baseret på nye opdagelser eller ændrede brugerbehov.
-
-#### Note:
-
-For yderligere detaljer om implementeringen af 'By Design' tilgangen i vores projekt, kan det være nyttigt at gennemgå de indledende designspecifikationer og mødereferater, hvor kvalitetsmål og -standarder blev fastlagt. Dette vil give en dybere forståelse af, hvordan kvalitet blev integreret i alle faser af projektet.
-
-# Spørgsmål 11a: Arbejde med verificering i projektet
 
 # Spørgsmål 11a: Arbejde med verificering i projektet
 
@@ -325,10 +296,6 @@ Cutover under systemudrulning er den kritiske fase, hvor det nye system tages i 
 -   **Organisationens størrelse og struktur:** Større organisationer med flere afdelinger kan have brug for en mere gradvis udrulning for at sikre en glat overgang.
 -   **Risikotolerance:** Projekter med høj risiko kan kræve mere forsigtige tilgange som faseret eller pilot for at undgå omfattende forstyrrelser i forretningsoperationerne.
 
-#### Note:
-
-For en dybere forståelse af beslutningsprocessen bag valget af cutover-tilgang, anbefales det at gennemgå projektplanlægningsdokumenter og risikovurderinger. Disse dokumenter vil indeholde detaljerede overvejelser og rationale bag de valgte strategier.
-
 # Spørgsmål 12a: Arbejde med produktets arkitektur
 
 Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men endte med at bruge Clean Architecture. Dette valg var ikke kun en stor læringsoplevelse for os, men også afgørende for at systemet kunne udvides i fremtiden uden at skulle ændre mange fundamentale dele af systemet. Eksempelvis er infrastrukturlaget adskilt fra applikations- og core-lagene, hvilket gør det muligt at skifte databasen ud med en anden uden at skulle gennemgå hele koden og bekymre sig om, at ting ikke vil fungere.
@@ -351,10 +318,6 @@ Typer af test inkluderer unit testing, integration testing, system testing og ac
 
 -   **Agile modeller:** Testning er integreret i hver iteration, hvilket giver mulighed for løbende forbedring og tilpasning baseret på feedback. Dette sikrer en høj grad af fleksibilitet og hurtig respons på ændringer.
 -   **Vandfaldsmodeller:** Testning sker typisk efter at udviklingsfasen er afsluttet, hvilket kan føre til sen opdagelse af fejl. Dette kan resultere i omkostningstunge og tidskrævende rettelser, da ændringer skal implementeres i et allerede næsten færdigt system.
-
-#### Note:
-
-For yderligere detaljer om implementeringen af teststrategier og arkitekturvalg i vores projekt, kan det være nyttigt at gennemgå de tekniske dokumenter og testlogs. Dette vil give en dybere forståelse af, hvordan disse beslutninger blev truffet og implementeret gennem projektets forløb.
 
 # Spørgsmål 13a: Gennemførelse og planlægning af test i projektet
 
