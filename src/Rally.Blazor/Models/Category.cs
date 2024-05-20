@@ -8,7 +8,7 @@ public class Category
     public int Id
     {
         get => _id;
-        private set => _id = value;
+        set => _id = value;
     }
 
     [Required]
