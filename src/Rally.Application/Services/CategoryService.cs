@@ -78,8 +78,6 @@ namespace Rally.Application.Services
             if (oldCategory is null)
                 throw new NotFoundException($"Category with ID {id} could not be found.");
 
-            await ValidateIfExist(dto);
-
             var newCategory = ObjectMapper.Mapper.Map<Category>(dto);
 
             var validator = new CategoryValidator();
