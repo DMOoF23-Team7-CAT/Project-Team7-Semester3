@@ -1,0 +1,20 @@
+@page "/categories/details/{Id:int}"
+@inherits CategoryDetailsBase
+
+<div class="container mt-3">
+    @if (Category == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        
+        <div>
+        <h2>@Category.Name</h2>
+        <p>@Category.Rules</p>
+        <!-- Navigation links -->
+        <a href="@($"/categories/update/{Category.Id}")" class="btn btn-primary">Update Category</a>
+        <a href="@($"/categories/delete/{Category.Id}")" class="btn btn-danger">Delete Category</a>
+        </div>
+    }
+</div>

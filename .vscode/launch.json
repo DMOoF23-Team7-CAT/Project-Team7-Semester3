@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Rally All",
+            "configurations": ["Rally.Api", "Rally.Blazor"]
+        }
+    ],
+    "configurations": [
+		{
+			"name": "Rally.Api",
+			"type": "dotnet",
+			"request": "launch",
+			"projectPath": "${workspaceFolder}/src/Rally.Api/Rally.Api.csproj",
+		},
+        {
+            "name": "Rally.Blazor",
+            "type": "blazorwasm",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/Rally.Blazor",
+            "program": "${workspaceFolder}/src/Rally.Blazor/bin/Debug/net8.0/Rally.Blazor.dll",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "Now listening on: (https?://\\S+)"
+            }
+        }
+    ]
+}
+

@@ -1,0 +1,22 @@
+@page "/categories"
+@inherits CategoryListBase
+
+<div class="container mt-3">
+    <a href="/categories/create" class="btn btn-success mb-3">Create New Category</a>
+    @if (Categories == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="list-group">
+        @foreach (var category in Categories)
+            {
+                <a href="@($"/categories/details/{category.Id}")" class="list-group-item list-group-item-action">
+                    <h4 class="list-group-item-heading">@category.Name</h4>
+                    <p class="list-group-item-text">@category.Rules</p>
+                </a>
+            }
+        </div>
+    }
+</div>

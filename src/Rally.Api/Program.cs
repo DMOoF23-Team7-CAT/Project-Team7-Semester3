@@ -41,6 +41,18 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// Configure CORS to allow specific origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorOrigin",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5288") // Add other origins as needed
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
 
 // Register repositories
@@ -77,6 +89,8 @@ var app = builder.Build();
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IRallySeeder>();
 await seeder.SeedAsync();
+
+app.UseCors("AllowBlazorOrigin"); // Apply the CORS policy
 
 app.UseRouting();
 

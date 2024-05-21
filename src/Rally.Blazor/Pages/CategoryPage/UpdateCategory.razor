@@ -1,0 +1,33 @@
+@page "/categories/update/{Id:int}"
+@inherits UpdateCategoryBase
+
+<EditForm Model="Category" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="id">Id:</label>
+        <InputText id="id" class="form-control" @bind-Value="Category.IdAsString" />
+        <ValidationMessage For="() => Category.IdAsString" />
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="Category.Name" />
+        <ValidationMessage For="() => Category.Name" />
+    </div>
+    <div class="form-group">
+        <label for="rules">Rules:</label>
+        <InputTextArea id="rules" class="form-control" @bind-Value="Category.Rules" />
+        <ValidationMessage For="() => Category.Rules" />
+    </div>
+    <button type="submit" class="btn btn-success">Update Category</button>
+</EditForm>
+
+@if (UpdateStatusMessage != null)
+{
+    <div class="alert alert-info" role="alert">
+        @UpdateStatusMessage
+    </div>
+}
+
+

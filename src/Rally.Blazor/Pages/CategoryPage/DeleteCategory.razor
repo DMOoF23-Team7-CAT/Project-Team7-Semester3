@@ -1,0 +1,19 @@
+@page "/categories/delete/{Id:int}"
+@inherits DeleteCategoryBase
+
+<h3>Delete Category</h3>
+@if (Category != null)
+{
+    <div class="alert alert-danger" role="alert">
+        Are you sure you want to delete the category "@Category.Name"?
+        <button class="btn btn-danger" @onclick="DeleteCategory">Delete</button>
+        <a class="btn btn-secondary" href="/categories">Cancel</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Category not found.
+    </div>
+}
+
