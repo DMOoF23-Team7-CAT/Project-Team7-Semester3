@@ -3,6 +3,8 @@
 namespace Rally.Models {
     class User {
         + Id: string
+        + Email: string
+        + Password: string
         + Tracks: ICollection<Track>
     }
 
