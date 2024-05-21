@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.Track;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/tracks")]
     public class TrackController : ControllerBase
@@ -46,7 +48,7 @@ namespace Rally.Api.Controllers
             }
             catch (UnauthorizedAccessException e)
             {
-                return Unauthorized(e.Message);
+                return StatusCode(403, e.Message);
             }
             catch (Exception ex)
             {

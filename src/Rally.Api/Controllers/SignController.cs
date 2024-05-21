@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.Sign;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
+    [Authorize]
     [Route("api/Sign")]
     [ApiController]
     public class SignController : ControllerBase

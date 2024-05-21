@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.SignBase;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
+    [Authorize]
     [Route("api/signbase")]
     [ApiController]
     public class SignBaseController : ControllerBase
@@ -48,6 +50,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateSignBase([FromBody] SignBaseDto signBaseDto)
         {
             try
@@ -66,6 +69,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateSignBase(int id, [FromBody] SignBaseDto signBaseDto)
         {
             try
@@ -84,6 +88,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteSignBase(int id)
         {
             try

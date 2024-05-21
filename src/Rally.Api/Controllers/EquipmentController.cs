@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.Equipment;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/equipment")]
     public class EquipmentController : ControllerBase

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Interfaces;
-using Rally.Core.Entities.Account;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -16,7 +15,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("assign-user-role")]
-    [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> AssignUserRole(string userEmail, string roleName)
     {
         try
@@ -31,7 +30,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpDelete("unassign-user-role")]
-    [Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UnassignUserRole(string userEmail, string roleName)
     {
         try

@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.EquipmentBase;
 using Rally.Application.Interfaces;
 
 namespace Rally.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class EquipmentBaseController : ControllerBase
@@ -48,6 +50,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPost()]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateEquipmentBase([FromBody] EquipmentBaseDto equipmentBaseDto)
         {
             try

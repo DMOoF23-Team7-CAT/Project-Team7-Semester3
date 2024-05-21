@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rally.Application.Dto.Category;
 using Rally.Application.Interfaces;
-using Rally.Core.Entities.Account;
 
 namespace Rally.Api.Controllers
 {
+    // NOTE: Authorization removed for testing in blazor.
+    //[Authorize]
     [ApiController]
     [Route("api/categories")]
     public class CategoryController : ControllerBase
@@ -65,6 +66,7 @@ namespace Rally.Api.Controllers
             }
         }
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateCategory([FromBody] CategoryDto categoryDto)
         {
             try
@@ -83,6 +85,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDto categoryDto)
         {
             try
@@ -101,6 +104,7 @@ namespace Rally.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             try
