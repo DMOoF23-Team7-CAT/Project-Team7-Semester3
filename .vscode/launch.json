@@ -24,7 +24,7 @@
             },
             "serverReadyAction": {
                 "action": "openExternally",
-                "pattern": "Now listening on: (https?://\\S+)"
+                "pattern": "Now listening on: (http?://\\S+)"
             }
         }
     ]
