@@ -1,4 +1,4 @@
-# Spørgsmål 1a: Systemudviklingsmetode
+# Spørgsmål 1a: Beskriv kort den systemudviklingsmetode I har benyttet til jeres projekt. Kom herefter ind på hvordan I har anvendt den i praksis samt hvilke fordele og ulemper, der er ved metoden. 
 
 Vi implementerede Dynamic System Development Method (DSDM) i projektets indledende fase, hvilket understøttede en iterativ og inkrementel udviklingsproces. DSDM blev valgt for dens stærke fokus på brugerinvolvering og evne til at håndtere ændringer effektivt. Vi anvendte MoSCoW-reglen til at prioritere user stories, hvilket sikrede, at de mest kritiske funktioner blev udviklet først. Prototyping blev brugt som en del af vores risikostyringsstrategi, hvilket tillod os at validere design og funktionalitet tidligt i udviklingsprocessen.
 
@@ -12,7 +12,7 @@ Vi implementerede Dynamic System Development Method (DSDM) i projektets indleden
 -   Kan være ressourcekrævende, især i form af tid og kræfter fra brugerne.
 -   Kræver klare og veldefinerede processer for at undgå forvirring og ineffektivitet.
 
-# Spørgsmål 1b: Projektstyring
+# Spørgsmål 1b: Forklar hvad formålet med fokusområdet projektstyring er, og hvordan dette område kan påvirke kvalitet i produkt og proces.  
 
 Projektstyring i vores projekt havde til formål at sikre, at både systemudviklingsmetoden (DSDM) og den valgte procesmodel (inkrementel og iterativ) blev anvendt effektivt til at styre fremdrift og sikre høj produkt- og proceskvalitet. Dette område omfattede strategisk planlægning, ressourceallokering, risikostyring og løbende evaluering af projektets status.
 
@@ -21,7 +21,7 @@ Projektstyring i vores projekt havde til formål at sikre, at både systemudvikl
 -   **Positiv:** Effektiv projektstyring førte til bedre ressourceudnyttelse og tidsoverholdelse, hvilket direkte forbedrede produktkvaliteten og overholdelse af tidsfrister.
 -   **Negativ:** Udfordringer i projektstyringen, såsom underestimering af tidsforbrug for visse aktiviteter, kunne føre til forsinkelser og kompromittere den samlede kvalitet.
 
-# Spørgsmål 2a: Valg af procesmodel
+# Spørgsmål 2a: Beskriv hvordan I valgte jeres procesmodel til jeres projekt. Kom også ind på hvordan I har anvendt den og hvilke fordele og ulemper der var ved den valgte model  
 
 Valget af en cyklisk procesmodel blev dikteret af projektets høje grad af usikkerhed og tekniske kompleksitet. Denne model, understøttet af DSDM's princip om at bygge inkrementelt fra et solidt fundament, tillod os at tilpasse os nye opdagelser og ændringer i kravene effektivt. Vi implementerede MoSCoW-reglen for at prioritere opgaver, men fandt, at en skæv fordeling af ressourcer mellem backend og frontend udvikling skabte udfordringer.
 
@@ -35,7 +35,7 @@ Valget af en cyklisk procesmodel blev dikteret af projektets høje grad af usikk
 -   Risiko for ubalance i ressourceallokeringen, som observeret mellem frontend og backend udvikling.
 -   Potentiel underudnyttelse af visse projektområder på grund af skiftende prioriteter, hvilket kan føre til ufuldstændige eller forsinkede leverancer.
 
-# Spørgsmål 2b: Validering og verificering
+# Spørgsmål 2b: Forklar begreberne validering og verificering og beskriv deres sammenhæng til begreberne kvalitetssikring og sporbarhed 
 
 Validering i vores projekt fokuserede på at sikre, at det udviklede system mødte brugernes og andre interessenters behov og forventninger. Dette involverede løbende afstemning af systemets funktionaliteter med de oprindelige forretningsmål. Verificering omhandlede derimod den interne proces for at sikre, at hver del af systemet var korrekt implementeret i overensstemmelse med de specificerede krav. Begge processer var afgørende for at opretholde høj kvalitetssikring og sporbarhed, hvilket sikrede, at alle ændringer og tilføjelser blev dokumenteret og valideret.
 
@@ -45,7 +45,7 @@ Validering i vores projekt fokuserede på at sikre, at det udviklede system mød
 -   **Verificering:** Sikrer, at produktet er teknisk korrekt og fejlfrit gennem grundige tests og revisioner.
 -   **Sporbarhed:** Begge processer understøtter sporbarhed ved at dokumentere beslutninger og ændringer, hvilket gør det muligt at spore hver komponent tilbage til specifikke krav.
 
-# Spørgsmål 3a: Projektstyringsaktiviteter
+# Spørgsmål 3a: Forklar hvilke projektstyringsaktiviteter I har gennemført og hvordan? Er nogle af disse aktiviteter specifikke for den systemudviklingsmetode og procesmodel I har valgt? Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
 Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til prioritering, oprettelse af et Kanban board for visuel styring af arbejdsflowet, daglige standup-møder for at sikre teamets alignment og fremskridt, samt udvikling af prototyper for tidlig feedback og iteration. Disse aktiviteter var specifikke for vores valg af en agil procesmodel og understøttede en fleksibel, responsiv tilgang til projektstyring.
 
@@ -59,43 +59,26 @@ Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til pr
 -   Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
 -   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
 
-#### Note:
+# Spørgsmål 3b: Redegør for forskellige perspektiver man kan have i systemudvikling og hvordan det påvirker valget af systemudviklingsmetode.
 
-For yderligere forbedringer eller specifikke detaljer om projektet, anbefales det at gennemgå projektets dokumentation og mødereferater for at sikre, at alle oplysninger er korrekte og dækkende. Dette vil styrke opslagsværkets nøjagtighed og relevans.
+Forskellige perspektiver i systemudvikling, såsom forretningsorienteret, teknologi-fokuseret, brugercentreret, og procesdrevet, har direkte indflydelse på valget af systemudviklingsmetode. Disse perspektiver kan diktere, hvilke metoder der er mest effektive under forskellige omstændigheder:
 
-# Spørgsmål 3a: Projektstyringsaktiviteter
+-   **Forretningsorienteret perspektiv:** Fokuserer på at maksimere ROI og effektivitet i forretningsprocesser. Dette perspektiv kan favorisere agile metoder som Scrum eller Kanban, som kan tilpasse sig hurtigt til forretningsbehov og markedets ændringer.
 
-Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til prioritering, oprettelse af et Kanban board for visuel styring af arbejdsflowet, daglige standup-møder for at sikre teamets alignment og fremskridt, samt udvikling af prototyper for tidlig feedback og iteration. Disse aktiviteter var specifikke for vores valg af en agil procesmodel og understøttede en fleksibel, responsiv tilgang til projektstyring.
+-   **Teknologi-fokuseret perspektiv:** Prioriterer brugen af avancerede teknologier og arkitekturer. Metoder som DevOps eller Continuous Integration/Continuous Deployment (CI/CD) kan være foretrukne for at understøtte hurtig udvikling og implementering.
 
-**Positive påvirkninger:**
+-   **Brugercentreret perspektiv:** Sætter brugerens behov og oplevelser i centrum. Agile metoder som eXtreme Programming (XP) eller human-centered design tilgange kan anvendes for at sikre, at slutproduktet opfylder brugernes forventninger og forbedrer deres tilfredshed.
 
--   Forbedret kommunikation og samarbejde inden for teamet.
--   Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse.
+-   **Procesdrevet perspektiv:** Fokuserer på at optimere og standardisere udviklingsprocesser. Vandfaldsmodellen eller V-modellen kan anvendes i miljøer, hvor klare, lineære trin er nødvendige for at opfylde reguleringskrav eller hvor ændringer er kostbare.
 
-**Negative påvirkninger:**
+**Påvirkninger af valg af metode:**
 
--   Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
--   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
+-   Valget af systemudviklingsmetode baseret på disse perspektiver kan afgørende påvirke projektets succes, ved at sikre alignment mellem projektets mål og de anvendte metoder.
+-   En velovervejet tilgang, der tager højde for det dominerende perspektiv, kan forbedre både produkt- og proceskvalitet, mens et misaligneret valg kan føre til udfordringer og ineffektivitet.
 
-# Spørgsmål 3b: Effekten af projektstyringsværktøjer
+Disse overvejelser er afgørende for at vælge den mest passende systemudviklingsmetode, der kan håndtere specifikke projektbehov og stakeholder-forventninger.
 
-For at optimere vores projektstyring og interne kommunikation implementerede vi værktøjer som JIRA for opgavestyring, Slack for realtidskommunikation, og Microsoft Teams for videokonferencer og dokumentdeling. Disse værktøjer har været afgørende for at opretholde en strømlinet kommunikationsflow og effektiv håndtering af opgaver og deadlines.
-
-**Positive påvirkninger:**
-
--   Forbedret sporing og styring af opgaver og projektmilepæle.
--   Øget engagement og samarbejde blandt teammedlemmer, selv på tværs af geografiske lokationer.
-
-**Negative påvirkninger:**
-
--   Læringskurve og tilpasning til nye værktøjer kan være tidskrævende.
--   Risiko for informations-overload eller distraktioner, især med værktøjer som Slack, der kan generere konstante notifikationer.
-
-#### Note:
-
-Det anbefales at fortsætte med at evaluere og tilpasse brugen af disse værktøjer for at maksimere deres effektivitet og minimere potentielle ulemper. Yderligere feedback fra teammedlemmer kan være nyttig for at forstå og forbedre den praktiske anvendelse af disse værktøjer i projektet.
-
-# Spørgsmål 4a: Kravafdækning og dokumentation
+# Spørgsmål 4a: Beskriv hvordan I afdækkede og dokumenterede krav til jeres system. Forklar også hvilke forskellige typer af krav I havde og hvordan det påvirkede jeres perspektiv i systemudviklingen. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
 Kravene til vores system blev afdækket gennem en kombination af møder med stakeholders, workshops og dokumentanalyse. Vi identificerede både funktionelle og ikke-funktionelle krav, som blev klassificeret som essentielle, ønskede eller valgfrie baseret på MoSCoW-metoden. Dette sikrede en klar prioritering og forståelse af kravene, som blev dokumenteret i et dynamisk Kanban board og løbende opdateret.
 
@@ -104,7 +87,7 @@ Kravene til vores system blev afdækket gennem en kombination af møder med stak
 -   **Positiv:** Sikrede, at alle interessenters behov blev taget i betragtning, hvilket forbedrede produktkvaliteten og tilfredsheden.
 -   **Negativ:** Kompleksiteten og den dynamiske natur af kravene kunne føre til forsinkelser og forvirring, især hvis ikke alle ændringer blev kommunikeret effektivt.
 
-# Spørgsmål 4b: Sammenligning af KanBan, SCRUM og Gantt
+# Spørgsmål 4b: Beskriv, forklar og sammenlign KanBan, SCRUM og Gantt. Kom herunder ind på sammenhængen til procesmodeller.
 
 KanBan er en visuel metode til styring af arbejdsflow, der fokuserer på kontinuerlig levering uden faste tidsintervaller, hvilket gør den ideel til projekter, der kræver fleksibilitet og løbende prioritering. SCRUM er en agil metode, der anvender faste sprints til at levere dele af projektet i faste tidsrammer, hvilket er velegnet til projekter med klare korte mål. Gantt-diagrammer er planlægningsværktøjer, der viser projektets tidsplan og afhængigheder mellem aktiviteter, ideelt til traditionelle vandfaldsprojekter med faste sekvenser og tidsrammer.
 
@@ -116,7 +99,7 @@ KanBan er en visuel metode til styring af arbejdsflow, der fokuserer på kontinu
 
 Disse værktøjer og metoder bidrager til en mere struktureret og effektiv projektstyring ved at tilbyde forskellige tilgange, der kan tilpasses projektets specifikke behov og omstændigheder.
 
-# Spørgsmål 5a: Low Level Design
+# Spørgsmål 5a: Beskriv hvordan I arbejdede med Low level design. Hvilke teknikker og værktøjer brugte I? Hvorfor? Kom herunder ind på fordele og ulemper ved de valgte værktøjer og eventuelle alternativer. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
 Vi anvendte UML-diagrammer som teknikker til lavniveau-design og værktøjer som Lucidchart eller Enterprise Architect. Dette gjorde komplekse opgaver mere håndterbare og gav en klar visualisering af systemets struktur og relationer. Fordelene inkluderede bedre kommunikation og mindre risiko for misforståelser. Ulemper kunne omfatte kompleksiteten af store og detaljerede diagrammer, men da vi havde valgt at fokusere på kun at bruge mest nødvendige diagrammer som DCD, blev dette undgået.
 
@@ -125,7 +108,7 @@ Vi anvendte UML-diagrammer som teknikker til lavniveau-design og værktøjer som
 -   **Positiv:** Forbedret forståelse og kommunikation af systemets arkitektur blandt teammedlemmer.
 -   **Negativ:** Potentiel tidsforbrug på at opdatere diagrammer, når ændringer i designet opstår.
 
-# Spørgsmål 5b: Vandfaldsmodellen og dens varianter
+# Spørgsmål 5b: Forklar vandfaldsmodellen samt forskellige varianter af modellen og hvornår de med fordel kan benyttes. Kom også ind på hvad man bør være opmærksom på, når man vælger systemudviklingsmetode, og man benytter en lineær procesmodel.
 
 Vandfaldsmodellen er en lineær og sekventiel tilgang til systemudvikling, hvor hvert trin afhænger af fuldførelsen af det foregående. Nogle varianter inkluderer den modificerede vandfaldsmodel og V-modellen. Vandfaldsmodellen kan være passende for små projekter med klare og uændrede krav. Ulempen er, at det kan være stift og svært at tilpasse, især når kravene ændres. Ved valg af vandfaldsmodellen skal man være opmærksom på risikoen for at opdage fejl sent i processen og manglende fleksibilitet til at håndtere ændringer.
 
@@ -135,7 +118,7 @@ Vandfaldsmodellen er en lineær og sekventiel tilgang til systemudvikling, hvor 
 -   **Risiko for sen fejlopdagelse:** På grund af den sekventielle natur er der risiko for, at fejl først opdages i testfasen, hvilket kan være dyrt at rette.
 -   **Mangel på fleksibilitet:** Ikke velegnet til projekter, hvor kravene kan ændre sig løbende.
 
-# Spørgsmål 6a: High Level Design (HLD)
+# Spørgsmål 6a: Beskriv hvordan I arbejdede med High level design. Hvilke teknikker og værktøjer brugte I? Hvorfor? Kom herunder ind på fordele og ulemper ved de valgte værktøjer og eventuelle alternativer. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
 I projektets opstartsfasen fokuserede vi intensivt på High Level Design (HLD) for at skabe et solidt fundament for vores systemudvikling. Dette involverede udarbejdelsen af Business Model Canvas (BMC), en omfattende domænemodel, og detaljerede wireframes. Disse værktøjer blev valgt for deres evne til hurtigt at formidle en dyb forståelse af virksomhedens behov og den overordnede systemarkitektur. BMC tilbød en strategisk oversigt over forretningsaspekter, mens domænemodellen hjalp med at definere systemets nøgleentiteter og deres relationer. Wireframes fungerede som visuelle repræsentationer af brugergrænsefladen, hvilket gjorde det muligt for teamet at visualisere og diskutere systemets layout og brugerinteraktioner tidligt i designprocessen.
 
@@ -144,7 +127,7 @@ I projektets opstartsfasen fokuserede vi intensivt på High Level Design (HLD) f
 -   **Positiv:** Fremmede en klar og fælles forståelse af projektets mål og krav blandt alle teammedlemmer, hvilket styrkede samarbejdet og effektiviteten.
 -   **Negativ:** Risiko for at overse vigtige detaljer i de tidlige faser, som kunne have betydning senere i projektet, især hvis ikke alle aspekter af BMC og domænemodellen blev fuldt ud integreret i den videre systemudvikling.
 
-# Spørgsmål 6b: Agile, Iterative og Inkrementelle Procesmodeller
+# Spørgsmål 6b: Forklar forskellen på den agile, den iterative og den inkrementelle procesmodel og hvornår de hver især med fordel kan benyttes. Beskriv hvordan disse cykliske procesmodeller påvirker valget af systemudviklingsmetode. 
 
 De tre primære cykliske procesmodeller, vi anvendte, var agile, iterative og inkrementelle modeller, hver med deres distinkte tilgang og fordele afhængigt af projektets krav og dynamik. Den agile model er fremtrædende for sin fleksibilitet og evne til hurtigt at tilpasse sig ændringer, hvilket gør den ideel til projekter med høj usikkerhed og skiftende krav. Den iterative model fokuserer på at forbedre og finjustere systemet gennem gentagne cyklusser, hvilket er særligt værdifuldt i komplekse projekter, hvor ikke alle krav kan defineres op forhånd. Den inkrementelle model bygger systemet i moduler, hvilket tillader delvis levering og testning, og er derfor velegnet til store projekter, der kan segmenteres i funktionelt uafhængige enheder.
 
@@ -154,11 +137,7 @@ De tre primære cykliske procesmodeller, vi anvendte, var agile, iterative og in
 -   **Iterativ:** Muliggør dybere indsigt og raffinement af systemet, hvilket kan forbedre den overordnede designkvalitet og brugeroplevelse.
 -   **Inkrementel:** Fremmer risikostyring ved at tillade tidlig fejlfinding og løsning i individuelle moduler, hvilket kan forbedre den samlede systemstabilitet og funktionalitet.
 
-#### Note:
-
-For yderligere detaljer om anvendelsen af disse modeller i specifikke dele af projektet, kan det være nyttigt at gennemgå de specifikke projektplaner og udviklingslogs. Dette vil give en dybere forståelse af, hvordan disse modeller blev tilpasset til projektets unikke krav og udfordringer.
-
-# Spørgsmål 7a: Samspillet mellem procesmodel og systemudviklingsmetode
+# Spørgsmål 7a: Forklar hvordan samspillet mellem jeres procesmodel og systemudviklingsmetode påvirkede den endelige udformning af jeres system. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
 Samspillet mellem vores valgte procesmodel, DSDM, og systemudviklingsmetoden har haft en afgørende indflydelse på den endelige udformning af vores system. DSDM, som er en agil metode, understøtter frekvente iterationer og aktiv brugerinvolvering, hvilket har sikret, at systemudviklingen var responsiv over for ændrede brugskrav og forretningsmål. Dette samspil har fremmet en kultur af samarbejde og tilpasning, som har været vital for projektets succes.
 
@@ -172,7 +151,7 @@ Samspillet mellem vores valgte procesmodel, DSDM, og systemudviklingsmetoden har
 -   **Ressourceforbrug:** Den høje grad af fleksibilitet kan føre til ressourceintensive iterationer, som kan være en udfordring i ressourcebegrænsede projekter.
 -   **Scope Creep:** Uden stram styring kan den iterative natur af DSDM føre til scope creep, hvor projektets omfang udvides uden tilsvarende ressourcetilpasninger.
 
-# Spørgsmål 7b: Testniveauer og fokusområder
+# Spørgsmål 7b: beskriv sammenhængen mellem begrebet testniveauer og de forskellige fokusområder? 
 
 Testniveauerne i systemudvikling, herunder unit testing, integration testing, system testing og acceptance testing, spiller en kritisk rolle i kvalitetssikringen af softwareprodukter. Hvert testniveau adresserer forskellige aspekter af systemet, hvilket sikrer en omfattende evaluering af softwarens funktionalitet og performance.
 
@@ -183,11 +162,7 @@ Testniveauerne i systemudvikling, herunder unit testing, integration testing, sy
 
 Disse testniveauer relaterer sig til projektstyring, kravspecifikation og design ved at sikre, at hvert trin i udviklingsprocessen er kvalitetssikret, hvilket minimerer risikoen for fejl og forbedrer det endelige produkts kvalitet.
 
-#### Note:
-
-For at forbedre forståelsen af, hvordan disse testniveauer specifikt blev anvendt i vores projekt, vil det være nyttigt at gennemgå testdokumentationen og mødereferater, hvor beslutninger om teststrategier blev diskuteret. Dette vil give en dybere indsigt i valget af testniveauer og deres implementering i projektet.
-
-# Spørgsmål 8a: Teststrategier og deres implementering
+# Spørgsmål 8a: Beskriv hvilke test I har udført i jeres projekt. På hvilke niveauer testede I? Hvad blev ikke testet. Forklar jeres valg af test og reflektér over konsekvenserne. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
 I vores projekt implementerede vi en række teststrategier for at sikre kvaliteten af det udviklede system. Vi begyndte med at skrive unit tests og integrationstests relativt sent i projektforløbet. Disse tests er eksempler på Whitebox testing, hvor vi har adgang til og kendskab til den interne struktur af systemet.
 
@@ -203,7 +178,7 @@ Vi oplevede udfordringer med at opretholde hyppige møder med Product Owner (PO)
 -   **Kvalitet i produkt:** Manglende tidlig og løbende testing kan have begrænset vores evne til at identificere og rette fejl tidligt i udviklingsprocessen.
 -   **Proceseffektivitet:** Utilstrækkelig kommunikation med PO kunne have ført til misforståelser og fejl i forståelsen af kravene.
 
-# Spørgsmål 8b: eXtreme Programming (XP)
+# Spørgsmål 8b: Beskriv én af følgende systemudviklingsmetoder: Crystal Methods, eXtreme Programming, Dynamic System Development method, Feature Driven Development, Adaptive Software Development. Hvilke værktøjer benyttes og hvordan dækkes de forskellige fokusområder?
 
 eXtreme Programming (XP) er en agil udviklingsmetode, der lægger vægt på teknisk ekspertise, teamarbejde, og kundesamarbejde. XP anvender flere kerneværktøjer og teknikker såsom parprogrammering, testdrevet udvikling (TDD), kontinuerlig integration, og refaktorering. Disse praksisser understøtter en cyklisk og iterativ udviklingsproces, hvor krav og løsninger udvikles gennem samarbejde mellem selvorganiserende tværfunktionelle teams.
 
@@ -215,11 +190,7 @@ eXtreme Programming (XP) er en agil udviklingsmetode, der lægger vægt på tekn
 
 **Kvalitetssikring:** Ved konstant at evaluere og forbedre kodekvaliteten og produktets funktionalitet, sikrer XP, at produktet forbliver relevant og af høj kvalitet.
 
-#### Note:
-
-For en dybere forståelse af, hvordan XP specifikt blev anvendt i vores projekt, anbefales det at gennemgå udviklingslogs og kode-reviews, hvor beslutninger om anvendelsen af XP-praksisser blev dokumenteret. Dette vil give indsigt i, hvordan teknikkerne blev tilpasset til projektets unikke krav og udfordringer.
-
-# Spørgsmål 9a: Anvendelse af designmønstre i systemudvikling
+# Spørgsmål 9a: Beskriv hvilke mønstre I har benyttet i jeres systemudvikling og forklar fordele og ulemper ved at benytte disse mønstre. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces. Kom eventuelt ind på alternativer. 
 
 I vores projekt benyttede vi forskellige designmønstre for at optimere både arkitektur og kodekvalitet. Blandt de anvendte mønstre var Singleton, Factory, og Observer. Singleton-mønstret blev anvendt til at sikre, at visse klasser kun havde én instans gennem hele applikationens livscyklus, hvilket var essentielt for at håndtere globale konfigurationer. Factory-mønstret hjalp os med at skabe objekter uden at specificere den præcise klasse af objekt, der skulle skabes, hvilket gav større fleksibilitet i kodebasen. Observer-mønstret blev brugt til at opbygge en effektiv kommunikation mellem objekter, hvor objekter kunne abonnere på og reagere på begivenheder i systemet.
 
@@ -233,7 +204,7 @@ I vores projekt benyttede vi forskellige designmønstre for at optimere både ar
 -   **Kompleksitet:** Indførelsen af avancerede designmønstre kan øge systemets indlæringskurve for nye udviklere.
 -   **Overdesign:** Risiko for overanvendelse af mønstre, hvilket kan føre til unødvendig kompleksitet i systemet.
 
-# Spørgsmål 9b: Forskellige typer af vedligehold
+# Spørgsmål 9b: Beskriv forskellige typer af vedligehold. Forklar hvordan de kan håndteres i forhold til de forskellige procesmodeller.
 
 Vedligehold af software er afgørende for at sikre langvarig funktionalitet og effektivitet. I vores projekt anvendte vi fire primære typer af vedligehold: korrektivt, adaptivt, perfektivt og forebyggende. Korrektivt vedligehold involverede rettelser af fejl, der blev opdaget efter systemets udrulning. Adaptivt vedligehold fokuserede på at tilpasse systemet til ændringer i dets driftsmiljø, såsom opdateringer af operativsystemer eller hardware. Perfektivt vedligehold omhandlede forbedringer af systemets funktionalitet og brugeroplevelse baseret på brugerfeedback. Forebyggende vedligehold blev anvendt til at omstrukturere eller optimere kode for at forhindre fremtidige problemer.
 
@@ -242,11 +213,7 @@ Vedligehold af software er afgørende for at sikre langvarig funktionalitet og e
 -   **Systemstabilitet:** Regelmæssigt vedligehold sikrer, at systemet forbliver stabilt og funktionelt over tid.
 -   **Anvendelighed:** Tilpasninger og forbedringer baseret på brugerfeedback forbedrer brugeroplevelsen og systemets relevans.
 
-#### Note:
-
-For at få en mere detaljeret forståelse af, hvordan disse vedligeholdelsestyper blev implementeret i specifikke dele af projektet, kan det være nyttigt at gennemgå vedligeholdelseslogs og tekniske dokumenter. Dette vil give indsigt i de specifikke udfordringer og løsninger, der blev anvendt i forbindelse med vedligeholdelsen af systemet.
-
-# Spørgsmål 10a: Arbejde med validering i projektet
+# Spørgsmål 10a: Beskriv hvordan I arbejdede med validering i jeres projekt og hvordan det påvirkede udformningen af jeres endelige produkt. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces 
 
 Validering spillede en central rolle i vores projekt for at sikre, at det endelige produkt opfyldte brugernes behov og forventninger. Vi implementerede en omfattende valideringsproces, der omfattede både interne reviews og brugertests. Interne reviews blev udført af projektteamet for at vurdere, om systemets komponenter opfyldte de tekniske specifikationer og forretningskrav. Brugertests involverede slutbrugere, der testede systemet i realistiske scenarier for at identificere eventuelle mangler i brugeroplevelsen og funktionaliteten.
 
@@ -260,7 +227,7 @@ Validering spillede en central rolle i vores projekt for at sikre, at det endeli
 -   **Ressourceforbrug:** Omfattende valideringsaktiviteter krævede betydelige ressourcer, både i form af tid og personale.
 -   **Projektforsinkelser:** Omfattende valideringsprocesser kan potentielt forsinke projektets tidsplan, især hvis der opdages større problemer, der kræver betydelige ændringer.
 
-# Spørgsmål 10b: By Design i systemudvikling
+# Spørgsmål 10b: Forklar hvad der forstås ved by design og hvordan det påvirker systemudviklingen, både i forhold til proces og produkt. 
 
 Konceptet 'By Design' i systemudvikling refererer til en tilgang, hvor kvalitet og funktionalitet integreres i produktet fra projektets start. Dette indebærer en grundig planlægning og designfase, hvor kvalitetssikring er en integreret del af udviklingsprocessen, snarere end noget der kun overvejes under testfasen. I vores projekt implementerede vi 'By Design' ved at etablere klare kvalitetsmål og -standarder fra begyndelsen og sikre, at alle designbeslutninger understøttede disse mål.
 
@@ -274,11 +241,7 @@ Konceptet 'By Design' i systemudvikling refererer til en tilgang, hvor kvalitet 
 -   **Initial omkostning:** Højere opstartsomkostninger og ressourceforbrug, da der kræves mere omfattende planlægning og analyse i de tidlige faser.
 -   **Fleksibilitetsbegrænsninger:** Stramme kvalitetskrav og tidlige designbeslutninger kan begrænse muligheden for at tilpasse produktet senere baseret på nye opdagelser eller ændrede brugerbehov.
 
-#### Note:
-
-For yderligere detaljer om implementeringen af 'By Design' tilgangen i vores projekt, kan det være nyttigt at gennemgå de indledende designspecifikationer og mødereferater, hvor kvalitetsmål og -standarder blev fastlagt. Dette vil give en dybere forståelse af, hvordan kvalitet blev integreret i alle faser af projektet.
-
-# Spørgsmål 11a: Arbejde med verificering i projektet
+# Spørgsmål 11a: Beskriv hvordan I arbejdede med verificering i jeres projekt og hvordan det påvirkede udformningen af jeres endelige produkt. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces 
 
 I vores projekt arbejdede vi intensivt med verificering for at sikre, at alle dele af systemet opfyldte de specificerede krav. Verificeringsprocessen omfattede flere teknikker såsom kodegennemgang, automatiserede tests og manuelle tests, der blev udført i forskellige faser af udviklingsprocessen. Vi lagde særlig vægt på automatiserede unit tests og integrationstests for at identificere og rette fejl tidligt i udviklingscyklussen.
 
@@ -292,7 +255,7 @@ I vores projekt arbejdede vi intensivt med verificering for at sikre, at alle de
 -   **Tidsforbrug:** Omfattende verificeringsaktiviteter krævede betydelig tid, hvilket kunne påvirke den overordnede projektplanlægning.
 -   **Ressourceallokering:** Stor del af teamets ressourcer blev allokeret til verificeringsopgaver, hvilket til tider begrænsede progressionen i andre områder af projektet.
 
-# Spørgsmål 11b: Forskellige tilgange til cutover under systemudrulningen
+# Spørgsmål 11b: Beskriv de forskellige tilgange man kan have til cutover under systemudrulningen. Forklar i hvilke situationer du ville bruge hvilken tilgang og hvorfor.  
 
 Cutover under systemudrulning er den kritiske fase, hvor det nye system tages i brug, og det gamle system udfases. Vi overvejede forskellige tilgange til cutover baseret på projektets risikoprofil og forretningsbehov. De primære tilgange vi overvejede inkluderede:
 
@@ -306,11 +269,7 @@ Cutover under systemudrulning er den kritiske fase, hvor det nye system tages i 
 -   **Organisationens størrelse og struktur:** Større organisationer med flere afdelinger kan have brug for en mere gradvis udrulning for at sikre en glat overgang.
 -   **Risikotolerance:** Projekter med høj risiko kan kræve mere forsigtige tilgange som faseret eller pilot for at undgå omfattende forstyrrelser i forretningsoperationerne.
 
-#### Note:
-
-For en dybere forståelse af beslutningsprocessen bag valget af cutover-tilgang, anbefales det at gennemgå projektplanlægningsdokumenter og risikovurderinger. Disse dokumenter vil indeholde detaljerede overvejelser og rationale bag de valgte strategier.
-
-# Spørgsmål 12a: Arbejde med produktets arkitektur
+# Spørgsmål 12a:  Beskriv hvordan I har arbejdet med produktets arkitektur, hvordan I har dokumenteret det og hvilken betydning dette har haft for produktets kvalitet.
 
 Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men endte med at bruge Clean Architecture. Dette valg var ikke kun en stor læringsoplevelse for os, men også afgørende for at systemet kunne udvides i fremtiden uden at skulle ændre mange fundamentale dele af systemet. Eksempelvis er infrastrukturlaget adskilt fra applikations- og core-lagene, hvilket gør det muligt at skifte databasen ud med en anden uden at skulle gennemgå hele koden og bekymre sig om, at ting ikke vil fungere.
 
@@ -324,7 +283,7 @@ Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men
 -   **Kompleksitet:** Introduktionen af en lagdelt arkitektur kan øge kompleksiteten og indlæringskurven for nye udviklere.
 -   **Initial omkostning:** Tid og ressourcer krævet for at etablere en sådan arkitektur kan være betydelig, især i de tidlige faser af projektet.
 
-# Spørgsmål 12b: Forskellige typer af test og testniveauer
+# Spørgsmål 12b:  Beskriv forskellige typer af test og testniveauer samt hvornår, hvordan og hvorfor disse anvendes. Derudover skal du redegøre for væsentlige forskelle i test ved agile og vandfaldsmodeller   
 
 Typer af test inkluderer unit testing, integration testing, system testing og acceptance testing. Unit testing kontrollerer individuelle komponenter for at sikre, at de fungerer korrekt isoleret. Integration testing tester samspillet mellem komponenter for at identificere fejl i deres interaktioner. System testing evaluerer hele systemets funktionalitet for at sikre, at det opfylder de specificerede krav. Acceptance testing udføres typisk af slutbrugere og sikrer, at systemet opfylder deres behov og forventninger.
 
@@ -333,11 +292,7 @@ Typer af test inkluderer unit testing, integration testing, system testing og ac
 -   **Agile modeller:** Testning er integreret i hver iteration, hvilket giver mulighed for løbende forbedring og tilpasning baseret på feedback. Dette sikrer en høj grad af fleksibilitet og hurtig respons på ændringer.
 -   **Vandfaldsmodeller:** Testning sker typisk efter at udviklingsfasen er afsluttet, hvilket kan føre til sen opdagelse af fejl. Dette kan resultere i omkostningstunge og tidskrævende rettelser, da ændringer skal implementeres i et allerede næsten færdigt system.
 
-#### Note:
-
-For yderligere detaljer om implementeringen af teststrategier og arkitekturvalg i vores projekt, kan det være nyttigt at gennemgå de tekniske dokumenter og testlogs. Dette vil give en dybere forståelse af, hvordan disse beslutninger blev truffet og implementeret gennem projektets forløb.
-
-# Spørgsmål 13a: Gennemførelse og planlægning af test i projektet
+# Spørgsmål 13a: Forklar hvordan I har gennemført og planlagt test af jeres produkt samt hvilken plads i projektets proces dette har haft. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces  
 
 Test var integreret fra starten af projektet og blev tænkt ind i valget af vores systemudviklingsmetode, DSDM, hvis fjerde princip er "Never Compromise Quality". For at sikre kvalitet anbefaler DSDM at teste tidligt, teste kontinuerligt og teste til det rette niveau. Vi inkorporerede disse teknikker i vores cykliske iterationer. I projektets startfase anvendte vi flere forskellige prototyper og afprøvede forskellige opsætninger for at overholde DSDM's femte princip og skabe et solidt fundament, som vi kunne bygge videre på. Senere i projektet udførte vi både integrationstests og unittests for at sikre kvaliteten på de individuelle niveauer i applikationen. Vi anvendte også et Kanban-board med en kolonne for "Review" før opgaver blev markeret som "Done". Dette sikrede, at alle opgaver, store som små, blev gennemgået af et andet teammedlem, hvilket sikrede sporbarhed gennem projektet.
 
@@ -351,7 +306,7 @@ Test var integreret fra starten af projektet og blev tænkt ind i valget af vore
 -   **Ressourceforbrug:** Omfattende testaktiviteter krævede betydelige ressourcer i form af tid og personale.
 -   **Projektforsinkelser:** Selvom tidlig og kontinuerlig testning kan forebygge større fejl senere, kan det også forsinke projektets tidsplan, især i de tidlige faser.
 
-# Spørgsmål 13b: Sammenhængen mellem metode, teknik og værktøj
+# Spørgsmål 13b: Forklar sammenhængen mellem metode, teknik og værktøj. Kom også ind på, hvad en systemudviklingsmetode bør fokusere på. 
 
 Sammenhængen mellem metode, teknik og værktøj er afgørende i systemudvikling. En systemudviklingsmetode definerer den overordnede tilgang til, hvordan et projekt planlægges, udføres og styres. Denne metode inkluderer valg af specifikke teknikker og værktøjer, der skal anvendes under projektets udførelse. Teknikker refererer til konkrete metoder eller fremgangsmåder, såsom teststrategier og kodningspraksis, der anvendes til at opnå mål inden for projektet. Værktøjer er de softwareapplikationer eller systemer, der anvendes til at implementere teknikkerne og understøtte processen, såsom versionskontrolsystemer og fejlsporingssystemer.
 
