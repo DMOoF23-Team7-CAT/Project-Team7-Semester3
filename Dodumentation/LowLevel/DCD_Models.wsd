@@ -1,4 +1,4 @@
-@startuml Design Class Diagram for models
+@startuml Low level Class Diagram for models
 
 namespace Rally.Models {
     class User {

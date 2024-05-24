@@ -1,4 +1,4 @@
-@startuml Sequence Diagram GetAllCategories
+@startuml Low level Sequence Diagram GetAllCategories
 
 actor Client
 participant "CategoryController : API Layer" as Controller
@@ -22,3 +22,4 @@ Service --> Controller : CategoryDto[] (Error Handling Included)
 Controller --> Client : HTTP Response
 
 @enduml
+

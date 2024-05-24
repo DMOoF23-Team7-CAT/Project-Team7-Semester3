@@ -1,4 +1,4 @@
-@startuml Objektmodel for Rally Modeller
+@startuml Højt Niveau Objektmodel for Rally Modeller
 
 object Bruger1 {
     + email
