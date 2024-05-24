@@ -2,6 +2,15 @@
 
 Rally projektet er en flerlagsapplikation designet til at håndtere flere brugere med forskellige adgangs privilegier. Projektet anvender Clean Architecture, som opdeler ansvarsområder i adskilte lag, hver med specifikke funktioner. Denne struktur forbedrer skalerbarhed, vedligeholdelse og muliggør evolution af applikationen over tid med minimal indvirkning på eksisterende kode. UI er sat op med Blazor Webassembly der henter data fra API'en.
 
+### Dokumentation
+
+- [Use Cases](/Dodumentation/HighLevel/UseCases.md)
+- [Objektmodel](/Dodumentation/HighLevel/OM_Models.png)
+- [Højt Niveau Klasse Diagram](/Dodumentation/HighLevel/CD_Models.png)
+- [Lavt Niveau Klasse Diagram](/Dodumentation/LowLevel/DCD_Models.png)
+- [Sequence Diagram](/Dodumentation/LowLevel/SD_GetCategories.png)
+- [Ordliste](/Dodumentation/HighLevel/Ordliste_Glossary.md)
+
 ### Opstarts Vejledning
 
 - **Visual Studio Code**: Har sin egen [launch.json](/.vscode/launch.json) fil, der er konfigureret til at starte API og Web projektet. Kør "Rally All" i debuggerren for at starte applicationen.
@@ -65,6 +74,18 @@ Blazor projektet integrerer med `Rally.Api` ved at forbruge de endpoints, der er
 
 - **Blazor WebAssembly**: Gør det muligt for .NET kode at køre i browseren ved hjælp af WebAssembly.
 - **Bootstrap og CSS**: Anvendes til at style applikationen og sikre en moderne og tilgængelig brugergrænseflade.
+
+### Mangler
+
+**Blazor**: Har ikke implementeret Identity og logind da det blot er sat op som Proof of Consept, for at vise hvordan Api'en kan blive consumed.
+
+**Rally.Api**: Har ikke implementeret Authorization i [CategoryController](/src/Rally.Api/Controllers/CategoryController.cs#1%2C1-1%2C1). for at kunne bruge dets endpoints i blazor. 
+Authorization er udkommenteret og der er tilføjet kommentar for klarhed.
+
+**Rally.Application**: Har custom exceptions men er ikke implementeret correct igennem hele applicationene og der er gentagende exceptions nogle steder, hvilket kan ses når der bliver vist den samme exception to gange i UI.
+
+**Rally.Infrastructure**: 
+
 
 
 
