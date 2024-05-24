@@ -75,7 +75,7 @@ Blazor projektet integrerer med `Rally.Api` ved at forbruge de endpoints, der er
 - **Blazor WebAssembly**: Gør det muligt for .NET kode at køre i browseren ved hjælp af WebAssembly.
 - **Bootstrap og CSS**: Anvendes til at style applikationen og sikre en moderne og tilgængelig brugergrænseflade.
 
-### Mangler
+### Mangler og Noteringer
 
 **Blazor**: Har ikke implementeret Identity og logind da det blot er sat op som Proof of Consept, for at vise hvordan Api'en kan blive consumed.
 
@@ -86,6 +86,11 @@ Authorization er udkommenteret og der er tilføjet kommentar for klarhed.
 
 **Rally.Infrastructure**: 
 
+**Testing**: 
+
+**Logging**: Mangler gennem hele applicationen og er et stort sikkerhedsproblem. Det går ind under OWASP top 10 A10:2021 – Insufficient Logging & Monitoring. Logging blev udeladt tidligt i projektet for simplificering men blev overset og ikke implementeret senere.
+
+**Documentation**: 
 
 
 
