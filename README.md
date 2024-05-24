@@ -4,6 +4,7 @@ Rally projektet er en flerlagsapplikation designet til at håndtere flere bruger
 
 ### Dokumentation
 
+- [BMC for DcH](/Dodumentation/HighLevel/BMC_DCH.png)
 - [Use Cases](/Dodumentation/HighLevel/UseCases.md)
 - [Objektmodel](/Dodumentation/HighLevel/OM_Models.png)
 - [Højt Niveau Klasse Diagram](/Dodumentation/HighLevel/CD_Models.png)
