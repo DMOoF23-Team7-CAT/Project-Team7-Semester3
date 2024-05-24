@@ -14,6 +14,8 @@ Vi implementerede Dynamic System Development Method (DSDM) i projektets indleden
 
 # Spørgsmål 1b: Forklar hvad formålet med fokusområdet projektstyring er, og hvordan dette område kan påvirke kvalitet i produkt og proces.  
 
+Formålet med projektstyring er at organisere og lede arbejdet for at opfylde projektets mål og leverancer. Projektstyring påvirker kvaliteten i produkt og proces ved at sikre, at ressourcer er korrekt allokeret, tidsplaner overholdes, og risici identificeres og håndteres. En effektiv projektstyring kan føre til bedre kommunikation, mere nøjagtige estimater og en struktureret tilgang, der hjælper med at minimere fejl og forbedre overordnet produktkvalitet.
+
 Projektstyring i vores projekt havde til formål at sikre, at både systemudviklingsmetoden (DSDM) og den valgte procesmodel (inkrementel og iterativ) blev anvendt effektivt til at styre fremdrift og sikre høj produkt- og proceskvalitet. Dette område omfattede strategisk planlægning, ressourceallokering, risikostyring og løbende evaluering af projektets status.
 
 **Påvirkninger af kvalitet:**
@@ -36,6 +38,8 @@ Valget af en cyklisk procesmodel blev dikteret af projektets høje grad af usikk
 -   Potentiel underudnyttelse af visse projektområder på grund af skiftende prioriteter, hvilket kan føre til ufuldstændige eller forsinkede leverancer.
 
 # Spørgsmål 2b: Forklar begreberne validering og verificering og beskriv deres sammenhæng til begreberne kvalitetssikring og sporbarhed 
+
+Validering sikrer, at systemet opfylder brugerens krav, mens verificering kontrollerer, om systemet er korrekt implementeret i overensstemmelse med specifikationerne. Kvalitetssikring omfatter aktiviteter, der sikrer, at processen og produktet opfylder specifikationerne. Sporbarhed sikrer, at kravene er knyttet til de tilsvarende design- og testelementer. Validering og verificering er nøgleroller i kvalitetssikringsprocessen og bidrager til at opretholde sporbarhed gennem hele systemudviklingscyklussen.
 
 Validering i vores projekt fokuserede på at sikre, at det udviklede system mødte brugernes og andre interessenters behov og forventninger. Dette involverede løbende afstemning af systemets funktionaliteter med de oprindelige forretningsmål. Verificering omhandlede derimod den interne proces for at sikre, at hver del af systemet var korrekt implementeret i overensstemmelse med de specificerede krav. Begge processer var afgørende for at opretholde høj kvalitetssikring og sporbarhed, hvilket sikrede, at alle ændringer og tilføjelser blev dokumenteret og valideret.
 
@@ -60,6 +64,8 @@ Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til pr
 -   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
 
 # Spørgsmål 3b: Redegør for forskellige perspektiver man kan have i systemudvikling og hvordan det påvirker valget af systemudviklingsmetode.
+
+Forskellige perspektiver inkluderer forretningsmæssige, tekniske og brugercentrerede synspunkter. Forretningsmæssige perspektiver fokuserer på projektets økonomi og mål. Tekniske perspektiver ser på systemets kompleksitet og teknologiske krav. Brugercentrerede perspektiver prioriterer brugeroplevelsen. Valg af systemudviklingsmetode afhænger af, hvilket perspektiv der er mest kritisk for projektet. Agile metoder som Scrum kan være velegnede for brugercentrerede projekter, mens mere traditionelle metoder kan være bedre for teknisk komplekse projekter.
 
 Forskellige perspektiver i systemudvikling, såsom forretningsorienteret, teknologi-fokuseret, brugercentreret, og procesdrevet, har direkte indflydelse på valget af systemudviklingsmetode. Disse perspektiver kan diktere, hvilke metoder der er mest effektive under forskellige omstændigheder:
 
@@ -128,6 +134,8 @@ I projektets opstartsfasen fokuserede vi intensivt på High Level Design (HLD) f
 -   **Negativ:** Risiko for at overse vigtige detaljer i de tidlige faser, som kunne have betydning senere i projektet, især hvis ikke alle aspekter af BMC og domænemodellen blev fuldt ud integreret i den videre systemudvikling.
 
 # Spørgsmål 6b: Forklar forskellen på den agile, den iterative og den inkrementelle procesmodel og hvornår de hver især med fordel kan benyttes. Beskriv hvordan disse cykliske procesmodeller påvirker valget af systemudviklingsmetode. 
+
+Den agile model fokuserer på hurtig tilpasning til ændringer, den iterative model gentager processen for at forbedre resultater, og den inkrementelle model bygger gradvist systemet. Agile passer til projekter med skiftende krav og behov for hurtig feedback. Iterativ er egnet til komplekse projekter, hvor design og krav kan ændres over tid. Inkrementel er velegnet til store projekter med moduler, der kan udvikles separat. Valg af systemudviklingsmetode afhænger af, hvilken cyklisk procesmodel der bedst passer til projektets karakteristika.
 
 De tre primære cykliske procesmodeller, vi anvendte, var agile, iterative og inkrementelle modeller, hver med deres distinkte tilgang og fordele afhængigt af projektets krav og dynamik. Den agile model er fremtrædende for sin fleksibilitet og evne til hurtigt at tilpasse sig ændringer, hvilket gør den ideel til projekter med høj usikkerhed og skiftende krav. Den iterative model fokuserer på at forbedre og finjustere systemet gennem gentagne cyklusser, hvilket er særligt værdifuldt i komplekse projekter, hvor ikke alle krav kan defineres op forhånd. Den inkrementelle model bygger systemet i moduler, hvilket tillader delvis levering og testning, og er derfor velegnet til store projekter, der kan segmenteres i funktionelt uafhængige enheder.
 
@@ -206,6 +214,8 @@ I vores projekt benyttede vi forskellige designmønstre for at optimere både ar
 
 # Spørgsmål 9b: Beskriv forskellige typer af vedligehold. Forklar hvordan de kan håndteres i forhold til de forskellige procesmodeller.
 
+Typer af vedligehold inkluderer korrektivt, forebyggende, tilpasning og perfektionering. Korrektivt vedligehold retter fejl, forebyggende handler om at forhindre fejl, tilpasning håndterer ændringer i krav, og perfektionering fokuserer på at forbedre systemet. Vedligehold kan håndteres forskelligt afhængigt af procesmodellen. Agile metoder tillader lettere tilpasning, mens mere lineære modeller som vandfald kræver en mere struktureret tilgang. 
+
 Vedligehold af software er afgørende for at sikre langvarig funktionalitet og effektivitet. I vores projekt anvendte vi fire primære typer af vedligehold: korrektivt, adaptivt, perfektivt og forebyggende. Korrektivt vedligehold involverede rettelser af fejl, der blev opdaget efter systemets udrulning. Adaptivt vedligehold fokuserede på at tilpasse systemet til ændringer i dets driftsmiljø, såsom opdateringer af operativsystemer eller hardware. Perfektivt vedligehold omhandlede forbedringer af systemets funktionalitet og brugeroplevelse baseret på brugerfeedback. Forebyggende vedligehold blev anvendt til at omstrukturere eller optimere kode for at forhindre fremtidige problemer.
 
 **Påvirkninger af kvalitet:**
@@ -227,7 +237,7 @@ Validering spillede en central rolle i vores projekt for at sikre, at det endeli
 -   **Ressourceforbrug:** Omfattende valideringsaktiviteter krævede betydelige ressourcer, både i form af tid og personale.
 -   **Projektforsinkelser:** Omfattende valideringsprocesser kan potentielt forsinke projektets tidsplan, især hvis der opdages større problemer, der kræver betydelige ændringer.
 
-# Spørgsmål 10b: Forklar hvad der forstås ved by design og hvordan det påvirker systemudviklingen, både i forhold til proces og produkt. 
+# Spørgsmål 10b: Forklar hvad der forstås ved by design og hvordan det påvirker systemudviklingen, både i forhold til proces og produkt.
 
 Konceptet 'By Design' i systemudvikling refererer til en tilgang, hvor kvalitet og funktionalitet integreres i produktet fra projektets start. Dette indebærer en grundig planlægning og designfase, hvor kvalitetssikring er en integreret del af udviklingsprocessen, snarere end noget der kun overvejes under testfasen. I vores projekt implementerede vi 'By Design' ved at etablere klare kvalitetsmål og -standarder fra begyndelsen og sikre, at alle designbeslutninger understøttede disse mål.
 
@@ -257,7 +267,7 @@ I vores projekt arbejdede vi intensivt med verificering for at sikre, at alle de
 
 # Spørgsmål 11b: Beskriv de forskellige tilgange man kan have til cutover under systemudrulningen. Forklar i hvilke situationer du ville bruge hvilken tilgang og hvorfor.  
 
-Cutover under systemudrulning er den kritiske fase, hvor det nye system tages i brug, og det gamle system udfases. Vi overvejede forskellige tilgange til cutover baseret på projektets risikoprofil og forretningsbehov. De primære tilgange vi overvejede inkluderede:
+Cutover under systemudrulning refererer til overgangen fra den gamle til den nye løsning. Big Bang-tilgangen indebærer, at hele systemet skifter på én gang. Faseret tilgang gennemfører udrulningen gradvist i mindre dele. Pilottilgang tester systemet i en begrænset gruppe før fuld udrulning. Valg af tilgang afhænger af projektets kompleksitet, risici og brugernes accept af forandring. Big Bang er mere risikofyldt, men kan være hurtigere, mens faseret og pilottilgang er mere kontrollerede og kan mindske risici. 
 
 -   **Big Bang:** Hele systemet blev implementeret på én gang. Denne tilgang blev valgt for mindre systemkomponenter med lav risiko.
 -   **Faseret:** Udrulningen blev opdelt i faser, hvor hver fase omfattede specifikke dele af systemet. Dette var ideelt for større og mere komplekse systemdele.
@@ -269,7 +279,7 @@ Cutover under systemudrulning er den kritiske fase, hvor det nye system tages i 
 -   **Organisationens størrelse og struktur:** Større organisationer med flere afdelinger kan have brug for en mere gradvis udrulning for at sikre en glat overgang.
 -   **Risikotolerance:** Projekter med høj risiko kan kræve mere forsigtige tilgange som faseret eller pilot for at undgå omfattende forstyrrelser i forretningsoperationerne.
 
-# Spørgsmål 12a:  Beskriv hvordan I har arbejdet med produktets arkitektur, hvordan I har dokumenteret det og hvilken betydning dette har haft for produktets kvalitet.
+# Spørgsmål 12a: Beskriv hvordan I har arbejdet med produktets arkitektur, hvordan I har dokumenteret det og hvilken betydning dette har haft for produktets kvalitet.
 
 Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men endte med at bruge Clean Architecture. Dette valg var ikke kun en stor læringsoplevelse for os, men også afgørende for at systemet kunne udvides i fremtiden uden at skulle ændre mange fundamentale dele af systemet. Eksempelvis er infrastrukturlaget adskilt fra applikations- og core-lagene, hvilket gør det muligt at skifte databasen ud med en anden uden at skulle gennemgå hele koden og bekymre sig om, at ting ikke vil fungere.
 
@@ -283,7 +293,7 @@ Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men
 -   **Kompleksitet:** Introduktionen af en lagdelt arkitektur kan øge kompleksiteten og indlæringskurven for nye udviklere.
 -   **Initial omkostning:** Tid og ressourcer krævet for at etablere en sådan arkitektur kan være betydelig, især i de tidlige faser af projektet.
 
-# Spørgsmål 12b:  Beskriv forskellige typer af test og testniveauer samt hvornår, hvordan og hvorfor disse anvendes. Derudover skal du redegøre for væsentlige forskelle i test ved agile og vandfaldsmodeller   
+# Spørgsmål 12b: Beskriv forskellige typer af test og testniveauer samt hvornår, hvordan og hvorfor disse anvendes. Derudover skal du redegøre for væsentlige forskelle i test ved agile og vandfaldsmodeller
 
 Typer af test inkluderer unit testing, integration testing, system testing og acceptance testing. Unit testing kontrollerer individuelle komponenter for at sikre, at de fungerer korrekt isoleret. Integration testing tester samspillet mellem komponenter for at identificere fejl i deres interaktioner. System testing evaluerer hele systemets funktionalitet for at sikre, at det opfylder de specificerede krav. Acceptance testing udføres typisk af slutbrugere og sikrer, at systemet opfylder deres behov og forventninger.
 
@@ -292,7 +302,7 @@ Typer af test inkluderer unit testing, integration testing, system testing og ac
 -   **Agile modeller:** Testning er integreret i hver iteration, hvilket giver mulighed for løbende forbedring og tilpasning baseret på feedback. Dette sikrer en høj grad af fleksibilitet og hurtig respons på ændringer.
 -   **Vandfaldsmodeller:** Testning sker typisk efter at udviklingsfasen er afsluttet, hvilket kan føre til sen opdagelse af fejl. Dette kan resultere i omkostningstunge og tidskrævende rettelser, da ændringer skal implementeres i et allerede næsten færdigt system.
 
-# Spørgsmål 13a: Forklar hvordan I har gennemført og planlagt test af jeres produkt samt hvilken plads i projektets proces dette har haft. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces  
+# Spørgsmål 13a: Forklar hvordan I har gennemført og planlagt test af jeres produkt samt hvilken plads i projektets proces dette har haft. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces
 
 Test var integreret fra starten af projektet og blev tænkt ind i valget af vores systemudviklingsmetode, DSDM, hvis fjerde princip er "Never Compromise Quality". For at sikre kvalitet anbefaler DSDM at teste tidligt, teste kontinuerligt og teste til det rette niveau. Vi inkorporerede disse teknikker i vores cykliske iterationer. I projektets startfase anvendte vi flere forskellige prototyper og afprøvede forskellige opsætninger for at overholde DSDM's femte princip og skabe et solidt fundament, som vi kunne bygge videre på. Senere i projektet udførte vi både integrationstests og unittests for at sikre kvaliteten på de individuelle niveauer i applikationen. Vi anvendte også et Kanban-board med en kolonne for "Review" før opgaver blev markeret som "Done". Dette sikrede, at alle opgaver, store som små, blev gennemgået af et andet teammedlem, hvilket sikrede sporbarhed gennem projektet.
 
