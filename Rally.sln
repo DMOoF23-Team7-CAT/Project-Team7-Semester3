@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Test", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Blazor", "src\Rally.Blazor\Rally.Blazor.csproj", "{F2D435E7-765E-4CCE-990F-9C8F3DB13962}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.Core.Test", "test\Rally.Core.Test\Rally.Core.Test.csproj", "{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,11 +54,14 @@ Global
 		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{908511E5-BA5C-43A2-B2EE-BFB325176536}.Release|Any CPU.Build.0 = Release|Any CPU
-
 		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2D435E7-765E-4CCE-990F-9C8F3DB13962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +74,7 @@ Global
 		{CAD3A487-6F84-4719-9C9D-5376104EA47E} = {CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}
 		{908511E5-BA5C-43A2-B2EE-BFB325176536} = {CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}
 		{F2D435E7-765E-4CCE-990F-9C8F3DB13962} = {0136DF10-C10E-4EBA-B770-F3420ABAE5BA}
+		{CF1B0C79-3B2F-4484-92F4-14ABB8FA8066} = {CD9CDCBA-F1A0-4A06-9B63-C5A9ED78DE0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DA25906-1F78-462E-A8A3-4BBAC92DC036}
