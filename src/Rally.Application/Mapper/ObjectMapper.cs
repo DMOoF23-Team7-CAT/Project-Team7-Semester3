@@ -2,8 +2,6 @@
 
 namespace Rally.Application.Mapper
 {
-    //FIXME - Delete this comment 
-    // The best implementation of AutoMapper for class libraries -> https://www.abhith.net/blog/using-automapper-in-a-net-core-class-library/
     public static class ObjectMapper
     {
         private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() =>

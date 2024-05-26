@@ -27,26 +27,5 @@ public class CategoryWithSignBasesDtoShould
 
         Assert.Empty(sut.Rules);
     }
-
-    // [Fact]
-    // public void HaveIdByDefault()
-    // {
-    //     CategoryWithSignBasesDto sut = new CategoryWithSignBasesDto();
-
-    //     Assert.NotEqual(0, sut.Id);
-    // }
-
-
-    // // TODO - Denne test fejler nu, men bør ikke fejle hvis/når intup validering bliver lavet.
-    // [Fact]
-    // public void NotContainSpecialCharacters()
-    // {
-    //     var sut = new CategoryWithSignBasesDto();
-
-    //     var invalidName = "!/Bane?";
-
-    //     var exception = Assert.Throws<ArgumentException>(() => sut.Name = invalidName);
-    //     Assert.Contains("Name cannot contain '!' or '?' characters.", exception.Message);
-    // }
 }
 
