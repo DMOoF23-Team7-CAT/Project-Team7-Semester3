@@ -72,11 +72,11 @@ namespace Rally.Application.Services
             await _categoryRepository.DeleteAsync(category);
         }
 
-        public async Task Update(CategoryDto dto, int id)
+        public async Task Update(CategoryDto dto)
         {
-            var oldCategory = await _categoryRepository.GetByIdAsync(id);
+            var oldCategory = await _categoryRepository.GetByIdAsync(dto.Id);
             if (oldCategory is null)
-                throw new NotFoundException($"Category with ID {id} could not be found.");
+                throw new NotFoundException($"Category with ID {dto.Id} could not be found.");
 
             var newCategory = ObjectMapper.Mapper.Map<Category>(dto);
 

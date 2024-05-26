@@ -84,13 +84,13 @@ namespace Rally.Api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut()]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryDto categoryDto)
+        public async Task<IActionResult> UpdateCategory([FromBody] CategoryDto categoryDto)
         {
             try
             {
-                await _categoryService.Update(categoryDto, id);
+                await _categoryService.Update(categoryDto);
                 return NoContent();
             }
             catch (FluentValidation.ValidationException ex)

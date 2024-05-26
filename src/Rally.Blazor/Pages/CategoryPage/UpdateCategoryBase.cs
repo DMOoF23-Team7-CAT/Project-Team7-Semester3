@@ -9,6 +9,8 @@ public class UpdateCategoryBase : ComponentBase
 {
     [Inject]
     public ICategoryService? CategoryService { get; set; }
+    [Inject]
+    public NavigationManager? NavigationManager { get; set; }
 
     [Parameter]
     public int Id { get; set; }
@@ -26,12 +28,17 @@ public class UpdateCategoryBase : ComponentBase
     {
         try
         {
-            await CategoryService!.Update(Category, Category.Id);
+            await CategoryService!.Update(Category);
             UpdateStatusMessage = "Category updated successfully!";
+            StateHasChanged();
+
+            await Task.Delay(1000);
+            NavigationManager!.NavigateTo("/categories");
         }
         catch (Exception ex)
         {
             UpdateStatusMessage = $"Error updating category: {ex.Message}";
+            StateHasChanged();
         }
     }
 }

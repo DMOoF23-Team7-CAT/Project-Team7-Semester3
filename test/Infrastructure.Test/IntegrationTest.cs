@@ -29,7 +29,6 @@ namespace Infrastructure.Test
             {
                 signBases.Should().NotBeNullOrEmpty();
                 signBases.Should().BeOfType<List<SignBase>>();                
-                //signBases.Should().HaveCount(2);
             }
             
             

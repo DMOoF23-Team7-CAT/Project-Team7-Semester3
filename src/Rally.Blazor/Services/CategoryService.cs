@@ -109,11 +109,11 @@ public class CategoryService : ICategoryService
         }
     }
 
-    public async Task Update(Category dto, int id)
+    public async Task Update(Category dto)
     {
         try
         {
-            var response = await _httpClient.PutAsJsonAsync($"api/categories/{id}", dto);
+            var response = await _httpClient.PutAsJsonAsync($"api/categories", dto);
             if (!response.IsSuccessStatusCode)
             {
                 throw new HttpRequestException($"Failed to update category: {response.StatusCode}");
