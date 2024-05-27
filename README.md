@@ -76,22 +76,32 @@ Blazor projektet integrerer med `Rally.Api` ved at forbruge de endpoints, der er
 - **Blazor WebAssembly**: Gør det muligt for .NET kode at køre i browseren ved hjælp af WebAssembly.
 - **Bootstrap og CSS**: Anvendes til at style applikationen og sikre en moderne og tilgængelig brugergrænseflade.
 
+### Sikkerhed
+
+- **Input Validering**: Er implementeret i Blazor projektet med DataAnnotations for at sikre at brugeren får vist fejllene i real-time.
+
+- **Data Validation**: Er implementeret med FluentValidation i Applikations laget som en del af forretningslogikken. Valideringen bliver kaldt i Controllerne for at sikre at data er korrekt valgt.
+
+- **Access Control**: Er implementeret i API'et som en del af sikkerhedsforberedelsen. Access Control er sat op gennem Identity Server og er konfigureret til at kunne bruge API'et.
+
+- **Error Handling**: Håndterer og reagerer på fejl i applikationen på en måde, der forhindrer nedbrud og sikrer, at brugeren får en forståelig fejlmeddelelse. Rally projektet har implementeret grundlæggende fejlhåndtering, men mangler stadig en fuldstændig og konsistent implementering på tværs af alle lag.
+
 ### Mangler og Noteringer
 
-**Blazor**: Har ikke implementeret Identity og logind da det blot er sat op som Proof of Consept, for at vise hvordan Api'en kan blive consumed.
+- **Blazor**: Har ikke implementeret Identity og logind da det blot er sat op som Proof of Consept, for at vise hvordan Api'en kan blive consumed.
 
-**Rally.Api**: Har ikke implementeret Authorization i [CategoryController](/src/Rally.Api/Controllers/CategoryController.cs#1%2C1-1%2C1). for at kunne bruge dets endpoints i blazor. 
+- **Rally.Api**: Har ikke implementeret Authorization i [CategoryController](/src/Rally.Api/Controllers/CategoryController.cs#1%2C1-1%2C1). for at kunne bruge dets endpoints i blazor. 
 Authorization er udkommenteret og der er tilføjet kommentar for klarhed.
 
-**Rally.Application**: Har custom exceptions men er ikke implementeret correct igennem hele applicationene og der er gentagende exceptions nogle steder, hvilket kan ses når der bliver vist den samme exception to gange i UI.
+- **Rally.Application**: Har custom exceptions men er ikke implementeret correct igennem hele applicationene og der er gentagende exceptions nogle steder, hvilket kan ses når der bliver vist den samme exception to gange i UI.
 
-**Rally.Infrastructure**: 
+- **Rally.Infrastructure**: 
 
-**Testing**: 
+- **Testing**: 
 
-**Logging**: Mangler gennem hele applicationen og er et stort sikkerhedsproblem. Det går ind under OWASP top 10 A10:2021 – Insufficient Logging & Monitoring. Logging blev udeladt tidligt i projektet for simplificering men blev overset og ikke implementeret senere.
+- **Logging**: Mangler gennem hele applicationen og er et stort sikkerhedsproblem. Det går ind under OWASP top 10 A10:2021 – Insufficient Logging & Monitoring. Logging blev udeladt tidligt i projektet for simplificering men blev overset og ikke implementeret senere.
 
-**Documentation**: 
+- **Documentation**: 
 
 
 
