@@ -38,10 +38,9 @@ Rally projektet er en flerlagsapplikation designet til at håndtere flere bruger
 
 - **AutoMapper**: Faciliterer objektmapping mellem domæneenheder og DTO'er (Data Transfer Objects), hvilket reducerer mængden af boilerplate kode nødvendig for at transformere data mellem lagene.
 
-- **Entity Framework Core**: Leverer ORM-understøttelse, som forenkler dataadgang og manipulation gennem LINQ-forespørgsler og stærkt typede modeller.
+- **Entity Framework Core**: Leverer ORM-understøttelse, som forenkler dataadgang og manipulation gennem LINQ-forespørgsler og stærkt typede modeller. 
 
-- **Fluent Validation**: Anvendes til at implementere valideringslogik på en deklarativ måde. Det giver mulighed for at definere valideringsregler for domænemodeller på en klar og konsis måde. Fluent Validation er brugt i 'Rally.Application' laget, hvor det fx er implementeret i [CategoryValidator.cs](/src/Rally.Application/Validators/CategoryValidator.cs#1%2C1-1%2C1).
-
+- **Fluent Validation**: Anvendes til at implementere valideringslogik på en deklarativ måde. Det giver mulighed for at definere valideringsregler for domænemodeller på en klar og konsis måde. Fluent Validation er brugt i 'Rally.Application' laget, hvor det fx er implementeret i [CategoryValidator.cs](/src/Rally.Application/Validators/CategoryValidator.cs#1%2C1-1%2C1). 
 
 ### Blazor Projektet
 
@@ -95,13 +94,8 @@ Authorization er udkommenteret og der er tilføjet kommentar for klarhed.
 
 - **Rally.Application**: Har custom exceptions men er ikke implementeret correct igennem hele applicationene og der er gentagende exceptions nogle steder, hvilket kan ses når der bliver vist den samme exception to gange i UI.
 
-- **Rally.Infrastructure**: 
-
-- **Testing**: 
-
 - **Logging**: Mangler gennem hele applicationen og er et stort sikkerhedsproblem. Det går ind under OWASP top 10 A10:2021 – Insufficient Logging & Monitoring. Logging blev udeladt tidligt i projektet for simplificering men blev overset og ikke implementeret senere.
 
-- **Documentation**: 
 
 
 
