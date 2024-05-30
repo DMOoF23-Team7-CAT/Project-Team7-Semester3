@@ -312,22 +312,115 @@ Disse værktøjer og metoder tilbyder forskellige tilgange til projektstyring, d
 
 # Spørgsmål 5a: Beskriv hvordan I arbejdede med Low level design. Hvilke teknikker og værktøjer brugte I? Hvorfor? Kom herunder ind på fordele og ulemper ved de valgte værktøjer og eventuelle alternativer. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
-Vi anvendte UML-diagrammer som teknikker til lavniveau-design og værktøjer som Lucidchart eller Enterprise Architect. Dette gjorde komplekse opgaver mere håndterbare og gav en klar visualisering af systemets struktur og relationer. Fordelene inkluderede bedre kommunikation og mindre risiko for misforståelser. Ulemper kunne omfatte kompleksiteten af store og detaljerede diagrammer, men da vi havde valgt at fokusere på kun at bruge mest nødvendige diagrammer som DCD, blev dette undgået.
+### Arbejde med Low Level Design
 
-**Påvirkninger af kvalitet:**
+Ved arbejdet med low level design fokuserede vi på detaljeret specifikation og design af systemets komponenter og deres interaktioner. Dette inkluderede specifikation af klasser, objekter, metoder, data flow og afhængigheder mellem komponenterne.
 
--   **Positiv:** Forbedret forståelse og kommunikation af systemets arkitektur blandt teammedlemmer.
--   **Negativ:** Potentiel tidsforbrug på at opdatere diagrammer, når ændringer i designet opstår.
+### Teknikker og Værktøjer
+
+#### UML-Diagrammer
+Vi brugte Unified Modeling Language (UML) diagrammer som primær teknik til at skabe en visuel repræsentation af systemets struktur og adfærd. Specifikke diagrammer inkluderede:
+
+- **Class Diagrams (DCD):** Bruges til at vise klasser, deres attributter, metoder og relationer mellem dem.
+- **Sequence Diagrams:** Anvendes til at illustrere interaktionen mellem objekter i en specifik tidssekvens.
+- **Activity Diagrams:** Viser arbejdsflowet i systemet, herunder beslutninger og parallelle processer.
+
+#### Værktøjer
+Vi brugte **PlantUML** til at oprette diagrammer i Visual Studio Code (VSCode). PlantUML er et tekstbaseret UML værktøj, der gør det muligt at generere diagrammer fra simple tekstbeskrivelser.
+
+- **PlantUML i VSCode:**
+  - **Integration:** Ved at bruge PlantUML-udvidelsen i VSCode kunne vi nemt skrive UML-kode og generere diagrammer direkte i vores udviklingsmiljø.
+  - **Samarbejde:** PlantUML's tekstbaserede natur gjorde det nemt at versionere diagrammerne i vores kilderepositorium, hvilket faciliterede samarbejde og sporbarhed.
+  - **Automatisering:** Vi kunne hurtigt opdatere og regenerere diagrammer efterhånden som designet ændrede sig, hvilket forbedrede vores evne til at holde dokumentationen opdateret.
+
+### Fordele og Ulemper ved Valgte Værktøjer
+
+#### PlantUML i VSCode:
+- **Fordele:**
+  - **Simpel Syntax:** Let at lære og bruge, hvilket sparer tid i oprettelse og vedligeholdelse af diagrammer.
+  - **Versionering:** Tekstbaserede diagrammer kan nemt versioneres med Git, hvilket gør det nemt at spore ændringer og samarbejde.
+  - **Integration:** Fungerer godt med VSCode, som mange udviklere allerede bruger, hvilket reducerer behovet for ekstra værktøjer.
+
+- **Ulemper:**
+  - **Visuel Præcision:** PlantUML kan mangle nogle af de avancerede visuelle tilpasningsmuligheder, som grafiske UML-værktøjer tilbyder.
+  - **Kompleksitet:** For meget komplekse diagrammer kan teksten blive vanskelig at håndtere og vedligeholde.
+
+### Alternativer
+Selvom vi ikke brugte andre værktøjer i dette projekt, kan andre overveje værktøjer som Lucidchart for en mere grafisk tilgang til UML-diagrammer.
+
+### Påvirkning af Kvalitet
+
+#### Positive Påvirkninger:
+- **Forbedret Forståelse og Kommunikation:** Ved at bruge UML-diagrammer kunne vi tydeliggøre systemets arkitektur og relationer mellem komponenter. Dette førte til bedre forståelse og kommunikation blandt teammedlemmer og interessenter.
+- **Reduceret Risiko for Misforståelser:** Visualisering af designet gjorde det nemmere at opdage og rette potentielle fejl og misforståelser tidligt i processen.
+
+#### Negative Påvirkninger:
+- **Potentiel Tidsforbrug:** At opdatere diagrammerne i takt med ændringer i designet kan være tidskrævende, især i store projekter.
+- **Kompleksitet i Store Diagrammer:** Store og detaljerede diagrammer kan blive komplekse og svære at vedligeholde, hvilket kan føre til forvirring i stedet for klarhed.
+
+### Konklusion
+
+Brugen af UML-diagrammer i kombination med PlantUML i VSCode gjorde komplekse opgaver mere håndterbare og gav en klar visualisering af systemets struktur og relationer. Fordelene ved at bruge disse teknikker og værktøjer inkluderede forbedret kommunikation og reduceret risiko for misforståelser, mens ulemperne omfattede potentielt tidsforbrug på opdateringer og kompleksitet ved store diagrammer. PlantUML's integration med VSCode og dets tekstbaserede natur gjorde det til et effektivt værktøj for vores team.
 
 # Spørgsmål 5b: Forklar vandfaldsmodellen samt forskellige varianter af modellen og hvornår de med fordel kan benyttes. Kom også ind på hvad man bør være opmærksom på, når man vælger systemudviklingsmetode, og man benytter en lineær procesmodel.
 
-Vandfaldsmodellen er en lineær og sekventiel tilgang til systemudvikling, hvor hvert trin afhænger af fuldførelsen af det foregående. Nogle varianter inkluderer den modificerede vandfaldsmodel og V-modellen. Vandfaldsmodellen kan være passende for små projekter med klare og uændrede krav. Ulempen er, at det kan være stift og svært at tilpasse, især når kravene ændres. Ved valg af vandfaldsmodellen skal man være opmærksom på risikoen for at opdage fejl sent i processen og manglende fleksibilitet til at håndtere ændringer.
+### Vandfaldsmodellen
 
-**Overvejelser ved valg af systemudviklingsmetode:**
+Vandfaldsmodellen er en lineær og sekventiel systemudviklingsmetode, der følger en fastlagt rækkefølge af faser. Hver fase skal være afsluttet, før den næste fase kan påbegyndes. De klassiske faser i vandfaldsmodellen er:
 
--   **Vigtighed af klare krav:** Vandfaldsmodellen kræver en nøje defineret kravspecifikation fra starten.
--   **Risiko for sen fejlopdagelse:** På grund af den sekventielle natur er der risiko for, at fejl først opdages i testfasen, hvilket kan være dyrt at rette.
--   **Mangel på fleksibilitet:** Ikke velegnet til projekter, hvor kravene kan ændre sig løbende.
+1. **Kravspecifikation**: Indsamling og dokumentation af systemets krav.
+2. **Design**: Udarbejdelse af systemets arkitektur og detaljering af designet.
+3. **Implementering**: Kodning og udvikling af systemet baseret på designet.
+4. **Test**: Verifikation og validering af systemet for at sikre, at det opfylder kravene.
+5. **Installation/Implementering**: Udrulning af systemet i produktionsmiljøet.
+6. **Vedligeholdelse**: Løbende support og opdatering af systemet efter implementering.
+
+### Varianter af Vandfaldsmodellen
+
+Selvom den klassiske vandfaldsmodel er sekventiel, er der udviklet flere varianter for at adressere nogle af dens begrænsninger:
+
+1. **V-Modellen**:
+   - **Beskrivelse**: En udvidelse af vandfaldsmodellen, hvor der er en direkte korrelation mellem udviklingsfaserne og testfaserne. For hver udviklingsfase er der en tilsvarende testfase.
+   - **Fordele**: Forbedret fokus på test og kvalitetssikring gennem hele udviklingsprocessen.
+   - **Anvendelse**: Velegnet til projekter med høje krav til pålidelighed og sikkerhed, som fx inden for medicinsk udstyr og luftfart.
+
+2. **Sashimi-Modellen**:
+   - **Beskrivelse**: En overlappende version af vandfaldsmodellen, hvor flere faser kan udføres parallelt eller overlappe hinanden.
+   - **Fordele**: Øget fleksibilitet og mulighed for at starte visse aktiviteter tidligere, hvilket kan reducere total projekttid.
+   - **Anvendelse**: Anvendes ofte i komplekse projekter, hvor visse dele af systemet kan designes og implementeres parallelt.
+
+3. **Iterative Vandfaldsmodel**:
+   - **Beskrivelse**: En version af vandfaldsmodellen, hvor projektet gennemgår flere iterationer af vandfaldsfaserne, hver med en mindre del af systemet.
+   - **Fordele**: Mulighed for feedback og justeringer mellem iterationer, hvilket reducerer risikoen for fejl og mangler.
+   - **Anvendelse**: Velegnet til projekter, hvor kravene er kendte, men hvor der er behov for hyppig feedback og tilpasninger.
+
+### Overvejelser ved Valg af Systemudviklingsmetode og Lineære Procesmodeller
+
+Når man vælger en systemudviklingsmetode, især en lineær procesmodel som vandfaldsmodellen, er der flere faktorer, man bør være opmærksom på:
+
+1. **Projekttype og Kompleksitet**:
+   - **Lineære modeller** fungerer bedst i projekter med klare, veldefinerede krav og hvor ændringer er minimalt forventede.
+   - **Komplekse projekter** med uklare eller foranderlige krav kan drage fordel af mere fleksible metoder som agile eller iterative modeller.
+
+2. **Risikostyring**:
+   - **Risikofaktorer** som ændrede krav eller teknologiske udfordringer kan være svære at håndtere i en strengt sekventiel proces.
+   - **Iterative tilgange** kan hjælpe med at identificere og afbøde risici tidligere i processen.
+
+3. **Kravstabilitet**:
+   - **Stabile krav** gør vandfaldsmodellen til et godt valg, da det tillader detaljeret planlægning og ressourcestyring.
+   - **Ustabile krav** kan gøre vandfaldsmodellen ineffektiv og føre til store omkostninger ved ændringer senere i projektet.
+
+4. **Projekttid og Budget**:
+   - **Fastlagte tids- og budgetrammer** kan gøre vandfaldsmodellen fordelagtig, da den muliggør detaljeret planlægning og estimater.
+   - **Fleksibilitet i tid og budget** kan gøre agile metoder mere attraktive, da de tillader kontinuerlig tilpasning og prioritering.
+
+5. **Kundeinvolvering**:
+   - **Lav involvering** af kunder under udviklingen passer til vandfaldsmodellen, hvor feedback hovedsageligt gives i starten og slutningen.
+   - **Høj involvering** kræver en mere iterativ tilgang, hvor kunderne kan give feedback kontinuerligt gennem udviklingsprocessen.
+
+### Konklusion
+
+Valget af systemudviklingsmetode bør baseres på projektets specifikke karakteristika, risikoprofil, kravstabilitet og ressourcer. Vandfaldsmodellen og dens varianter kan være effektive i projekter med stabile krav og lav risiko for ændringer, men det er vigtigt at overveje fleksibiliteten og tilpasningsevnen i forhold til projektets behov. For mere dynamiske og usikre projekter kan en iterativ eller agil tilgang være mere hensigtsmæssig.
 
 # Spørgsmål 6a: Beskriv hvordan I arbejdede med High level design. Hvilke teknikker og værktøjer brugte I? Hvorfor? Kom herunder ind på fordele og ulemper ved de valgte værktøjer og eventuelle alternativer. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
