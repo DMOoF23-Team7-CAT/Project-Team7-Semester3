@@ -208,24 +208,107 @@ Disse overvejelser er afgørende for at vælge den mest passende systemudvikling
 
 # Spørgsmål 4a: Beskriv hvordan I afdækkede og dokumenterede krav til jeres system. Forklar også hvilke forskellige typer af krav I havde og hvordan det påvirkede jeres perspektiv i systemudviklingen. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
-Kravene til vores system blev afdækket gennem en kombination af møder med stakeholders, workshops og dokumentanalyse. Vi identificerede både funktionelle og ikke-funktionelle krav, som blev klassificeret som essentielle, ønskede eller valgfrie baseret på MoSCoW-metoden. Dette sikrede en klar prioritering og forståelse af kravene, som blev dokumenteret i et dynamisk Kanban board og løbende opdateret.
+### Afdækning af Krav
 
-**Påvirkninger af kvalitet:**
+I vores systemudviklingsprojekt afdækkede vi krav gennem en kombination af forskellige teknikker for at sikre en bred og omfattende forståelse af, hvad systemet skulle kunne. Vi brugte følgende metoder:
 
--   **Positiv:** Sikrede, at alle interessenters behov blev taget i betragtning, hvilket forbedrede produktkvaliteten og tilfredsheden.
--   **Negativ:** Kompleksiteten og den dynamiske natur af kravene kunne føre til forsinkelser og forvirring, især hvis ikke alle ændringer blev kommunikeret effektivt.
+1. **Møder med Stakeholders**:
+   - **Formål**: Indsamle direkte input fra de personer, der ville bruge systemet eller blive påvirket af det.
+   - **Metode**: Afholdelse af regelmæssige møder hvor vi diskuterede behov, forventninger og bekymringer.
+   
+2. **Workshops**:
+   - **Formål**: Få en mere interaktiv og kollaborativ tilgang til kravindsamling.
+   - **Metode**: Facilitere workshops hvor deltagere kunne brainstorme og diskutere krav i grupper.
+   
+3. **Dokumentanalyse**:
+   - **Formål**: Gennemgå eksisterende dokumentation og systemer for at identificere krav og forbedringsområder.
+   - **Metode**: Analycere tidligere projektrapporter, brugermanualer, og supportbilag.
+
+### Dokumentation af Krav
+
+Kravene blev dokumenteret systematisk ved hjælp af MoSCoW-metoden (Must have, Should have, Could have, Won't have), hvilket sikrede en klar prioritering:
+
+- **Must Have (Essentielle)**: Krav, der absolut skal opfyldes for at systemet kan fungere.
+- **Should Have (Ønskede)**: Krav, der er vigtige, men ikke kritiske.
+- **Could Have (Valgfrie)**: Krav, der er ønskelige, men som kan udsættes eller undlades.
+- **Won't Have (Ikke nødvendige)**: Krav, der ikke er relevante for den nuværende version.
+
+Kravene blev dokumenteret i et dynamisk Kanban-board, der løbende blev opdateret, hvilket tillod fleksibilitet og hurtig tilpasning til ændringer.
+
+### Typer af Krav
+
+1. **Funktionelle Krav**:
+   - **Beskrivelse**: Specificerede hvad systemet skulle gøre (f.eks. brugerstyring, datalagring, rapportgenerering).
+   - **Eksempel**: Systemet skal tillade brugere at logge ind med en unik brugerkonto.
+
+2. **Ikke-funktionelle Krav**:
+   - **Beskrivelse**: Specificerede systemets egenskaber (f.eks. ydeevne, sikkerhed, brugervenlighed).
+   - **Eksempel**: Systemet skal kunne håndtere op til 1000 samtidige brugere uden at ydeevnen forringes.
+
+3. **Begrænsninger**:
+   - **Beskrivelse**: Definerede de begrænsninger eller rammer, som systemet skulle operere inden for (f.eks. lovgivningsmæssige krav, teknologiske begrænsninger).
+   - **Eksempel**: Systemet skal overholde GDPR for databeskyttelse.
+
+### Påvirkninger af Perspektivet i Systemudviklingen
+
+#### Positive Påvirkninger
+
+1. **Øget Brugerinddragelse**:
+   - **Effekt**: Sikrede, at systemet opfyldte brugernes behov og forventninger, hvilket førte til højere brugertilfredshed.
+   - **Eksempel**: Workshops og møder med stakeholders gav værdifuld indsigt, der blev inkorporeret i design og funktionalitet.
+
+2. **Klar Prioritering**:
+   - **Effekt**: Prioriteringen af krav vha. MoSCoW-metoden hjalp med at fokusere på de vigtigste funktionaliteter og undgå overbelastning af systemet.
+   - **Eksempel**: Identificering af "Must have" krav sikrede, at kritiske funktionaliteter blev implementeret først.
+
+3. **Fleksibilitet og Tilpasning**:
+   - **Effekt**: Brugen af et dynamisk Kanban-board gjorde det muligt at reagere hurtigt på ændringer i krav eller nye indsigter.
+   - **Eksempel**: Krav blev løbende opdateret og justeret baseret på feedback og nye oplysninger.
+
+#### Negative Påvirkninger
+
+1. **Øget Kompleksitet**:
+   - **Effekt**: Den dynamiske natur af kravene kunne føre til forvirring og misforståelser, især hvis ændringer ikke blev kommunikeret effektivt.
+   - **Eksempel**: Hyppige opdateringer til Kanban-boardet kunne gøre det svært at følge med i de aktuelle krav.
+
+2. **Forsinkelser i Projektet**:
+   - **Effekt**: Involvering af mange stakeholders og kontinuerlige ændringer kunne føre til forsinkelser i udviklingsprocessen.
+   - **Eksempel**: At integrere feedback fra forskellige workshops kunne tage tid og forsinke udviklingen af visse funktionaliteter.
+
+3. **Uklare Prioriteter**:
+   - **Effekt**: Hvis der opstod uenigheder om prioriteringen af krav, kunne det skabe konflikter og forsinke beslutningsprocesser.
+   - **Eksempel**: Diskussioner om hvorvidt et krav skulle klassificeres som "Must have" eller "Should have" kunne tage lang tid og forsinke projektet.
+
+### Konklusion
+
+Afdækningen og dokumentationen af kravene gennem en kombination af metoder sikrede en bred og dybdegående forståelse af systemets nødvendigheder. Ved at klassificere kravene efter MoSCoW-metoden og bruge et dynamisk Kanban-board kunne vi prioritere og tilpasse os hurtigt, hvilket både havde positive og negative påvirkninger på produktets og proceskvaliteten. Selvom kompleksiteten og de hyppige ændringer kunne føre til forsinkelser og forvirring, sikrede den omfattende brugerinddragelse og klare prioritering en højere grad af tilfredshed og en mere brugervenlig og relevant løsning.
 
 # Spørgsmål 4b: Beskriv, forklar og sammenlign KanBan, SCRUM og Gantt. Kom herunder ind på sammenhængen til procesmodeller.
 
-KanBan er en visuel metode til styring af arbejdsflow, der fokuserer på kontinuerlig levering uden faste tidsintervaller, hvilket gør den ideel til projekter, der kræver fleksibilitet og løbende prioritering. SCRUM er en agil metode, der anvender faste sprints til at levere dele af projektet i faste tidsrammer, hvilket er velegnet til projekter med klare korte mål. Gantt-diagrammer er planlægningsværktøjer, der viser projektets tidsplan og afhængigheder mellem aktiviteter, ideelt til traditionelle vandfaldsprojekter med faste sekvenser og tidsrammer.
+### KanBan:
+- **Beskrivelse:** KanBan er en visuel styringsmetode, der fokuserer på kontinuerlig levering af opgaver uden faste tidsintervaller. Opgaver vises typisk som kort på et virtuelt eller fysisk KanBan-board, hvor de flyttes gennem forskellige faser (f.eks. "To Do", "In Progress", "Done") efterhånden som de udføres.
+- **Egnet til:** Projekter, der kræver fleksibilitet, løbende prioritering og kontinuerlig levering. Passer godt til agile og iterative procesmodeller.
+- **Fordele:** Fremmer flow og gennemsigtighed i arbejdsprocessen, reducerer flaskehalse og understøtter hurtig tilpasning til ændrede krav.
+- **Ulemper:** Kan være mindre egnet til projekter med faste deadlines og komplekse afhængigheder.
 
-**Sammenhæng til procesmodeller:**
+### SCRUM:
+- **Beskrivelse:** SCRUM er en agil metode, der organiserer arbejdet i faste tidsintervaller kaldet sprints. Hvert sprint har klare mål og resulterer i en potentiel levering af funktionalitet. Arbejdet styres gennem regelmæssige møder som Sprint Planning, Daily Stand-ups og Sprint Review.
+- **Egnet til:** Projekter, der kræver hurtig tilpasning, regelmæssig feedback og levering af inkrementel funktionalitet. Ideel til agile procesmodeller.
+- **Fordele:** Fremmer hurtig iterativ udvikling, klare mål og tæt samarbejde mellem teammedlemmer.
+- **Ulemper:** Kræver disciplin og engagement fra alle teammedlemmer, kan være mindre fleksibel i forhold til ændringer undervejs.
 
--   **KanBan:** Passer godt til inkrementelle og iterative procesmodeller, hvor fleksibilitet og løbende prioritering er nødvendig.
--   **SCRUM:** Specifikt designet til agile metoder, understøtter hurtig tilpasning og regelmæssig feedback.
--   **Gantt:** Anvendelig i vandfaldsmodellen, hvor projektets omfang og tidsrammer er fastlagt fra starten.
+### Gantt-diagrammer:
+- **Beskrivelse:** Gantt-diagrammer er planlægningsværktøjer, der visualiserer projektets tidsplan, aktiviteter og afhængigheder. Aktiviteter repræsenteres som vandrette bjælker på en tidsakse, hvoraf længden angiver varigheden af hver aktivitet.
+- **Egnet til:** Projekter, der har fastlagte tidsrammer og sekventielle aktiviteter. Ofte anvendt i traditionelle vandfaldsprocesmodeller.
+- **Fordele:** Tilbyder klar og visuel tidsplanlægning, hjælper med at identificere afhængigheder og overlappende aktiviteter.
+- **Ulemper:** Mindre fleksibel i forhold til ændringer, kan være vanskeligt at håndtere komplekse projekter med mange aktiviteter og afhængigheder.
 
-Disse værktøjer og metoder bidrager til en mere struktureret og effektiv projektstyring ved at tilbyde forskellige tilgange, der kan tilpasses projektets specifikke behov og omstændigheder.
+### Sammenhæng til Procesmodeller:
+- **KanBan:** Passer godt til agile og iterative procesmodeller, hvor fleksibilitet og løbende tilpasning er nøgleelementer.
+- **SCRUM:** Specifikt designet til agile metoder, der understøtter hurtig tilpasning og regelmæssig feedback.
+- **Gantt-diagrammer:** Typisk anvendt i mere lineære og traditionelle vandfaldsprocesmodeller, hvor projektets omfang og tidsrammer er fastlagt fra starten.
+
+Disse værktøjer og metoder tilbyder forskellige tilgange til projektstyring, der kan tilpasses projektets specifikke behov og procesmodel. Ved at vælge det mest passende værktøj kan projektledere og teammedlemmer forbedre effektiviteten og succesraten for deres projekter.
 
 # Spørgsmål 5a: Beskriv hvordan I arbejdede med Low level design. Hvilke teknikker og værktøjer brugte I? Hvorfor? Kom herunder ind på fordele og ulemper ved de valgte værktøjer og eventuelle alternativer. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
