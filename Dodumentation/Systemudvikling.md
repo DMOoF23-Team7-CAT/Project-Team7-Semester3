@@ -147,19 +147,43 @@ Eksempel: Når du verificerer en klasse i din software, kontrollerer du, at den 
 
 Kvalitetssikring omfatter både validering og verificering som kerneaktiviteter for at sikre, at systemet opfylder både tekniske og forretningsmæssige krav. Sporbarhed er et værktøj, der understøtter begge disse aktiviteter ved at sikre, at alle krav er korrekt implementeret og verificeret gennem hele udviklingsprocessen. Sammen danner disse koncepter et omfattende framework for at sikre høj kvalitet i softwareudviklingsprojekter, hvor både brugernes behov og tekniske standarder bliver opfyldt.
 
-# Spørgsmål 3a: Forklar hvilke projektstyringsaktiviteter I har gennemført og hvordan? Er nogle af disse aktiviteter specifikke for den systemudviklingsmetode og procesmodel I har valgt? Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
+# Spørgsmål 3a: Forklar hvilke projektstyringsaktiviteter I har gennemført og hvordan? Er nogle af disse aktiviteter specifikke for den systemudviklingsmetode og procesmodel I har valgt? Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
-Vores projektstyringsaktiviteter omfattede anvendelsen af MoSCoW-reglerne til prioritering, oprettelse af et Kanban board for visuel styring af arbejdsflowet, daglige standup-møder for at sikre teamets alignment og fremskridt, samt udvikling af prototyper for tidlig feedback og iteration. Disse aktiviteter var specifikke for vores valg af en agil procesmodel og understøttede en fleksibel, responsiv tilgang til projektstyring.
+### Projektstyringsaktiviteter
 
-**Positive påvirkninger:**
+1. **MoSCoW-prioritering**
+   - **Hvordan**: Vi anvendte MoSCoW-reglerne (Must have, Should have, Could have, Won't have) til at prioritere krav og funktionaliteter i projektet. Dette hjalp med at fokusere på de vigtigste elementer først og sørgede for, at essentielle funktioner blev leveret inden for tidsrammen.
+   - **Specifik for metodologi**: Denne prioritering er specifik for agile metoder, da den hjælper med at håndtere ændringer og tilpasse sig nye krav hurtigt.
 
--   Forbedret kommunikation og samarbejde inden for teamet.
--   Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse.
+2. **Kanban board**
+   - **Hvordan**: Vi oprettede et Kanban board for visuel styring af arbejdsflowet. Dette inkluderede kolonner som "To Do", "In Progress", og "Done", hvilket gav et klart overblik over arbejdsopgaver og deres status.
+   - **Specifik for metodologi**: Kanban boardet er centralt i agile processer som Kanban og Scrum, hvor visuel styring og kontinuerlig forbedring er essentielle elementer.
 
-**Negative påvirkninger:**
+3. **Daglige standup-møder**
+   - **Hvordan**: Vi afholdt korte daglige møder, hvor hvert teammedlem delte, hvad de havde arbejdet på, hvad de planlagde at arbejde på næste gang, og eventuelle forhindringer. Dette sikrede, at hele teamet var synkroniseret og kunne reagere hurtigt på ændringer.
+   - **Specifik for metodologi**: Standup-møder er en kernedel af Scrum og andre agile metoder, der fremmer regelmæssig kommunikation og hurtig beslutningstagning.
 
--   Risiko for overfokusering på dag-til-dag aktiviteter, som kan overskygge langsigtede mål.
--   Potentiel modstand mod daglige møder, hvis ikke alle teammedlemmer ser værdien.
+4. **Udvikling af prototyper**
+   - **Hvordan**: Vi udviklede tidlige prototyper for at få feedback fra interessenter og brugere. Dette tillod os at foretage nødvendige justeringer tidligt i udviklingsprocessen.
+   - **Specifik for metodologi**: Udvikling af prototyper og inkrementelle iterationer er typisk for agile metoder, der værdsætter hurtige leverancer og brugertilfredshed.
+
+### Positive påvirkninger af kvalitet i produkt og proces
+
+- **Forbedret kommunikation og samarbejde inden for teamet**: De daglige standup-møder og det visuelle overblik via Kanban boardet forbedrede teamets samarbejde og kommunikation, hvilket førte til hurtigere problemløsning og bedre team-sammenhæng.
+  
+- **Øget synlighed og kontrol over projektets fremskridt og potentielle flaskehalse**: Kanban boardet gav et klart billede af projektets status og mulige flaskehalse, hvilket gjorde det lettere at foretage nødvendige justeringer hurtigt og effektivt.
+
+- **Tidlig feedback og iteration**: Udvikling af prototyper tillod os at få tidlig feedback fra brugere og interessenter, hvilket resulterede i et mere brugercentreret produkt og reducerede risikoen for større ændringer senere i projektet.
+
+### Negative påvirkninger af kvalitet i produkt og proces
+
+- **Risiko for overfokusering på dag-til-dag aktiviteter**: Der er en risiko for, at teamet kan blive for fokuseret på kortsigtede opgaver og miste overblikket over de langsigtede mål og strategiske visioner for projektet.
+
+- **Potentiel modstand mod daglige møder**: Nogle teammedlemmer kan opfatte de daglige standup-møder som tidskrævende eller unødvendige, især hvis de ikke ser den umiddelbare værdi, hvilket kan føre til nedsat engagement og deltagelse.
+
+### Konklusion
+
+De projektstyringsaktiviteter, vi har gennemført, er specifikke for vores valg af en agil procesmodel. De har haft både positive og negative påvirkninger på kvaliteten af vores produkt og proces. De positive påvirkninger inkluderer forbedret kommunikation, øget synlighed og kontrol, samt tidlig feedback og iteration. De negative påvirkninger inkluderer risikoen for overfokusering på kortsigtede opgaver og potentiel modstand mod daglige møder. Samlet set har disse aktiviteter dog bidraget til en mere fleksibel og responsiv tilgang til projektstyring, som har styrket vores evne til at levere et kvalitetsprodukt.
 
 # Spørgsmål 3b: Redegør for forskellige perspektiver man kan have i systemudvikling og hvordan det påvirker valget af systemudviklingsmetode.
 
