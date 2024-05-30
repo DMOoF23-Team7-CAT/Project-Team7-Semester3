@@ -1,20 +1,62 @@
 # Spørgsmål 1a: Beskriv kort den systemudviklingsmetode I har benyttet til jeres projekt. Kom herefter ind på hvordan I har anvendt den i praksis samt hvilke fordele og ulemper, der er ved metoden. 
 
-Vi implementerede Dynamic System Development Method (DSDM) i projektets indledende fase, hvilket understøttede en iterativ og inkrementel udviklingsproces. DSDM blev valgt for dens stærke fokus på brugerinvolvering og evne til at håndtere ændringer effektivt. Vi anvendte MoSCoW-reglen til at prioritere user stories, hvilket sikrede, at de mest kritiske funktioner blev udviklet først. Prototyping blev brugt som en del af vores risikostyringsstrategi, hvilket tillod os at validere design og funktionalitet tidligt i udviklingsprocessen.
+I vores projekt implementerede vi Dynamic System Development Method (DSDM), en agil systemudviklingsmetode, der understøtter en iterativ og inkrementel udviklingsproces. DSDM blev valgt på grund af dens stærke fokus på brugerinvolvering og dens evne til effektivt at håndtere ændringer under udviklingen.
+
+**Anvendelse af DSDM i praksis:**
+
+1. **Prioritering med MoSCoW-reglen:**
+   - Vi anvendte MoSCoW-reglen til at prioritere user stories, hvilket hjalp os med at fokusere på de mest kritiske funktioner først. Dette sikrede, at essentielle funktioner blev udviklet og implementeret tidligt i processen.
+
+2. **Prototyping:**
+   - Som en del af vores risikostyringsstrategi brugte vi prototyping. Dette tillod os at validere design og funktionalitet tidligt i udviklingsprocessen. 
+   Normalt ville vi havd præsentere prototyperne for brugerne så vi kunne indsamle værdifuld feedback og foretage nødvendige justeringer inden den fulde udvikling af funktionerne. Men vi brugte mest prototyping til os selv så vi kunne teste forskellige arkitektur af.
+
+3. **Iterativ og inkrementel udvikling:**
+   - DSDM's iterative natur gjorde det muligt for os at udvikle systemet i små, håndterbare dele. Vi havde planlagt at vi Efter hver iteration gennemførte evalueringer og feedback-sessions med brugerne, hvilket kunne sikre, at den videre udvikling hele tiden blev tilpasset til brugernes behov og ønsker, men vi var desvære nød til at fokusere på videnindsamling da vores grundlægende forståelse for hvordan vi skulle bygge systemet og den teknologi der skulle bruges var for langt bagefter
 
 **Fordele ved DSDM:**
 
--   Fremmer brugerinvolvering og feedback, hvilket forbedrer produkttilpasningen til brugerbehov.
--   Understøtter ændringsstyring, hvilket er afgørende i dynamiske projektomgivelser.
+- **Brugerinvolvering:**
+  - DSDM fremmer aktiv brugerinvolvering og løbende feedback, hvilket forbedrer produkttilpasningen til brugerbehov. Brugerne er med til at definere og justere kravene undervejs, hvilket øger chancen for, at det endelige produkt opfylder deres forventninger og krav.
+
+- **Håndtering af ændringer:**
+  - Metoden understøtter effektiv ændringsstyring, hvilket er afgørende i dynamiske projektomgivelser. Når nye krav eller ændringer opstår, kan de hurtigt integreres i udviklingsprocessen uden at forstyrre projektets overordnede retning.
 
 **Ulemper ved DSDM:**
 
--   Kan være ressourcekrævende, især i form af tid og kræfter fra brugerne.
--   Kræver klare og veldefinerede processer for at undgå forvirring og ineffektivitet.
+- **Ressourcekrævende:**
+  - DSDM kan være ressourcekrævende, især hvad angår tid og kræfter fra brugerne. Den konstante brugerinvolvering og feedback-processer kræver, at brugerne investerer betydelig tid i projektet, hvilket kan være udfordrende, hvis de har andre forpligtelser.
 
-# Spørgsmål 1b: Forklar hvad formålet med fokusområdet projektstyring er, og hvordan dette område kan påvirke kvalitet i produkt og proces.  
+- **Krav til klare processer:**
+  - For at undgå forvirring og ineffektivitet kræver DSDM veldefinerede processer og strukturer. Uden disse kan der opstå problemer med styring og koordinering, hvilket kan føre til forsinkelser og øgede omkostninger.
 
-Formålet med projektstyring er at organisere og lede arbejdet for at opfylde projektets mål og leverancer. Projektstyring påvirker kvaliteten i produkt og proces ved at sikre, at ressourcer er korrekt allokeret, tidsplaner overholdes, og risici identificeres og håndteres. En effektiv projektstyring kan føre til bedre kommunikation, mere nøjagtige estimater og en struktureret tilgang, der hjælper med at minimere fejl og forbedre overordnet produktkvalitet.
+Sammenfattende kan man sige, at DSDM's styrker ligger i dens fokus på brugerinvolvering og fleksibilitet over for ændringer, hvilket forbedrer kvaliteten af det endelige produkt. Dog kræver metoden betydelige ressourcer og klare processer for at fungere optimalt.
+
+# Spørgsmål 1b: Forklar hvad formålet med fokusområdet projektstyring er, og hvordan dette område kan påvirke kvalitet i produkt og proces.
+
+Formålet med fokusområdet projektstyring er at sikre, at et projekt bevæger sig i den rigtige retning og overholder de givne rammer for tid, ressourcer og mål. Dette indebærer at planlægge, overvåge og styre forskellige aspekter af projektet, herunder foranalyser, valg af procesmodel og metode, samt løbende tilpasninger og evalueringer af projektets fremskridt.
+
+**Hvordan projektstyring påvirker kvalitet i produkt og proces:**
+
+1. **Struktur og Klarhed:**
+   - Projektstyring skaber en struktureret tilgang til at håndtere projektets faser og opgaver. Ved at definere klare mål, rammer og roller reduceres risikoen for misforståelser og fejl. Dette bidrager til en mere præcis og effektiv udviklingsproces, hvilket øger kvaliteten af det endelige produkt.
+
+2. **Foranalyser og Risikostyring:**
+   - Gennem foranalyser som projektscope, interessent- og risikoanalyse, kan potentielle problemer identificeres og adresseres tidligt. Dette forhindrer uventede udfordringer i at opstå senere i processen, hvilket ellers kunne kompromittere kvaliteten af både proces og produkt.
+
+3. **Valg af Procesmodel:**
+   - Valget mellem lineære og cykliske procesmodeller påvirker, hvordan projektet håndteres og tilpasses ændringer. En passende procesmodel sikrer, at projektet kan reagere effektivt på ændringer og kompleksiteter, hvilket er afgørende for at opretholde kvaliteten i både produkt og proces.
+
+4. **Kommunikation og Samarbejde:**
+   - Effektiv projektstyring indebærer også styring af kommunikation. Gennem klar og kontinuerlig kommunikation sikres, at alle interessenter er opdaterede og engagerede. Dette fremmer et samarbejdsmiljø, hvor problemer hurtigt kan identificeres og løses, hvilket igen understøtter høj kvalitet i udviklingen.
+
+5. **Proaktiv Styring og Tilpasning:**
+   - Løbende opdateringer og tilpasninger af projektplaner og metoder baseret på analyser af den aktuelle projektstatus gør det muligt at forudse og afbøde potentielle problemer. Proaktiv styring sikrer, at projektet ikke afviger fra sine mål, og at kvaliteten ikke kompromitteres af uforudsete hændelser.
+
+6. **Effektiv Ressourceforvaltning:**
+   - Gennem nøje styring af tid og ressourcer sikres, at projektet holdes inden for de fastsatte rammer. Dette forhindrer overbelastning af teamet og sikrer, at alle aspekter af projektet får den nødvendige opmærksomhed, hvilket resulterer i et mere gennemarbejdet og kvalitetsrigt produkt.
+
+Sammenfattende kan man sige, at fokus på projektstyring er afgørende for at sikre en velstruktureret og effektiv udviklingsproces, hvor kvaliteten af både produkt og proces opretholdes gennem klare planer, løbende evalueringer og tilpasninger samt effektiv kommunikation og ressourceforvaltning.
 
 Projektstyring i vores projekt havde til formål at sikre, at både systemudviklingsmetoden (DSDM) og den valgte procesmodel (inkrementel og iterativ) blev anvendt effektivt til at styre fremdrift og sikre høj produkt- og proceskvalitet. Dette område omfattede strategisk planlægning, ressourceallokering, risikostyring og løbende evaluering af projektets status.
 
