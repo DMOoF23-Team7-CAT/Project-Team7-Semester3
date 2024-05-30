@@ -65,31 +65,87 @@ Projektstyring i vores projekt havde til formål at sikre, at både systemudvikl
 -   **Positiv:** Effektiv projektstyring førte til bedre ressourceudnyttelse og tidsoverholdelse, hvilket direkte forbedrede produktkvaliteten og overholdelse af tidsfrister.
 -   **Negativ:** Udfordringer i projektstyringen, såsom underestimering af tidsforbrug for visse aktiviteter, kunne føre til forsinkelser og kompromittere den samlede kvalitet.
 
-# Spørgsmål 2a: Beskriv hvordan I valgte jeres procesmodel til jeres projekt. Kom også ind på hvordan I har anvendt den og hvilke fordele og ulemper der var ved den valgte model  
+# pørgsmål 2a: Beskriv hvordan I valgte jeres procesmodel til jeres projekt. Kom også ind på hvordan I har anvendt den og hvilke fordele og ulemper der var ved den valgte model.
 
-Valget af en cyklisk procesmodel blev dikteret af projektets høje grad af usikkerhed og tekniske kompleksitet. Denne model, understøttet af DSDM's princip om at bygge inkrementelt fra et solidt fundament, tillod os at tilpasse os nye opdagelser og ændringer i kravene effektivt. Vi implementerede MoSCoW-reglen for at prioritere opgaver, men fandt, at en skæv fordeling af ressourcer mellem backend og frontend udvikling skabte udfordringer.
+Valget af en cyklisk procesmodel til vores projekt blev dikteret af projektets høje grad af usikkerhed og tekniske kompleksitet. Denne model, understøttet af DSDM's princip om at bygge inkrementelt fra et solidt fundament, tillod os at tilpasse os nye opdagelser og ændringer i kravene effektivt.
 
-**Fordele:**
+**Valg af procesmodel:**
 
--   Fleksibilitet til at håndtere ændringer og usikkerheder effektivt.
--   Mulighed for tidlig fejlfinding og løbende forbedring af produktet.
+1. **Analyse af projektets kompleksiteter og usikkerheder:**
+   - Inden vi valgte procesmodellen, foretog vi en grundig analyse af projektets kompleksiteter og usikkerheder. Vi vurderede sammenhænge, afhængigheder, samt de kendte og ukendte faktorer i projektet. Denne analyse afslørede, at en fleksibel tilgang var nødvendig for at kunne tilpasse os løbende ændringer og nye opdagelser.
 
-**Ulemper:**
+2. **Beslutning om cyklisk procesmodel:**
+   - På baggrund af analysen valgte vi en cyklisk procesmodel, da denne bedst kunne håndtere de identificerede kompleksiteter og usikkerheder. Cykliske modeller, som den iterative og inkrementelle cykliske model, er kendt for deres evne til at tillade tilbagevendende justeringer og forbedringer, hvilket var essentielt for vores projekts succes.
 
--   Risiko for ubalance i ressourceallokeringen, som observeret mellem frontend og backend udvikling.
--   Potentiel underudnyttelse af visse projektområder på grund af skiftende prioriteter, hvilket kan føre til ufuldstændige eller forsinkede leverancer.
+**Anvendelse af den valgte procesmodel:**
 
-# Spørgsmål 2b: Forklar begreberne validering og verificering og beskriv deres sammenhæng til begreberne kvalitetssikring og sporbarhed 
+1. **MoSCoW-prioritering:**
+   - Vi anvendte MoSCoW-reglen til at prioritere opgaverne (Must have, Should have, Could have, Won't have), hvilket hjalp os med at fokusere på de mest kritiske elementer først. Dette sikrede, at de vigtigste funktioner blev udviklet og implementeret tidligt i processen.
 
-Validering sikrer, at systemet opfylder brugerens krav, mens verificering kontrollerer, om systemet er korrekt implementeret i overensstemmelse med specifikationerne. Kvalitetssikring omfatter aktiviteter, der sikrer, at processen og produktet opfylder specifikationerne. Sporbarhed sikrer, at kravene er knyttet til de tilsvarende design- og testelementer. Validering og verificering er nøgleroller i kvalitetssikringsprocessen og bidrager til at opretholde sporbarhed gennem hele systemudviklingscyklussen.
+2. **Iterativ udvikling:**
+   - Projektet blev opdelt i flere iterationer, hvor hver iteration omfattede planlægning, udvikling, test og evaluering. Efter hver iteration blev der indsamlet feedback fra brugerne, som blev brugt til at justere og forbedre de efterfølgende iterationer.
 
-Validering i vores projekt fokuserede på at sikre, at det udviklede system mødte brugernes og andre interessenters behov og forventninger. Dette involverede løbende afstemning af systemets funktionaliteter med de oprindelige forretningsmål. Verificering omhandlede derimod den interne proces for at sikre, at hver del af systemet var korrekt implementeret i overensstemmelse med de specificerede krav. Begge processer var afgørende for at opretholde høj kvalitetssikring og sporbarhed, hvilket sikrede, at alle ændringer og tilføjelser blev dokumenteret og valideret.
+3. **Prototyping:**
+   - Som en del af risikostyringsstrategien benyttede vi prototyping. Dette gav os mulighed for at validere design og funktionalitet tidligt og ofte, hvilket minimerede risikoen for større fejl senere i projektet.
 
-**Sammenhæng til kvalitetssikring og sporbarhed:**
+**Fordele ved den valgte model:**
 
--   **Validering:** Bidrager til kvalitetssikring ved at bekræfte, at produktet opfylder brugernes behov og forventninger.
--   **Verificering:** Sikrer, at produktet er teknisk korrekt og fejlfrit gennem grundige tests og revisioner.
--   **Sporbarhed:** Begge processer understøtter sporbarhed ved at dokumentere beslutninger og ændringer, hvilket gør det muligt at spore hver komponent tilbage til specifikke krav.
+- **Fleksibilitet:**
+  - Den cykliske procesmodel gav os mulighed for at tilpasse os ændringer og håndtere usikkerheder effektivt. Hver iteration tillod os at refaktorere og forbedre tidligere arbejde, hvilket sikrede en konstant forbedring af produktet.
+
+- **Tidlig fejlfinding og løbende forbedring:**
+  - Iterationer med regelmæssig testning og feedback gav mulighed for tidlig identifikation af problemer og løbende forbedringer, hvilket førte til et mere robust og veltilpasset slutprodukt.
+
+**Ulemper ved den valgte model:**
+
+- **Ressourceallokering:**
+  - Vi oplevede en skæv fordeling af ressourcer mellem backend og frontend udvikling, hvilket skabte udfordringer. Dette resulterede i, at visse dele af projektet ikke blev udviklet så effektivt som muligt.
+
+- **Skiftende prioriteter:**
+  - Den fleksible natur af den cykliske model kan føre til hyppige ændringer i prioriteterne, hvilket kan resultere i ufuldstændige eller forsinkede leverancer. Det kræver en konstant opmærksomhed på balancen mellem forskellige projektområder for at undgå underudnyttelse.
+
+Samlet set gjorde den cykliske procesmodel det muligt for os at navigere gennem kompleksiteten og usikkerheden i projektet effektivt, selvom det krævede omhyggelig styring af ressourcer og prioriteter.
+
+# Spørgsmål 2b: Forklar begreberne validering og verificering og beskriv deres sammenhæng til begreberne kvalitetssikring og sporbarhed
+
+### Validering
+
+**Validering** handler om at sikre, at det færdige system lever op til brugernes eller kundernes behov og krav. Det fokuserer på at sikre, at systemet giver den ønskede værdi og løser de problemer, det er beregnet til at adressere. For at opnå dette er det vigtigt at sikre, at alle krav er korrekt implementeret, og at ingen vigtige krav bliver glemt undervejs. Validering inkluderer følgende aktiviteter:
+
+- **Kontinuerlig sporbarhed**: Sikring af, at alle trin i udviklingsprocessen (fra kravspecifikation til det færdige produkt) hænger sammen og kan spores tilbage til de oprindelige krav.
+- **Brugerfeedback**: Inddragelse af brugerne i processen for at bekræfte, at produktet matcher deres forventninger og behov.
+- **Test mod kravspecifikationer**: Bekræftelse af, at systemet opfylder de opstillede krav gennem tests og inspektioner.
+
+Eksempel: Når du validerer en use case, skal du sikre, at den ønskede værdi fra forretningsprocessen er til stede, og at use casen stemmer overens med de oprindelige krav.
+
+### Verificering
+
+**Verificering** handler om at sikre, at systemet er bygget korrekt i overensstemmelse med specifikationerne og de tekniske krav. Det fokuserer på, om udviklingsprocessen er fulgt korrekt og om alle tekniske krav er implementeret korrekt. Verificering inkluderer følgende aktiviteter:
+
+- **Overholdelse af standarder**: Sikring af, at alle artefakter (f.eks. UML-diagrammer, kode) overholder de gældende standarder og bedste praksis.
+- **Code reviews**: Gennemgang af koden for at sikre, at den er skrevet korrekt og følger de aftalte kodestandarder.
+- **Unit tests og integrationstests**: Test af individuelle komponenter og deres integration for at sikre, at de fungerer korrekt.
+
+Eksempel: Når du verificerer en klasse i din software, kontrollerer du, at den er korrekt implementeret i henhold til designet (DCD), og at alle metoder og attributter er korrekt definerede og implementerede.
+
+### Kvalitetssikring
+
+**Kvalitetssikring (Quality Assurance, QA)** er en overordnet proces, der omfatter både validering og verificering for at sikre, at et produkt eller system lever op til de fastsatte krav og standarder. Kvalitetssikring sikrer, at processen for udvikling er korrekt og effektiv, og at slutproduktet har den ønskede kvalitet. Det inkluderer systematiske målinger, overvågning af processer og implementering af forbedringsaktiviteter. QA består af:
+
+- **Planlægning og implementering af teststrategier**: Udvikling af en plan for, hvordan systemet skal testes, herunder både validerings- og verificeringsaktiviteter.
+- **Procesovervågning**: Løbende overvågning og evaluering af udviklingsprocessen for at sikre, at den følger de fastsatte retningslinjer og procedurer.
+
+### Sporbarhed
+
+**Sporbarhed** refererer til evnen til at spore enhver artefakt i systemudviklingsprocessen tilbage til de oprindelige krav. Sporbarhed er essentiel for både validering og verificering, da den sikrer, at alle krav er korrekt implementeret, og at ingen krav bliver glemt. Sporbarhed hjælper med at:
+
+- **Sikre fuld dækning af krav**: Alle krav skal kunne spores fra kravspecifikation til design, implementering og test.
+- **Håndtere ændringer effektivt**: Sporbarhed gør det lettere at identificere og håndtere ændringer i krav og sikre, at alle relaterede artefakter bliver opdaterede i overensstemmelse hermed.
+- **Dokumentere procesforløbet**: Ved at have en sporbarhedsmatrix kan man nemt dokumentere og følge op på alle trin i udviklingsprocessen.
+
+### Sammenhængen mellem validering, verificering, kvalitetssikring og sporbarhed
+
+Kvalitetssikring omfatter både validering og verificering som kerneaktiviteter for at sikre, at systemet opfylder både tekniske og forretningsmæssige krav. Sporbarhed er et værktøj, der understøtter begge disse aktiviteter ved at sikre, at alle krav er korrekt implementeret og verificeret gennem hele udviklingsprocessen. Sammen danner disse koncepter et omfattende framework for at sikre høj kvalitet i softwareudviklingsprojekter, hvor både brugernes behov og tekniske standarder bliver opfyldt.
 
 # Spørgsmål 3a: Forklar hvilke projektstyringsaktiviteter I har gennemført og hvordan? Er nogle af disse aktiviteter specifikke for den systemudviklingsmetode og procesmodel I har valgt? Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
