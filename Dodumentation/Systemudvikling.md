@@ -666,23 +666,118 @@ Testniveauerne er integrerede i de forskellige fokusområder i systemudviklingen
 
 # Spørgsmål 8a: Beskriv hvilke test I har udført i jeres projekt. På hvilke niveauer testede I? Hvad blev ikke testet. Forklar jeres valg af test og reflektér over konsekvenserne. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
-I vores projekt implementerede vi en række teststrategier for at sikre kvaliteten af det udviklede system. Vi begyndte med at skrive unit tests og integrationstests relativt sent i projektforløbet. Disse tests er eksempler på Whitebox testing, hvor vi har adgang til og kendskab til den interne struktur af systemet.
+I vores projekt implementerede vi en række teststrategier for at sikre kvaliteten af det udviklede system. Her er en detaljeret beskrivelse af de test, vi udførte, hvilke niveauer de tilhørte, og hvad vi valgte ikke at teste. Jeg vil også reflektere over konsekvenserne af vores valg, både positive og negative, på kvaliteten af produktet og processen.
 
-Vi oplevede udfordringer med at opretholde hyppige møder med Product Owner (PO), hvilket er afgørende i DSDM for at sikre en korrekt forståelse af virksomhedens behov. Dette førte til, at vi ikke i tilstrækkelig grad kunne verificere, at leverancerne levede op til de stillede krav ud over det skriftlige materiale, vi havde. Dette understreger vigtigheden af regelmæssig og effektiv kommunikation i agile projekter.
+### Udførte Test
+1. **Unit Tests**
+   - **Niveau**: Programmeringsniveau
+   - **Beskrivelse**: Unit tests blev udført for hvert lag i vores applikation. Disse tests var designet til at verificere, at individuelle funktioner og metoder i vores kodebase fungerede som forventet.
+   - **Eksempler**: Test af individuelle funktioner i forretningslogikken, validering af dataindtastning, og kontrol af output fra specifikke metoder.
 
-**Positive påvirkninger:**
+2. **Integration Tests**
+   - **Niveau**: Programmeringsniveau
+   - **Beskrivelse**: Integration tests blev udført for at sikre, at de forskellige komponenter og moduler i systemet fungerede sammen korrekt, især med databasen.
+   - **Eksempler**: Test af databaseinteraktioner, såsom indlæsning, opdatering, og sletning af data, samt verifikation af korrekt dataflow mellem applikationslagene.
 
--   **Kvalitet i produkt:** Tidlig testning af wireframes hjalp med at identificere brugergrænsefladebehov og justeringer tidligt i processen.
--   **Proceseffektivitet:** Anvendelsen af MoSCoW-reglen hjalp med at prioritere opgaver og holde projektet på sporet.
+### Ikke Udførte Test
+1. **Konceptuel Test**
+   - **Niveau**: Konceptuelt niveau
+   - **Beskrivelse**: Testning af de overordnede idéer og krav til systemet blev ikke udført i tilstrækkelig grad. Dette inkluderer validering af brugerscenarier og høj-niveau krav med interessenter.
+   - **Konsekvens**: Manglende konceptuel testning betyder, at vi muligvis ikke har fanget alle brugerens behov og forretningskrav korrekt.
 
-**Negative påvirkninger:**
+2. **High Level Design Test**
+   - **Niveau**: Designmæssigt niveau
+   - **Beskrivelse**: Vi udførte ikke tilstrækkelig testning af vores High Level Design (HLD). Dette inkluderer validering af systemarkitekturen og interaktioner mellem forskellige systemkomponenter.
+   - **Konsekvens**: Uden HLD testning kunne der være designfejl, der først opdages senere i udviklingsprocessen eller endda efter implementering.
 
--   **Kvalitet i produkt:** Manglende tidlig og løbende testing kan have begrænset vores evne til at identificere og rette fejl tidligt i udviklingsprocessen.
--   **Proceseffektivitet:** Utilstrækkelig kommunikation med PO kunne have ført til misforståelser og fejl i forståelsen af kravene.
+3. **Udrulningstest**
+   - **Niveau**: Udrulning
+   - **Beskrivelse**: Da vi ikke nåede til udrulningsfasen i dette projekt, blev der ikke udført tests relateret til implementering og drift af systemet i produktionsmiljøet.
+   - **Konsekvens**: Udrulningsproblemer kunne opstå, når systemet tages i brug, hvilket kan påvirke brugeroplevelsen og systemets pålidelighed.
+
+### Refleksioner Over Valg af Test
+**Positive Påvirkninger:**
+- **Kvalitet af Kode**: Unit og integration tests bidrog til at identificere og rette fejl tidligt i kodebasen, hvilket forbedrede systemets stabilitet og pålidelighed.
+- **Modularitet**: Testene hjalp os med at opretholde en modularitet i koden, hvilket gjorde det lettere at vedligeholde og udvide systemet.
+
+**Negative Påvirkninger:**
+- **Mangel på Konceptuel og Design Test**: Uden omfattende test på konceptuelt og designmæssigt niveau risikerede vi at overse vigtige forretningskrav og designfejl, der kunne føre til større problemer senere.
+- **Forsinket Testning**: Da vi begyndte at skrive tests sent i projektet, mistede vi muligheden for at identificere og rette visse fejl tidligt, hvilket kunne have gjort udviklingsprocessen mere effektiv.
+
+### Kommunikation med Product Owner
+Vi oplevede udfordringer med at opretholde hyppige møder med Product Owner (PO), hvilket er afgørende i Dynamic Systems Development Method (DSDM) for at sikre en korrekt forståelse af virksomhedens behov. Denne manglende kommunikation betød, at vi ikke kunne verificere, at leverancerne fuldt ud levede op til de stillede krav, ud over det skriftlige materiale vi havde.
+
+**Konsekvenser:**
+- **Negative**: Manglen på hyppig og effektiv kommunikation med PO kunne have resulteret i misforståelser af kravene og en endelig leverance, der ikke fuldt ud opfylder brugerens forventninger og behov.
+- **Positive**: Den skriftlige dokumentation vi havde, kunne stadig give os en vis retning og sikre, at vi arbejdede hen imod de opstillede mål, selvom det ikke var så effektivt som direkte feedback fra PO.
+
+### Samlet Konklusion
+Vores teststrategi havde en positiv indvirkning på kodekvaliteten ved at fange og rette fejl tidligt gennem unit og integration tests. Dog kunne manglen på konceptuel og designmæssig test samt udfordringer i kommunikationen med PO have ført til uopdagede krav og designfejl. For fremtidige projekter er det vigtigt at inkludere omfattende testning på alle niveauer og sikre regelmæssig og effektiv kommunikation med alle interessenter for at opnå den bedst mulige kvalitet i både produkt og proces.
 
 # Spørgsmål 8b: Beskriv én af følgende systemudviklingsmetoder: Crystal Methods, eXtreme Programming, Dynamic System Development method, Feature Driven Development, Adaptive Software Development. Hvilke værktøjer benyttes og hvordan dækkes de forskellige fokusområder?
 
-eXtreme Programming (XP) er en agil udviklingsmetode, der lægger vægt på teknisk ekspertise, teamarbejde, og kundesamarbejde. XP anvender flere kerneværktøjer og teknikker såsom parprogrammering, testdrevet udvikling (TDD), kontinuerlig integration, og refaktorering. Disse praksisser understøtter en cyklisk og iterativ udviklingsproces, hvor krav og løsninger udvikles gennem samarbejde mellem selvorganiserende tværfunktionelle teams.
+I denne besvarelse vil jeg fokusere på eXtreme Programming (XP), som vi anvendte i den sidste del af vores projekt, og sammenligne det med Dynamic Systems Development Method (DSDM), som vi brugte i begyndelsen af projektet.
+
+### eXtreme Programming (XP)
+**eXtreme Programming (XP)** er en agil udviklingsmetode, der fokuserer på at forbedre softwarekvaliteten og evnen til at tilpasse sig ændrede krav gennem korte udviklingscyklusser og hyppig feedback. Her er en beskrivelse af de centrale elementer og værktøjer i XP:
+
+#### Centrale Elementer og Værktøjer
+1. **Parprogrammering**
+   - To udviklere arbejder sammen ved én computer for at skrive kode. Dette forbedrer kodekvaliteten, da to sæt øjne ser på hver linje kode, hvilket reducerer fejl.
+
+2. **Test-Driven Development (TDD)**
+   - Udviklere skriver tests, før de skriver koden, der skal implementere en given funktionalitet. Dette sikrer, at koden opfylder kravene og fungerer korrekt.
+
+3. **Kontinuerlig Integration**
+   - Koden integreres ofte i det fælles repository (typisk flere gange om dagen). Dette muliggør hurtig opdagelse og løsning af integreringsfejl.
+
+4. **Små Udgivelsescyklusser**
+   - Hyppige udgivelser af software, hvilket sikrer, at brugerne hurtigt kan få nye funktioner og give feedback.
+
+5. **Enkelt Design**
+   - Fokuserer på at holde designet så simpelt som muligt og kun inkludere funktionalitet, der er nødvendig for den aktuelle iteration.
+
+6. **Refaktorering**
+   - Kontinuerlig forbedring af kodebasen uden at ændre dens eksterne adfærd. Dette sikrer, at koden forbliver ren og vedligeholdelig.
+
+7. **Kundeinddragelse**
+   - Kunden (eller en repræsentant) er en del af teamet og er tilgængelig for at besvare spørgsmål og give feedback kontinuerligt.
+
+### Sammenligning med DSDM
+
+**Dynamic Systems Development Method (DSDM)** er en agil udviklingsmetode, der fokuserer på at levere projekter til tiden og inden for budget ved hjælp af iterative og inkrementelle udviklingscyklusser. Her er en sammenligning mellem DSDM og XP med fokus på deres tilgang til forskellige fokusområder:
+
+#### Fokusområder og Sammenligning
+
+1. **Kundeinddragelse**
+   - **XP**: Kunden er en del af teamet og giver kontinuerlig feedback. Dette sikrer, at udviklingsteamet altid arbejder med den nyeste og mest relevante information.
+   - **DSDM**: Betydelig vægt på brugerinvolvering gennem workshops og feedback-sessioner. Kunden er tæt involveret i projektet for at sikre, at det leverede produkt opfylder deres behov.
+
+2. **Iterative Processer**
+   - **XP**: Korte udviklingscyklusser (iterationer) med hyppige udgivelser. Feedback fra hver iteration bruges til at justere og forbedre næste iteration.
+   - **DSDM**: Iterativ og inkrementel udvikling er central, med fokus på hyppige leverancer af delsystemer eller funktionaliteter for løbende at validere og justere systemet.
+
+3. **Fleksibilitet og Tilpasningsevne**
+   - **XP**: Meget fleksibel og reagerer hurtigt på ændringer i krav og brugerfeedback. Denne fleksibilitet kan nogle gange føre til mindre strukturerede processer.
+   - **DSDM**: Struktureret fleksibilitet, hvor ændringer kan inkorporeres, men inden for en kontrolleret ramme for at sikre, at projekter leveres til tiden og inden for budget.
+
+4. **Kvalitetssikring**
+   - **XP**: TDD og parprogrammering sikrer høj kodekvalitet. Kontinuerlig integration og refaktorering bidrager til vedligeholdelig kode.
+   - **DSDM**: Brug af prototyper og konstante tests i iterative cyklusser sikrer, at systemet lever op til brugerens krav og forventninger.
+
+5. **Kommunikation og Samarbejde**
+   - **XP**: Daglige stand-up møder og tæt samarbejde mellem teammedlemmer og kunder. Parprogrammering fremmer direkte og kontinuerlig kommunikation.
+   - **DSDM**: Regelmæssige møder og workshops for at sikre effektiv kommunikation mellem udviklingsteamet og interessenter. Fokus på samarbejde gennem hele udviklingsprocessen.
+
+### Refleksion over Vores Projekt
+
+I vores projekt begyndte vi med DSDM, hvilket gav os en struktureret tilgang til at håndtere krav og iterativ udvikling. Dog oplevede vi udfordringer med regelmæssig kommunikation med Product Owner (PO), hvilket hæmmede vores evne til at verificere og validere kravene fuldt ud.
+
+I den sidste del af projektet skiftede vi til XP, hvor vi kunne drage fordel af den intensive feedback-loop og fleksibilitet. Parprogrammering og TDD forbedrede kodekvaliteten, og kontinuerlig integration hjalp os med hurtigt at opdage og rette fejl. Denne ændring gjorde det muligt for os at reagere hurtigere på ændrede krav og forbedre samarbejdet internt i teamet.
+
+### Konklusion
+
+XP og DSDM har begge styrker og svagheder afhængigt af projektets behov. DSDM giver en struktureret ramme og er velegnet til projekter, hvor kravene er mere stabile. XP er mere fleksibel og tilpasser sig hurtigt til ændringer, hvilket er ideelt for dynamiske og hurtigt skiftende miljøer. I vores projekt gav kombinationen af de to metoder os mulighed for at udnytte strukturen fra DSDM og fleksibiliteten fra XP for at levere et kvalitetsprodukt.
 
 **Fokusområder:**
 
