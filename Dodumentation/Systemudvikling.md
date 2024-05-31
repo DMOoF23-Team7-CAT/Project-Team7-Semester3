@@ -573,28 +573,96 @@ Valget mellem agile, iterative og inkrementelle procesmodeller afhænger af proj
 
 # Spørgsmål 7a: Forklar hvordan samspillet mellem jeres procesmodel og systemudviklingsmetode påvirkede den endelige udformning af jeres system. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.  
 
-Samspillet mellem vores valgte procesmodel, DSDM, og systemudviklingsmetoden har haft en afgørende indflydelse på den endelige udformning af vores system. DSDM, som er en agil metode, understøtter frekvente iterationer og aktiv brugerinvolvering, hvilket har sikret, at systemudviklingen var responsiv over for ændrede brugskrav og forretningsmål. Dette samspil har fremmet en kultur af samarbejde og tilpasning, som har været vital for projektets succes.
+#### Brug af DSDM i Starten af Projektet
 
-**Positive påvirkninger:**
+**Dynamic Systems Development Method (DSDM)**:
+- **Formål**: DSDM er en agil projektledelsesmetode, der fokuserer på at levere projekter til tiden og inden for budgettet med fleksibilitet i forhold til omfang.
+- **Kerneprincipper**: Aktiv brugerinddragelse, hyppige leverancer af produktdele, fokus på forretningsbehov, og iterative udviklingscyklusser.
 
--   **Produktkvalitet:** Kontinuerlig brugerfeedback og iterationer har ført til et mere brugervenligt og funktionelt produkt.
--   **Proceseffektivitet:** Evnen til hurtigt at tilpasse sig ændringer har reduceret spild og forbedret projektets tidsstyring.
+**Hvordan Vi Brugte DSDM**:
+- **Starten af Projektet**: Vi startede med DSDM for at etablere klare forretningsmål og sikre aktiv brugerinddragelse. Dette hjalp os med at forstå kravene grundigt og prioritere funktionaliteter baseret på forretningsbehov.
+- **Workshops og Prototyper**: Vi brugte workshops til at indsamle krav og skabe tidlige prototyper, hvilket sikrede en fælles forståelse af systemets forventede funktioner.
 
-**Negative påvirkninger:**
+**Positive Påvirkninger**:
+- **Klar Kravindsamling**: Takket være de intensive kravindsamlingsworkshops og tidlige prototyper, fik vi en god forståelse af brugernes behov.
+- **Brugerinddragelse**: Den aktive brugerinddragelse førte til løbende feedback og tilpasning af systemet, hvilket sikrede at produktet forblev relevant for brugerne.
 
--   **Ressourceforbrug:** Den høje grad af fleksibilitet kan føre til ressourceintensive iterationer, som kan være en udfordring i ressourcebegrænsede projekter.
--   **Scope Creep:** Uden stram styring kan den iterative natur af DSDM føre til scope creep, hvor projektets omfang udvides uden tilsvarende ressourcetilpasninger.
+**Negative Påvirkninger**:
+- **Tidsforbrug**: De mange workshops og prototyping-sessioner kunne være tidskrævende og forsinke udviklingen.
+- **Fokus på Forretningsbehov**: Selvom dette normalt er en fordel, kunne det i visse tilfælde betyde, at tekniske krav blev underprioriteret.
+
+#### Skift til XP Senere i Forløbet
+
+**Extreme Programming (XP)**:
+- **Formål**: XP er en agil softwareudviklingsmetode, der fokuserer på forbedring af softwarekvalitet og lydhørhed over for ændrede krav gennem hyppige iterationer og tæt samarbejde.
+- **Kerneprincipper**: Parprogrammering, test-drevet udvikling, hyppige iterationer, kontinuerlig integration, og små leverancer.
+
+**Hvordan Vi Brugte XP**:
+- **Senere i Projektet**: Vi skiftede til XP for at fokusere mere på kvaliteten af koden og hurtig tilpasning til ændringer. XP's teknikker som parprogrammering og test-drevet udvikling blev centrale elementer i vores proces.
+- **Hyppige Iterationer**: Vi implementerede kortere iterationer og leverede små, hyppige opdateringer af systemet, hvilket muliggjorde hurtig respons på feedback og fejlrettelser.
+
+**Positive Påvirkninger**:
+- **Forbedret Kodekvalitet**: Parprogrammering og test-drevet udvikling sikrede højere kodekvalitet og færre bugs.
+- **Fleksibilitet**: Hyppige iterationer og små leverancer gjorde det muligt at hurtigt reagere på ændringer og nye krav.
+- **Kontinuerlig Integration**: Dette minimerede integration issues og sikrede, at systemet altid var i en fungerende tilstand.
+
+**Negative Påvirkninger**:
+- **Ressourcekrævende**: Parprogrammering kræver flere ressourcer, da to udviklere arbejder på samme opgave.
+- **Test-Tung**: Test-drevet udvikling kræver betydelige ressourcer til at skrive og vedligeholde tests.
+
+### Samlet Påvirkning af Kvaliteten i Produkt og Proces
+
+#### Positive Påvirkninger
+
+1. **Høj Brugertilfredshed**: Kombinationen af DSDM's fokus på forretningsbehov og XP's løbende feedback sikrede, at produktet opfyldte brugernes krav og forventninger.
+2. **Kvalitetskode**: XP's praksisser sikrede høj kodekvalitet og reducerede antallet af fejl og mangler i produktet.
+3. **Fleksibilitet og Tilpasningsevne**: Vores evne til at skifte metode og tilpasse os nye krav og ændringer i projektets løb forbedrede produktets relevans og funktionalitet.
+
+#### Negative Påvirkninger
+
+1. **Tids- og Ressourceforbrug**: De intensive workshops og parprogrammering kunne være ressourcekrævende og krævede høj dedikation fra teamet.
+2. **Kompleksitet i Styring**: Skiftet mellem to metoder kunne skabe kompleksitet i projektstyring og kommunikation, hvilket krævede omhyggelig koordinering.
+
+### Konklusion
+
+Samspillet mellem DSDM og XP påvirkede vores projekt positivt ved at sikre både høj brugertilfredshed og kvalitetskode. Mens DSDM hjalp os med at etablere en solid forståelse af forretningskravene i projektets start, sikrede XP's praksisser fleksibilitet og højkvalitetsleverancer i de senere faser. Udfordringerne inkluderede tids- og ressourcekrav samt behovet for effektiv koordinering, men de samlede fordele i form af et brugervenligt og funktionelt system opvejede disse udfordringer.
 
 # Spørgsmål 7b: beskriv sammenhængen mellem begrebet testniveauer og de forskellige fokusområder? 
 
-Testniveauerne i systemudvikling, herunder unit testing, integration testing, system testing og acceptance testing, spiller en kritisk rolle i kvalitetssikringen af softwareprodukter. Hvert testniveau adresserer forskellige aspekter af systemet, hvilket sikrer en omfattende evaluering af softwarens funktionalitet og performance.
+**Testniveauer og Fokusområder i Systemudvikling**
 
--   **Unit Testing:** Fokuserer på individuelle komponenter for at sikre, at de fungerer korrekt isoleret.
--   **Integration Testing:** Tester interaktionen mellem komponenter for at identificere fejl i samspillet.
--   **System Testing:** Evaluerer systemets samlede funktionalitet og sikkerhed for at verificere, at det opfylder de specificerede krav.
--   **Acceptance Testing:** Udføres ofte af slutbrugeren for at bekræfte, at systemet opfylder deres forventninger og behov.
+Testniveauer er en essentiel del af systemudvikling, der sikrer, at et system opfylder de nødvendige krav og fungerer korrekt. Testniveauer refererer til forskellige stadier i testprocessen, hvor hver fase har sit specifikke formål og fokus. De primære testniveauer omfatter:
 
-Disse testniveauer relaterer sig til projektstyring, kravspecifikation og design ved at sikre, at hvert trin i udviklingsprocessen er kvalitetssikret, hvilket minimerer risikoen for fejl og forbedrer det endelige produkts kvalitet.
+1. **Konceptuelt Niveau**: Test på dette niveau fokuserer på at validere de overordnede idéer og krav til systemet. Det handler om at sikre, at de grundlæggende konceptuelle modeller og funktioner stemmer overens med brugerens behov og forventninger.
+
+2. **Designmæssigt Niveau**: Her tester man designet af systemet, både på et højt niveau (High Level Design) og et lavt niveau (Low Level Design). Formålet er at sikre, at designet er korrekt og funktionelt, før man går videre til implementering.
+
+3. **Programmeringsniveau**: På dette niveau testes den faktiske kode. Det inkluderer enheder (unit tests), integration af moduler (integration tests), og end-to-end testning for at sikre, at hele systemet fungerer sammen som forventet.
+
+Sammenhængen mellem testniveauer og de forskellige fokusområder i systemudvikling kan beskrives således:
+
+### 1. Kravindsamling
+- **Konceptuelt Testniveau**: Validere krav og forventninger med interessenterne. Sikre, at kravene er forstået korrekt og dækker brugerens behov.
+
+### 2. High Level Design (HLD)
+- **Designmæssigt Testniveau**: Evaluere det overordnede design for at sikre, at systemarkitekturen opfylder kravene. HLD-artefakter skal gennemgås for at sikre, at de repræsenterer brugernes interaktioner og informationsbehov korrekt.
+
+### 3. Low Level Design (LLD)
+- **Designmæssigt Testniveau**: Gennemgå detaljeret design, herunder klasse- og sekvensdiagrammer, for at sikre, at designet er logisk og funktionelt. LLD-artefakter bruges til at sikre, at implementeringen følger de specificerede designmønstre og strukturer.
+
+### 4. Programmering
+- **Programmeringsniveau**: Udføre enhedstest (unit tests) for at verificere, at individuelle komponenter fungerer korrekt. Integrationstest for at sikre, at forskellige moduler fungerer sammen, samt systemtest for at validere hele systemets funktionalitet.
+
+### 5. Test
+- **Alle Testniveauer**: Samlet set anvendes test på alle niveauer for at validere og verificere systemet. Teststrategier og testplaner udvikles for at dække både konceptuelle, designmæssige og programmeringsmæssige aspekter. Dette sikrer, at systemet er robust og opfylder alle krav.
+
+### Udrulning og Vedligehold (Ikke inkluderet i dette projekt)
+Selvom disse fokusområder ikke er en del af dette projekt, er det vigtigt at bemærke, at testniveauer også spiller en rolle her:
+- **Udrulning**: Test udføres for at sikre, at systemet kan implementeres i produktionsmiljøet uden problemer.
+- **Vedligehold**: Test for at sikre, at opdateringer og rettelser ikke introducerer nye fejl og fortsat opfylder systemets krav.
+
+### Opsummering
+Testniveauerne er integrerede i de forskellige fokusområder i systemudviklingen. Fra validering af krav til evaluering af design og test af implementering, spiller testniveauerne en afgørende rolle i at sikre, at systemet er funktionelt, pålideligt og opfylder brugernes behov. Ved at implementere en struktureret teststrategi på tværs af alle niveauer kan man minimere fejl og sikre en høj kvalitet af det endelige produkt.
 
 # Spørgsmål 8a: Beskriv hvilke test I har udført i jeres projekt. På hvilke niveauer testede I? Hvad blev ikke testet. Forklar jeres valg af test og reflektér over konsekvenserne. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces.
 
