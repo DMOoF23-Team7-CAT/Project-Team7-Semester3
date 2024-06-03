@@ -929,31 +929,96 @@ Forskellige typer af vedligehold kræver forskellige tilgange afhængigt af proc
 
 # Spørgsmål 10a: Beskriv hvordan I arbejdede med validering i jeres projekt og hvordan det påvirkede udformningen af jeres endelige produkt. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces 
 
-Validering spillede en central rolle i vores projekt for at sikre, at det endelige produkt opfyldte brugernes behov og forventninger. Vi implementerede en omfattende valideringsproces, der omfattede både interne reviews og brugertests. Interne reviews blev udført af projektteamet for at vurdere, om systemets komponenter opfyldte de tekniske specifikationer og forretningskrav. Brugertests involverede slutbrugere, der testede systemet i realistiske scenarier for at identificere eventuelle mangler i brugeroplevelsen og funktionaliteten.
+Validering spillede en central rolle i vores projekt for at sikre, at det endelige produkt opfyldte de fastlagte krav og standarder. Vi implementerede en omfattende valideringsproces, der omfattede både interne reviews og automatiserede tests, såsom unit og integrationstests. Lad os se nærmere på de forskellige aspekter af vores valideringsarbejde og hvordan de påvirkede kvaliteten af vores produkt og proces.
 
-**Positive påvirkninger:**
+#### Interne Reviews
 
--   **Produktkvalitet:** Direkte feedback fra slutbrugere sikrede, at produktet var intuitivt og opfyldte de reelle brugsbehov.
--   **Proceseffektivitet:** Tidlig og løbende validering hjalp med at identificere og adressere problemer tidligt, hvilket reducerede omkostningerne og tidsforbruget forbundet med senere rettelser.
+**Beskrivelse:**
+Vi havde en review-sektion i vores Kanban-board, hvor alle opgaver skulle igennem en grundig gennemgang før de kunne markeres som færdige. Denne review-proces blev udført af teammedlemmer for at sikre, at hver opgave opfyldte de tekniske specifikationer og forretningskrav.
 
-**Negative påvirkninger:**
+**Positive Påvirkninger:**
+- **Tidlig Identifikation af Problemer:** Interne reviews gjorde det muligt at opdage og rette fejl tidligt i udviklingsprocessen, hvilket reducerede omkostningerne ved senere fejlrettelser.
+- **Forbedret Kodekvalitet:** Kodegennemgange og peer reviews sikrede, at koden overholdt bedste praksis og designprincipper, hvilket førte til mere vedligeholdelig og skalerbar kode.
+- **Konsistens i Implementering:** Ved at sammenligne implementeringen med kravspecifikationerne kunne vi sikre, at alle funktionaliteter blev implementeret korrekt og i overensstemmelse med forventningerne.
 
--   **Ressourceforbrug:** Omfattende valideringsaktiviteter krævede betydelige ressourcer, både i form af tid og personale.
--   **Projektforsinkelser:** Omfattende valideringsprocesser kan potentielt forsinke projektets tidsplan, især hvis der opdages større problemer, der kræver betydelige ændringer.
+**Negative Påvirkninger:**
+- **Tidsforbrug:** Interne reviews krævede betydelig tid og ressourcer, hvilket kunne forsinke projektets fremdrift, især hvis der blev identificeret mange fejl eller mangler.
+- **Overdreven Fokus på Detaljer:** Nogle gange kunne vi blive for detaljerede i vores reviews, hvilket førte til unødvendige ændringer og forsinkelser uden at tilføje væsentlig værdi til slutproduktet.
+
+#### Unit- og Integrationstests
+
+**Beskrivelse:**
+Vi anvendte automatiserede unit tests og integrationstests for at sikre, at de individuelle komponenter fungerede korrekt og samarbejdede som forventet. Unit tests blev anvendt til at teste mindre kodeenheder isoleret, mens integrationstests sikrede, at disse enheder arbejdede sammen som en helhed.
+
+**Positive Påvirkninger:**
+- **Forbedret Stabilitet og Robusthed:** Unit tests hjalp med at identificere fejl i individuelle komponenter, mens integrationstests sikrede, at systemets dele fungerede korrekt sammen, hvilket førte til en mere stabil og robust applikation.
+- **Tidlig Fejlretning:** Automatiserede tests gjorde det muligt at opdage og rette fejl hurtigt, hvilket reducerede risikoen for fejl, der kunne opstå senere i udviklingscyklussen.
+- **Dokumentation af Funktionalitet:** Tests fungerede også som en form for dokumentation, der beskrev, hvordan systemet skulle fungere, hvilket gjorde det lettere at forstå og vedligeholde koden.
+
+**Negative Påvirkninger:**
+- **Opretholdelse af Tests:** At skrive og vedligeholde omfattende test suites krævede betydelig tid og ressourcer. Dette kunne til tider forsinke udviklingsprocessen, især når ændringer i koden krævede opdatering af mange tests.
+- **Falske Positiver/Negativer:** Tests kunne nogle gange fejle af grunde, der ikke var relateret til reel funktionalitet, hvilket kunne føre til fejldiagnose og unødvendigt tidsforbrug på fejlfinding.
+
+### Overordnet Påvirkning af Kvalitet
+
+**Positive Påvirkninger:**
+- **Høj Kvalitet i Slutproduktet:** Kombineret med verificering sikrede vores omfattende valideringsproces, at det endelige produkt ikke kun var teknisk korrekt, men også leverede reel værdi til brugerne.
+- **Mere Robust og Stabil Software:** Ved at rette fejl tidligt og optimere komponenternes interaktion kunne vi levere et mere robust og stabilt system, der bedre kunne opfylde brugernes behov.
+
+**Negative Påvirkninger:**
+- **Forsinkelser og Øgede Omkostninger:** De ressourcer, der blev brugt på omfattende validering, kunne i nogle tilfælde føre til forsinkelser og øgede projektomkostninger.
+- **Kompleksitet i Projektstyring:** At koordinere og integrere feedback fra både interne reviews og automatiserede tests kunne tilføje kompleksitet til projektstyringen og krævede omhyggelig planlægning og kommunikation.
+
+### Sammenhæng med Kvalitetssikring
+
+Det er vigtigt at bemærke, at validering ikke kan stå alene. Validering skal gå hånd i hånd med verificering for at sikre, at systemet både opfylder brugernes behov og er teknisk korrekt og robust. Uden verificering kunne vi ende med et system, der måske fungerer godt for brugerne, men som er ustabilt eller usikkert. Omvendt kunne vi uden validering risikere at levere et teknisk perfekt system, der ikke opfylder brugernes reelle behov.
+
+### Konklusion
+
+Ved at integrere både interne reviews og automatiserede tests i vores valideringsproces kunne vi skabe et produkt, der både var teknisk solidt og brugervenligt. På trods af nogle udfordringer med ressourcer og tidsstyring viste denne tilgang sig at være afgørende for at levere et produkt af høj kvalitet, der opfyldte både tekniske og forretningsmæssige krav.
 
 # Spørgsmål 10b: Forklar hvad der forstås ved by design og hvordan det påvirker systemudviklingen, både i forhold til proces og produkt.
 
-Konceptet 'By Design' i systemudvikling refererer til en tilgang, hvor kvalitet og funktionalitet integreres i produktet fra projektets start. Dette indebærer en grundig planlægning og designfase, hvor kvalitetssikring er en integreret del af udviklingsprocessen, snarere end noget der kun overvejes under testfasen. I vores projekt implementerede vi 'By Design' ved at etablere klare kvalitetsmål og -standarder fra begyndelsen og sikre, at alle designbeslutninger understøttede disse mål.
+**"By design"** refererer til en tilgang, hvor bestemte kvaliteter, principper eller funktioner bevidst indarbejdes i et system fra starten af udviklingsprocessen. Dette betyder, at specifikke krav og standarder planlægges og implementeres proaktivt i stedet for at blive tilføjet som eftertanker. Lad os dykke ned i, hvordan denne tilgang påvirker både processen og produktet i systemudviklingen.
 
-**Positive påvirkninger:**
+#### Indvirkning på Proces
 
--   **Produktkvalitet:** Ved at integrere kvalitet tidligt i designprocessen reduceres risikoen for fejl og mangler i det endelige produkt.
--   **Proceseffektivitet:** Forebyggende tilgang til kvalitet minimerer behovet for omfattende fejlrettelser og re-design i senere faser, hvilket optimerer udviklingsprocessen.
+**Planlægning og Kravindsamling:**
+- **Grundig Kravspecifikation:** Ved at fokusere på "by design" skal kravene specificeres grundigt fra starten, hvilket kræver en detaljeret analyse og forståelse af brugerens behov og forventninger.
+- **Involvering af Interessenter:** Det er nødvendigt at involvere alle relevante interessenter tidligt i processen for at sikre, at alle kritiske krav og kvalitetsattributter er forstået og dokumenteret.
 
-**Negative påvirkninger:**
+**Design og Arkitektur:**
+- **Integration af Principper:** Under designfasen integreres de ønskede kvaliteter, såsom sikkerhed, skalerbarhed, og brugervenlighed, direkte i systemarkitekturen.
+- **Brug af Design Patterns:** Brug af veletablerede designmønstre og -principper hjælper med at sikre, at systemet opfylder de nødvendige kvalitetsstandarder fra starten.
 
--   **Initial omkostning:** Højere opstartsomkostninger og ressourceforbrug, da der kræves mere omfattende planlægning og analyse i de tidlige faser.
--   **Fleksibilitetsbegrænsninger:** Stramme kvalitetskrav og tidlige designbeslutninger kan begrænse muligheden for at tilpasse produktet senere baseret på nye opdagelser eller ændrede brugerbehov.
+**Udvikling og Implementering:**
+- **Kodekvalitet:** Ved at anvende principper som SOLID, DRY (Don't Repeat Yourself), og KISS (Keep It Simple, Stupid), sikrer udviklere, at koden er struktureret og let at vedligeholde.
+- **Automatiserede Tests:** En "by design" tilgang betyder også, at automatiserede tests (unit tests, integrationstests) er en integreret del af udviklingsprocessen for at fange fejl tidligt.
+
+**Review og Validering:**
+- **Kontinuerlig Validering:** Regelmæssige reviews og validering sikrer, at de designede kvaliteter faktisk er implementeret korrekt.
+- **Tilpasning og Iteration:** Feedback fra reviews og tests bruges til at justere og forbedre designet løbende.
+
+#### Indvirkning på Produkt
+
+**Kvalitet og Pålidelighed:**
+- **Sikkerhed By Design:** Ved at indarbejde sikkerhedsforanstaltninger fra starten reduceres risikoen for sikkerhedsbrister, hvilket gør systemet mere robust og pålideligt.
+- **Skalerbarhed og Ydeevne:** Systemer designet med skalerbarhed i tankerne kan nemt tilpasses til voksende brugerbehov uden store ændringer i infrastrukturen.
+
+**Brugervenlighed:**
+- **Brugervenligt Design:** Fokusering på brugervenlighed fra starten sikrer, at systemet er intuitivt og nemt at bruge, hvilket øger brugerens tilfredshed og produktivitet.
+- **Tilgængelighed:** Inkludering af tilgængelighedsprincipper sikrer, at systemet kan bruges af mennesker med forskellige evner og behov.
+
+**Vedligeholdelse og Udvidelse:**
+- **Let Vedligeholdelse:** En veldesignet arkitektur og ren kode gør systemet lettere at vedligeholde, fejlfinde og opdatere over tid.
+- **Modularitet:** Modularitet sikrer, at nye funktioner nemt kan tilføjes uden at påvirke eksisterende funktionalitet negativt.
+
+**Samsvar med Standarder og Regulativer:**
+- **Overholdelse af Regulativer:** Ved at designe systemet til at overholde industristandarder og lovgivningskrav fra starten undgås dyre og tidskrævende ændringer senere.
+
+### Konklusion
+
+En "by design" tilgang i systemudvikling betyder, at kvaliteter som sikkerhed, brugervenlighed, skalerbarhed, og vedligeholdbarhed er integreret fra begyndelsen af udviklingsprocessen. Dette kræver en grundig kravspecifikation, omhyggelig planlægning, og løbende validering, men fører til produkter af højere kvalitet, der er mere robuste, skalerbare, og brugervenlige. Samtidig sikrer denne tilgang, at systemet lettere kan vedligeholdes og udvides, hvilket i sidste ende reducerer omkostningerne og forbedrer brugeroplevelsen.
 
 # Spørgsmål 11a: Beskriv hvordan I arbejdede med verificering i jeres projekt og hvordan det påvirkede udformningen af jeres endelige produkt. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces 
 
