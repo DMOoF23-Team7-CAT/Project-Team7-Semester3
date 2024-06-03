@@ -1022,31 +1022,128 @@ En "by design" tilgang i systemudvikling betyder, at kvaliteter som sikkerhed, b
 
 # Spørgsmål 11a: Beskriv hvordan I arbejdede med verificering i jeres projekt og hvordan det påvirkede udformningen af jeres endelige produkt. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces 
 
-I vores projekt arbejdede vi intensivt med verificering for at sikre, at alle dele af systemet opfyldte de specificerede krav. Verificeringsprocessen omfattede flere teknikker såsom kodegennemgang, automatiserede tests og manuelle tests, der blev udført i forskellige faser af udviklingsprocessen. Vi lagde særlig vægt på automatiserede unit tests og integrationstests for at identificere og rette fejl tidligt i udviklingscyklussen.
+I vores projekt spillede verificering en afgørende rolle i at sikre, at alle dele af systemet opfyldte de specificerede krav og fungerede som forventet. Verificeringsprocessen omfattede en række teknikker og metoder, der blev implementeret systematisk gennem hele udviklingscyklussen. Herunder beskrives, hvordan vi arbejdede med verificering, samt de positive og negative påvirkninger på kvaliteten af både produkt og proces.
 
-**Positive påvirkninger:**
+#### Verificeringsmetoder
 
--   **Produktkvalitet:** Systematisk verificering sikrede, at produktet var fejlfrit og fungerede som forventet under alle forudsete betingelser.
--   **Proceseffektivitet:** Ved at identificere fejl tidligt undgik vi omkostningstunge og tidskrævende rettelser i de senere faser af projektet.
+**Kodegennemgang:**
+- **Formål:** At identificere og rette potentielle fejl og forbedre kodekvaliteten.
+- **Procedure:** Kodegennemgang blev udført som en del af vores daglige workflow, hvor teammedlemmerne systematisk gennemgik hinandens kode. Dette skete både ad hoc og som en formel proces inden større merges.
+- **Værktøjer:** Vi brugte værktøjer som GitHub for pull requests, hvor kodeændringer blev gennemgået og kommenteret.
 
-**Negative påvirkninger:**
+**Automatiserede Tests:**
+- **Unit Tests:** Unit tests blev skrevet for at teste individuelle funktioner og moduler i isolation.
 
--   **Tidsforbrug:** Omfattende verificeringsaktiviteter krævede betydelig tid, hvilket kunne påvirke den overordnede projektplanlægning.
--   **Ressourceallokering:** Stor del af teamets ressourcer blev allokeret til verificeringsopgaver, hvilket til tider begrænsede progressionen i andre områder af projektet.
+- **Integrationstests:** Disse tests blev brugt til at verificere, at forskellige moduler fungerede sammen som forventet.
+    - **Testscenarier:** Vi designede tests, for integrationen af databasen med systemet.
+
+
+- **Testplan:** Vi udarbejdede IKKE en detaljeret testplan men dette kunne havde hjulpet os med at identificere problemer tidligt og sikre at de nødvendige test blev lavet.
+
+#### Positive Påvirkninger
+
+**Forbedret Kvalitet og Stabilitet:**
+- **Tidlig Fejlfinding:** Automatiserede tests gjorde det muligt at identificere og rette fejl tidligt, hvilket reducerede omkostningerne ved at rette fejl senere i udviklingscyklussen.
+- **Kodekonsistens:** Regelmæssige kodegennemgange sikrede, at koden var konsistent og fulgte de fastsatte kodningsstandarder, hvilket forbedrede kodebasens overordnede kvalitet.
+
+**Effektivitet og Produktivitet:**
+- **Automatisering:** Automatiserede tests sparede tid på manuelle testprocesser og frigjorde udviklerressourcer til andre opgaver.
+
+**Bedre Dokumentation:**
+- **Testcases som Dokumentation:** De automatiserede testcases tjente som en form for dokumentation, der beskrev systemets forventede adfærd under forskellige scenarier og kunne hjælpe andre i teamet med nemt at forstå funktionaliteten af en metode.
+
+#### Negative Påvirkninger
+
+**Øget Kompleksitet og Vedligeholdelse:**
+- **Teknisk Gæld:** Når der blev ændret i kodebasen, skulle de tilhørende tests også opdateres, hvilket kunne føre til teknisk gæld, hvis ikke det blev håndteret omhyggeligt.
+
+**Potentielle Falske Positiver/Negativer:**
+- **Testfejl:** Der var tilfælde, hvor tests fejlede på grund af problemer med testmiljøet snarere end selve koden, hvilket kunne føre til unødvendige fejlsøgningsaktiviteter.
+- **Dækningens Begrænsninger:** Selv med høj testdækning var der risiko for, at visse kanttilfælde og uforudsete interaktioner ikke blev fanget af de automatiserede tests.
+
+### Konklusion
+
+Verificeringsprocessen var central i vores projekt og havde en betydelig positiv indvirkning på kvaliteten af det endelige produkt. Automatiserede tests, kodegennemgange sikrede høj kvalitet og stabilitet i systemet. Selvom der var nogle udfordringer med øget kompleksitet og vedligeholdelse, opvejede fordelene ved tidlig fejlfinding, forbedret kodekonsistens og øget effektivitet klart ulemperne. I sidste ende bidrog vores verificeringsstrategi til at levere et robust og pålideligt produkt, der opfyldte de specificerede krav og forventninger.
 
 # Spørgsmål 11b: Beskriv de forskellige tilgange man kan have til cutover under systemudrulningen. Forklar i hvilke situationer du ville bruge hvilken tilgang og hvorfor.  
 
-Cutover under systemudrulning refererer til overgangen fra den gamle til den nye løsning. Big Bang-tilgangen indebærer, at hele systemet skifter på én gang. Faseret tilgang gennemfører udrulningen gradvist i mindre dele. Pilottilgang tester systemet i en begrænset gruppe før fuld udrulning. Valg af tilgang afhænger af projektets kompleksitet, risici og brugernes accept af forandring. Big Bang er mere risikofyldt, men kan være hurtigere, mens faseret og pilottilgang er mere kontrollerede og kan mindske risici. 
+Cutover er den proces, hvor et nyt system tages i brug, og det gamle system udfases. Der findes flere tilgange til cutover, som hver især har sine fordele og ulemper afhængigt af den specifikke situation. Her er de mest almindelige tilgange:
 
--   **Big Bang:** Hele systemet blev implementeret på én gang. Denne tilgang blev valgt for mindre systemkomponenter med lav risiko.
--   **Faseret:** Udrulningen blev opdelt i faser, hvor hver fase omfattede specifikke dele af systemet. Dette var ideelt for større og mere komplekse systemdele.
--   **Pilot:** Systemet blev først testet i en begrænset del af organisationen. Dette gav os mulighed for at indsamle feedback og foretage nødvendige justeringer før fuld udrulning.
+#### 1. Big Bang Cutover
+**Beskrivelse:**
+Big Bang Cutover indebærer en fuldstændig overgang til det nye system på ét enkelt tidspunkt. Det gamle system bliver lukket ned, og det nye system bliver taget i brug straks derefter.
 
-**Valg af tilgang afhænger af:**
+**Fordele:**
+- Kortere overgangsperiode, hvilket kan minimere kompleksiteten.
+- Kræver kun én omfattende test og validering af det nye system.
+- Ingen behov for at opretholde begge systemer parallelt, hvilket kan reducere omkostningerne.
 
--   **Projektkompleksitet:** Mere komplekse systemer kan drage fordel af en faseret eller pilottilgang for at minimere risici.
--   **Organisationens størrelse og struktur:** Større organisationer med flere afdelinger kan have brug for en mere gradvis udrulning for at sikre en glat overgang.
--   **Risikotolerance:** Projekter med høj risiko kan kræve mere forsigtige tilgange som faseret eller pilot for at undgå omfattende forstyrrelser i forretningsoperationerne.
+**Ulemper:**
+- Høj risiko, da hele organisationen skifter til det nye system samtidigt.
+- Kan medføre betydelige afbrydelser, hvis der opstår problemer ved cutover.
+- Vanskeligt at rulle tilbage til det gamle system, hvis alvorlige problemer opstår.
+
+**Anvendelse:**
+Big Bang Cutover er passende i situationer, hvor systemkompleksiteten er lav, og hvor det er kritisk at minimere varigheden af overgangsperioden. Det bruges ofte i mindre organisationer eller ved mindre kritiske systemer.
+
+#### 2. Faseinddelt Cutover (Phased Cutover)
+**Beskrivelse:**
+I en faseinddelt cutover overføres forskellige funktioner eller moduler af systemet trinvis over en periode. Det gamle og nye system kører parallelt, indtil hele overgangen er gennemført.
+
+**Fordele:**
+- Mindre risikofyldt, da problemer kan identificeres og løses i mindre skala.
+- Mulighed for gradvis brugertræning og tilpasning.
+- Lettere at rulle tilbage for enkelte funktioner, hvis der opstår problemer.
+
+**Ulemper:**
+- Længere overgangsperiode, som kan øge kompleksiteten og omkostningerne.
+- Kræver, at begge systemer opretholdes og integreres parallelt i en periode.
+- Kan være udfordrende at sikre datakonsistens mellem systemerne under overgangen.
+
+**Anvendelse:**
+Faseinddelt Cutover er passende for komplekse systemer og større organisationer, hvor en gradvis overgang kan minimere risikoen for afbrydelser og give mulighed for trinvis læring og tilpasning.
+
+#### 3. Parallel Cutover
+**Beskrivelse:**
+Parallel Cutover indebærer, at det nye system kører parallelt med det gamle system i en periode. Brugerne anvender begge systemer samtidigt, hvilket muliggør en direkte sammenligning og fejlfinding.
+
+**Fordele:**
+- Lavere risiko, da det gamle system forbliver operationelt som backup.
+- Brugerne har mulighed for at blive fortrolige med det nye system uden at miste adgang til det gamle.
+- Lettere at identificere og rette problemer, da der er direkte sammenligning mellem systemerne.
+
+**Ulemper:**
+- Dyrt og ressourcetungt, da begge systemer skal vedligeholdes samtidigt.
+- Kræver dobbelte dataindtastninger og kan føre til inkonsistens i data.
+- Kan være komplekst og tidskrævende at koordinere.
+
+**Anvendelse:**
+Parallel Cutover anvendes typisk i missionkritiske systemer, hvor nedetid eller fejl ikke kan tolereres. Det er også nyttigt i organisationer med høj brugerafhængighed af systemerne.
+
+#### 4. Pilot Cutover
+**Beskrivelse:**
+Pilot Cutover indebærer, at det nye system implementeres for en lille gruppe brugere eller et afgrænset område først. Efter en vellykket pilotfase udrulles systemet til resten af organisationen.
+
+**Fordele:**
+- Lavere risiko, da eventuelle problemer kun påvirker en lille del af organisationen.
+- Giver mulighed for at indsamle feedback og foretage nødvendige justeringer, før fuld udrulning.
+- Brugere i pilotgruppen kan fungere som trænere og support for resten af organisationen.
+
+**Ulemper:**
+- Pilotgruppen kan opleve forstyrrelser og overgangsproblemer uden fuld support.
+- Kan være udfordrende at skalere løsninger fra pilotgruppen til hele organisationen.
+- Længere samlet udrulningsperiode.
+
+**Anvendelse:**
+Pilot Cutover er passende i store organisationer og komplekse systemer, hvor det er vigtigt at teste systemet i et kontrolleret miljø først. Det er også nyttigt, når brugerinvolvering og feedback er afgørende for succes.
+
+### Anbefalinger:
+- **Big Bang Cutover** anbefales i mindre projekter med lav kompleksitet, hvor en hurtig overgang er ønskelig, og hvor risikoen kan styres effektivt.
+- **Faseinddelt Cutover** er velegnet til store, komplekse systemer, hvor en trinvis overgang kan minimere risikoen og gøre det lettere at håndtere problemer.
+- **Parallel Cutover** bør bruges i missionkritiske systemer, hvor stabilitet og datakonsistens er afgørende, og hvor ressourcer er tilgængelige til at opretholde begge systemer.
+- **Pilot Cutover** er ideel til store organisationer, hvor feedback og justeringer er nødvendige før en fuld udrulning, og hvor pilotgruppen kan hjælpe med træning og support.
+
+Hver tilgang har sine unikke fordele og ulemper, og valget bør afhænge af organisationens behov, systemets kompleksitet og de tilgængelige ressourcer.
 
 # Spørgsmål 12a: Beskriv hvordan I har arbejdet med produktets arkitektur, hvordan I har dokumenteret det og hvilken betydning dette har haft for produktets kvalitet.
 
