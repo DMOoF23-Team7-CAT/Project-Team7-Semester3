@@ -1256,22 +1256,90 @@ Sammenfattende har arbejdet med produktets arkitektur gennem Clean Architecture 
 Sammenfattende anvender agile og vandfaldsmodeller forskellige tilgange til test, hvor agile fokuserer på kontinuerlig integration og fleksibilitet, mens vandfaldsmodellen anvender en mere struktureret og sekventiel tilgang. Hver metode har sine fordele, afhængigt af projektets natur og krav.
 
 # Spørgsmål 13a: Forklar hvordan I har gennemført og planlagt test af jeres produkt samt hvilken plads i projektets proces dette har haft. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces
+### Testplanlægning og -gennemførelse i projektet
 
-Test var integreret fra starten af projektet og blev tænkt ind i valget af vores systemudviklingsmetode, DSDM, hvis fjerde princip er "Never Compromise Quality". For at sikre kvalitet anbefaler DSDM at teste tidligt, teste kontinuerligt og teste til det rette niveau. Vi inkorporerede disse teknikker i vores cykliske iterationer. I projektets startfase anvendte vi flere forskellige prototyper og afprøvede forskellige opsætninger for at overholde DSDM's femte princip og skabe et solidt fundament, som vi kunne bygge videre på. Senere i projektet udførte vi både integrationstests og unittests for at sikre kvaliteten på de individuelle niveauer i applikationen. Vi anvendte også et Kanban-board med en kolonne for "Review" før opgaver blev markeret som "Done". Dette sikrede, at alle opgaver, store som små, blev gennemgået af et andet teammedlem, hvilket sikrede sporbarhed gennem projektet.
+#### Integration af test fra projektets start
+Vi valgte Dynamic Systems Development Method (DSDM) som vores systemudviklingsmetode, primært fordi den lægger stor vægt på kvalitet gennem hele udviklingsprocessen. DSDM's fjerde princip, "Never Compromise Quality," guider os til at fokusere på kvalitet fra starten af projektet.
 
-**Positive påvirkninger:**
+#### Testaktiviteter og deres integration i udviklingsprocessen
+1. **Tidlig testning**: Fra projektets begyndelse har vi inkorporeret testaktiviteter i vores cykliske iterationer. Ved at teste tidligt og kontinuerligt har vi kunnet identificere og rette fejl på et tidligt tidspunkt, hvilket har været med til at forbedre produktets samlede kvalitet.
 
--   **Produktkvalitet:** Kontinuerlig og tidlig testning sikrede, at fejl blev identificeret og rettet hurtigt, hvilket forbedrede produktets kvalitet markant.
--   **Proceseffektivitet:** Effektiv fejlhåndtering og kvalitetssikring reducerede behovet for omfattende rettelser i senere faser, hvilket optimerede udviklingsprocessen.
+2. **Prototyper og opsætninger**: I den tidlige fase af projektet afprøvede vi forskellige prototyper og opsætninger. Dette tillod os at eksperimentere med forskellige løsninger og teknologier, og ved at teste disse tidligt kunne vi vælge den bedste tilgang baseret på feedback og testresultater.
 
-**Negative påvirkninger:**
+3. **Unittests og integrationstests**: For at sikre kvaliteten på forskellige niveauer i applikationen udførte vi både enhedstest (unit tests) og integrationstest. Unittests blev brugt til at teste individuelle komponenter isoleret, mens integrationstests blev anvendt til at sikre, at de forskellige komponenter fungerede korrekt sammen.
 
--   **Ressourceforbrug:** Omfattende testaktiviteter krævede betydelige ressourcer i form af tid og personale.
--   **Projektforsinkelser:** Selvom tidlig og kontinuerlig testning kan forebygge større fejl senere, kan det også forsinke projektets tidsplan, især i de tidlige faser.
+4. **Kanban-board og review-kolonne**: Vi brugte et Kanban-board til at styre vores arbejdsopgaver. En specifik kolonne, "Review," blev anvendt før en opgave blev markeret som "Done." Dette sikrede, at alle opgaver, uanset størrelse, blev gennemgået af et andet teammedlem. Denne praksis bidrog til sporbarhed og sikring af kvalitet gennem hele projektet.
+
+### Positive påvirkninger af kvalitet i produkt og proces
+1. **Forbedret kvalitetssikring**: Ved at teste tidligt og kontinuerligt kunne vi hurtigt identificere og rette fejl. Dette har ført til en højere samlet kvalitet af produktet, da problemer blev fanget og løst, før de blev større og mere komplekse.
+
+2. **Øget sporbarhed**: Brug af et Kanban-board og "Review" kolonnen sikrede, at alle ændringer og opgaver blev sporet og gennemgået. Dette bidrog til en bedre dokumentation og forståelse af projektets udviklingstrin.
+
+3. **Effektiv fejlhåndtering**: Tidlig identifikation af fejl gjorde det lettere at rette dem, hvilket reducerede tid og omkostninger forbundet med fejlretning senere i projektet. Dette forbedrede effektiviteten af vores udviklingsproces.
+
+4. **Bedre samarbejde**: Review-processen fremmede samarbejde og kommunikation inden for teamet, hvilket bidrog til en mere ensartet og fejlfri kodebase.
+
+### Negative påvirkninger af kvalitet i produkt og proces
+1. **Øget tid til testning**: Implementering af omfattende testaktiviteter og review-processer krævede ekstra tid og ressourcer, hvilket nogle gange førte til forsinkelser i projektplanen.
+
+2. **Initial overhead**: I den tidlige fase krævede opsætningen af testmiljøer og udviklingen af prototyper ekstra ressourcer og tid, hvilket kunne have været brugt på andre udviklingsaktiviteter.
+
+3. **Afhængighed af teammedlemmer**: Review-processen betød, at opgaver ikke kunne afsluttes uden en anden persons gennemgang, hvilket nogle gange førte til flaskehalse, især hvis teammedlemmer var optaget med andre opgaver.
+
+### Konklusion
+Vores tilgang til testning, som var dybt integreret i vores udviklingsmetode, har betydet, at vi har kunnet levere et produkt af høj kvalitet. Trods nogle negative påvirkninger, såsom øget tid og ressourcer brugt på test, har den positive effekt på produktets og processens kvalitet klart opvejet disse udfordringer. Testning har været en central del af vores proces og har bidraget væsentligt til vores evne til at levere en robust og pålidelig applikation.
 
 # Spørgsmål 13b: Forklar sammenhængen mellem metode, teknik og værktøj. Kom også ind på, hvad en systemudviklingsmetode bør fokusere på. 
 
-Sammenhængen mellem metode, teknik og værktøj er afgørende i systemudvikling. En systemudviklingsmetode definerer den overordnede tilgang til, hvordan et projekt planlægges, udføres og styres. Denne metode inkluderer valg af specifikke teknikker og værktøjer, der skal anvendes under projektets udførelse. Teknikker refererer til konkrete metoder eller fremgangsmåder, såsom teststrategier og kodningspraksis, der anvendes til at opnå mål inden for projektet. Værktøjer er de softwareapplikationer eller systemer, der anvendes til at implementere teknikkerne og understøtte processen, såsom versionskontrolsystemer og fejlsporingssystemer.
+#### Metode
+En metode i systemudvikling refererer til den overordnede ramme og filosofi, der guider hele udviklingsprocessen. Metoden dikterer, hvordan et projekt skal planlægges, organiseres og styres fra start til slut. Den omfatter principper, processer og praksis, der skal følges for at sikre, at projektet opfylder sine mål og krav.
 
-**Fokus for en systemudviklingsmetode:**
-En systemudviklingsmetode bør fokusere på at sikre, at projektet følger en struktureret tilgang, der kan håndtere kompleksiteten i udviklingen, sikre kvalitet, effektiv styring af ressourcer og risici samt opnå de ønskede mål. Metoden bør også være fleksibel nok til at tilpasse sig projektets specifikke behov og kontekst, hvilket indebærer valg af passende teknikker og værktøjer til at opfylde projektets krav og mål. Sammenfattende skal metoden, teknikker og værktøjer arbejde i samklang for at sikre en effektiv og vellykket systemudviklingsproces.
+**Eksempler på metoder:**
+- Agile (fx Scrum, Kanban)
+- Vandfaldsmodellen
+- Dynamic Systems Development Method (DSDM)
+- Rational Unified Process (RUP)
+
+#### Teknik
+Teknikker er de specifikke fremgangsmåder og praksis, der anvendes inden for rammerne af en metode for at løse specifikke opgaver eller problemer. Teknikker er mere konkrete og praktiske sammenlignet med metoder, og de anvendes til at implementere de principper og processer, som metoden foreskriver.
+
+**Eksempler på teknikker:**
+- Test Driven Development (TDD)
+- Pair Programming
+- Continuous Integration/Continuous Deployment (CI/CD)
+- Use Case Analysis
+- User Story Mapping
+
+#### Værktøj
+Værktøjer er de softwareapplikationer og platforme, der bruges til at understøtte og automatisere teknikker og processer inden for en metode. Værktøjer hjælper med at forbedre effektiviteten og kvaliteten af arbejdet ved at give udviklerne de nødvendige ressourcer til at udføre deres opgaver.
+
+**Eksempler på værktøjer:**
+- Jira (projektstyring og issue tracking)
+- Git (versionskontrol)
+- Jenkins (CI/CD)
+- Selenium (automatiseret test)
+- Visual Studio Code (kodeeditor)
+
+### Sammenhæng mellem metode, teknik og værktøj
+Metode, teknik og værktøj er sammenhængende komponenter i systemudvikling. Metoden fastlægger den overordnede tilgang og de retningslinjer, der skal følges. Teknikker implementerer metodens principper gennem konkrete fremgangsmåder og praksis, mens værktøjer understøtter teknikkerne ved at tilbyde praktiske ressourcer og automatisering.
+
+For eksempel i en agil udviklingsmetode som Scrum (metode), kan teknikker som Sprint Planning, Daily Stand-ups og Retrospectives anvendes. Værktøjer som Jira kan bruges til at planlægge sprints, tracke opgaver og facilitere retrospektiver.
+
+### Hvad en systemudviklingsmetode bør fokusere på
+
+1. **Kvalitetssikring**: Metoden skal sikre, at produktet lever op til de ønskede kvalitetsstandarder gennem hele udviklingsprocessen. Dette inkluderer indførelse af teststrategier, code reviews og kvalitetssikringsprocesser.
+
+2. **Fleksibilitet og tilpasning**: Metoden skal kunne tilpasses forskellige projekter og miljøer. Den skal være fleksibel nok til at kunne håndtere ændringer i krav og prioriteter.
+
+3. **Kommunikation og samarbejde**: En god metode skal fremme effektiv kommunikation og samarbejde mellem teammedlemmer og interessenter. Dette kan opnås gennem teknikker som regelmæssige møder, statusopdateringer og brug af samarbejdsværktøjer.
+
+4. **Tidsstyring og leverancer**: Metoden bør fokusere på at levere funktionelle og værdifulde produktdele inden for bestemte tidsrammer. Dette hjælper med at sikre, at projektet skrider fremad i et kontrolleret tempo, og at der leveres værdi kontinuerligt.
+
+5. **Risikostyring**: Identifikation, vurdering og håndtering af risici er afgørende for at undgå problemer, der kan forsinke eller skade projektet. Metoden skal inkludere strategier til at håndtere risici effektivt.
+
+6. **Brugerinddragelse**: Metoden bør sikre, at brugernes behov og feedback bliver taget i betragtning gennem hele udviklingsprocessen. Dette kan opnås gennem teknikker som brugerinvolvering, prototyper og brugertests.
+
+7. **Kontinuerlig forbedring**: Metoden skal fremme en kultur af kontinuerlig forbedring, hvor teamet regelmæssigt evaluerer og forbedrer sine processer, teknikker og værktøjer.
+
+### Konklusion
+For at opnå succes i systemudvikling er det vigtigt at forstå og anvende sammenhængen mellem metode, teknik og værktøj. En systemudviklingsmetode bør fokusere på kvalitetssikring, fleksibilitet, kommunikation, tidsstyring, risikostyring, brugerinddragelse og kontinuerlig forbedring. Ved at vælge de rigtige metoder, teknikker og værktøjer kan et team optimere sin udviklingsproces og levere et højtkvalitetsprodukt, der opfylder brugernes behov og forventninger.
