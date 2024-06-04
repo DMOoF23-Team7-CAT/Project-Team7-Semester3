@@ -1147,26 +1147,113 @@ Hver tilgang har sine unikke fordele og ulemper, og valget bør afhænge af orga
 
 # Spørgsmål 12a: Beskriv hvordan I har arbejdet med produktets arkitektur, hvordan I har dokumenteret det og hvilken betydning dette har haft for produktets kvalitet.
 
-Vi afprøvede forskellige måder at sætte projektet op på i opstartsfasen, men endte med at bruge Clean Architecture. Dette valg var ikke kun en stor læringsoplevelse for os, men også afgørende for at systemet kunne udvides i fremtiden uden at skulle ændre mange fundamentale dele af systemet. Eksempelvis er infrastrukturlaget adskilt fra applikations- og core-lagene, hvilket gør det muligt at skifte databasen ud med en anden uden at skulle gennemgå hele koden og bekymre sig om, at ting ikke vil fungere.
+#### Valg af arkitektur
+I opstartsfasen af projektet afprøvede vi forskellige måder at sætte systemet op på, men vi endte med at anvende **Clean Architecture**. Dette valg blev truffet efter nøje overvejelse af de langsigtede fordele, Clean Architecture tilbyder, især hvad angår skalerbarhed og vedligeholdelse.
 
-**Positive påvirkninger:**
+#### Dokumentation af arkitekturen
+For at sikre en fælles forståelse og nem vedligeholdelse af systemet, dokumenterede vi arkitekturen grundigt. Dokumentationen omfattede følgende elementer:
 
--   **Produktkvalitet:** Der er en klar separation af forretningslogik, forretnings core principper, database logik og hvad der vises til brugeren. Dette har øget systemets robusthed og vedligeholdelsesvenlighed.
--   **Sikkerhed:** Vores forretnings core logik er beskyttet mod manipulation, da lagopdelingen betyder, at vores view-lag ikke har kendskab til core-laget og kun kan hente og manipulere data fra databasen ved at gå igennem applikationslaget, hvor vi har brugt Data Transfer Objects og validering for at sikre separationen og sikkerheden i vores entiteter.
+1. **Diagrammer**: Vi oprettede flere diagrammer, herunder komponentdiagrammer, sekvensdiagrammer og lagdelte arkitekturer, som visualiserede systemets struktur og interaktioner mellem forskellige dele.
+   
+2. **Teknisk dokumentation**: Vi udarbejdede detaljerede beskrivelser af hvert lag i arkitekturen, deres ansvar og interaktioner. Dette inkluderede beskrivelser af:
+   - **Core-laget**: Indeholder forretningslogik og regler. Dette lag er helt uafhængigt af andre lag, hvilket gør det muligt at genbruge og teste logikken uden afhængighed af specifikke teknologier eller frameworks.
+   - **Applikationslaget**: Håndterer applikationens brugergrænseflade og interaktion med brugeren. Dette lag er afhængigt af core-laget, men ikke af infrastrukturlaget.
+   - **Infrastrukturlaget**: Indeholder alt, hvad der er specifikt for eksterne teknologier, som databaser, web-API'er, filsystemer osv. Dette lag kan ændres uden at påvirke core- og applikationslagene.
 
-**Negative påvirkninger:**
+3. **Kodekommentarer og Readme-filer**: Vi brugte omfattende kommentarer i koden og Readme-filer til at forklare komplekse dele af koden, strukturer og designbeslutninger.
 
--   **Kompleksitet:** Introduktionen af en lagdelt arkitektur kan øge kompleksiteten og indlæringskurven for nye udviklere.
--   **Initial omkostning:** Tid og ressourcer krævet for at etablere en sådan arkitektur kan være betydelig, især i de tidlige faser af projektet.
+#### Betydning for produktets kvalitet
+
+Valget af Clean Architecture og den omfattende dokumentation havde flere positive effekter på produktets kvalitet:
+
+1. **Skalerbarhed og vedligeholdelse**: Clean Architecture adskiller systemets logiske og tekniske lag, hvilket gør det lettere at udvide og vedligeholde systemet. For eksempel kan vi skifte database-teknologi uden at ændre i forretningslogikken, hvilket sparer tid og reducerer risikoen for fejl.
+
+2. **Testbarhed**: Ved at have en klar adskillelse mellem logik og tekniske implementeringer kan vi lettere skrive enhedstests for vores forretningslogik uden at være afhængige af eksterne systemer. Dette forbedrer vores evne til at identificere og rette fejl tidligt.
+
+3. **Læringsoplevelse**: Arbejdet med Clean Architecture gav os værdifuld erfaring med at designe skalerbare og vedligeholdelsesvenlige systemer. Dette har ikke kun forbedret kvaliteten af det nuværende projekt, men også vores generelle kompetencer som udviklere.
+
+4. **Fleksibilitet**: Adskillelsen af lagene gør det muligt for os at introducere nye funktioner og teknologier med minimal indvirkning på det eksisterende system. Dette øger vores fleksibilitet til at reagere på ændringer i krav og teknologi.
+
+5. **Kommunikation og samarbejde**: Den omfattende dokumentation og klare struktur gør det nemmere for nye teammedlemmer at forstå systemet og bidrage effektivt. Det har også forbedret kommunikationen inden for teamet, da alle har en fælles forståelse af arkitekturen.
+
+Sammenfattende har arbejdet med produktets arkitektur gennem Clean Architecture og den tilhørende dokumentation haft en betydelig positiv indvirkning på systemets kvalitet, vedligeholdelse, fleksibilitet og teamets kompetenceudvikling.
 
 # Spørgsmål 12b: Beskriv forskellige typer af test og testniveauer samt hvornår, hvordan og hvorfor disse anvendes. Derudover skal du redegøre for væsentlige forskelle i test ved agile og vandfaldsmodeller
 
-Typer af test inkluderer unit testing, integration testing, system testing og acceptance testing. Unit testing kontrollerer individuelle komponenter for at sikre, at de fungerer korrekt isoleret. Integration testing tester samspillet mellem komponenter for at identificere fejl i deres interaktioner. System testing evaluerer hele systemets funktionalitet for at sikre, at det opfylder de specificerede krav. Acceptance testing udføres typisk af slutbrugere og sikrer, at systemet opfylder deres behov og forventninger.
+#### Typer af test
+1. **Enhedstest (Unit Testing)**:
+   - **Formål**: At teste individuelle enheder eller komponenter af koden for at sikre, at de fungerer korrekt.
+   - **Hvornår**: Under udviklingsfasen, løbende.
+   - **Hvordan**: Test af funktioner, metoder eller klasser isoleret fra resten af systemet. Brug af rammer som JUnit for Java, NUnit for .NET, eller PyTest for Python.
+   - **Hvorfor**: Tidlig detektion af fejl, reduceret fejlretningstid og sikring af kodens kvalitet.
 
-**Væsentlige forskelle i test ved agile og vandfaldsmodeller:**
+2. **Integrationstest (Integration Testing)**:
+   - **Formål**: At teste integrationen mellem forskellige enheder og komponenter for at sikre, at de fungerer sammen som forventet.
+   - **Hvornår**: Efter enhedstest og før systemtest.
+   - **Hvordan**: Test af interaktioner mellem komponenter, såsom dataudveksling mellem moduler eller API-kald. Brug af rammer som Spring Test for Java eller unittest i Python.
+   - **Hvorfor**: Sikre, at moduler arbejder korrekt sammen, og identificere fejl i grænseflader mellem komponenter.
 
--   **Agile modeller:** Testning er integreret i hver iteration, hvilket giver mulighed for løbende forbedring og tilpasning baseret på feedback. Dette sikrer en høj grad af fleksibilitet og hurtig respons på ændringer.
--   **Vandfaldsmodeller:** Testning sker typisk efter at udviklingsfasen er afsluttet, hvilket kan føre til sen opdagelse af fejl. Dette kan resultere i omkostningstunge og tidskrævende rettelser, da ændringer skal implementeres i et allerede næsten færdigt system.
+3. **Systemtest (System Testing)**:
+   - **Formål**: At teste det fuldt integrerede system for at sikre, at det opfylder de specificerede krav.
+   - **Hvornår**: Efter integrationstest, når hele systemet er samlet.
+   - **Hvordan**: End-to-end test af hele systemet i et miljø, der ligner produktionsmiljøet. Brug af automatiserede testværktøjer som Selenium eller manuelle tests.
+   - **Hvorfor**: Validere, at systemet fungerer som en helhed og opfylder kravene.
+
+4. **Accepttest (Acceptance Testing)**:
+   - **Formål**: At verificere, at systemet opfylder de forretningsmæssige krav og er klar til release.
+   - **Hvornår**: Efter systemtest og før systemet går i produktion.
+   - **Hvordan**: Test af systemet mod kravspecifikationen ved hjælp af brugsscenarier og cases. Involvering af slutbrugere for at validere systemets funktionalitet.
+   - **Hvorfor**: Sikre, at systemet opfylder slutbrugernes behov og krav før idriftsættelse.
+
+#### Testniveauer
+1. **Enhedsniveau**:
+   - Fokus på individuelle komponenter eller enheder.
+   - Bruges til at sikre, at grundlæggende funktionalitet er korrekt.
+
+2. **Integrationsniveau**:
+   - Fokus på kombinationen af flere komponenter og deres interaktion.
+   - Bruges til at opdage fejl i interface og dataudveksling mellem moduler.
+
+3. **Systemniveau**:
+   - Fokus på hele systemet som en helhed.
+   - Bruges til at sikre, at systemet opfylder alle specificerede krav.
+
+4. **Acceptniveau**:
+   - Fokus på systemets overensstemmelse med forretningskravene.
+   - Bruges til at validere systemet fra en slutbrugers perspektiv og godkende det til produktion.
+
+### Test i Agile vs. Vandfaldsmodellen
+
+#### Agile Testmetoder
+- **Kontinuerlig Integration og Test**: I agile miljøer integreres kode kontinuerligt, og test udføres løbende gennem udviklingscyklusserne.
+- **Test Driven Development (TDD)**: Test skrives før koden, hvilket sikrer, at alle funktioner testes grundigt fra starten.
+- **Automatiserede Tests**: Omfattende brug af automatiserede tests for hurtig feedback og kontinuerlig kvalitetssikring.
+- **Iterative Tests**: Test udføres i korte iterationer (sprints), hvilket muliggør hyppige justeringer baseret på feedback.
+
+#### Vandfaldsmodellen Testmetoder
+- **Sekventiel Test**: Test udføres efter hver udviklingsfase, typisk efter krav, design og implementering.
+- **Formelle Tests**: Mere formaliserede og omfattende tests, ofte med detaljerede testplaner og specifikationer.
+- **Langsommere Feedback**: Testresultater kommer sent i udviklingscyklussen, hvilket kan føre til dyrere og længerevarende fejlretning.
+- **Omfattende Dokumentation**: Der lægges stor vægt på detaljeret dokumentation af testplaner, resultater og procedurer.
+
+### Væsentlige forskelle
+1. **Tidsplan**:
+   - **Agile**: Test foregår kontinuerligt og parallelt med udviklingen.
+   - **Vandfald**: Test er en separat fase, der kommer efter implementeringen.
+
+2. **Fleksibilitet**:
+   - **Agile**: Hurtig tilpasning til ændringer og feedback gennem korte iterationer.
+   - **Vandfald**: Mindre fleksibilitet, da ændringer kan være dyre og tidskrævende at implementere efter en fase er afsluttet.
+
+3. **Testomfang**:
+   - **Agile**: Fokus på inkrementelle forbedringer og hyppig test af små dele af systemet.
+   - **Vandfald**: Fokus på omfattende test af hele systemet efter en fuld implementering.
+
+4. **Brugerinvolvering**:
+   - **Agile**: Slutbrugere og interessenter er ofte involveret i testprocessen gennem hele udviklingen.
+   - **Vandfald**: Slutbrugere involveres typisk først i accepttesten, når systemet er fuldt udviklet.
+
+Sammenfattende anvender agile og vandfaldsmodeller forskellige tilgange til test, hvor agile fokuserer på kontinuerlig integration og fleksibilitet, mens vandfaldsmodellen anvender en mere struktureret og sekventiel tilgang. Hver metode har sine fordele, afhængigt af projektets natur og krav.
 
 # Spørgsmål 13a: Forklar hvordan I har gennemført og planlagt test af jeres produkt samt hvilken plads i projektets proces dette har haft. Kom herunder ind på både positive og negative påvirkninger af kvalitet i produkt og proces
 
